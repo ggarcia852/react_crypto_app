@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Convert } from "./ConvertUtil";
+import { Convert } from "../../utils"
 
 export default class GlobalData extends React.Component {
   state = {
