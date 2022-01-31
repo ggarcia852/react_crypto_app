@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { CoinList, CoinPage, Portfolio } from "pages";
-import { GlobalData, NavBar } from "components";
+import { NavBar } from "components";
 
 
 export default class App extends React.Component {
@@ -10,7 +10,6 @@ export default class App extends React.Component {
       <Router>
         <div>
           <NavBar />
-          <GlobalData />
           <Switch>
             <Route exact path="/" component={CoinList} />
             <Route exact path="/coin/:coinId" component={CoinPage} />
