@@ -49,13 +49,14 @@ export default class CoinData extends React.Component {
                 <>
                   <div>id: {coin.id}</div>
                   <div>symbol: {coin.symbol}</div>
-                  <div>image: {coin.image}</div>
+                  <img src={coin.image} alt="coin"></img>
+                  {/* <div>image: {coin.image}</div> */}
                   <div>current price: ${coin.current_price}</div>
                   <div>market cap rank: {coin.market_cap_rank}</div>
-                  {/* <div>1h %: {coin.price_change_percentage_24h}%</div> */}
-                  <div>24h %: {coin.circulating_supply}%</div>
+                  <div>24h %: {coin.price_change_percentage_24h.toFixed(2)}%</div>
+                  {/* <div>1h %: {coin.circulating_supply}%</div> */}
                   {/* <div>7d %: {coin.circulating_supply}%</div> */}
-                  <div>circulating supply: {coin.circulating_supply}%</div>
+                  <div>circulating supply: ${coin.circulating_supply}</div>
                 </>
               ))}
             </div>
