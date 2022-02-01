@@ -37,7 +37,7 @@ export default class GlobalData extends React.Component {
     const { hasData, hasError, isLoading, globalData } = this.state;
     return (
       <div>
-        <div>Global Data</div>
+        <h1>Global Data</h1>
         {isLoading && <div>Loading data...</div>}
         {hasError && <div>error</div>}
         <div>
@@ -49,6 +49,7 @@ export default class GlobalData extends React.Component {
           <div>total volume(usd): ${Convert(globalData.data.total_volume.usd)}</div>
           <div>market cap %(btc): {globalData.data.market_cap_percentage.btc.toFixed(0)}%</div>
           <div>market cap %(eth): {globalData.data.market_cap_percentage.eth.toFixed(0)}%</div>
+          <div>market cap change: {globalData.data.market_cap_change_percentage_24h_usd.toFixed(0)}%</div>
           </>
           }
         </div>
