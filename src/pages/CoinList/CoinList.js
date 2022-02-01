@@ -1,8 +1,13 @@
 import React from 'react';
-import { CoinData } from 'components';
+import { CoinData, GlobalData } from 'components';
 
 export default class CoinList extends React.Component {
   render() {
-    return <CoinData /> ;
+    return (
+      <>
+      <GlobalData />;
+      <CoinData /> ;
+      </>
+    )
   }
 }

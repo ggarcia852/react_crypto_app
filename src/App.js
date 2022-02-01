@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { CoinList, CoinPage, Portfolio } from "pages";
 import { NavBar } from "components";
 
+
 export default class App extends React.Component {
   render() {
     return (
