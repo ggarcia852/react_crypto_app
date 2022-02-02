@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Convert } from "../../utils"
+import { ConvertCurrency } from "../../utils"
 
 
 export default class CoinData extends React.Component {
@@ -57,9 +57,9 @@ export default class CoinData extends React.Component {
                   <div>1h: {coin.price_change_percentage_1h_in_currency.toFixed(2)}%</div>
                   <div>24h: {coin.price_change_percentage_24h.toFixed(2)}%</div>
                   <div>7d: {coin.price_change_percentage_7d_in_currency.toFixed(2)}%</div>
-                  <div>volume: ${Convert(coin.total_volume)}</div>
-                  <div>circulating supply: ${Convert(coin.circulating_supply)}</div>
-                  <div>total supply: ${Convert(coin.total_supply)}</div>
+                  <div>volume: ${ConvertCurrency(coin.total_volume)}</div>
+                  <div>circulating supply: ${ConvertCurrency(coin.circulating_supply)}</div>
+                  <div>total supply: ${ConvertCurrency(coin.total_supply)}</div>
                 </>
               ))}
             </div>
