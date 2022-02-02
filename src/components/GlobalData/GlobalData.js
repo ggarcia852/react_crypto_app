@@ -50,6 +50,7 @@ export default class GlobalData extends React.Component {
           <div>market cap %(btc): {globalData.data.market_cap_percentage.btc.toFixed(0)}%</div>
           <div>market cap %(eth): {globalData.data.market_cap_percentage.eth.toFixed(0)}%</div>
           <div>market cap change: {globalData.data.market_cap_change_percentage_24h_usd.toFixed(0)}%</div>
+
           </>
           }
         </div>
