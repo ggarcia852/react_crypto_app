@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { ConvertCurrency } from "../../utils"
+
 
 export default class CoinData extends React.Component {
   state = {
@@ -38,7 +40,7 @@ export default class CoinData extends React.Component {
     const { hasData, hasError, isLoading, coinData } = this.state;
     return (
       <div>
-        <div>Coin Data</div>
+        <h1>Coin Data</h1>
         {isLoading && <div>Loading data...</div>}
         {hasError && <div>error</div>}
         <div>
@@ -46,18 +48,18 @@ export default class CoinData extends React.Component {
             <div>
               {coinData.map((coin) => (
                 <>
+                  <h2>name: {coin.name}</h2>
                   <div>id: {coin.id}</div>
                   <div>symbol: {coin.symbol}</div>
-                  <div>name: {coin.name}</div>
                   <img src={coin.image} alt="coin"></img>
                   <div>price: ${coin.current_price}</div>
                   <div>market cap rank: {coin.market_cap_rank}</div>
                   <div>1h: {coin.price_change_percentage_1h_in_currency.toFixed(2)}%</div>
                   <div>24h: {coin.price_change_percentage_24h.toFixed(2)}%</div>
                   <div>7d: {coin.price_change_percentage_7d_in_currency.toFixed(2)}%</div>
-                  <div>volume: ${coin.total_volume}</div>
-                  <div>circulating supply: ${coin.circulating_supply}</div>
-                  <div>total supply: ${coin.total_supply}</div>
+                  <div>volume: ${ConvertCurrency(coin.total_volume)}</div>
+                  <div>circulating supply: ${ConvertCurrency(coin.circulating_supply)}</div>
+                  <div>total supply: ${ConvertCurrency(coin.total_supply)}</div>
                 </>
               ))}
             </div>
