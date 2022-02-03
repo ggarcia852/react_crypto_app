@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertTime, ConvertCurrency } from "utils";
+import { ConvertTime } from "utils";
 export default class MarketChartData extends React.Component {
   state = {
     hasData: false,
@@ -60,12 +60,6 @@ export default class MarketChartData extends React.Component {
                   ],
                 }}
               />
-              {/* {chartData.prices.map((price) => (
-                <>
-                  <div>time: {ConvertTime(price[0])}</div>
-                  <div>price: {price[1].toFixed()}</div>
-                </>
-              ))} */}
             </div>
           )}
         </div>
@@ -93,14 +87,6 @@ export default class MarketChartData extends React.Component {
                   },
                 }}
               />
-
-              {/* {chartData.total_volumes.map((volume) => (
-                <>
-                  <div>time: {ConvertTime(volume[0])}</div>
-                  <div>volume: {volume[1].toFixed()}</div>
-                  
-                </>
-              ))} */}
             </div>
           )}
         </div>
