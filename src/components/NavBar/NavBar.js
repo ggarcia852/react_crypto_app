@@ -1,19 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import {
+  StyledNavDiv,
+  StyledLinks,
+  StyledLink,
+  StyledNavList,
+  StyledInput,
+  StyledDropdown,
+  StyledNavigation,
+  StyledButton
+} from "./styles";
 export default class NavBar extends React.Component {
   render() {
     return (
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/portfolio">Portfolio</Link>
-          </li>
-        </ul>
-      </div>
+      <StyledNavDiv>
+        <StyledLinks>
+          <StyledNavList>
+            <li>
+              <StyledLink exact to="/" activeClassName="active">
+                Coins
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink exact to="/portfolio" activeClassName="active">
+                Portfolio
+              </StyledLink>
+            </li>
+          </StyledNavList>
+        </StyledLinks>
+        <StyledNavigation>
+          <StyledInput />
+          <StyledDropdown />
+          <StyledButton />
+        </StyledNavigation>
+      </StyledNavDiv>
     );
   }
 }
