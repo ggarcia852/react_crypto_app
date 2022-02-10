@@ -5,7 +5,7 @@ export const StyledNavDiv = styled.div`
   display: flex;
   width: 100%;
   height: 93px;
-  background: #040810;
+  background: #191B1F;
   align-items: center;
 `;
 
@@ -41,13 +41,6 @@ export const StyledNavigation = styled.div`
   display: flex;
 `;
 
-export const StyledInput = styled.input`
-  height: 63px;
-  width: 510px;
-  background: #2c2f36;
-  border-radius: 15px;
-  border: none;
-`;
 
 export const StyledDropdown = styled.select`
   height: 63px;

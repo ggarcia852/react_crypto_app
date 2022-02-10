@@ -41,7 +41,7 @@ export default class MarketChartData extends React.Component {
     const { hasData, hasError, isLoading, chartData } = this.state;
     return (
       <>
-        <StyledHeader>Your Overview</StyledHeader>
+        <StyledHeader>Bitcoin Overview</StyledHeader>
         <ChartsDiv>
           <StyledCharts>
             {isLoading && <div>Loading data...</div>}
