@@ -12,6 +12,7 @@ import {
   StyledTableBody,
   StyledTableRow,
   StyledTableCell,
+  StyledCoinLink,
 } from "./styles";
 
 export default class CoinData extends React.Component {
@@ -47,6 +48,18 @@ export default class CoinData extends React.Component {
     this.getCoinData();
   }
 
+  handleClick = async (coin) => {
+    const id = coin.id;
+    try {
+      const { data } = await axios(
+        `https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true`
+      );
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   render() {
     const { hasData, hasError, isLoading, coinData } = this.state;
     return (
@@ -76,11 +89,13 @@ export default class CoinData extends React.Component {
               </StyledTableHeader>
               <StyledTableBody>
                 {coinData.map((coin) => (
-                  <StyledTableRow>
+                  <StyledTableRow key={coin.id}>
                     <StyledTableCell>{coin.market_cap_rank}</StyledTableCell>
                     <StyledTableCell>
-                      <StyledImg src={coin.image} alt="coin"></StyledImg>
-                      {coin.name} ({coin.symbol.toUpperCase()})
+                      <StyledCoinLink to={`/coin/${coin.id}`}>
+                        <StyledImg src={coin.image} alt="coin"></StyledImg>
+                        {coin.name} ({coin.symbol.toUpperCase()})
+                      </StyledCoinLink>
                     </StyledTableCell>
                     <StyledTableCell>${coin.current_price}</StyledTableCell>
                     <StyledTableCell>
