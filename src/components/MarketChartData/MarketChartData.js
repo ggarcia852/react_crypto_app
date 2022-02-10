@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { Bar, Line } from "react-chartjs-2";
+//eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertTime } from "utils";
 import { StyledHeader, ChartsDiv, StyledCharts, StyledChart } from "./styles";
+
 export default class MarketChartData extends React.Component {
   state = {
     hasData: false,
