@@ -52,7 +52,7 @@ export default class CoinData extends React.Component {
     return (
       <>
         <StyledHeader>
-          <StyledOverview>Your Overview</StyledOverview>
+          <StyledOverview>Market Overview</StyledOverview>
         </StyledHeader>
         <StyledCoinList>
           {isLoading && <div>Loading data...</div>}

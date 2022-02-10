@@ -15,17 +15,17 @@ export const StyledOverview = styled.div`
 
 export const StyledCoinList = styled.div`
   display: flex;
-  width: 1712px;
-  background: #191b1f;
   margin-left: 93px;
-  border-radius: 10px;
+  margin-right: 93px;
   margin-bottom: 187px;
 `;
 
 export const StyledTable = styled.div`
   display: table;
+  background: #191b1f;
+  padding: 50px 35px 75px 50px;
+  border-radius: 10px;
   width: 100%;
-  margin-left: 50px;
 `;
 
 export const StyledTableHeader = styled.div`
