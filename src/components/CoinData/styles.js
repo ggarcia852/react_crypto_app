@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StyledHeader = styled.div`
   display: flex;
@@ -60,4 +61,9 @@ export const StyledImg = styled.img`
   width: 33.5px;
   height: 33.5px;
   padding-right: 13px;
+`;
+
+export const StyledCoinLink = styled(Link)`
+  text-decoration: none;
+  color: #ffffff;
 `;
