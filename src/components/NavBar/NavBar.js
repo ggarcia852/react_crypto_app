@@ -1,10 +1,10 @@
 import React from "react";
+import SearchBar from "components/SearchBar";
 import {
   StyledNavDiv,
   StyledLinks,
   StyledLink,
   StyledNavList,
-  StyledInput,
   StyledDropdown,
   StyledNavigation,
   StyledButton,
@@ -29,7 +29,7 @@ export default class NavBar extends React.Component {
           </StyledNavList>
         </StyledLinks>
         <StyledNavigation>
-          <StyledInput />
+          <SearchBar />
           <StyledDropdown />
           <StyledButton />
         </StyledNavigation>
