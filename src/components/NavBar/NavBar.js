@@ -7,8 +7,9 @@ import {
   StyledInput,
   StyledDropdown,
   StyledNavigation,
-  StyledButton
+  StyledButton,
 } from "./styles";
+
 export default class NavBar extends React.Component {
   render() {
     return (

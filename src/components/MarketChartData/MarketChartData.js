@@ -3,6 +3,7 @@ import axios from "axios";
 import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertTime } from "utils";
+import { StyledHeader, ChartsDiv, StyledCharts, StyledChart } from "./styles";
 export default class MarketChartData extends React.Component {
   state = {
     hasData: false,
@@ -39,58 +40,78 @@ export default class MarketChartData extends React.Component {
   render() {
     const { hasData, hasError, isLoading, chartData } = this.state;
     return (
-      <div>
-        <h1>Chart Data</h1>
-        {isLoading && <div>Loading data...</div>}
-        {hasError && <div>error</div>}
-        <div>
-          <h2>Hourly Price Data(Bitcoin)</h2>
-          {hasData && (
-            <div>
-              <Line
-                data={{
-                  labels: chartData.prices.map((price) =>
-                    ConvertTime(price[0])
-                  ),
-                  datasets: [
-                    {
-                      label: "Bitcoin Hourly Price",
-                      data: chartData.prices.map((price) => price[1].toFixed()),
+      <>
+        <StyledHeader>Your Overview</StyledHeader>
+        <ChartsDiv>
+          <StyledCharts>
+            {isLoading && <div>Loading data...</div>}
+            {hasError && <div>error</div>}
+            {hasData && (
+              <StyledChart>
+                <div>BTC</div>
+                <Line
+                  data={{
+                    labels: chartData.prices.map((price) =>
+                      ConvertTime(price[0])
+                    ),
+                    datasets: [
+                      {
+                        label: "Bitcoin Hourly Price",
+                        data: chartData.prices.map((price) =>
+                          price[1].toFixed()
+                        ),
+                        borderColor: "#00FF5F",
+                        backgroundColor: "#518665",
+                        fill: true,
+                        tension: 0.1,
+                      },
+                    ],
+                  }}
+                  options={{
+                    scales: {
+                      y: {
+                        beginAtZero: false,
+                        display: false,
+                      },
                     },
-                  ],
-                }}
-              />
-            </div>
-          )}
-        </div>
-        <div>
-          <h2>Hourly Volume Data(Bitcoin)</h2>
-          {hasData && (
-            <div>
-              <Bar
-                data={{
-                  labels: chartData.total_volumes.map((volume) =>
-                    ConvertTime(volume[0])
-                  ),
-                  datasets: [
-                    {
-                      label: "Bitcoin Volume",
-                      data: chartData.total_volumes.map((volume) => volume[1]),
+                  }}
+                />
+              </StyledChart>
+            )}
+          </StyledCharts>
+          <StyledCharts>
+            <StyledChart>
+              <div>Volume 24h</div>
+              {hasData && (
+                <Bar
+                  data={{
+                    labels: chartData.total_volumes.map((volume) =>
+                      ConvertTime(volume[0])
+                    ),
+                    datasets: [
+                      {
+                        label: "Bitcoin Volume",
+                        data: chartData.total_volumes.map(
+                          (volume) => volume[1]
+                        ),
+                        backgroundColor: "#2172E5",
+                      },
+                    ],
+                  }}
+                  options={{
+                    scales: {
+                      y: {
+                        beginAtZero: false,
+                        display: false,
+                      },
                     },
-                  ],
-                }}
-                options={{
-                  scales: {
-                    y: {
-                      beginAtZero: false,
-                    },
-                  },
-                }}
-              />
-            </div>
-          )}
-        </div>
-      </div>
+                  }}
+                />
+              )}
+            </StyledChart>
+          </StyledCharts>
+        </ChartsDiv>
+      </>
     );
   }
 }
