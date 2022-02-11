@@ -7,11 +7,11 @@ export const StyledNavDiv = styled.div`
   height: 93px;
   background: #191B1F;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const StyledLinks = styled.div`
   display: flex;
-  width: 60%;
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -39,7 +39,7 @@ export const StyledNavList = styled.ul`
 
 export const StyledNavigation = styled.div`
   display: flex;
-`;
+  `;
 
 
 export const StyledDropdown = styled.select`

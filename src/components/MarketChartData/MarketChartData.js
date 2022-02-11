@@ -4,7 +4,15 @@ import { Bar, Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertTime } from "utils";
-import { StyledHeader, ChartsDiv, StyledCharts, StyledChart } from "./styles";
+import {
+  StyledHeader,
+  ChartsDiv,
+  StyledCharts,
+  StyledChart,
+  StyledContainer,
+  StyledButton,
+  StyledBar,
+} from "./styles";
 
 export default class MarketChartData extends React.Component {
   state = {
@@ -12,13 +20,23 @@ export default class MarketChartData extends React.Component {
     isLoading: false,
     hasError: false,
     chartData: null,
+    chartDays: 1,
+    chartInterval: "hourly",
+    buttons: [
+      { value: "1h", days: 1, interval: "hourly" },
+      { value: "7d", days: 7, interval: "hourly" },
+      { value: "30d", days: 30, interval: "daily" },
+      { value: "90d", days: 90, interval: "daily" },
+      { value: "180d", days: 180, interval: "daily" },
+      { value: "365d", days: 365, interval: "daily" },
+    ],
   };
 
   getChartData = async () => {
     this.setState({ isLoading: true });
     try {
       const { data } = await axios(
-        "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly"
+        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${this.state.chartDays}&interval=${this.state.chartInterval}`
       );
       this.setState({
         hasData: true,
@@ -35,12 +53,24 @@ export default class MarketChartData extends React.Component {
     }
   };
 
+  handleClick = (button) => {
+    this.setState({ chartDays: button.days, chartInterval: button.interval });
+    this.props.active = true;
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.chartDays !== prevState.chartDays) {
+      this.getChartData();
+    }
+  }
+
   componentDidMount() {
     this.getChartData();
   }
 
   render() {
-    const { hasData, hasError, isLoading, chartData } = this.state;
+    const { hasData, hasError, isLoading, chartData, buttons } = this.state;
+
     return (
       <>
         <StyledHeader>Bitcoin Overview</StyledHeader>
@@ -75,6 +105,9 @@ export default class MarketChartData extends React.Component {
                         beginAtZero: false,
                         display: false,
                       },
+                      x: {
+                        display: false,
+                      },
                     },
                   }}
                 />
@@ -106,6 +139,9 @@ export default class MarketChartData extends React.Component {
                         beginAtZero: false,
                         display: false,
                       },
+                      x: {
+                        display: false,
+                      },
                     },
                   }}
                 />
@@ -113,6 +149,18 @@ export default class MarketChartData extends React.Component {
             </StyledChart>
           </StyledCharts>
         </ChartsDiv>
+        <StyledContainer>
+          <StyledBar>
+            {buttons.map((button) => (
+              <StyledButton
+                key={button.value}
+                onClick={() => this.handleClick(button)}
+              >
+                {button.value}
+              </StyledButton>
+            ))}
+          </StyledBar>
+        </StyledContainer>
       </>
     );
   }

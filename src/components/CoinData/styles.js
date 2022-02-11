@@ -7,11 +7,12 @@ export const StyledHeader = styled.div`
 `;
 
 export const StyledOverview = styled.div`
+  display: flex;
   font-size: 22px;
   color: #ffffff;
   height: 61px;
-  margin-left: 93px;
-  margin-top: 65px;
+  padding-left: 93px;
+  padding-top: 65px;
 `;
 
 export const StyledCoinList = styled.div`
