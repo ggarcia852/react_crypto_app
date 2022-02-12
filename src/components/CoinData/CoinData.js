@@ -48,18 +48,6 @@ export default class CoinData extends React.Component {
     this.getCoinData();
   }
 
-  handleClick = async (coin) => {
-    const id = coin.id;
-    try {
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true`
-      );
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   render() {
     const { hasData, hasError, isLoading, coinData } = this.state;
     return (
