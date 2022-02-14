@@ -5,10 +5,10 @@ import {
   StyledLinks,
   StyledLink,
   StyledNavList,
-  StyledDropdown,
   StyledNavigation,
   StyledButton,
 } from "./styles";
+import CurrencySelector from "components/CurrencySelector/CurrencySelector";
 
 export default class NavBar extends React.Component {
   render() {
@@ -30,7 +30,7 @@ export default class NavBar extends React.Component {
         </StyledLinks>
         <StyledNavigation>
           <SearchBar />
-          <StyledDropdown />
+          <CurrencySelector handleCurrency={this.props.handleCurrency} />
           <StyledButton />
         </StyledNavigation>
       </StyledNavDiv>

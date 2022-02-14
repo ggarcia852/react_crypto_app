@@ -8,8 +8,8 @@ export default class CoinList extends React.Component {
     return (
       <Container>
         <GlobalData />
-        <MarketChartData />
-        <CoinData />
+        <MarketChartData currency={this.props.currency} />
+        <CoinData currency={this.props.currency} />
       </Container>
     );
   }

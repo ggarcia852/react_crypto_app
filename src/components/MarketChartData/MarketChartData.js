@@ -22,6 +22,7 @@ export default class MarketChartData extends React.Component {
     chartData: null,
     chartDays: 1,
     chartInterval: "hourly",
+    chartCurrency: "usd",
     buttons: [
       { value: "1h", days: 1, interval: "hourly" },
       { value: "7d", days: 7, interval: "hourly" },
@@ -33,10 +34,11 @@ export default class MarketChartData extends React.Component {
   };
 
   getChartData = async () => {
+    const {chartDays, chartInterval, chartCurrency} = this.state
     this.setState({ isLoading: true });
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${this.state.chartDays}&interval=${this.state.chartInterval}`
+        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${chartCurrency}&days=${chartDays}&interval=${chartInterval}`
       );
       this.setState({
         hasData: true,
@@ -53,6 +55,13 @@ export default class MarketChartData extends React.Component {
     }
   };
 
+  setCurrency = () => {
+    const currency = this.props.currency
+    this.setState({chartCurrency: currency})
+    console.log("market", currency)
+    
+  }
+
   handleClick = (button) => {
     this.setState({ chartDays: button.days, chartInterval: button.interval });
     this.props.active = true;
@@ -62,9 +71,13 @@ export default class MarketChartData extends React.Component {
     if (this.state.chartDays !== prevState.chartDays) {
       this.getChartData();
     }
+    if (this.state.chartCurrency !== prevState.chartCurrency){
+      this.setCurrency()
+    }
   }
 
   componentDidMount() {
+    this.setCurrency();
     this.getChartData();
   }
 
