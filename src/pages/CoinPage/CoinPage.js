@@ -66,7 +66,7 @@ export default class CoinPage extends React.Component {
             <div>Market Cap: ${coin.market_data.market_cap.usd}</div>
             <div>Fully Diluted Valuation: ${coin.market_data.fully_diluted_valuation.usd}</div>
             <div>Volume 24h{coin.market_data.market_cap_change_24h}</div>
-            <div>Volume / Market Cap: {coin.market_data.market_cap_change_percentage_24h_in_currency.usd}%</div>
+            <div>Volume / Market Cap: {coin.market_data.total_volume.usd / coin.market_data.market_cap.usd * 100}</div>
             <div>Total Volume: {coin.market_data.total_volume.usd}</div>
             <div>Circulating Supply: {coin.market_data.circulating_supply}</div> 
             <div>Max Supply: {coin.market_data.max_supply}</div>
