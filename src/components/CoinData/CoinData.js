@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { ConvertCurrency } from "../../utils";
+import { ProgressBar } from "components";
 import {
   StyledHeader,
   StyledOverview,
@@ -13,6 +14,8 @@ import {
   StyledTableRow,
   StyledTableCell,
   StyledCoinLink,
+  StyledBullet,
+  StyledBullets,
 } from "./styles";
 
 export default class CoinData extends React.Component {
@@ -29,6 +32,7 @@ export default class CoinData extends React.Component {
       const { data } = await axios(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=25&page=1&sparkline=false&price_change_percentage=1h%2C%2024h%2C7d"
       );
+      console.log(data);
       this.setState({
         hasData: true,
         isLoading: false,
@@ -68,10 +72,10 @@ export default class CoinData extends React.Component {
                 <StyledTableHeaderCell>24h%</StyledTableHeaderCell>
                 <StyledTableHeaderCell>7d%</StyledTableHeaderCell>
                 <StyledTableHeaderCell>
-                  24h Volume/MarketCap
+                  Volume / MarketCap
                 </StyledTableHeaderCell>
                 <StyledTableHeaderCell>
-                  Circulating/Total Supply
+                  Circulating / Total Supply
                 </StyledTableHeaderCell>
                 <StyledTableHeaderCell>Last 7d</StyledTableHeaderCell>
               </StyledTableHeader>
@@ -96,12 +100,34 @@ export default class CoinData extends React.Component {
                       {coin.price_change_percentage_7d_in_currency.toFixed(2)}%
                     </StyledTableCell>
                     <StyledTableCell>
-                      ${ConvertCurrency(coin.total_volume)} /{" "}
-                      {ConvertCurrency(coin.market_cap)}
+                      <StyledBullets>
+                        <StyledBullet>
+                          ${ConvertCurrency(coin.total_volume)}
+                        </StyledBullet>
+                        <StyledBullet>
+                          ${ConvertCurrency(coin.market_cap)}
+                        </StyledBullet>
+                      </StyledBullets>
+                      <ProgressBar
+                        progress={(coin.total_volume / coin.market_cap) * 100}
+                      />
                     </StyledTableCell>
                     <StyledTableCell>
-                      ${ConvertCurrency(coin.circulating_supply)} / $
-                      {ConvertCurrency(coin.total_supply)}
+                      <StyledBullets>
+                        <StyledBullet>
+                          ${ConvertCurrency(coin.circulating_supply)}
+                        </StyledBullet>
+                        <StyledBullet>
+                          {coin.total_supply
+                            ? "$" + ConvertCurrency(coin.total_supply)
+                            : "n/a"}
+                        </StyledBullet>
+                      </StyledBullets>
+                      <ProgressBar
+                        progress={
+                          (coin.circulating_supply / coin.total_supply) * 100
+                        }
+                      />
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}

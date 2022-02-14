@@ -68,3 +68,13 @@ export const StyledCoinLink = styled(Link)`
   text-decoration: none;
   color: #ffffff;
 `;
+
+export const StyledBullets = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 230px;
+`;
+
+export const StyledBullet = styled.div`
+  display: flex;
+`;
