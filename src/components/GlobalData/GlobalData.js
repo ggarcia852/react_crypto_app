@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { ConvertCurrency } from "../../utils";
-import { StyledGlobalData, StyledHeader } from "./styles";
+import { StyledGlobalData, StyledHeader, StyledData } from "./styles";
 
 export default class GlobalData extends React.Component {
   state = {
@@ -43,29 +43,26 @@ export default class GlobalData extends React.Component {
           {hasError && <div>error</div>}
           {hasData && (
             <>
-              <span>Coins {globalData.data.active_cryptocurrencies}</span>
-              <span>Exchange {globalData.data.markets}</span>
-              <span>
-                total market cap(usd): $
-                {ConvertCurrency(globalData.data.total_market_cap.usd)}
-              </span>
-              <span>
-                total volume(usd): $
-                {ConvertCurrency(globalData.data.total_volume.usd)}
-              </span>
-              <span>
-                BTC {globalData.data.market_cap_percentage.btc.toFixed(0)}%
-              </span>
-              <span>
-                ETH {globalData.data.market_cap_percentage.eth.toFixed(0)}%
-              </span>
-              <span>
-                market cap change:
+              <StyledData>Coins {globalData.data.active_cryptocurrencies}</StyledData>
+              <StyledData>Exchanges {globalData.data.markets}</StyledData>
+              <StyledData>
+                <li />${ConvertCurrency(globalData.data.total_market_cap.usd)}
+              </StyledData>
+              <StyledData>
+              <li />${ConvertCurrency(globalData.data.total_volume.usd)}
+              </StyledData>
+              <StyledData>
                 {globalData.data.market_cap_change_percentage_24h_usd.toFixed(
                   0
                 )}
                 %
-              </span>
+              </StyledData>
+              <StyledData>
+                BTC {globalData.data.market_cap_percentage.btc.toFixed(0)}%
+              </StyledData>
+              <StyledData>
+                ETH {globalData.data.market_cap_percentage.eth.toFixed(0)}%
+              </StyledData>
             </>
           )}
         </StyledGlobalData>

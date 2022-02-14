@@ -3,7 +3,7 @@ import axios from "axios";
 import { Bar, Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertTime } from "utils";
+import { ConvertTime, ConvertCurrency } from "utils";
 import {
   StyledHeader,
   ChartsDiv,
@@ -12,6 +12,10 @@ import {
   StyledContainer,
   StyledButton,
   StyledBar,
+  StyledHeading,
+  StyledTitle,
+  StyledAmount,
+  StyledDate,
 } from "./styles";
 
 export default class MarketChartData extends React.Component {
@@ -70,7 +74,9 @@ export default class MarketChartData extends React.Component {
 
   render() {
     const { hasData, hasError, isLoading, chartData, buttons } = this.state;
-
+    let today = new Date().toDateString();
+    let price = chartData?.prices.slice(-1)[0].slice(-1)[0].toFixed(0);
+    let volume = chartData?.total_volumes.slice(-1)[0].slice(-1)[0].toFixed(0);
     return (
       <>
         <StyledHeader>Bitcoin Overview</StyledHeader>
@@ -80,7 +86,11 @@ export default class MarketChartData extends React.Component {
             {hasError && <div>error</div>}
             {hasData && (
               <StyledChart>
-                <div>BTC</div>
+                <StyledHeading>
+                  <StyledTitle>BTC</StyledTitle>
+                  <StyledAmount>${price}</StyledAmount>
+                  <StyledDate>{today}</StyledDate>
+                </StyledHeading>
                 <Line
                   data={{
                     labels: chartData.prices.map((price) =>
@@ -92,6 +102,7 @@ export default class MarketChartData extends React.Component {
                         data: chartData.prices.map((price) =>
                           price[1].toFixed()
                         ),
+                        pointRadius: 0,
                         borderColor: "#00FF5F",
                         backgroundColor: "#518665",
                         fill: true,
@@ -109,6 +120,19 @@ export default class MarketChartData extends React.Component {
                         display: false,
                       },
                     },
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                    },
+                    layout: {
+                      padding: {
+                        left: 70,
+                        right: 70,
+                        bottom: 40,
+                        top: 30,
+                      },
+                    },
                   }}
                 />
               </StyledChart>
@@ -116,7 +140,11 @@ export default class MarketChartData extends React.Component {
           </StyledCharts>
           <StyledCharts>
             <StyledChart>
-              <div>Volume 24h</div>
+              <StyledHeading>
+                <StyledTitle>Volume</StyledTitle>
+                <StyledAmount>${ConvertCurrency(volume)}</StyledAmount>
+                <StyledDate>{today}</StyledDate>
+              </StyledHeading>
               {hasData && (
                 <Bar
                   data={{
@@ -130,6 +158,7 @@ export default class MarketChartData extends React.Component {
                           (volume) => volume[1]
                         ),
                         backgroundColor: "#2172E5",
+                        borderRadius: 5,
                       },
                     ],
                   }}
@@ -141,6 +170,19 @@ export default class MarketChartData extends React.Component {
                       },
                       x: {
                         display: false,
+                      },
+                    },
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                    },
+                    layout: {
+                      padding: {
+                        left: 70,
+                        right: 70,
+                        bottom: 40,
+                        top: 30,
                       },
                     },
                   }}

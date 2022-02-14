@@ -12,8 +12,14 @@ export const StyledGlobalData = styled.div`
   height: 55px;
   width: 906px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background: #191b1f;
   margin-top: 0px;
   border-radius: 0px 0px 15px 15px;
+  padding: 0px 50px 0px 50px;
 `;
+
+export const StyledData = styled.div`
+  display: flex;
+  padding: 7px;
+`
