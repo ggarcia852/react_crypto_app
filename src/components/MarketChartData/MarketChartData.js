@@ -55,7 +55,6 @@ export default class MarketChartData extends React.Component {
 
   handleClick = (button) => {
     this.setState({ chartDays: button.days, chartInterval: button.interval });
-    this.props.active = true;
   };
 
   componentDidUpdate(prevProps, prevState) {

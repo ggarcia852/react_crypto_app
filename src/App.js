@@ -5,6 +5,11 @@ import { NavBar } from "components";
 import { Container, GlobalStyle } from "GlobalStyles/styles";
 
 export default class App extends React.Component {
+
+  state = {
+    currency: "usd"
+  }
+
   render() {
     return (
       <Container>
@@ -13,7 +18,7 @@ export default class App extends React.Component {
           <div>
             <NavBar />
             <Switch>
-              <Route exact path="/" component={CoinList} />
+              <Route exact path="/" component={CoinList} currency={this.state.currency} />
               <Route exact path="/coin/:coinId" component={CoinPage} />
               <Route path="/portfolio" component={Portfolio} />
             </Switch>

@@ -1,11 +1,11 @@
 import React from "react";
 import SearchBar from "components/SearchBar";
+import { CurrencySelector } from "components";
 import {
   StyledNavDiv,
   StyledLinks,
   StyledLink,
   StyledNavList,
-  StyledDropdown,
   StyledNavigation,
   StyledButton,
 } from "./styles";
@@ -30,7 +30,7 @@ export default class NavBar extends React.Component {
         </StyledLinks>
         <StyledNavigation>
           <SearchBar />
-          <StyledDropdown />
+          <CurrencySelector />
           <StyledButton />
         </StyledNavigation>
       </StyledNavDiv>
