@@ -41,15 +41,6 @@ export const StyledNavigation = styled.div`
   display: flex;
   `;
 
-
-export const StyledDropdown = styled.select`
-  height: 63px;
-  width: 135px;
-  display: flex;
-  background: #2c2f36;
-  margin-left: 25px;
-`;
-
 export const StyledButton = styled.button`
   height: 63px;
   width: 67px;
