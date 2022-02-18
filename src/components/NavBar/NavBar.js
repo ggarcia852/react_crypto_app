@@ -12,6 +12,7 @@ import {
 
 export default class NavBar extends React.Component {
   render() {
+    // console.log(this.props.handleCurrency)
     return (
       <StyledNavDiv>
         <StyledLinks>
@@ -30,7 +31,7 @@ export default class NavBar extends React.Component {
         </StyledLinks>
         <StyledNavigation>
           <SearchBar />
-          <CurrencySelector />
+          <CurrencySelector handleCurrency={this.props.handleCurrency} />
           <StyledButton />
         </StyledNavigation>
       </StyledNavDiv>

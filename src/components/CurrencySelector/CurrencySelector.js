@@ -9,6 +9,14 @@ export default class CurrencySelector extends Component {
 
   handleSelect = (e) => {
     this.setState({ currency: e.target.value })
+    this.props.handleCurrency(this.state.currency)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+
+    if (this.state.currency !== prevState.currency){
+      this.setState({currency: this.state.currency})
+    }
   }
 
   render() {

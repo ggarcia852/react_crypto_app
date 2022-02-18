@@ -29,7 +29,7 @@ export const StyledCharts = styled.div`
 export const StyledChart = styled.div`
   display: flex;
   flex-flow: column;
-  width: 90%;
+  width: 99%;
 `;
 
 export const StyledContainer = styled.div`
@@ -58,3 +58,24 @@ export const StyledButton = styled.button`
   border-radius: 15px;
   border: none;
 `;
+
+export const StyledHeading = styled.div`
+  display:flex;
+  height: 130px;
+  padding-left: 20px;
+  padding-top: 22px;
+  flex-flow: column;
+`
+export const StyledTitle = styled.div`
+  display:flex;
+  font-size: 22px;
+`
+export const StyledAmount = styled.div`
+  display:flex;
+  font-size: 44px;
+  font-weight: bold;
+`
+export const StyledDate = styled.div`
+  display:flex;
+  font-size: 22px;
+`
