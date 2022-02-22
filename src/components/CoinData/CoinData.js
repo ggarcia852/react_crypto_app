@@ -48,14 +48,10 @@ export default class CoinData extends React.Component {
   setCurrency = () => {
     let currency = this.props.currency
     this.setState({currency})
-    console.log("chart", currency)
     this.getCoinData(this.state.currency)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // if (this.state.currency !== prevState.currency){
-    //   this.setCurrency()
-    // }
     if(this.props.currency !== prevProps.currency){
       this.setCurrency()
       this.getCoinData(this.props.currency)
@@ -64,12 +60,10 @@ export default class CoinData extends React.Component {
 
   componentDidMount() {
     this.getCoinData(this.props.currency);
-    // this.setCurrency()
   }
 
   render() {
     const { hasData, hasError, isLoading, coinData } = this.state;
-    console.log("chart", this.state.currency)
     return (
       <>
         <StyledHeader>

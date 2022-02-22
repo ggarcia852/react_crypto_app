@@ -26,7 +26,7 @@ export default class MarketChartData extends React.Component {
     chartData: null,
     chartDays: 1,
     chartInterval: "hourly",
-    chartCurrency: this.props.currency,
+    currency: this.props.currency,
     buttons: [
       { value: "1h", days: 1, interval: "hourly" },
       { value: "7d", days: 7, interval: "hourly" },
@@ -38,7 +38,7 @@ export default class MarketChartData extends React.Component {
   };
 
   getChartData = async (currency) => {
-    const {chartDays, chartInterval} = this.state
+    const { chartDays, chartInterval } = this.state;
     this.setState({ isLoading: true });
     try {
       const { data } = await axios(
@@ -59,12 +59,11 @@ export default class MarketChartData extends React.Component {
     }
   };
 
-  // setCurrency = () => {
-  //   const currency = this.props.currency
-  //   this.setState({chartCurrency: currency})
-  //   console.log("market", currency)
-    
-  // }
+  setCurrency = () => {
+    let currency = this.props.currency;
+    this.setState({ currency });
+    this.getChartData(this.state.currency);
+  };
 
   handleClick = (button) => {
     this.setState({ chartDays: button.days, chartInterval: button.interval });
@@ -74,7 +73,8 @@ export default class MarketChartData extends React.Component {
     if (this.state.chartDays !== prevState.chartDays) {
       this.getChartData(this.props.currency);
     }
-    if (this.state.chartCurrency !== prevState.chartCurrency){
+    if(this.props.currency !== prevProps.currency){
+      this.setCurrency()
       this.getChartData(this.props.currency)
     }
   }
@@ -88,7 +88,6 @@ export default class MarketChartData extends React.Component {
     let today = new Date().toDateString();
     let price = chartData?.prices.slice(-1)[0].slice(-1)[0].toFixed(0);
     let volume = chartData?.total_volumes.slice(-1)[0].slice(-1)[0].toFixed(0);
-    console.log(this.props.currency, 2)
     return (
       <>
         <StyledHeader>Bitcoin Overview</StyledHeader>

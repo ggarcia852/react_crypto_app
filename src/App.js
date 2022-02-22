@@ -14,18 +14,7 @@ export default class App extends React.Component {
     this.setState({ currency })
   }
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   if(this.state.currency !== prevState.currency){
-  //     this.handleCurrency(this.state.currency)
-  //   }
-  // }
-
-  // componentDidMount = () => {
-  //   this.handleCurrency(this.state.currency)
-  // }
-
   render() {
-    console.log("app", this.state.currency)
     return (
       <Container>
         <GlobalStyle />

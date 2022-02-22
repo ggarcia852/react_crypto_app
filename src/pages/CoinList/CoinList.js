@@ -4,14 +4,10 @@ import { Container } from "./styles";
 
 
 export default class CoinList extends React.Component {
-  // componentDidUpdate(prevProps, prevState){
-  //   if(this.props.currency !== prevProps.currency)
-  //   this.props.currency
-  // }
   render() {
     return (
       <Container>
-        <GlobalData />
+        <GlobalData currency={this.props.currency} />
         <MarketChartData currency={this.props.currency} />
         <CoinData currency={this.props.currency} />
       </Container>
