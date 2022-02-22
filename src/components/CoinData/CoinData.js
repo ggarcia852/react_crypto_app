@@ -32,7 +32,6 @@ export default class CoinData extends React.Component {
       const { data } = await axios(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=25&page=1&sparkline=false&price_change_percentage=1h%2C%2024h%2C7d"
       );
-      console.log(data);
       this.setState({
         hasData: true,
         isLoading: false,
