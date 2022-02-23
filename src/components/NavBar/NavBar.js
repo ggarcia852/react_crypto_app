@@ -30,7 +30,7 @@ export default class NavBar extends React.Component {
         </StyledLinks>
         <StyledNavigation>
           <SearchBar />
-          <CurrencySelector />
+          <CurrencySelector handleCurrency={this.props.handleCurrency} />
           <StyledButton />
         </StyledNavigation>
       </StyledNavDiv>

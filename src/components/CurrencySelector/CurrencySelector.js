@@ -11,6 +11,12 @@ export default class CurrencySelector extends Component {
     this.setState({ currency: e.target.value })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.currency !== prevState.currency){
+      this.props.handleCurrency(this.state.currency)
+    }
+  }
+
   render() {
     return (
       <StyledDropdown onChange={this.handleSelect}>

@@ -10,6 +10,10 @@ export default class App extends React.Component {
     currency: "usd"
   }
 
+  handleCurrency = (currency) => {
+    this.setState({ currency })
+  }
+
   render() {
     return (
       <Container>
@@ -18,7 +22,7 @@ export default class App extends React.Component {
           <div>
             <NavBar handleCurrency={this.handleCurrency} />
             <Switch>
-              <Route exact path="/" component={CoinList} currency={this.state.currency} />
+              <Route exact path="/"><CoinList currency={this.state.currency}/> </Route> 
               <Route exact path="/coin/:coinId" component={CoinPage} />
               <Route path="/portfolio" component={Portfolio} />
             </Switch>

@@ -24,14 +24,14 @@ export default class CoinData extends React.Component {
     isLoading: false,
     hasError: false,
     coinData: null,
-    currency: "usd"
+    currency: this.props.currency,
   };
 
-  getCoinData = async () => {
+  getCoinData = async (currency) => {
     this.setState({ isLoading: true });
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.state.currency}&order=market_cap_desc&per_page=25&page=1&sparkline=false&price_change_percentage=1h%2C%2024h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=25&page=1&sparkline=false&price_change_percentage=1h%2C%2024h%2C7d`
       );
       this.setState({
         hasData: true,
@@ -49,20 +49,20 @@ export default class CoinData extends React.Component {
   };
 
   setCurrency = () => {
-    let currency = this.props.currency
-    this.setState({currency})
-    console.log("chart", currency)
+    const currency = this.props.currency
+    this.setState({ currency })
+    this.getCoinData(this.state.currency)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.currency !== prevState.currency){
+    if(this.props.currency !== prevProps.currency){
       this.setCurrency()
+      this.getCoinData(this.props.currency)
     }
   }
 
   componentDidMount() {
-    this.getCoinData();
-    this.setCurrency()
+    this.getCoinData(this.props.currency);
   }
 
   render() {
