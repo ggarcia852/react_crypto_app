@@ -60,7 +60,7 @@ export default class MarketChartData extends React.Component {
   };
 
   setCurrency = () => {
-    let currency = this.props.currency;
+    const currency = this.props.currency;
     this.setState({ currency });
     this.getChartData(this.state.currency);
   };

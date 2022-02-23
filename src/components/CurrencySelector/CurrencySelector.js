@@ -13,7 +13,6 @@ export default class CurrencySelector extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.currency !== prevState.currency){
-      this.setState({currency: this.state.currency})
       this.props.handleCurrency(this.state.currency)
     }
   }
