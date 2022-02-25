@@ -58,7 +58,7 @@ class SearchBar extends React.Component {
           {this.state.list
             ? this.state.list.map((coin) => (
                 <StyledListItem
-                  onClick={(e) => this.handleClick(coin)}
+                  onClick={() => this.handleClick(coin)}
                   key={coin.id}
                 >
                   <StyledLink to={`/coin/${coin.id}`}>
