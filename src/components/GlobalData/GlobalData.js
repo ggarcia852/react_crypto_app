@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { ProgressBar } from "components";
 import { ConvertCurrency } from "../../utils";
 import { StyledGlobalData, StyledHeader, StyledData } from "./styles";
 
@@ -43,25 +44,36 @@ export default class GlobalData extends React.Component {
           {hasError && <div>error</div>}
           {hasData && (
             <>
-              <StyledData>Coins {globalData.data.active_cryptocurrencies}</StyledData>
+              <StyledData>
+                Coins {globalData.data.active_cryptocurrencies}
+              </StyledData>
               <StyledData>Exchanges {globalData.data.markets}</StyledData>
               <StyledData>
-                <li />${ConvertCurrency(globalData.data.total_market_cap.usd)}
+                <li>
+                  ${ConvertCurrency(globalData.data.total_market_cap.usd)}
+                </li>
               </StyledData>
               <StyledData>
-              <li />${ConvertCurrency(globalData.data.total_volume.usd)}
-              </StyledData>
-              <StyledData>
-                {globalData.data.market_cap_change_percentage_24h_usd.toFixed(
-                  0
-                )}
-                %
+                <li>${ConvertCurrency(globalData.data.total_volume.usd)}</li>
+                <ProgressBar
+                  progress={
+                    (globalData.data.total_volume.usd /
+                      globalData.data.total_market_cap.usd) *
+                    100
+                  }
+                />
               </StyledData>
               <StyledData>
                 BTC {globalData.data.market_cap_percentage.btc.toFixed(0)}%
+                <ProgressBar
+                  progress={globalData.data.market_cap_percentage.btc}
+                />
               </StyledData>
               <StyledData>
                 ETH {globalData.data.market_cap_percentage.eth.toFixed(0)}%
+                <ProgressBar
+                  progress={globalData.data.market_cap_percentage.eth}
+                />
               </StyledData>
             </>
           )}
