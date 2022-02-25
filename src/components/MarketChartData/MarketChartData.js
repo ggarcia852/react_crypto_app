@@ -59,12 +59,6 @@ export default class MarketChartData extends React.Component {
     }
   };
 
-  setCurrency = () => {
-    let currency = this.props.currency;
-    this.setState({ currency });
-    this.getChartData(this.state.currency);
-  };
-
   handleClick = (button) => {
     this.setState({ chartDays: button.days, chartInterval: button.interval });
   };
@@ -74,7 +68,6 @@ export default class MarketChartData extends React.Component {
       this.getChartData(this.props.currency);
     }
     if(this.props.currency !== prevProps.currency){
-      this.setCurrency()
       this.getChartData(this.props.currency)
     }
   }

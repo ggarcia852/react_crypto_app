@@ -20,6 +20,5 @@ export const StyledGlobalData = styled.div`
 `;
 
 export const StyledData = styled.div`
-  display: flex;
   padding: 7px;
 `

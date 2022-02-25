@@ -16,7 +16,6 @@ export default class CoinPage extends React.Component {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true`
       );
-      console.log(data)
       this.setState({
         hasData: true,
         isLoading: false,
@@ -28,7 +27,7 @@ export default class CoinPage extends React.Component {
       this.setState({
         isLoading: false,
         hasError: true,
-        userMessage: "Coin not found. Please try again!",
+        userMessage: "Coin not found. Please select a coin from the list or try again!",
       });
       console.log(err);
     }
@@ -73,7 +72,6 @@ export default class CoinPage extends React.Component {
             <div>{coin.links.blockchain_site[0]}</div>
             <div>{coin.links.blockchain_site[1]}</div>
             <div>{coin.links.blockchain_site[2]}</div>
-
           </>
         )}
       </>

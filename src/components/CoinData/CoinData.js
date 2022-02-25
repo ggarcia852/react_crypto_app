@@ -48,15 +48,8 @@ export default class CoinData extends React.Component {
     }
   };
 
-  setCurrency = () => {
-    let currency = this.props.currency
-    this.setState({currency})
-    this.getCoinData(this.state.currency)
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if(this.props.currency !== prevProps.currency){
-      this.setCurrency()
       this.getCoinData(this.props.currency)
     }
   }

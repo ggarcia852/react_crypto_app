@@ -11,7 +11,6 @@ export const StyledHeader = styled.div`
 
 export const ChartsDiv = styled.div`
   display: flex;
-  flex-flow: row wrap;
   min-height: 449px;
   margin-left: 93px;
   margin-right: 93px;
@@ -20,7 +19,7 @@ export const ChartsDiv = styled.div`
 
 export const StyledCharts = styled.div`
   display: flex;
-  width: 833px;
+  width: 48%;
   margin-bottom: 50px;
   background: #191b1f;
   border-radius: 10px;
