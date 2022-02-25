@@ -1,5 +1,8 @@
 import React from "react";
 import axios from "axios";
+import { Line } from "react-chartjs-2";
+//eslint-disable-next-line
+import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertCurrency } from "../../utils";
 import { ProgressBar } from "components";
 import {
@@ -16,6 +19,7 @@ import {
   StyledCoinLink,
   StyledBullet,
   StyledBullets,
+  StyledChart,
 } from "./styles";
 
 export default class CoinData extends React.Component {
@@ -31,7 +35,7 @@ export default class CoinData extends React.Component {
     this.setState({ isLoading: true });
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=25&page=1&sparkline=false&price_change_percentage=1h%2C%2024h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=25&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
       );
       this.setState({
         hasData: true,
@@ -49,8 +53,8 @@ export default class CoinData extends React.Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.currency !== prevProps.currency){
-      this.getCoinData(this.props.currency)
+    if (this.props.currency !== prevProps.currency) {
+      this.getCoinData(this.props.currency);
     }
   }
 
@@ -134,6 +138,49 @@ export default class CoinData extends React.Component {
                           (coin.circulating_supply / coin.total_supply) * 100
                         }
                       />
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      <StyledChart>
+                        <Line
+                          data={{
+                            labels: "price",
+                            datasets: [
+                              {
+                                data: coin.sparkline_in_7d.price.map(
+                                  (price) => price
+                                ),
+                                borderColor: "#00FF5F",
+                                fill: false,
+                                tension: 0.5,
+                              },
+                            ],
+                          }}
+                          options={{
+                            maintainAspectRatio: false,
+                            legend: {
+                              display: false,
+                            },
+                            plugins: {
+                              legend: {
+                                display: false,
+                              },
+                            },
+                            elements: {
+                              point: {
+                                radius: 0,
+                              },
+                            },
+                            scales: {
+                              y: {
+                                display: false,
+                              },
+                              x: {
+                                display: false,
+                              },
+                            },
+                          }}
+                        />
+                      </StyledChart>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
