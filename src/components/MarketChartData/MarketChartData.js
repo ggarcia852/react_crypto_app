@@ -27,13 +27,14 @@ export default class MarketChartData extends React.Component {
     chartDays: 1,
     chartInterval: "hourly",
     currency: this.props.currency,
+    activeButton: 1,
     buttons: [
-      { value: "1h", days: 1, interval: "hourly" },
-      { value: "7d", days: 7, interval: "hourly" },
-      { value: "30d", days: 30, interval: "daily" },
-      { value: "90d", days: 90, interval: "daily" },
-      { value: "180d", days: 180, interval: "daily" },
-      { value: "365d", days: 365, interval: "daily" },
+      { id: 1, value: "1h", days: 1, interval: "hourly" },
+      { id: 7, value: "7d", days: 7, interval: "hourly" },
+      { id: 30, value: "30d", days: 30, interval: "daily" },
+      { id: 90, value: "90d", days: 90, interval: "daily" },
+      { id: 180, value: "180d", days: 180, interval: "daily" },
+      { id: 365, value: "365d", days: 365, interval: "daily" },
     ],
   };
 
@@ -60,7 +61,7 @@ export default class MarketChartData extends React.Component {
   };
 
   handleClick = (button) => {
-    this.setState({ chartDays: button.days, chartInterval: button.interval });
+    this.setState({ chartDays: button.days, chartInterval: button.interval, activeButton: button.id });
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -110,7 +111,7 @@ export default class MarketChartData extends React.Component {
                         borderColor: "#00FF5F",
                         backgroundColor: "#518665",
                         fill: true,
-                        tension: 0.1,
+                        tension: 0.2,
                       },
                     ],
                   }}
@@ -201,6 +202,7 @@ export default class MarketChartData extends React.Component {
               <StyledButton
                 key={button.value}
                 onClick={() => this.handleClick(button)}
+                active={button.id === this.state.activeButton}
               >
                 {button.value}
               </StyledButton>

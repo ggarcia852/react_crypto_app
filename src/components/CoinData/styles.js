@@ -48,14 +48,13 @@ export const StyledTableBody = styled.div`
 
 export const StyledTableRow = styled.div`
   display: table-row;
-  height: 84px;
 `;
 
 export const StyledTableCell = styled.div`
   display: table-cell;
   font-size: 19px;
   border-bottom: 1px solid #707070;
-  padding-top: 20px;
+  padding: 25px 0px;
 `;
 
 export const StyledImg = styled.img`
@@ -78,3 +77,10 @@ export const StyledBullets = styled.div`
 export const StyledBullet = styled.div`
   display: flex;
 `;
+
+export const StyledChart = styled.div`
+  display: flex;
+  max-width: 115px;
+  height: 45px;
+`
+
