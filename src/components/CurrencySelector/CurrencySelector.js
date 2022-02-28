@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import currency from "assets/currency.svg";
 import { StyledBackground, StyledContainer, StyledDropdown } from "./styles";
 import { StyledImg } from "components/CoinData/styles";
-import { StyledBar } from "components/MarketChartData/styles";
 
 export default class CurrencySelector extends Component {
   state = {
