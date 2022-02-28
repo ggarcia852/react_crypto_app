@@ -3,7 +3,7 @@ import axios from "axios";
 import { Bar, Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertTime, ConvertCurrency } from "utils";
+import { ConvertTime, ConvertCurrency, ConvertDate } from "utils";
 import {
   StyledHeader,
   ChartsDiv,
@@ -92,7 +92,7 @@ export default class MarketChartData extends React.Component {
             {hasData && (
               <StyledChart>
                 <StyledHeading>
-                  <StyledTitle>BTC</StyledTitle>
+                  <StyledTitle>Price</StyledTitle>
                   <StyledAmount>${price}</StyledAmount>
                   <StyledDate>{today}</StyledDate>
                 </StyledHeading>
@@ -154,7 +154,7 @@ export default class MarketChartData extends React.Component {
                 <Bar
                   data={{
                     labels: chartData.total_volumes.map((volume) =>
-                      ConvertTime(volume[0])
+                      ConvertDate(volume[0])
                     ),
                     datasets: [
                       {

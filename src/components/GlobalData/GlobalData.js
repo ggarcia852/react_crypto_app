@@ -9,6 +9,7 @@ import {
   StyledHeader,
   StyledData,
   StyledIcon,
+  StyledBar,
 } from "./styles";
 
 export default class GlobalData extends React.Component {
@@ -62,31 +63,37 @@ export default class GlobalData extends React.Component {
               </StyledData>
               <StyledData>
                 <li>${ConvertCurrency(globalData.data.total_volume.usd)}</li>
-                <ProgressBar
-                  progress={
-                    (globalData.data.total_volume.usd /
-                      globalData.data.total_market_cap.usd) *
-                    100
-                  }
-                />
+                <StyledBar>
+                  <ProgressBar
+                    progress={
+                      (globalData.data.total_volume.usd /
+                        globalData.data.total_market_cap.usd) *
+                      100
+                    }
+                  />
+                </StyledBar>
               </StyledData>
               <StyledData>
                 <StyledIcon>
                   <img src={btc} alt="bitcoin" />
                 </StyledIcon>
                 {globalData.data.market_cap_percentage.btc.toFixed(0)}%
-                <ProgressBar
-                  progress={globalData.data.market_cap_percentage.btc}
-                />
+                <StyledBar>
+                  <ProgressBar
+                    progress={globalData.data.market_cap_percentage.btc}
+                  />
+                </StyledBar>
               </StyledData>
               <StyledData>
                 <StyledIcon>
                   <img src={eth} alt="ethereum" />
                 </StyledIcon>
                 {globalData.data.market_cap_percentage.eth.toFixed(0)}%
-                <ProgressBar
-                  progress={globalData.data.market_cap_percentage.eth}
-                />
+                <StyledBar>
+                  <ProgressBar
+                    progress={globalData.data.market_cap_percentage.eth}
+                  />
+                </StyledBar>
               </StyledData>
             </>
           )}

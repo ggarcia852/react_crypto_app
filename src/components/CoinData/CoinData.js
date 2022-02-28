@@ -159,12 +159,11 @@ export default class CoinData extends React.Component {
                       <StyledChart>
                         <Line
                           data={{
-                            labels: "price",
+                            labels: coin.sparkline_in_7d.price.map((price, index) => index),
                             datasets: [
                               {
-                                data: coin.sparkline_in_7d.price.map(
-                                  (price) => price
-                                ),
+                                data: coin.sparkline_in_7d.price,
+                                
                                 borderColor:
                                   coin.sparkline_in_7d.price.slice(0, 1) <
                                   coin.sparkline_in_7d.price.slice(-1)
@@ -175,6 +174,7 @@ export default class CoinData extends React.Component {
                               },
                             ],
                           }}
+                          // height="70px"
                           options={{
                             maintainAspectRatio: false,
                             legend: {
