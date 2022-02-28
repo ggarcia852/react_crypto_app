@@ -9,7 +9,6 @@ import {
   StyledHeader,
   StyledData,
   StyledIcon,
-  StyledBar,
 } from "./styles";
 
 export default class GlobalData extends React.Component {
