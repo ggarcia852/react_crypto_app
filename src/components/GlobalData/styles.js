@@ -22,3 +22,7 @@ export const StyledGlobalData = styled.div`
 export const StyledData = styled.div`
   padding: 7px;
 `
+export const StyledIcon = styled.span`
+  padding-right: 7px;
+`
+

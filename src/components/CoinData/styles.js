@@ -50,11 +50,15 @@ export const StyledTableRow = styled.div`
   display: table-row;
 `;
 
-export const StyledTableCell = styled.div`
+export const StyledTableCell = styled.div.attrs((props)=>({
+  style: {
+    color: `${props.color}`,
+  },
+}))`
   display: table-cell;
   font-size: 19px;
   border-bottom: 1px solid #707070;
-  padding: 25px 0px;
+  padding: 25px 10px;
 `;
 
 export const StyledImg = styled.img`

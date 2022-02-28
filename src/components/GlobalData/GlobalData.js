@@ -2,7 +2,15 @@ import React from "react";
 import axios from "axios";
 import { ProgressBar } from "components";
 import { ConvertCurrency } from "../../utils";
-import { StyledGlobalData, StyledHeader, StyledData } from "./styles";
+import btc from "assets/bitcoin.svg";
+import eth from "assets/ethereum.svg";
+import {
+  StyledGlobalData,
+  StyledHeader,
+  StyledData,
+  StyledIcon,
+  StyledBar,
+} from "./styles";
 
 export default class GlobalData extends React.Component {
   state = {
@@ -64,13 +72,19 @@ export default class GlobalData extends React.Component {
                 />
               </StyledData>
               <StyledData>
-                BTC {globalData.data.market_cap_percentage.btc.toFixed(0)}%
+                <StyledIcon>
+                  <img src={btc} alt="bitcoin" />
+                </StyledIcon>
+                {globalData.data.market_cap_percentage.btc.toFixed(0)}%
                 <ProgressBar
                   progress={globalData.data.market_cap_percentage.btc}
                 />
               </StyledData>
               <StyledData>
-                ETH {globalData.data.market_cap_percentage.eth.toFixed(0)}%
+                <StyledIcon>
+                  <img src={eth} alt="ethereum" />
+                </StyledIcon>
+                {globalData.data.market_cap_percentage.eth.toFixed(0)}%
                 <ProgressBar
                   progress={globalData.data.market_cap_percentage.eth}
                 />

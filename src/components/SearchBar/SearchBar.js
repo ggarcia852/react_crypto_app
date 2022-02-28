@@ -1,7 +1,15 @@
 import React from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import { StyledInput, StyledLink, StyledList, StyledListItem } from "./styles";
+import search from "assets/search.svg";
+import {
+  StyledContainer,
+  StyledImg,
+  StyledInput,
+  StyledLink,
+  StyledList,
+  StyledListItem,
+} from "./styles";
 
 class SearchBar extends React.Component {
   state = {
@@ -48,27 +56,30 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <StyledInput
-          value={this.state.searchValue}
-          onChange={this.handleChange}
-          placeholder="Search..."
-        />
-        <StyledList>
-          {this.state.list
-            ? this.state.list.map((coin) => (
-                <StyledListItem
-                  onClick={() => this.handleClick(coin)}
-                  key={coin.id}
-                >
-                  <StyledLink to={`/coin/${coin.id}`}>
-                    {coin.name} ({coin.symbol})
-                  </StyledLink>
-                </StyledListItem>
-              ))
-            : null}
-        </StyledList>
-      </form>
+      <StyledContainer>
+        <StyledImg src={search} alt="search" />
+        <form onSubmit={this.handleSubmit}>
+          <StyledInput
+            value={this.state.searchValue}
+            onChange={this.handleChange}
+            placeholder="Search..."
+          />
+          <StyledList>
+            {this.state.list
+              ? this.state.list.map((coin) => (
+                  <StyledListItem
+                    onClick={() => this.handleClick(coin)}
+                    key={coin.id}
+                  >
+                    <StyledLink to={`/coin/${coin.id}`}>
+                      {coin.name} ({coin.symbol})
+                    </StyledLink>
+                  </StyledListItem>
+                ))
+              : null}
+          </StyledList>
+        </form>
+      </StyledContainer>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import SearchBar from "components/SearchBar";
 import { CurrencySelector } from "components";
+import theme from "assets/theme.svg";
 import {
   StyledNavDiv,
   StyledLinks,
@@ -31,7 +32,9 @@ export default class NavBar extends React.Component {
         <StyledNavigation>
           <SearchBar />
           <CurrencySelector handleCurrency={this.props.handleCurrency} />
-          <StyledButton />
+          <StyledButton>
+            <img src={theme} alt="theme" />
+          </StyledButton>
         </StyledNavigation>
       </StyledNavDiv>
     );

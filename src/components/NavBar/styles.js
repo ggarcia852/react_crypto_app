@@ -39,7 +39,7 @@ export const StyledNavList = styled.ul`
 
 export const StyledNavigation = styled.div`
   display: flex;
-  `;
+`;
 
 export const StyledButton = styled.button`
   height: 63px;
