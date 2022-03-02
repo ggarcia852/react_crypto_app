@@ -174,7 +174,6 @@ export default class CoinData extends React.Component {
                               },
                             ],
                           }}
-                          // height="70px"
                           options={{
                             maintainAspectRatio: false,
                             legend: {
