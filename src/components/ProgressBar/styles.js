@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFullBar = styled.div`
+	min-width: 60px;
 	max-width: 230px;
 	background: #8A92B2;
 	border-radius: 20px;

@@ -81,11 +81,9 @@ export default class CoinData extends React.Component {
                 <StyledTableHeaderCell>1h%</StyledTableHeaderCell>
                 <StyledTableHeaderCell>24h%</StyledTableHeaderCell>
                 <StyledTableHeaderCell>7d%</StyledTableHeaderCell>
+                <StyledTableHeaderCell>Volume/MarketCap</StyledTableHeaderCell>
                 <StyledTableHeaderCell>
-                  Volume / MarketCap
-                </StyledTableHeaderCell>
-                <StyledTableHeaderCell>
-                  Circulating / Total Supply
+                  Circulating/Total Supply
                 </StyledTableHeaderCell>
                 <StyledTableHeaderCell>Last 7d</StyledTableHeaderCell>
               </StyledTableHeader>
@@ -100,13 +98,31 @@ export default class CoinData extends React.Component {
                       </StyledCoinLink>
                     </StyledTableCell>
                     <StyledTableCell>${coin.current_price}</StyledTableCell>
-                    <StyledTableCell>
+                    <StyledTableCell
+                      color={
+                        coin.price_change_percentage_1h_in_currency >= 0
+                          ? "#00FC2A"
+                          : "#FE1040"
+                      }
+                    >
                       {coin.price_change_percentage_1h_in_currency.toFixed(2)}%
                     </StyledTableCell>
-                    <StyledTableCell>
+                    <StyledTableCell
+                      color={
+                        coin.price_change_percentage_24h >= 0
+                          ? "#00FC2A"
+                          : "#FE1040"
+                      }
+                    >
                       {coin.price_change_percentage_24h.toFixed(2)}%
                     </StyledTableCell>
-                    <StyledTableCell>
+                    <StyledTableCell
+                      color={
+                        coin.price_change_percentage_7d_in_currency >= 0
+                          ? "#00FC2A"
+                          : "#FE1040"
+                      }
+                    >
                       {coin.price_change_percentage_7d_in_currency.toFixed(2)}%
                     </StyledTableCell>
                     <StyledTableCell>
@@ -143,18 +159,22 @@ export default class CoinData extends React.Component {
                       <StyledChart>
                         <Line
                           data={{
-                            labels: "price",
+                            labels: coin.sparkline_in_7d.price.map((price, index) => index),
                             datasets: [
                               {
-                                data: coin.sparkline_in_7d.price.map(
-                                  (price) => price
-                                ),
-                                borderColor: "#00FF5F",
+                                data: coin.sparkline_in_7d.price,
+                                
+                                borderColor:
+                                  coin.sparkline_in_7d.price.slice(0, 1) <
+                                  coin.sparkline_in_7d.price.slice(-1)
+                                    ? "#00FC2A"
+                                    : "#FE1040",
                                 fill: false,
                                 tension: 0.5,
                               },
                             ],
                           }}
+                          // height="70px"
                           options={{
                             maintainAspectRatio: false,
                             legend: {

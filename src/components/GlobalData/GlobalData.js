@@ -2,7 +2,15 @@ import React from "react";
 import axios from "axios";
 import { ProgressBar } from "components";
 import { ConvertCurrency } from "../../utils";
-import { StyledGlobalData, StyledHeader, StyledData } from "./styles";
+import btc from "assets/bitcoin.svg";
+import eth from "assets/ethereum.svg";
+import {
+  StyledGlobalData,
+  StyledHeader,
+  StyledData,
+  StyledIcon,
+  StyledBar,
+} from "./styles";
 
 export default class GlobalData extends React.Component {
   state = {
@@ -55,25 +63,37 @@ export default class GlobalData extends React.Component {
               </StyledData>
               <StyledData>
                 <li>${ConvertCurrency(globalData.data.total_volume.usd)}</li>
-                <ProgressBar
-                  progress={
-                    (globalData.data.total_volume.usd /
-                      globalData.data.total_market_cap.usd) *
-                    100
-                  }
-                />
+                <StyledBar>
+                  <ProgressBar
+                    progress={
+                      (globalData.data.total_volume.usd /
+                        globalData.data.total_market_cap.usd) *
+                      100
+                    }
+                  />
+                </StyledBar>
               </StyledData>
               <StyledData>
-                BTC {globalData.data.market_cap_percentage.btc.toFixed(0)}%
-                <ProgressBar
-                  progress={globalData.data.market_cap_percentage.btc}
-                />
+                <StyledIcon>
+                  <img src={btc} alt="bitcoin" />
+                </StyledIcon>
+                {globalData.data.market_cap_percentage.btc.toFixed(0)}%
+                <StyledBar>
+                  <ProgressBar
+                    progress={globalData.data.market_cap_percentage.btc}
+                  />
+                </StyledBar>
               </StyledData>
               <StyledData>
-                ETH {globalData.data.market_cap_percentage.eth.toFixed(0)}%
-                <ProgressBar
-                  progress={globalData.data.market_cap_percentage.eth}
-                />
+                <StyledIcon>
+                  <img src={eth} alt="ethereum" />
+                </StyledIcon>
+                {globalData.data.market_cap_percentage.eth.toFixed(0)}%
+                <StyledBar>
+                  <ProgressBar
+                    progress={globalData.data.market_cap_percentage.eth}
+                  />
+                </StyledBar>
               </StyledData>
             </>
           )}

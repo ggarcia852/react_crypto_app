@@ -56,9 +56,10 @@ export const StyledButton = styled.button`
   color: #ffffff;
   border-radius: 15px;
   border: none;
-  background: ${({ active }) => (active ? "#00FF5F" : "#191b1f")};
+  background: ${({ active }) => (active ? "#00FC2A" : "#191b1f")};
   &:hover {
-    background: #0DE65E;
+    opacity: 0.7;
+  }
 `;
 
 export const StyledHeading = styled.div`

@@ -20,5 +20,13 @@ export const StyledGlobalData = styled.div`
 `;
 
 export const StyledData = styled.div`
-  padding: 7px;
+  display: flex;
+  align-items: center;
 `
+export const StyledIcon = styled.span`
+  padding-right: 7px;
+`
+export const StyledBar = styled.span`
+  padding-left: 7px;
+`
+
