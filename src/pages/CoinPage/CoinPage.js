@@ -1,6 +1,33 @@
 import React from "react";
 import axios from "axios";
-import { StyledTitle, StyledCoinContainer, StyledImg, StyledLinkContainer, StyledContainer, StyledPriceContainer, StyledMarketContainer, StyledDescription, StyledLinksContainer, StyledBlockchainContainer } from "./styles";
+import bluePlus from "assets/bluePlus.svg";
+import greenUp from "assets/greenUp.svg";
+import redDown from "assets/redDown.svg";
+import link from "assets/link.svg";
+import layers from "assets/layers.svg";
+import {
+  StyledTitle,
+  StyledCoinContainer,
+  StyledCoinImg,
+  StyledLinkContainer,
+  StyledContainer,
+  StyledPriceContainer,
+  StyledMarketContainer,
+  StyledDescription,
+  StyledLinksContainer,
+  StyledBlockchainContainer,
+  StyledLeftContainer,
+  StyledDescriptionTitle,
+  StyledPrice,
+  StyledPriceStat,
+  StyledMarketStat,
+  StyledStatImg,
+  StyledDescImg,
+  StyledPriceStats,
+  StyledPriceImg,
+  StyledLinkImg,
+} from "./styles";
+import { ProgressBar } from "components";
 export default class CoinPage extends React.Component {
   state = {
     hasData: false,
@@ -27,7 +54,8 @@ export default class CoinPage extends React.Component {
       this.setState({
         isLoading: false,
         hasError: true,
-        userMessage: "Coin not found. Please select a coin from the list or try again!",
+        userMessage:
+          "Coin not found. Please select a coin from the list or try again!",
       });
       console.log(err);
     }
@@ -46,47 +74,110 @@ export default class CoinPage extends React.Component {
   render() {
     const { hasData, hasError, isLoading, userMessage } = this.state;
     const coin = this.state.coinData;
-    console.log(coin)
+    console.log(coin);
     return (
       <>
         {isLoading && <div>Loading data...</div>}
         {hasError && <div>{userMessage}</div>}
         {hasData && (
           <>
-            <StyledTitle>{coin.name} Summary</StyledTitle>
-
+            <StyledTitle>Summary</StyledTitle>
             <StyledContainer>
-              <StyledCoinContainer>
-                <div>{coin.name}({coin.symbol.toUpperCase()})</div>
-                <StyledImg src={coin.image.small} alt="coin" />
-              </StyledCoinContainer>
+              <StyledLeftContainer>
+                <StyledCoinContainer>
+                  <StyledCoinImg src={coin.image.small} alt="coin" />
+                  <div>
+                    {coin.name}({coin.symbol.toUpperCase()})
+                  </div>
+                </StyledCoinContainer>
+                <StyledLinkContainer>
+                  <StyledLinkImg src={link} alt="link" />
+                  {coin.links.homepage[0].substring(0, 25)}
+                </StyledLinkContainer>
+              </StyledLeftContainer>
               <StyledPriceContainer>
-                <div>${coin.market_data.current_price.usd}</div>
-                <div>24h% {coin.market_data.price_change_percentage_24h_in_currency.usd}%</div>
-                <div>All Time High: ${coin.market_data.ath.usd}</div>
-                <div>{coin.market_data.ath_date.usd}</div>
-                <div>All Time Low: ${coin.market_data.atl.usd}</div>
-                <div>{coin.market_data.atl_date.usd}</div>
+                <StyledPrice>${coin.market_data.current_price.usd}</StyledPrice>
+                <StyledPriceStat>
+                  <img src={layers} alt="layers" />
+                </StyledPriceStat>
+                <StyledPriceStats>
+                  <div>
+                  <img src={greenUp} alt="up arrow" />
+                  </div>
+                <StyledPriceStat>
+                  All Time High: ${coin.market_data.ath.usd} 
+                </StyledPriceStat>
+                <StyledPriceStat>{coin.market_data.ath_date.usd}</StyledPriceStat>
+                <StyledPriceStat>
+                  <div>
+
+                  <StyledPriceImg src={redDown} alt="down arrow" />
+                  </div>
+                  All Time Low: ${coin.market_data.atl.usd}
+                </StyledPriceStat>
+                <StyledPriceStat>{coin.market_data.atl_date.usd}</StyledPriceStat>
+                </StyledPriceStats>
               </StyledPriceContainer>
               <StyledMarketContainer>
-                <div>Market Cap: ${coin.market_data.market_cap.usd}</div>
-                <div>Fully Diluted Valuation: ${coin.market_data.fully_diluted_valuation.usd}</div>
-                <div>Volume 24h: {coin.market_data.market_cap_change_24h}</div>
-                <div>Volume / Market Cap: {coin.market_data.total_volume.usd / coin.market_data.market_cap.usd * 100}</div>
-                <div>Total Volume: {coin.market_data.total_volume.usd}</div>
-                <div>Circulating Supply: {coin.market_data.circulating_supply} {coin.symbol.toUpperCase()}</div> 
-                <div>Max Supply: {coin.market_data.max_supply} {coin.symbol.toUpperCase()}</div>
+                <StyledMarketStat>
+                  <StyledStatImg src={bluePlus} alt="plus" />
+                  Market Cap: ${coin.market_data.market_cap.usd}
+                </StyledMarketStat>
+                <StyledMarketStat>
+                  <StyledStatImg src={bluePlus} alt="plus" />
+                  Fully Diluted Valuation: $
+                  {coin.market_data.fully_diluted_valuation.usd}
+                </StyledMarketStat>
+                <StyledMarketStat>
+                  <StyledStatImg src={bluePlus} alt="plus" />
+                  Volume 24h: {coin.market_data.market_cap_change_24h}
+                </StyledMarketStat>
+                <StyledMarketStat>
+                  <StyledStatImg src={bluePlus} alt="plus" />
+                  Volume / Market Cap:{" "}
+                  {(coin.market_data.total_volume.usd /
+                    coin.market_data.market_cap.usd) *
+                    100}
+                </StyledMarketStat>
+                <StyledMarketStat>
+                  <StyledStatImg src={bluePlus} alt="plus" />
+                  Total Volume: {coin.market_data.total_volume.usd}
+                </StyledMarketStat>
+                <StyledMarketStat>
+                  <StyledStatImg src={bluePlus} alt="plus" />
+                  Circulating Supply: {coin.market_data.circulating_supply}{" "}
+                  {coin.symbol.toUpperCase()}
+                </StyledMarketStat>
+                <StyledMarketStat>
+                  <StyledStatImg src={bluePlus} alt="plus" />
+                  Max Supply: {coin.market_data.max_supply ? coin.market_data.max_supply + " " + (coin.symbol.toUpperCase()) : "n/a"}{" "}
+                </StyledMarketStat>
+                <StyledMarketStat>
+                {(coin.market_data.circulating_supply/coin.market_data.max_supply * 100).toFixed(0)}%   ---  {100 - (coin.market_data.circulating_supply/coin.market_data.max_supply * 100).toFixed(0)}%
+                <ProgressBar progress={coin.market_data.circulating_supply/coin.market_data.max_supply * 100} />
+                </StyledMarketStat>
               </StyledMarketContainer>
             </StyledContainer>
-            <StyledLinkContainer>{coin.links.homepage[0]}</StyledLinkContainer>
-            
-            <div>Description</div>
-            <StyledDescription>{coin.description.en}</StyledDescription>
-
+            <StyledDescriptionTitle>Description</StyledDescriptionTitle>
+            <StyledDescription>
+              <StyledDescImg>
+                <img src={layers} alt="layers" />
+              </StyledDescImg>
+              {coin.description.en}
+            </StyledDescription>
             <StyledLinksContainer>
-              <StyledBlockchainContainer>{coin.links.blockchain_site[0]}</StyledBlockchainContainer>
-              <StyledBlockchainContainer>{coin.links.blockchain_site[1]}</StyledBlockchainContainer>
-              <StyledBlockchainContainer>{coin.links.blockchain_site[2]}</StyledBlockchainContainer>
+              <StyledBlockchainContainer>
+              <StyledLinkImg src={link} alt="link" />
+                {coin.links.blockchain_site[0].substring(0, 30)}
+              </StyledBlockchainContainer>
+              <StyledBlockchainContainer>
+              <StyledLinkImg src={link} alt="link" />
+                {coin.links.blockchain_site[1].substring(0, 30)}
+              </StyledBlockchainContainer>
+              <StyledBlockchainContainer>
+              <StyledLinkImg src={link} alt="link" />
+                {coin.links.blockchain_site[2].substring(0, 30)}
+              </StyledBlockchainContainer>
             </StyledLinksContainer>
           </>
         )}
