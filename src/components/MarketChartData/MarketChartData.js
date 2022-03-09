@@ -99,7 +99,7 @@ export default class MarketChartData extends React.Component {
                 <Line
                   data={{
                     labels: chartData.prices.map((price) =>
-                      ConvertTime(price[0])
+                      ConvertDate(price[0])
                     ),
                     datasets: [
                       {
@@ -122,7 +122,7 @@ export default class MarketChartData extends React.Component {
                         display: false,
                       },
                       x: {
-                        display: false,
+                        // display: false,
                       },
                     },
                     plugins: {

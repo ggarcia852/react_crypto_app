@@ -56,7 +56,7 @@ export const StyledTableCell = styled.div.attrs((props)=>({
   },
 }))`
   display: table-cell;
-  font-size: 19px;
+  max-font-size: 19px;
   border-bottom: 1px solid #707070;
   padding: 25px 10px;
 `;
