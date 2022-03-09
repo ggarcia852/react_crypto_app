@@ -3,7 +3,7 @@ import axios from "axios";
 import { Bar, Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertTime, ConvertCurrency, ConvertDate } from "utils";
+import { ConvertCurrency, ConvertDate } from "utils";
 import {
   StyledHeader,
   ChartsDiv,
