@@ -3,7 +3,7 @@ import axios from "axios";
 import { Bar, Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertCurrency, ConvertDate } from "utils";
+import { ConvertCurrency, ConvertDay } from "utils";
 import {
   StyledHeader,
   ChartsDiv,
@@ -24,13 +24,13 @@ export default class MarketChartData extends React.Component {
     isLoading: false,
     hasError: false,
     chartData: null,
-    chartDays: 1,
-    chartInterval: "hourly",
+    chartDays: 30,
+    chartInterval: "daily",
     currency: this.props.currency,
-    activeButton: 1,
+    activeButton: 30,
     buttons: [
       { id: 1, value: "1h", days: 1, interval: "hourly" },
-      { id: 7, value: "7d", days: 7, interval: "hourly" },
+      { id: 7, value: "7d", days: 7, interval: "daily" },
       { id: 30, value: "30d", days: 30, interval: "daily" },
       { id: 90, value: "90d", days: 90, interval: "daily" },
       { id: 180, value: "180d", days: 180, interval: "daily" },
@@ -99,7 +99,7 @@ export default class MarketChartData extends React.Component {
                 <Line
                   data={{
                     labels: chartData.prices.map((price) =>
-                      ConvertDate(price[0])
+                      ConvertDay(price[0])
                     ),
                     datasets: [
                       {
@@ -154,7 +154,7 @@ export default class MarketChartData extends React.Component {
                 <Bar
                   data={{
                     labels: chartData.total_volumes.map((volume) =>
-                      ConvertDate(volume[0])
+                      ConvertDay(volume[0])
                     ),
                     datasets: [
                       {
@@ -174,7 +174,7 @@ export default class MarketChartData extends React.Component {
                         display: false,
                       },
                       x: {
-                        display: false,
+                        // display: false,
                       },
                     },
                     plugins: {
