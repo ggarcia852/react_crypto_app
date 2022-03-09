@@ -121,9 +121,6 @@ export default class MarketChartData extends React.Component {
                         beginAtZero: false,
                         display: false,
                       },
-                      x: {
-                        // display: false,
-                      },
                     },
                     plugins: {
                       legend: {
@@ -172,9 +169,6 @@ export default class MarketChartData extends React.Component {
                       y: {
                         beginAtZero: false,
                         display: false,
-                      },
-                      x: {
-                        // display: false,
                       },
                     },
                     plugins: {
