@@ -106,6 +106,12 @@ export const StyledStatImg = styled.img`
     margin-right: 15px;
 `
 
+export const StyledBullets = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 230px;
+`;
+
 export const StyledDescriptionTitle = styled.div`
     margin: 50px 12%;
     font-size: 22px;

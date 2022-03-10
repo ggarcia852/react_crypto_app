@@ -29,6 +29,7 @@ import {
   StyledPriceArrow,
   StyledPriceLayers,
   BoldText,
+  StyledBullets,
 } from "./styles";
 import { ProgressBar } from "components";
 export default class CoinPage extends React.Component {
@@ -64,6 +65,10 @@ export default class CoinPage extends React.Component {
     }
   };
 
+  handleClick = (site) => {
+    navigator.clipboard.writeText(site)
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.match.params.coinId !== prevProps.match.params.coinId) {
       this.getCoinData(this.props.match.params.coinId.toLowerCase());
@@ -77,7 +82,6 @@ export default class CoinPage extends React.Component {
   render() {
     const { hasData, hasError, isLoading, userMessage } = this.state;
     const coin = this.state.coinData;
-    console.log(coin);
     return (
       <>
         {isLoading && <div>Loading data...</div>}
@@ -136,7 +140,13 @@ export default class CoinPage extends React.Component {
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Market Cap:</BoldText> $
-                  {ConvertCurrency(coin.market_data.market_cap.usd)} <BoldText>{coin.market_data.market_cap_change_percentage_24h.toFixed(2)}%</BoldText> 
+                  {ConvertCurrency(coin.market_data.market_cap.usd)}{" "}
+                  <BoldText>
+                    {coin.market_data.market_cap_change_percentage_24h.toFixed(
+                      2
+                    )}
+                    %
+                  </BoldText>
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
@@ -181,19 +191,25 @@ export default class CoinPage extends React.Component {
                     : "n/a"}{" "}
                 </StyledMarketStat>
                 <StyledMarketStat>
-                  {(
-                    (coin.market_data.circulating_supply /
-                      coin.market_data.max_supply) *
-                    100
-                  ).toFixed(0)}
-                  % ---{" "}
-                  {100 -
-                    (
-                      (coin.market_data.circulating_supply /
-                        coin.market_data.max_supply) *
-                      100
-                    ).toFixed(0)}
-                  %
+                  <StyledBullets>
+                    <div>
+                      {(
+                        (coin.market_data.circulating_supply /
+                          coin.market_data.max_supply) *
+                        100
+                      ).toFixed(0)}
+                      %
+                    </div>
+                    <div>
+                      {100 -
+                        (
+                          (coin.market_data.circulating_supply /
+                            coin.market_data.max_supply) *
+                          100
+                        ).toFixed(0)}
+                      %
+                    </div>
+                  </StyledBullets>
                   <ProgressBar
                     progress={
                       (coin.market_data.circulating_supply /
@@ -221,7 +237,7 @@ export default class CoinPage extends React.Component {
                   <StyledLinkImg src={link} alt="link" />
                 </a>
                 {coin.links.blockchain_site[0].substring(0, 20)}
-                <StyledLinkImg src={feather} alt="feather" />
+                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[0])} src={feather} alt="feather" />
               </StyledBlockchainContainer>
               <StyledBlockchainContainer>
                 <a
@@ -232,7 +248,7 @@ export default class CoinPage extends React.Component {
                   <StyledLinkImg src={link} alt="link" />
                 </a>
                 {coin.links.blockchain_site[1].substring(0, 20)}
-                <StyledLinkImg src={feather} alt="feather" />
+                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[1])} src={feather} alt="feather" />
               </StyledBlockchainContainer>
               <StyledBlockchainContainer>
                 <a
@@ -240,10 +256,10 @@ export default class CoinPage extends React.Component {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg src={link} alt="link" />
+                  <StyledLinkImg  src={link} alt="link" />
                 </a>
                 {coin.links.blockchain_site[2].substring(0, 20)}
-                <StyledLinkImg src={feather} alt="feather" />
+                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[2])} src={feather} alt="feather" />
               </StyledBlockchainContainer>
             </StyledLinksContainer>
           </>

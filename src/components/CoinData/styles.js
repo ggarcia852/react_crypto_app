@@ -78,13 +78,8 @@ export const StyledBullets = styled.div`
   max-width: 230px;
 `;
 
-export const StyledBullet = styled.div`
-  display: flex;
-`;
-
 export const StyledChart = styled.div`
   display: flex;
   max-width: 115px;
   height: 45px;
-`
-
+`;
