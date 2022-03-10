@@ -30,7 +30,7 @@ export default class MarketChartData extends React.Component {
     activeButton: 30,
     buttons: [
       { id: 1, value: "1h", days: 1, interval: "hourly" },
-      { id: 7, value: "7d", days: 7, interval: "daily" },
+      { id: 7, value: "7d", days: 7, interval: "hourly" },
       { id: 30, value: "30d", days: 30, interval: "daily" },
       { id: 90, value: "90d", days: 90, interval: "daily" },
       { id: 180, value: "180d", days: 180, interval: "daily" },

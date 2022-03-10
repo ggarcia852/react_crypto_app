@@ -157,10 +157,22 @@ export const BoldText = styled.span`
     font-size: 18px;
 `
 
+export const StyledChart = styled.div`
+    margin-top: 65px;
+`
+
+export const StyledBarContainer = styled.div`
+    height: 110px;
+`
 
 // export const StyledContainer = styled.div`
 
 // `
+
+// export const StyledContainer = styled.div`
+
+// `
+
 // export const StyledContainer = styled.div`
 
 // `

@@ -1,5 +1,8 @@
 import React from "react";
 import axios from "axios";
+import { Line } from "react-chartjs-2";
+//eslint-disable-next-line
+import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertCurrency, ConvertDate } from "../../utils";
 import bluePlus from "assets/bluePlus.svg";
 import greenUp from "assets/greenUp.svg";
@@ -30,6 +33,8 @@ import {
   StyledPriceLayers,
   BoldText,
   StyledBullets,
+  StyledChart,
+  StyledBarContainer,
 } from "./styles";
 import { ProgressBar } from "components";
 export default class CoinPage extends React.Component {
@@ -39,6 +44,19 @@ export default class CoinPage extends React.Component {
     hasError: false,
     userMessage: "",
     coinData: null,
+    chartData: null,
+    chartDays: 30,
+    chartInterval: "daily",
+    currency: this.props.currency,
+    activeButton: 30,
+    buttons: [
+      { id: 1, value: "1h", days: 1, interval: "hourly" },
+      { id: 7, value: "7d", days: 7, interval: "daily" },
+      { id: 30, value: "30d", days: 30, interval: "daily" },
+      { id: 90, value: "90d", days: 90, interval: "daily" },
+      { id: 365, value: "365d", days: 365, interval: "daily" },
+      // { id: 0, value: "max", days: "max", interval: "daily" },
+    ],
   };
 
   getCoinData = async (coin) => {
@@ -65,6 +83,21 @@ export default class CoinPage extends React.Component {
     }
   };
 
+  getChartData = async (coin) => {
+    const { chartDays, chartInterval } = this.state;
+    this.setState({ isLoading: true });
+    try {
+      const { data } = await axios(
+        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${chartDays}&interval=${chartInterval}`
+      );
+      this.setState({
+        chartData: data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   handleClick = (site) => {
     navigator.clipboard.writeText(site)
   }
@@ -77,11 +110,13 @@ export default class CoinPage extends React.Component {
 
   componentDidMount() {
     this.getCoinData(this.props.match.params.coinId);
+    this.getChartData(this.props.match.params.coinId);
   }
 
   render() {
-    const { hasData, hasError, isLoading, userMessage } = this.state;
+    const { hasData, hasError, isLoading, userMessage, chartData } = this.state;
     const coin = this.state.coinData;
+    console.log(coin)
     return (
       <>
         {isLoading && <div>Loading data...</div>}
@@ -264,6 +299,52 @@ export default class CoinPage extends React.Component {
             </StyledLinksContainer>
           </>
         )}
+        <StyledBarContainer>
+          timeline and currency bar
+        </StyledBarContainer>
+        <StyledChart>
+        {chartData && (
+          <div>
+            <Line
+                  data={{
+                    labels: chartData.prices.map((price) =>
+                      ConvertDate(price[0])
+                    ),
+                    datasets: [
+                      {
+                        label: "Price",
+                        data: chartData.prices.map((price) =>
+                          price[1].toFixed()
+                        ),
+                        pointRadius: 0,
+                        borderColor: "#707070",
+                        // backgroundColor: "#404040",
+                        fill: true,
+                        tension: 0.2,
+                      },
+                    ],
+                  }}
+                 height={"350px"}
+                  options={{
+                    maintainAspectRatio: false,
+                    scales: {
+                      y: {
+                        display: false,
+                      },
+                      x: {
+                        display: false,
+                      },
+                    },
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                    },
+                  }}
+                />
+          </div>
+        )}
+        </StyledChart>
       </>
     );
   }
