@@ -116,7 +116,6 @@ export default class CoinPage extends React.Component {
   render() {
     const { hasData, hasError, isLoading, userMessage, chartData } = this.state;
     const coin = this.state.coinData;
-    console.log(coin)
     return (
       <>
         {isLoading && <div>Loading data...</div>}
