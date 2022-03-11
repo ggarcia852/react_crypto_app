@@ -17,7 +17,6 @@ import {
   StyledTableRow,
   StyledTableCell,
   StyledCoinLink,
-  StyledBullet,
   StyledBullets,
   StyledChart,
 } from "./styles";
@@ -127,12 +126,12 @@ export default class CoinData extends React.Component {
                     </StyledTableCell>
                     <StyledTableCell>
                       <StyledBullets>
-                        <StyledBullet>
+                        <div>
                           ${ConvertCurrency(coin.total_volume)}
-                        </StyledBullet>
-                        <StyledBullet>
+                        </div>
+                        <div>
                           ${ConvertCurrency(coin.market_cap)}
-                        </StyledBullet>
+                        </div>
                       </StyledBullets>
                       <ProgressBar
                         progress={(coin.total_volume / coin.market_cap) * 100}
@@ -140,14 +139,12 @@ export default class CoinData extends React.Component {
                     </StyledTableCell>
                     <StyledTableCell>
                       <StyledBullets>
-                        <StyledBullet>
-                          ${ConvertCurrency(coin.circulating_supply)}
-                        </StyledBullet>
-                        <StyledBullet>
+                        <div>${ConvertCurrency(coin.circulating_supply)}</div>
+                        <div>
                           {coin.total_supply
                             ? "$" + ConvertCurrency(coin.total_supply)
                             : "n/a"}
-                        </StyledBullet>
+                        </div>
                       </StyledBullets>
                       <ProgressBar
                         progress={
@@ -159,11 +156,12 @@ export default class CoinData extends React.Component {
                       <StyledChart>
                         <Line
                           data={{
-                            labels: coin.sparkline_in_7d.price.map((price, index) => index),
+                            labels: coin.sparkline_in_7d.price.map(
+                              (price, index) => index
+                            ),
                             datasets: [
                               {
                                 data: coin.sparkline_in_7d.price,
-                                
                                 borderColor:
                                   coin.sparkline_in_7d.price.slice(0, 1) <
                                   coin.sparkline_in_7d.price.slice(-1)
@@ -174,7 +172,6 @@ export default class CoinData extends React.Component {
                               },
                             ],
                           }}
-                          // height="70px"
                           options={{
                             maintainAspectRatio: false,
                             legend: {

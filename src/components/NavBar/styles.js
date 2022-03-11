@@ -27,6 +27,9 @@ export const StyledLink = styled(NavLink)`
   &.active {
     background: #2c2f36;
   }
+  &:hover {
+    opacity: .7;
+  }
 `;
 
 export const StyledNavList = styled.ul`

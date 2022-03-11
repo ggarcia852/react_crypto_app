@@ -15,16 +15,17 @@ class SearchBar extends React.Component {
   state = {
     searchValue: "",
     list: [],
+    isLoading: false,
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.history.push(`/coin/${this.state.searchValue.toLowerCase()}`);
-    this.setState({ searchValue: "", list: null });
+    this.setState({ searchValue: "", list: null, isLoading: false });
   };
 
   handleChange = (e) => {
-    this.setState({ searchValue: e.target.value, list: null });
+    this.setState({ searchValue: e.target.value, list: null, isLoading: true });
   };
 
   handleSearch = async (value) => {
@@ -34,6 +35,7 @@ class SearchBar extends React.Component {
       );
       this.setState({
         list: data,
+        isLoading: false,
       });
     } catch (err) {
       console.log(err);
@@ -42,7 +44,7 @@ class SearchBar extends React.Component {
 
   handleClick = (coin) => {
     this.props.history.push(`/coin/${coin.id}`);
-    this.setState({ searchValue: "", list: null });
+    this.setState({ searchValue: "", list: null, isLoading: false });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -65,6 +67,7 @@ class SearchBar extends React.Component {
             placeholder="Search..."
           />
           <StyledList>
+            {this.state.isLoading && <div>loading...</div>}
             {this.state.list
               ? this.state.list.map((coin) => (
                   <StyledListItem

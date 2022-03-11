@@ -16,3 +16,8 @@ export const ConvertDate = (n) => {
   return date;
 };
 
+export const ConvertDay = (n) => {
+  const day = new Date(n).getDate();
+  return day;
+};
+
