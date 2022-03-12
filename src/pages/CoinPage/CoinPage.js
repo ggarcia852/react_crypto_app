@@ -10,6 +10,7 @@ import redDown from "assets/redDown.svg";
 import link from "assets/link.svg";
 import layers from "assets/layers.svg";
 import feather from "assets/feather.svg";
+import exchange from "assets/exchange.svg";
 import {
   StyledTitle,
   StyledCoinContainer,
@@ -34,7 +35,12 @@ import {
   BoldText,
   StyledBullets,
   StyledChart,
+  StyledDayContainer,
+  StyledButtonInput,
   StyledBarContainer,
+  StyledCurrency,
+  StyledCurrencyImg,
+  StyledCurrencyName,
 } from "./styles";
 import { ProgressBar } from "components";
 export default class CoinPage extends React.Component {
@@ -45,18 +51,8 @@ export default class CoinPage extends React.Component {
     userMessage: "",
     coinData: null,
     chartData: null,
-    chartDays: 30,
-    chartInterval: "daily",
+    chartDays: "30",
     currency: this.props.currency,
-    activeButton: 30,
-    buttons: [
-      { id: 1, value: "1h", days: 1, interval: "hourly" },
-      { id: 7, value: "7d", days: 7, interval: "daily" },
-      { id: 30, value: "30d", days: 30, interval: "daily" },
-      { id: 90, value: "90d", days: 90, interval: "daily" },
-      { id: 365, value: "365d", days: 365, interval: "daily" },
-      // { id: 0, value: "max", days: "max", interval: "daily" },
-    ],
   };
 
   getCoinData = async (coin) => {
@@ -65,6 +61,7 @@ export default class CoinPage extends React.Component {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true`
       );
+      console.log(data);
       this.setState({
         hasData: true,
         isLoading: false,
@@ -84,11 +81,10 @@ export default class CoinPage extends React.Component {
   };
 
   getChartData = async (coin) => {
-    const { chartDays, chartInterval } = this.state;
-    this.setState({ isLoading: true });
+    const { chartDays } = this.state;
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${chartDays}&interval=${chartInterval}`
+        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${chartDays}`
       );
       this.setState({
         chartData: data,
@@ -98,13 +94,21 @@ export default class CoinPage extends React.Component {
     }
   };
 
-  handleClick = (site) => {
-    navigator.clipboard.writeText(site)
-  }
+  handleCopy = (site) => {
+    navigator.clipboard.writeText(site);
+  };
 
-  componentDidUpdate(prevProps) {
+  handleChange = (e) => {
+    this.setState({ chartDays: e.target.value });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.coinId !== prevProps.match.params.coinId) {
       this.getCoinData(this.props.match.params.coinId.toLowerCase());
+      this.getChartData(this.props.match.params.coinId);
+    }
+    if (this.state.chartDays !== prevState.chartDays) {
+      this.getChartData(this.props.match.params.coinId);
     }
   }
 
@@ -116,6 +120,7 @@ export default class CoinPage extends React.Component {
   render() {
     const { hasData, hasError, isLoading, userMessage, chartData } = this.state;
     const coin = this.state.coinData;
+    console.log(this.state.currency);
     return (
       <>
         {isLoading && <div>Loading data...</div>}
@@ -271,7 +276,13 @@ export default class CoinPage extends React.Component {
                   <StyledLinkImg src={link} alt="link" />
                 </a>
                 {coin.links.blockchain_site[0].substring(0, 20)}
-                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[0])} src={feather} alt="feather" />
+                <StyledLinkImg
+                  onClick={(e) =>
+                    this.handleCopy(coin.links.blockchain_site[0])
+                  }
+                  src={feather}
+                  alt="feather"
+                />
               </StyledBlockchainContainer>
               <StyledBlockchainContainer>
                 <a
@@ -282,7 +293,13 @@ export default class CoinPage extends React.Component {
                   <StyledLinkImg src={link} alt="link" />
                 </a>
                 {coin.links.blockchain_site[1].substring(0, 20)}
-                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[1])} src={feather} alt="feather" />
+                <StyledLinkImg
+                  onClick={(e) =>
+                    this.handleCopy(coin.links.blockchain_site[1])
+                  }
+                  src={feather}
+                  alt="feather"
+                />
               </StyledBlockchainContainer>
               <StyledBlockchainContainer>
                 <a
@@ -290,59 +307,129 @@ export default class CoinPage extends React.Component {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg  src={link} alt="link" />
+                  <StyledLinkImg src={link} alt="link" />
                 </a>
                 {coin.links.blockchain_site[2].substring(0, 20)}
-                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[2])} src={feather} alt="feather" />
+                <StyledLinkImg
+                  onClick={(e) =>
+                    this.handleCopy(coin.links.blockchain_site[2])
+                  }
+                  src={feather}
+                  alt="feather"
+                />
               </StyledBlockchainContainer>
             </StyledLinksContainer>
           </>
         )}
+        <StyledDayContainer>
+          <div>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="1"
+              checked={this.state.chartDays === "1"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="1">1d</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="7"
+              checked={this.state.chartDays === "7"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="7">7d</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="30"
+              checked={this.state.chartDays === "30"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="30">30d</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="90"
+              checked={this.state.chartDays === "90"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="90">90d</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="365"
+              checked={this.state.chartDays === "365"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="1y">1y</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="max"
+              checked={this.state.chartDays === "max"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="max">Max</label>
+          </div>
+        </StyledDayContainer>
         <StyledBarContainer>
-          timeline and currency bar
+          <StyledCurrencyName>USD</StyledCurrencyName>
+          <StyledCurrency placeholder="1" />
+          <StyledCurrencyImg src={exchange} alt="exchange" />
+          {this.state.coinData && (
+            <>
+              <StyledCurrencyName>
+                {coin.symbol.toUpperCase()}
+              </StyledCurrencyName>
+              <StyledCurrency
+                placeholder={coin.market_data.current_price.usd}
+              />
+            </>
+          )}
         </StyledBarContainer>
         <StyledChart>
-        {chartData && (
-          <div>
-            <Line
-                  data={{
-                    labels: chartData.prices.map((price) =>
-                      ConvertDate(price[0])
-                    ),
-                    datasets: [
-                      {
-                        label: "Price",
-                        data: chartData.prices.map((price) =>
-                          price[1].toFixed()
-                        ),
-                        pointRadius: 0,
-                        borderColor: "#707070",
-                        // backgroundColor: "#404040",
-                        fill: true,
-                        tension: 0.2,
-                      },
-                    ],
-                  }}
-                 height={"350px"}
-                  options={{
-                    maintainAspectRatio: false,
-                    scales: {
-                      y: {
-                        display: false,
-                      },
-                      x: {
-                        display: false,
-                      },
+          {chartData && (
+            <div>
+              <Line
+                data={{
+                  labels: chartData.prices.map((price) =>
+                    ConvertDate(price[0])
+                  ),
+                  datasets: [
+                    {
+                      label: "Price",
+                      data: chartData.prices.map((price) => price[1].toFixed()),
+                      pointRadius: 0,
+                      borderColor: "#707070",
+                      backgroundColor: "#191B1F",
+
+                      opacity: 0.5,
+                      fill: true,
+                      tension: 0.4,
                     },
-                    plugins: {
-                      legend: {
-                        display: false,
-                      },
+                  ],
+                }}
+                height={"350px"}
+                options={{
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      display: false,
                     },
-                  }}
-                />
-          </div>
-        )}
+                    x: {
+                      display: false,
+                    },
+                  },
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                  },
+                }}
+              />
+            </div>
+          )}
         </StyledChart>
       </>
     );

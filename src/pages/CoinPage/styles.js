@@ -158,20 +158,57 @@ export const BoldText = styled.span`
 `
 
 export const StyledChart = styled.div`
-    margin-top: 65px;
+    margin-top: 40px;
+`
+
+export const StyledDayContainer = styled.div`
+    display: flex; 
+    height: 35px;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 25px;
+`
+
+export const StyledButtonInput = styled.input`
+    margin-left: 30px;
+
 `
 
 export const StyledBarContainer = styled.div`
-    height: 110px;
+    display: flex;
+    justify-content: center;
 `
 
-// export const StyledContainer = styled.div`
+export const StyledCurrencyName = styled.div`
+    display: flex;
+    background: #06D554;
+    width: 80px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 0px 0px 10px;
+    font-size: 17px;
+    font-weight: 500;
+`
 
-// `
+export const StyledCurrencyImg = styled.img`
+    margin: 0px 30px;
+`
 
-// export const StyledContainer = styled.div`
-
-// `
+export const StyledCurrency = styled.input`
+    background-color: #2C2D33;
+    border: none;
+    outline: 0px;
+    height: 45px;
+    margin: 0px;
+    border-radius: 0px 10px 10px 0px;
+    font-size: 14px;
+    padding-left: 20px;
+    color: #ffffff;
+    &::-webkit-input-placeholder {
+        color: #ffffff;
+      }
+`
 
 // export const StyledContainer = styled.div`
 
