@@ -78,6 +78,14 @@ export const StyledPriceStat = styled.div`
     font-size: 18px;
     margin-bottom: 20px;
 `
+export const StyledPriceStatPercent = styled.span.attrs((props)=>({
+    style: {
+      color: `${props.color}`,
+    },
+  }))`
+    font-size: 19px;
+    padding-left: 10px;
+`
 
 export const StyledPriceArrow = styled.img`
     margin: 25px 15px 0px 0px; 
@@ -98,6 +106,15 @@ export const StyledMarketContainer = styled.div`
 `
 
 export const StyledMarketStat = styled.div`
+    font-size: 18px;
+    padding-top: 5px;
+`
+
+export const StyledMarketStatPercent = styled.span.attrs((props)=>({
+    style: {
+      color: `${props.color}`,
+    },
+  }))`
     font-size: 18px;
     padding-top: 5px;
 `
@@ -161,22 +178,23 @@ export const StyledChart = styled.div`
     margin-top: 40px;
 `
 
+export const StyledBarContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+
+`
+
 export const StyledDayContainer = styled.div`
     display: flex; 
     height: 35px;
     justify-content: center;
     font-size: 20px;
-    margin-bottom: 25px;
 `
 
 export const StyledButtonInput = styled.input`
     margin-left: 30px;
-
-`
-
-export const StyledBarContainer = styled.div`
-    display: flex;
-    justify-content: center;
+    margin-right: 7px;
 `
 
 export const StyledCurrencyName = styled.div`
@@ -195,7 +213,7 @@ export const StyledCurrencyImg = styled.img`
     margin: 0px 30px;
 `
 
-export const StyledCurrency = styled.input`
+export const StyledCurrencyInput = styled.input`
     background-color: #2C2D33;
     border: none;
     outline: 0px;

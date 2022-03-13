@@ -143,7 +143,7 @@ export default class CoinData extends React.Component {
                         <div>
                           {coin.total_supply
                             ? "$" + ConvertCurrency(coin.total_supply)
-                            : "n/a"}
+                            : "∞"}
                         </div>
                       </StyledBullets>
                       <ProgressBar

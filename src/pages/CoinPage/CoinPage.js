@@ -38,9 +38,11 @@ import {
   StyledDayContainer,
   StyledButtonInput,
   StyledBarContainer,
-  StyledCurrency,
   StyledCurrencyImg,
   StyledCurrencyName,
+  StyledCurrencyInput,
+  StyledMarketStatPercent,
+  StyledPriceStatPercent,
 } from "./styles";
 import { ProgressBar } from "components";
 export default class CoinPage extends React.Component {
@@ -53,6 +55,8 @@ export default class CoinPage extends React.Component {
     chartData: null,
     chartDays: "30",
     currency: this.props.currency,
+    conversionCurrency: 1,
+    coinCurrency: 0,
   };
 
   getCoinData = async (coin) => {
@@ -61,13 +65,13 @@ export default class CoinPage extends React.Component {
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true`
       );
-      console.log(data);
       this.setState({
         hasData: true,
         isLoading: false,
         hasError: false,
         userMessage: "",
         coinData: data,
+        coinCurrency: (1 / data.market_data.current_price.usd).toFixed(2),
       });
     } catch (err) {
       this.setState({
@@ -102,6 +106,25 @@ export default class CoinPage extends React.Component {
     this.setState({ chartDays: e.target.value });
   };
 
+  handleCurrencyChange = (e) => {
+    this.setState({
+      conversionCurrency: e.target.value,
+      coinCurrency: (
+        (1 / this.state.coinData.market_data.current_price.usd) *
+        e.target.value
+      ).toFixed(2),
+    });
+  };
+
+  handleCoinChange = (e) => {
+    this.setState({
+      coinCurrency: e.target.value,
+      conversionCurrency: (
+        e.target.value * this.state.coinData.market_data.current_price.usd
+      ).toFixed(2),
+    });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.coinId !== prevProps.match.params.coinId) {
       this.getCoinData(this.props.match.params.coinId.toLowerCase());
@@ -120,7 +143,6 @@ export default class CoinPage extends React.Component {
   render() {
     const { hasData, hasError, isLoading, userMessage, chartData } = this.state;
     const coin = this.state.coinData;
-    console.log(this.state.currency);
     return (
       <>
         {isLoading && <div>Loading data...</div>}
@@ -148,7 +170,14 @@ export default class CoinPage extends React.Component {
                 </StyledLinkContainer>
               </StyledLeftContainer>
               <StyledPriceContainer>
-                <StyledPrice>${coin.market_data.current_price.usd}</StyledPrice>
+                <StyledPrice>
+                  ${coin.market_data.current_price.usd}
+                 </StyledPrice>
+                  <StyledPriceStatPercent color={
+                        coin.market_data.price_change_percentage_24h >= 0
+                          ? "#00FC2A"
+                          : "#FE1040"
+                      }>{coin.market_data.price_change_percentage_24h.toFixed(2)}%</StyledPriceStatPercent>
                 <StyledPriceStat>
                   <StyledPriceLayers src={layers} alt="layers" />
                 </StyledPriceStat>
@@ -180,12 +209,18 @@ export default class CoinPage extends React.Component {
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Market Cap:</BoldText> $
                   {ConvertCurrency(coin.market_data.market_cap.usd)}{" "}
-                  <BoldText>
-                    {coin.market_data.market_cap_change_percentage_24h.toFixed(
-                      2
-                    )}
-                    %
-                  </BoldText>
+                  <StyledMarketStatPercent color={
+                         coin.market_data.market_cap_change_percentage_24h >= 0
+                          ? "#00FC2A"
+                          : "#FE1040"
+                      }>
+                    <BoldText>
+                      {coin.market_data.market_cap_change_percentage_24h.toFixed(
+                        2
+                      )}
+                      %
+                    </BoldText>
+                  </StyledMarketStatPercent>
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
@@ -227,7 +262,7 @@ export default class CoinPage extends React.Component {
                     ? ConvertCurrency(coin.market_data.max_supply) +
                       " " +
                       coin.symbol.toUpperCase()
-                    : "n/a"}{" "}
+                    : "∞"}{" "}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledBullets>
@@ -236,8 +271,13 @@ export default class CoinPage extends React.Component {
                         (coin.market_data.circulating_supply /
                           coin.market_data.max_supply) *
                         100
-                      ).toFixed(0)}
-                      %
+                      ).toFixed(0) === "Infinity"
+                        ? "∞"
+                        : (
+                            (coin.market_data.circulating_supply /
+                              coin.market_data.max_supply) *
+                            100
+                          ).toFixed(0) + "%"}
                     </div>
                     <div>
                       {100 -
@@ -245,8 +285,16 @@ export default class CoinPage extends React.Component {
                           (coin.market_data.circulating_supply /
                             coin.market_data.max_supply) *
                           100
-                        ).toFixed(0)}
-                      %
+                        ).toFixed(0) ===
+                      -"Infinity"
+                        ? "∞"
+                        : 100 -
+                          (
+                            (coin.market_data.circulating_supply /
+                              coin.market_data.max_supply) *
+                            100
+                          ).toFixed(0) +
+                          "%"}
                     </div>
                   </StyledBullets>
                   <ProgressBar
@@ -321,6 +369,26 @@ export default class CoinPage extends React.Component {
             </StyledLinksContainer>
           </>
         )}
+        <StyledBarContainer>
+          <StyledCurrencyName>USD</StyledCurrencyName>
+          <StyledCurrencyInput
+            value={this.state.conversionCurrency}
+            onChange={this.handleCurrencyChange}
+          />
+          <StyledCurrencyImg src={exchange} alt="exchange" />
+          {this.state.coinData && (
+            <>
+              <StyledCurrencyName>
+                {coin.symbol.toUpperCase()}
+              </StyledCurrencyName>
+              <StyledCurrencyInput
+                // placeholder={coin.market_data.current_price.usd}
+                value={this.state.coinCurrency}
+                onChange={this.handleCoinChange}
+              />
+            </>
+          )}
+        </StyledBarContainer>
         <StyledDayContainer>
           <div>
             <StyledButtonInput
@@ -373,21 +441,6 @@ export default class CoinPage extends React.Component {
             <label htmlFor="max">Max</label>
           </div>
         </StyledDayContainer>
-        <StyledBarContainer>
-          <StyledCurrencyName>USD</StyledCurrencyName>
-          <StyledCurrency placeholder="1" />
-          <StyledCurrencyImg src={exchange} alt="exchange" />
-          {this.state.coinData && (
-            <>
-              <StyledCurrencyName>
-                {coin.symbol.toUpperCase()}
-              </StyledCurrencyName>
-              <StyledCurrency
-                placeholder={coin.market_data.current_price.usd}
-              />
-            </>
-          )}
-        </StyledBarContainer>
         <StyledChart>
           {chartData && (
             <div>
@@ -399,12 +452,10 @@ export default class CoinPage extends React.Component {
                   datasets: [
                     {
                       label: "Price",
-                      data: chartData.prices.map((price) => price[1].toFixed()),
+                      data: chartData.prices.map((price) => price[1]),
                       pointRadius: 0,
                       borderColor: "#707070",
                       backgroundColor: "#191B1F",
-
-                      opacity: 0.5,
                       fill: true,
                       tension: 0.4,
                     },
