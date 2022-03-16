@@ -75,7 +75,8 @@ class SearchBar extends React.Component {
                     key={coin.id}
                   >
                     <StyledLink to={`/coin/${coin.id}`}>
-                      {coin.name} ({coin.symbol})
+                      <img src={coin.thumb} alt="coin" /> {coin.name} (
+                      {coin.symbol})
                     </StyledLink>
                   </StyledListItem>
                 ))

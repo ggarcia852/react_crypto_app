@@ -27,7 +27,7 @@ export const StyledList = styled.div`
   position: absolute;
   max-height: 150px;
   min-width: 150px;
-  overflow: hidden;
+  overflow: scroll;
   background: #212329;
   border: 1px solid #191B1F;
   border-radius: 5px;

@@ -58,15 +58,15 @@ export const StyledButton = styled.button`
   border: none;
   background: ${({ active }) => (active ? "#00FC2A" : "#191b1f")};
   &:hover {
-    opacity: 0.7;
+    cursor: pointer;
   }
 `;
 
 export const StyledHeading = styled.div`
   display:flex;
   height: 130px;
-  padding-left: 20px;
-  padding-top: 22px;
+  padding-left: 40px;
+  padding-top: 40px;
   flex-flow: column;
 `
 export const StyledTitle = styled.div`

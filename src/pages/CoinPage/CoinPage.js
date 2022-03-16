@@ -3,13 +3,14 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertCurrency, ConvertDate } from "../../utils";
+import { ConvertCurrency, ConvertDate, RemoveNegative } from "../../utils";
 import bluePlus from "assets/bluePlus.svg";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
 import link from "assets/link.svg";
 import layers from "assets/layers.svg";
 import feather from "assets/feather.svg";
+import exchange from "assets/exchange.svg";
 import {
   StyledTitle,
   StyledCoinContainer,
@@ -34,7 +35,16 @@ import {
   BoldText,
   StyledBullets,
   StyledChart,
+  StyledDayContainer,
+  StyledButtonInput,
   StyledBarContainer,
+  StyledCurrencyImg,
+  StyledCurrencyName,
+  StyledCurrencyInput,
+  StyledMarketStatPercent,
+  StyledPriceStatPercent,
+  StyledPricePercentArrow,
+  ColoredDiv,
 } from "./styles";
 import { ProgressBar } from "components";
 export default class CoinPage extends React.Component {
@@ -45,18 +55,11 @@ export default class CoinPage extends React.Component {
     userMessage: "",
     coinData: null,
     chartData: null,
-    chartDays: 30,
-    chartInterval: "daily",
-    currency: this.props.currency,
-    activeButton: 30,
-    buttons: [
-      { id: 1, value: "1h", days: 1, interval: "hourly" },
-      { id: 7, value: "7d", days: 7, interval: "daily" },
-      { id: 30, value: "30d", days: 30, interval: "daily" },
-      { id: 90, value: "90d", days: 90, interval: "daily" },
-      { id: 365, value: "365d", days: 365, interval: "daily" },
-      // { id: 0, value: "max", days: "max", interval: "daily" },
-    ],
+    marketData: null,
+    coinPrice: 0,
+    chartDays: "30",
+    conversionAmount: 1,
+    coinAmount: 1,
   };
 
   getCoinData = async (coin) => {
@@ -83,12 +86,27 @@ export default class CoinPage extends React.Component {
     }
   };
 
-  getChartData = async (coin) => {
-    const { chartDays, chartInterval } = this.state;
-    this.setState({ isLoading: true });
+  getMarketData = async (coin, currency) => {
+    try {
+      const data = await axios(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coin}&sparkline=false`
+      );
+      const coinPrice = data.data[0].current_price;
+      this.setState({
+        marketData: data.data[0],
+        coinPrice,
+        coinAmount: ((1 / coinPrice) * 1).toFixed(6),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  getChartData = async (coin, currency) => {
+    const { chartDays } = this.state;
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${chartDays}&interval=${chartInterval}`
+        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${chartDays}`
       );
       this.setState({
         chartData: data,
@@ -98,30 +116,70 @@ export default class CoinPage extends React.Component {
     }
   };
 
-  handleClick = (site) => {
-    navigator.clipboard.writeText(site)
-  }
+  handleCopy = (site) => {
+    navigator.clipboard.writeText(site);
+  };
 
-  componentDidUpdate(prevProps) {
+  handleChange = (e) => {
+    this.setState({ chartDays: e.target.value });
+  };
+
+  handleCurrencyChange = (e) => {
+    this.setState({
+      conversionAmount: e.target.value,
+      coinAmount: ((1 / this.state.coinPrice) * e.target.value).toFixed(6),
+    });
+  };
+
+  handleCoinChange = (e) => {
+    this.setState({
+      coinAmount: e.target.value,
+      conversionAmount: (e.target.value * this.state.coinPrice).toFixed(6),
+    });
+  };
+
+  currencyReset = () => {
+    this.setState({ conversionAmount: 1 });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.coinId !== prevProps.match.params.coinId) {
       this.getCoinData(this.props.match.params.coinId.toLowerCase());
+      this.getChartData(this.props.match.params.coinId, this.props.currency);
+      this.getMarketData(this.props.match.params.coinId, this.props.currency);
+    }
+    if (this.state.chartDays !== prevState.chartDays) {
+      this.getChartData(this.props.match.params.coinId, this.props.currency);
+    }
+    if (this.props.currency !== prevProps.currency) {
+      this.getChartData(this.props.match.params.coinId, this.props.currency);
+      this.getMarketData(this.props.match.params.coinId, this.props.currency);
+      this.currencyReset();
     }
   }
 
   componentDidMount() {
     this.getCoinData(this.props.match.params.coinId);
-    this.getChartData(this.props.match.params.coinId);
+    this.getChartData(this.props.match.params.coinId, this.props.currency);
+    this.getMarketData(this.props.match.params.coinId, this.props.currency);
   }
 
   render() {
-    const { hasData, hasError, isLoading, userMessage, chartData } = this.state;
+    const { hasData, hasError, isLoading, userMessage, chartData, marketData } =
+      this.state;
     const coin = this.state.coinData;
-    console.log(coin)
+    const linkSize = (link) => {
+      if (link.length > 20) {
+        return link.substring(0, 20) + "...";
+      }
+      return link;
+    };
+
     return (
       <>
         {isLoading && <div>Loading data...</div>}
         {hasError && <div>{userMessage}</div>}
-        {hasData && (
+        {hasData && marketData && (
           <>
             <StyledTitle>Summary</StyledTitle>
             <StyledContainer>
@@ -140,23 +198,43 @@ export default class CoinPage extends React.Component {
                   >
                     <StyledLinkImg src={link} alt="link" />
                   </a>
-                  {coin.links.homepage[0].substring(0, 25)}
+                  {linkSize(coin.links.homepage[0])}
                 </StyledLinkContainer>
               </StyledLeftContainer>
               <StyledPriceContainer>
-                <StyledPrice>${coin.market_data.current_price.usd}</StyledPrice>
-                <StyledPriceStat>
+                <StyledPrice>${marketData.current_price}</StyledPrice>
+                <span>
+                  {marketData.price_change_percentage_24h >= 0 ? (
+                    <StyledPricePercentArrow src={greenUp} alt="up arrow" />
+                  ) : (
+                    <StyledPricePercentArrow src={redDown} alt="down arrow" />
+                  )}
+                  <StyledPriceStatPercent
+                    color={
+                      marketData.price_change_percentage_24h >= 0
+                        ? "#00FC2A"
+                        : "#FE1040"
+                    }
+                  >
+                    {marketData.price_change_percentage_24h > 0
+                      ? marketData.price_change_percentage_24h.toFixed(2)
+                      : RemoveNegative(
+                          marketData.price_change_percentage_24h.toFixed(2)
+                        )}
+                    %
+                  </StyledPriceStatPercent>
+                </span>
+                <div>
                   <StyledPriceLayers src={layers} alt="layers" />
-                </StyledPriceStat>
+                </div>
                 <div>
                   <StyledPriceStat>
                     <div>
                       <StyledPriceArrow src={greenUp} alt="up arrow" />
                     </div>
                     <div>
-                      <BoldText>All Time High: </BoldText> $
-                      {coin.market_data.ath.usd}
-                      <div>{ConvertDate(coin.market_data.ath_date.usd)}</div>
+                      <BoldText>All Time High: </BoldText> ${marketData.ath}
+                      <div>{ConvertDate(marketData.ath_date)}</div>
                     </div>
                   </StyledPriceStat>
                   <StyledPriceStat>
@@ -164,9 +242,8 @@ export default class CoinPage extends React.Component {
                       <StyledPriceArrow src={redDown} alt="down arrow" />
                     </div>
                     <div>
-                      <BoldText>All Time Low: </BoldText>$
-                      {coin.market_data.atl.usd}
-                      <div>{ConvertDate(coin.market_data.atl_date.usd)}</div>
+                      <BoldText>All Time Low: </BoldText>${marketData.atl}
+                      <div>{ConvertDate(marketData.atl_date)}</div>
                     </div>
                   </StyledPriceStat>
                 </div>
@@ -175,32 +252,48 @@ export default class CoinPage extends React.Component {
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Market Cap:</BoldText> $
-                  {ConvertCurrency(coin.market_data.market_cap.usd)}{" "}
-                  <BoldText>
-                    {coin.market_data.market_cap_change_percentage_24h.toFixed(
-                      2
+                  {ConvertCurrency(marketData.market_cap)}{" "}
+                  <span>
+                    {marketData.market_cap_change_percentage_24h >= 0 ? (
+                      <StyledPricePercentArrow src={greenUp} alt="up arrow" />
+                    ) : (
+                      <StyledPricePercentArrow src={redDown} alt="down arrow" />
                     )}
-                    %
-                  </BoldText>
+                  </span>
+                  <StyledMarketStatPercent
+                    color={
+                      marketData.market_cap_change_percentage_24h >= 0
+                        ? "#00FC2A"
+                        : "#FE1040"
+                    }
+                  >
+                    <span>
+                      {marketData.market_cap_change_percentage_24h > 0
+                        ? marketData.market_cap_change_percentage_24h.toFixed(2)
+                        : RemoveNegative(
+                            marketData.market_cap_change_percentage_24h.toFixed(
+                              2
+                            )
+                          )}
+                      %
+                    </span>
+                  </StyledMarketStatPercent>
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Fully Diluted Valuation:</BoldText> $
-                  {ConvertCurrency(
-                    coin.market_data.fully_diluted_valuation.usd
-                  )}
+                  {ConvertCurrency(marketData.fully_diluted_valuation)}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Volume 24h:</BoldText> $
-                  {ConvertCurrency(coin.market_data.market_cap_change_24h)}
+                  {ConvertCurrency(marketData.market_cap_change_24h)}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Volume / Market Cap:</BoldText>{" "}
                   {(
-                    (coin.market_data.total_volume.usd /
-                      coin.market_data.market_cap.usd) *
+                    (marketData.total_volume / marketData.market_cap) *
                     100
                   ).toFixed(2)}
                   %
@@ -208,49 +301,70 @@ export default class CoinPage extends React.Component {
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Total Volume:</BoldText>{" "}
-                  {ConvertCurrency(coin.market_data.total_volume.usd)}
+                  {ConvertCurrency(marketData.total_volume)}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Circulating Supply:</BoldText>{" "}
-                  {ConvertCurrency(coin.market_data.circulating_supply)}{" "}
+                  {ConvertCurrency(marketData.circulating_supply)}{" "}
                   {coin.symbol.toUpperCase()}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Max Supply:</BoldText>{" "}
-                  {coin.market_data.max_supply
-                    ? ConvertCurrency(coin.market_data.max_supply) +
+                  {marketData.max_supply
+                    ? ConvertCurrency(marketData.max_supply) +
                       " " +
                       coin.symbol.toUpperCase()
-                    : "n/a"}{" "}
+                    : "∞"}{" "}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledBullets>
-                    <div>
+                    <ColoredDiv color={"#FE7D43"}>
                       {(
-                        (coin.market_data.circulating_supply /
-                          coin.market_data.max_supply) *
+                        (marketData.circulating_supply /
+                          marketData.max_supply) *
                         100
-                      ).toFixed(0)}
-                      %
-                    </div>
-                    <div>
+                      ).toFixed(0) === "Infinity"
+                        ? "∞"
+                        : (
+                            (marketData.circulating_supply /
+                              marketData.max_supply) *
+                            100
+                          ).toFixed(0) + "%"}
+                    </ColoredDiv>
+                    <ColoredDiv color={"#FFDCCE"}>
                       {100 -
                         (
-                          (coin.market_data.circulating_supply /
-                            coin.market_data.max_supply) *
+                          (marketData.circulating_supply /
+                            marketData.max_supply) *
                           100
-                        ).toFixed(0)}
-                      %
-                    </div>
+                        ).toFixed(0) ===
+                        -"Infinity" ||
+                      100 -
+                        (
+                          (marketData.circulating_supply /
+                            marketData.max_supply) *
+                          100
+                        ).toFixed(0) ===
+                        0
+                        ? ""
+                        : 100 -
+                          (
+                            (marketData.circulating_supply /
+                              marketData.max_supply) *
+                            100
+                          ).toFixed(0) +
+                          "%"}
+                    </ColoredDiv>
                   </StyledBullets>
                   <ProgressBar
                     progress={
-                      (coin.market_data.circulating_supply /
-                        coin.market_data.max_supply) *
+                      (marketData.circulating_supply / marketData.max_supply) *
                       100
                     }
+                    background={"#FE7D43"}
+                    mainBackground={"#FFDCCE"}
                   />
                 </StyledMarketStat>
               </StyledMarketContainer>
@@ -271,8 +385,14 @@ export default class CoinPage extends React.Component {
                 >
                   <StyledLinkImg src={link} alt="link" />
                 </a>
-                {coin.links.blockchain_site[0].substring(0, 20)}
-                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[0])} src={feather} alt="feather" />
+                {linkSize(coin.links.blockchain_site[0])}
+                <StyledLinkImg
+                  onClick={(e) =>
+                    this.handleCopy(coin.links.blockchain_site[0])
+                  }
+                  src={feather}
+                  alt="feather"
+                />
               </StyledBlockchainContainer>
               <StyledBlockchainContainer>
                 <a
@@ -282,8 +402,14 @@ export default class CoinPage extends React.Component {
                 >
                   <StyledLinkImg src={link} alt="link" />
                 </a>
-                {coin.links.blockchain_site[1].substring(0, 20)}
-                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[1])} src={feather} alt="feather" />
+                {linkSize(coin.links.blockchain_site[1])}
+                <StyledLinkImg
+                  onClick={(e) =>
+                    this.handleCopy(coin.links.blockchain_site[1])
+                  }
+                  src={feather}
+                  alt="feather"
+                />
               </StyledBlockchainContainer>
               <StyledBlockchainContainer>
                 <a
@@ -291,59 +417,133 @@ export default class CoinPage extends React.Component {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg  src={link} alt="link" />
+                  <StyledLinkImg src={link} alt="link" />
                 </a>
-                {coin.links.blockchain_site[2].substring(0, 20)}
-                <StyledLinkImg onClick={(e) => this.handleClick(coin.links.blockchain_site[2])} src={feather} alt="feather" />
+                {linkSize(coin.links.blockchain_site[2])}
+                <StyledLinkImg
+                  onClick={(e) =>
+                    this.handleCopy(coin.links.blockchain_site[2])
+                  }
+                  src={feather}
+                  alt="feather"
+                />
               </StyledBlockchainContainer>
             </StyledLinksContainer>
           </>
         )}
         <StyledBarContainer>
-          timeline and currency bar
+          <StyledCurrencyName>
+            {this.props.currency.toUpperCase()}
+          </StyledCurrencyName>
+          <StyledCurrencyInput
+            value={this.state.conversionAmount}
+            onChange={this.handleCurrencyChange}
+          />
+          <StyledCurrencyImg src={exchange} alt="exchange" />
+          {this.state.coinData && (
+            <>
+              <StyledCurrencyName>
+                {coin.symbol.toUpperCase()}
+              </StyledCurrencyName>
+              <StyledCurrencyInput
+                value={this.state.coinAmount}
+                onChange={this.handleCoinChange}
+              />
+            </>
+          )}
         </StyledBarContainer>
-        <StyledChart>
-        {chartData && (
+        <StyledDayContainer>
           <div>
-            <Line
-                  data={{
-                    labels: chartData.prices.map((price) =>
-                      ConvertDate(price[0])
-                    ),
-                    datasets: [
-                      {
-                        label: "Price",
-                        data: chartData.prices.map((price) =>
-                          price[1].toFixed()
-                        ),
-                        pointRadius: 0,
-                        borderColor: "#707070",
-                        // backgroundColor: "#404040",
-                        fill: true,
-                        tension: 0.2,
-                      },
-                    ],
-                  }}
-                 height={"350px"}
-                  options={{
-                    maintainAspectRatio: false,
-                    scales: {
-                      y: {
-                        display: false,
-                      },
-                      x: {
-                        display: false,
-                      },
-                    },
-                    plugins: {
-                      legend: {
-                        display: false,
-                      },
-                    },
-                  }}
-                />
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="1"
+              checked={this.state.chartDays === "1"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="1">1d</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="7"
+              checked={this.state.chartDays === "7"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="7">7d</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="30"
+              checked={this.state.chartDays === "30"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="30">30d</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="90"
+              checked={this.state.chartDays === "90"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="90">90d</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="365"
+              checked={this.state.chartDays === "365"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="1y">1y</label>
+            <StyledButtonInput
+              type="radio"
+              name="days"
+              value="max"
+              checked={this.state.chartDays === "max"}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="max">Max</label>
           </div>
-        )}
+        </StyledDayContainer>
+        <StyledChart>
+          {chartData && (
+            <div>
+              <Line
+                data={{
+                  labels: chartData.prices.map((price) =>
+                    ConvertDate(price[0])
+                  ),
+                  datasets: [
+                    {
+                      label: "Price",
+                      data: chartData.prices.map((price) => price[1]),
+                      pointRadius: 0,
+                      borderColor: "#707070",
+                      backgroundColor: "#191B1F",
+                      fill: true,
+                      tension: 0.4,
+                    },
+                  ],
+                }}
+                height={"350px"}
+                options={{
+                  maintainAspectRatio: false,
+                  scales: {
+                    y: {
+                      display: false,
+                    },
+                    x: {
+                      display: false,
+                    },
+                  },
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                  },
+                }}
+              />
+            </div>
+          )}
         </StyledChart>
       </>
     );

@@ -3,8 +3,8 @@ import { StyledFullBar, StyledProgress } from "./styles";
 
 const ProgressBar = (props) => {
   return (
-    <StyledFullBar>
-      <StyledProgress progress={props.progress}></StyledProgress>
+    <StyledFullBar mainBackground={props.mainBackground}>
+      <StyledProgress background={props.background} progress={props.progress}></StyledProgress>
     </StyledFullBar>
   );
 };
