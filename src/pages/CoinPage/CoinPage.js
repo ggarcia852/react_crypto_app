@@ -91,7 +91,7 @@ export default class CoinPage extends React.Component {
       const data = await axios(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coin}&sparkline=false`
       );
-      const coinPrice = data.data[0].current_price
+      const coinPrice = data.data[0].current_price;
       this.setState({
         marketData: data.data[0],
         coinPrice,
@@ -139,8 +139,8 @@ export default class CoinPage extends React.Component {
   };
 
   currencyReset = () => {
-    this.setState({ conversionAmount: 1 })
-  }
+    this.setState({ conversionAmount: 1 });
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.coinId !== prevProps.match.params.coinId) {
@@ -154,7 +154,7 @@ export default class CoinPage extends React.Component {
     if (this.props.currency !== prevProps.currency) {
       this.getChartData(this.props.match.params.coinId, this.props.currency);
       this.getMarketData(this.props.match.params.coinId, this.props.currency);
-      this.currencyReset()
+      this.currencyReset();
     }
   }
 
@@ -165,8 +165,16 @@ export default class CoinPage extends React.Component {
   }
 
   render() {
-    const { hasData, hasError, isLoading, userMessage, chartData, marketData } = this.state;
+    const { hasData, hasError, isLoading, userMessage, chartData, marketData } =
+      this.state;
     const coin = this.state.coinData;
+    const linkSize = (link) => {
+      if (link.length > 20) {
+        return link.substring(0, 20) + "...";
+      }
+      return link;
+    };
+
     return (
       <>
         {isLoading && <div>Loading data...</div>}
@@ -190,7 +198,7 @@ export default class CoinPage extends React.Component {
                   >
                     <StyledLinkImg src={link} alt="link" />
                   </a>
-                  {coin.links.homepage[0].substring(0, 25)}
+                  {linkSize(coin.links.homepage[0])}
                 </StyledLinkContainer>
               </StyledLeftContainer>
               <StyledPriceContainer>
@@ -211,9 +219,7 @@ export default class CoinPage extends React.Component {
                     {marketData.price_change_percentage_24h > 0
                       ? marketData.price_change_percentage_24h.toFixed(2)
                       : RemoveNegative(
-                          marketData.price_change_percentage_24h.toFixed(
-                            2
-                          )
+                          marketData.price_change_percentage_24h.toFixed(2)
                         )}
                     %
                   </StyledPriceStatPercent>
@@ -227,8 +233,7 @@ export default class CoinPage extends React.Component {
                       <StyledPriceArrow src={greenUp} alt="up arrow" />
                     </div>
                     <div>
-                      <BoldText>All Time High: </BoldText> $
-                      {marketData.ath}
+                      <BoldText>All Time High: </BoldText> ${marketData.ath}
                       <div>{ConvertDate(marketData.ath_date)}</div>
                     </div>
                   </StyledPriceStat>
@@ -237,8 +242,7 @@ export default class CoinPage extends React.Component {
                       <StyledPriceArrow src={redDown} alt="down arrow" />
                     </div>
                     <div>
-                      <BoldText>All Time Low: </BoldText>$
-                      {marketData.atl}
+                      <BoldText>All Time Low: </BoldText>${marketData.atl}
                       <div>{ConvertDate(marketData.atl_date)}</div>
                     </div>
                   </StyledPriceStat>
@@ -264,10 +268,8 @@ export default class CoinPage extends React.Component {
                     }
                   >
                     <span>
-                      {marketData.market_cap_change_percentage_24h > 0 
-                        ? marketData.market_cap_change_percentage_24h.toFixed(
-                            2
-                          )
+                      {marketData.market_cap_change_percentage_24h > 0
+                        ? marketData.market_cap_change_percentage_24h.toFixed(2)
                         : RemoveNegative(
                             marketData.market_cap_change_percentage_24h.toFixed(
                               2
@@ -280,9 +282,7 @@ export default class CoinPage extends React.Component {
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Fully Diluted Valuation:</BoldText> $
-                  {ConvertCurrency(
-                    marketData.fully_diluted_valuation
-                  )}
+                  {ConvertCurrency(marketData.fully_diluted_valuation)}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
@@ -293,10 +293,9 @@ export default class CoinPage extends React.Component {
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Volume / Market Cap:</BoldText>{" "}
                   {(
-                    (marketData.total_volume /
-                      marketData.market_cap *
+                    (marketData.total_volume / marketData.market_cap) *
                     100
-                  ).toFixed(2))}
+                  ).toFixed(2)}
                   %
                 </StyledMarketStat>
                 <StyledMarketStat>
@@ -341,12 +340,14 @@ export default class CoinPage extends React.Component {
                             marketData.max_supply) *
                           100
                         ).toFixed(0) ===
-                      -"Infinity" || 100 -
-                      (
-                        (marketData.circulating_supply /
-                          marketData.max_supply) *
-                        100
-                      ).toFixed(0) === 0
+                        -"Infinity" ||
+                      100 -
+                        (
+                          (marketData.circulating_supply /
+                            marketData.max_supply) *
+                          100
+                        ).toFixed(0) ===
+                        0
                         ? ""
                         : 100 -
                           (
@@ -359,8 +360,7 @@ export default class CoinPage extends React.Component {
                   </StyledBullets>
                   <ProgressBar
                     progress={
-                      (marketData.circulating_supply /
-                        marketData.max_supply) *
+                      (marketData.circulating_supply / marketData.max_supply) *
                       100
                     }
                     background={"#FE7D43"}
@@ -385,7 +385,7 @@ export default class CoinPage extends React.Component {
                 >
                   <StyledLinkImg src={link} alt="link" />
                 </a>
-                {coin.links.blockchain_site[0].substring(0, 20)}
+                {linkSize(coin.links.blockchain_site[0])}
                 <StyledLinkImg
                   onClick={(e) =>
                     this.handleCopy(coin.links.blockchain_site[0])
@@ -402,7 +402,7 @@ export default class CoinPage extends React.Component {
                 >
                   <StyledLinkImg src={link} alt="link" />
                 </a>
-                {coin.links.blockchain_site[1].substring(0, 20)}
+                {linkSize(coin.links.blockchain_site[1])}
                 <StyledLinkImg
                   onClick={(e) =>
                     this.handleCopy(coin.links.blockchain_site[1])
@@ -419,7 +419,7 @@ export default class CoinPage extends React.Component {
                 >
                   <StyledLinkImg src={link} alt="link" />
                 </a>
-                {coin.links.blockchain_site[2].substring(0, 20)}
+                {linkSize(coin.links.blockchain_site[2])}
                 <StyledLinkImg
                   onClick={(e) =>
                     this.handleCopy(coin.links.blockchain_site[2])

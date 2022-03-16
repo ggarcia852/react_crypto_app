@@ -58,7 +58,7 @@ export const StyledButton = styled.button`
   border: none;
   background: ${({ active }) => (active ? "#00FC2A" : "#191b1f")};
   &:hover {
-    opacity: 0.7;
+    cursor: pointer;
   }
 `;
 
