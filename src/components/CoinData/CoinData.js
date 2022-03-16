@@ -103,7 +103,7 @@ export default class CoinData extends React.Component {
               dataLength={this.state.items?.length}
               next={this.fetchMoreData}
               hasMore={true}
-              loader={<span>Loading more coins...</span>}
+              loader={<div>Loading more coins...</div>}
             >
               <StyledTable>
                 <StyledTableHeader>

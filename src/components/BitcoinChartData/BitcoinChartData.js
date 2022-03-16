@@ -26,7 +26,6 @@ export default class BitcoinChartData extends React.Component {
     chartData: null,
     chartDays: 30,
     chartInterval: "daily",
-    // currency: this.props.currency,
     activeButton: 30,
     buttons: [
       { id: 1, value: "1h", days: 1, interval: "hourly" },

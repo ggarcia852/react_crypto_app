@@ -16,15 +16,13 @@ export const StyledOverview = styled.div`
 `;
 
 export const StyledCoinList = styled.div`
-  margin-left: 93px;
-  margin-right: 93px;
-  margin-bottom: 187px;
+  margin: 0px 93px 187px 93px;
 `;
 
 export const StyledTable = styled.div`
   display: table;
   background: #191b1f;
-  padding: 50px 35px 75px 50px;
+  padding: 50px 35px 30px 50px;
   border-radius: 10px;
   width: 100%;
 `;
