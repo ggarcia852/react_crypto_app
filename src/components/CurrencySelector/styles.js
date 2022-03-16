@@ -16,6 +16,9 @@ export const StyledDropdown = styled.select`
   background: #2c2f36;
   color: #ffffff;
   font-size: 17px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledBackground = styled.div`

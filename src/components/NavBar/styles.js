@@ -50,4 +50,7 @@ export const StyledButton = styled.button`
   margin-left: 25px;
   margin-right: 5px;
   border: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
