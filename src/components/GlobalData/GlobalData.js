@@ -65,6 +65,8 @@ export default class GlobalData extends React.Component {
                 <li>${ConvertCurrency(globalData.data.total_volume.usd)}</li>
                 <StyledBar>
                   <ProgressBar
+                    background={"#2775C9"}
+                    mainBackground={"#A7C2F5"}
                     progress={
                       (globalData.data.total_volume.usd /
                         globalData.data.total_market_cap.usd) *
@@ -80,6 +82,8 @@ export default class GlobalData extends React.Component {
                 {globalData.data.market_cap_percentage.btc.toFixed(0)}%
                 <StyledBar>
                   <ProgressBar
+                    background={"#2775C9"}
+                    mainBackground={"#A7C2F5"}
                     progress={globalData.data.market_cap_percentage.btc}
                   />
                 </StyledBar>
@@ -91,6 +95,8 @@ export default class GlobalData extends React.Component {
                 {globalData.data.market_cap_percentage.eth.toFixed(0)}%
                 <StyledBar>
                   <ProgressBar
+                    background={"#2775C9"}
+                    mainBackground={"#A7C2F5"}
                     progress={globalData.data.market_cap_percentage.eth}
                   />
                 </StyledBar>

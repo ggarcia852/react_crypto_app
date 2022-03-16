@@ -66,6 +66,7 @@ export const StyledPriceContainer = styled.div`
     background: #191B1F;
     border-radius: 10px;
     margin-right: 30px;
+    overflow: scroll;
 `
 
 export const StyledPrice = styled.div`
@@ -85,6 +86,11 @@ export const StyledPriceStatPercent = styled.span.attrs((props)=>({
   }))`
     font-size: 19px;
     padding-left: 10px;
+`
+
+export const StyledPricePercentArrow = styled.img`
+    padding-bottom: 5px;
+    padding-right: 2px;
 `
 
 export const StyledPriceArrow = styled.img`
@@ -128,6 +134,14 @@ export const StyledBullets = styled.div`
   justify-content: space-between;
   max-width: 230px;
 `;
+
+export const ColoredDiv = styled.div.attrs((props)=>({
+    style: {
+      color: `${props.color}`,
+    },
+  }))`
+    display: flex;
+  `
 
 export const StyledDescriptionTitle = styled.div`
     margin: 50px 12%;
@@ -227,7 +241,3 @@ export const StyledCurrencyInput = styled.input`
         color: #ffffff;
       }
 `
-
-// export const StyledContainer = styled.div`
-
-// `

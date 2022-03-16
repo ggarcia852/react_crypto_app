@@ -16,7 +16,6 @@ export const StyledOverview = styled.div`
 `;
 
 export const StyledCoinList = styled.div`
-  display: flex;
   margin-left: 93px;
   margin-right: 93px;
   margin-bottom: 187px;
@@ -39,7 +38,7 @@ export const StyledTableHeader = styled.div`
 export const StyledTableHeaderCell = styled.div`
   display: table-cell;
   text-align: justify;
-  padding: 10px;
+  padding: 10px 10px 0px;
 `;
 
 export const StyledTableBody = styled.div`
@@ -58,7 +57,7 @@ export const StyledTableCell = styled.div.attrs((props)=>({
   display: table-cell;
   max-font-size: 19px;
   border-bottom: 1px solid #707070;
-  padding: 25px 10px;
+  padding: 25px 10px 25px 0px;
 `;
 
 export const StyledImg = styled.img`

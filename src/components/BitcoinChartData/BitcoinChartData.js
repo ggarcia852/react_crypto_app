@@ -18,7 +18,7 @@ import {
   StyledDate,
 } from "./styles";
 
-export default class MarketChartData extends React.Component {
+export default class BitcoinChartData extends React.Component {
   state = {
     hasData: false,
     isLoading: false,
@@ -26,7 +26,7 @@ export default class MarketChartData extends React.Component {
     chartData: null,
     chartDays: 30,
     chartInterval: "daily",
-    currency: this.props.currency,
+    // currency: this.props.currency,
     activeButton: 30,
     buttons: [
       { id: 1, value: "1h", days: 1, interval: "hourly" },
@@ -38,12 +38,13 @@ export default class MarketChartData extends React.Component {
     ],
   };
 
-  getChartData = async (currency) => {
+  getChartData = async () => {
     const { chartDays, chartInterval } = this.state;
+    console.log("currency", this.props.currency)
     this.setState({ isLoading: true });
     try {
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${currency}&days=${chartDays}&interval=${chartInterval}`
+        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${this.props.currency}&days=${chartDays}&interval=${chartInterval}`
       );
       this.setState({
         hasData: true,
@@ -66,15 +67,15 @@ export default class MarketChartData extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.chartDays !== prevState.chartDays) {
-      this.getChartData(this.props.currency);
+      this.getChartData();
     }
     if(this.props.currency !== prevProps.currency){
-      this.getChartData(this.props.currency)
+      this.getChartData()
     }
   }
 
   componentDidMount() {
-    this.getChartData(this.props.currency);
+    this.getChartData();
   }
 
   render() {
@@ -129,8 +130,8 @@ export default class MarketChartData extends React.Component {
                     },
                     layout: {
                       padding: {
-                        left: 70,
-                        right: 70,
+                        left: 50,
+                        right: 50,
                         bottom: 40,
                         top: 30,
                       },
@@ -178,8 +179,8 @@ export default class MarketChartData extends React.Component {
                     },
                     layout: {
                       padding: {
-                        left: 70,
-                        right: 70,
+                        left: 50,
+                        right: 50,
                         bottom: 40,
                         top: 30,
                       },

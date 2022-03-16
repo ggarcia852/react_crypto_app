@@ -65,8 +65,8 @@ export const StyledButton = styled.button`
 export const StyledHeading = styled.div`
   display:flex;
   height: 130px;
-  padding-left: 20px;
-  padding-top: 22px;
+  padding-left: 40px;
+  padding-top: 40px;
   flex-flow: column;
 `
 export const StyledTitle = styled.div`
