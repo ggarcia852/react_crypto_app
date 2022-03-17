@@ -39,7 +39,6 @@ export default class BitcoinChartData extends React.Component {
 
   getChartData = async () => {
     const { chartDays, chartInterval } = this.state;
-    console.log("currency", this.props.currency)
     this.setState({ isLoading: true });
     try {
       const { data } = await axios(
@@ -103,7 +102,7 @@ export default class BitcoinChartData extends React.Component {
                     ),
                     datasets: [
                       {
-                        label: "Bitcoin Hourly Price",
+                        label: "Bitcoin Price",
                         data: chartData.prices.map((price) =>
                           price[1].toFixed()
                         ),

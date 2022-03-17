@@ -34,7 +34,6 @@ export default class CoinData extends React.Component {
     items: null,
     hasMore: true,
     page: 1,
-    // currency: this.props.currency,
   };
 
   getCoinData = async () => {
@@ -59,7 +58,6 @@ export default class CoinData extends React.Component {
           hasError: false,
         });
       }
-      return data;
     } catch (err) {
       this.setState({
         isLoading: false,
@@ -69,6 +67,28 @@ export default class CoinData extends React.Component {
     }
   };
 
+  getNewData = async () => {
+    this.setState({ isLoading: true });
+    try {
+      const { data } = await axios(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.props.currency}&order=market_cap_desc&per_page=25&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
+      );
+        this.setState({
+          hasData: true,
+          isLoading: false,
+          hasError: false,
+          items: data,
+          page: this.state.page + 1,
+        });
+    } catch (err) {
+      this.setState({
+        isLoading: false,
+        hasError: true,
+      });
+      console.log(err);
+    }
+  }
+
   fetchMoreData = () => {
     setTimeout(() => {
       this.getCoinData();
@@ -76,10 +96,9 @@ export default class CoinData extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    console.log(this.state.items)
     if (this.props.currency !== prevProps.currency) {
       this.setState({ items: null, page: 1 })
-      this.getCoinData();
+      this.getNewData();
     }
   }
 
