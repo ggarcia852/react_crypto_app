@@ -429,9 +429,7 @@ export default class CoinPage extends React.Component {
                 />
               </StyledBlockchainContainer>
             </StyledLinksContainer>
-          </>
-        )}
-        <StyledBarContainer>
+             <StyledBarContainer>
           <StyledCurrencyName>
             {this.props.currency.toUpperCase()}
           </StyledCurrencyName>
@@ -545,6 +543,9 @@ export default class CoinPage extends React.Component {
             </div>
           )}
         </StyledChart>
+          </>
+        )}
+       
       </>
     );
   }
