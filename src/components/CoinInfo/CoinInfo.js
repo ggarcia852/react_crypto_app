@@ -1,5 +1,6 @@
 import React from "react";
 import { ConvertCurrency, ConvertDate, RemoveNegative } from "../../utils";
+import { ProgressBar } from "components";
 import bluePlus from "assets/bluePlus.svg";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
@@ -34,7 +35,6 @@ import {
   StyledPricePercentArrow,
   ColoredDiv,
 } from "./styles";
-import { ProgressBar } from "components";
 
 export default function CoinInfo(props) {
   const handleCopy = (site) => {
@@ -48,8 +48,8 @@ export default function CoinInfo(props) {
     return link;
   };
 
-  const coinData = props.coinData
-  const marketData = props.marketData
+  const coinData = props.coinData;
+  const marketData = props.marketData;
 
   return (
     <>
@@ -59,7 +59,7 @@ export default function CoinInfo(props) {
           <StyledCoinContainer>
             <StyledCoinImg src={coinData.image.small} alt="coinData" />
             <div>
-              {coinData.name}({coinData.symbol.toUpperCase()})
+              {coinData.name}({coinData.symbol?.toUpperCase()})
             </div>
           </StyledCoinContainer>
           <StyledLinkContainer>
@@ -89,9 +89,9 @@ export default function CoinInfo(props) {
               }
             >
               {marketData.price_change_percentage_24h > 0
-                ? marketData.price_change_percentage_24h.toFixed(2)
+                ? marketData.price_change_percentage_24h?.toFixed(2)
                 : RemoveNegative(
-                    marketData.price_change_percentage_24h.toFixed(2)
+                    marketData.price_change_percentage_24h?.toFixed(2)
                   )}
               %
             </StyledPriceStatPercent>
@@ -141,9 +141,9 @@ export default function CoinInfo(props) {
             >
               <span>
                 {marketData.market_cap_change_percentage_24h > 0
-                  ? marketData.market_cap_change_percentage_24h.toFixed(2)
+                  ? marketData.market_cap_change_percentage_24h?.toFixed(2)
                   : RemoveNegative(
-                      marketData.market_cap_change_percentage_24h.toFixed(2)
+                      marketData.market_cap_change_percentage_24h?.toFixed(2)
                     )}
                 %
               </span>
@@ -176,7 +176,7 @@ export default function CoinInfo(props) {
             <StyledStatImg src={bluePlus} alt="plus" />
             <BoldText>Circulating Supply:</BoldText>{" "}
             {ConvertCurrency(marketData.circulating_supply)}{" "}
-            {coinData.symbol.toUpperCase()}
+            {coinData.symbol?.toUpperCase()}
           </StyledMarketStat>
           <StyledMarketStat>
             <StyledStatImg src={bluePlus} alt="plus" />
@@ -184,7 +184,7 @@ export default function CoinInfo(props) {
             {marketData.max_supply
               ? ConvertCurrency(marketData.max_supply) +
                 " " +
-                coinData.symbol.toUpperCase()
+                coinData.symbol?.toUpperCase()
               : "∞"}{" "}
           </StyledMarketStat>
           <StyledMarketStat>

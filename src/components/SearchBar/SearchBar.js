@@ -32,14 +32,14 @@ const SearchBar = (props) => {
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    setCoins(null);
-    if (value !== "") {
-      setLoading(true);
+    if (value === "") {
+      setLoading(false);
     }
   };
 
   const handleSearch = async (value) => {
     try {
+      setLoading(true);
       const { data } = await axios(
         `https://crypto-app-server.herokuapp.com/coins/${value}`
       );
