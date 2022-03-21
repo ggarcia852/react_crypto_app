@@ -17,6 +17,11 @@ const GlobalData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    getGlobalData();
+    //eslint-disable-next-line
+  }, [])
+
   const getGlobalData = async () => {
     setError(false);
     setLoading(true);
@@ -29,11 +34,6 @@ const GlobalData = () => {
       setError(true);
     }
   };
-
-  useEffect(() => {
-    getGlobalData();
-    //eslint-disable-next-line
-  }, [])
 
   const hasData = !loading && globalData;
 

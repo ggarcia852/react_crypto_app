@@ -66,7 +66,6 @@ const BitcoinCharts = (props) => {
     //eslint-disable-next-line
   }, [chartDays, props.currency]);
 
-  const hasData = !loading && chartData;
   let today = new Date().toDateString();
   let price = chartData?.prices.slice(-1)[0].slice(-1)[0].toFixed(0);
   let volume = chartData?.total_volumes.slice(-1)[0].slice(-1)[0].toFixed(0);
@@ -74,11 +73,11 @@ const BitcoinCharts = (props) => {
   return (
     <>
       <StyledHeader>Bitcoin Overview</StyledHeader>
+          {loading && <div>Loading data...</div>}
       <ChartsDiv>
         <StyledCharts>
-          {loading && <div>Loading data...</div>}
           {error && <div>error on page</div>}
-          {hasData && (
+          {chartData && (
             <StyledChart>
               <StyledHeading>
                 <StyledTitle>Price</StyledTitle>
@@ -132,7 +131,7 @@ const BitcoinCharts = (props) => {
               <StyledAmount>${ConvertCurrency(volume)}</StyledAmount>
               <StyledDate>{today}</StyledDate>
             </StyledHeading>
-            {hasData && (
+            {chartData && (
               <Bar
                 data={{
                   labels: chartData.total_volumes.map((volume) =>
