@@ -64,7 +64,7 @@ const CoinData = (props) => {
       );
       setLoading(false);
       setCoins(data);
-      setPage(page + 1);
+      setPage(2);
     } catch (err) {
       setLoading(false);
       setError(true);
