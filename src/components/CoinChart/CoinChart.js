@@ -8,7 +8,7 @@ import { StyledChart, StyledDayContainer, StyledButtonInput } from "./styles";
 
 export default function CoinChart(props) {
   const [chartData, setChartData] = useState(null);
-  const [chartDays, setChartDays] = useState(30);
+  const [chartDays, setChartDays] = useState("30");
 
   const getChartData = async (coin, currency) => {
     try {

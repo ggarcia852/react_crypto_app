@@ -6,3 +6,4 @@ export { default as SearchBar } from "./SearchBar";
 export { default as CurrencySelector } from "./CurrencySelector";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as CoinChart } from "./CoinChart";
+export { default as ConversionBar } from "./ConversionBar";

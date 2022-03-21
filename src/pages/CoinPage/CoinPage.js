@@ -10,7 +10,7 @@ import redDown from "assets/redDown.svg";
 import link from "assets/link.svg";
 import layers from "assets/layers.svg";
 import feather from "assets/feather.svg";
-import exchange from "assets/exchange.svg";
+// import exchange from "assets/exchange.svg";
 import {
   StyledTitle,
   StyledCoinContainer,
@@ -37,16 +37,16 @@ import {
   // StyledChart,
   // StyledDayContainer,
   // StyledButtonInput,
-  StyledBarContainer,
-  StyledCurrencyImg,
-  StyledCurrencyName,
-  StyledCurrencyInput,
+  // StyledBarContainer,
+  // StyledCurrencyImg,
+  // StyledCurrencyName,
+  // StyledCurrencyInput,
   StyledMarketStatPercent,
   StyledPriceStatPercent,
   StyledPricePercentArrow,
   ColoredDiv,
 } from "./styles";
-import { CoinChart, ProgressBar } from "components";
+import { CoinChart, ConversionBar, ProgressBar } from "components";
 
 const CoinPage = (props) => {
   const [loading, setLoading] = useState(false);
@@ -57,8 +57,8 @@ const CoinPage = (props) => {
   // const [chartData, setChartData] = useState(null);
   // const [chartDays, setChartDays] = useState(30);
   const [coinPrice, setCoinPrice] = useState(0);
-  const [conversionAmount, setConversionAmount] = useState(1);
-  const [coinAmount, setCoinAmount] = useState(1);
+  // const [conversionAmount, setConversionAmount] = useState(1);
+  // const [coinAmount, setCoinAmount] = useState(1);
 
   useEffect(() =>{
     getCoinData(props.match.params.coinId);
@@ -77,7 +77,7 @@ const CoinPage = (props) => {
   useEffect(() =>{
     getMarketData(props.match.params.coinId, props.currency);
     // getChartData(props.match.params.coinId, props.currency);
-    currencyReset();
+    // currencyReset();
     // eslint-disable-next-line
   }, [props.currency])
 
@@ -113,7 +113,7 @@ const CoinPage = (props) => {
       const coinPrice = data.data[0].current_price;
       setMarketData(data.data[0]);
       setCoinPrice(coinPrice);
-      setCoinAmount(((1 / coinPrice) * 1).toFixed(6));
+      // setCoinAmount(((1 / coinPrice) * 1).toFixed(6));
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -140,19 +140,19 @@ const CoinPage = (props) => {
   //   setChartDays(e.target.value);
   // };
 
-  const handleCurrencyChange = (e) => {
-    setConversionAmount(e.target.value);
-    setCoinAmount(((1 / coinPrice) * e.target.value).toFixed(6));
-  };
+  // const handleCurrencyChange = (e) => {
+  //   setConversionAmount(e.target.value);
+  //   setCoinAmount(((1 / coinPrice) * e.target.value).toFixed(6));
+  // };
 
-  const handleCoinChange = (e) => {
-    setCoinAmount(e.target.value);
-    setConversionAmount((e.target.value * coinPrice).toFixed(6));
-  };
+  // const handleCoinChange = (e) => {
+  //   setCoinAmount(e.target.value);
+  //   setConversionAmount((e.target.value * coinPrice).toFixed(6));
+  // };
 
-  const currencyReset = () => {
-    setConversionAmount(1);
-  };
+  // const currencyReset = () => {
+  //   setConversionAmount(1);
+  // };
 
   const linkSize = (link) => {
     if (link.length > 20) {
@@ -163,7 +163,7 @@ const CoinPage = (props) => {
 
   return (
     <>
-      {loading && <div>Loading data...</div>}
+      {loading && <span>Loading data...</span>}
       {error && <div>{userMessage}</div>}
       {marketData && coinData && (
         <>
@@ -415,7 +415,7 @@ const CoinPage = (props) => {
               />
             </StyledBlockchainContainer>
           </StyledLinksContainer>
-          <StyledBarContainer>
+          {/* <StyledBarContainer>
             <StyledCurrencyName>
               {props.currency.toUpperCase()}
             </StyledCurrencyName>
@@ -435,7 +435,8 @@ const CoinPage = (props) => {
                 />
               </>
             )}
-          </StyledBarContainer>
+          </StyledBarContainer> */}
+          <ConversionBar coinPrice={coinPrice} symbol={coinData.symbol.toUpperCase()} currency={props.currency} />
           <CoinChart {...props} currency={props.currency} />
           {/* <StyledDayContainer>
             <div>
