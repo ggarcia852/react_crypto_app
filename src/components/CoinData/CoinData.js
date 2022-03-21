@@ -1,5 +1,4 @@
-import React from "react";
-import { render } from "react-dom";
+import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
@@ -24,103 +23,78 @@ import {
   StyledBullets,
   StyledChart,
 } from "./styles";
-import { ColoredDiv, StyledPricePercentArrow } from "pages/CoinPage/styles";
+import {
+  ColoredDiv,
+  StyledPricePercentArrow,
+} from "components/CoinInfo/styles";
 
-export default class CoinData extends React.Component {
-  state = {
-    hasData: false,
-    isLoading: false,
-    hasError: false,
-    items: null,
-    hasMore: true,
-    page: 1,
-  };
+const CoinData = (props) => {
+  const [coins, setCoins] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [page, setPage] = useState(1);
 
-  getCoinData = async () => {
-    this.setState({ isLoading: true });
+  const getCoinData = async () => {
     try {
+      setLoading(true);
+      setError(false);
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.props.currency}&order=market_cap_desc&per_page=25&page=${this.state.page}&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${props.currency}&order=market_cap_desc&per_page=25&page=${page}&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
       );
-      if (!this.state.items) {
-        this.setState({
-          hasData: true,
-          isLoading: false,
-          hasError: false,
-          items: data,
-          page: this.state.page + 1,
-        });
+      if (!coins) {
+        setCoins(data);
+        setLoading(false);
       } else {
-        this.setState({
-          items: this.state.items.concat(data),
-          page: this.state.page + 1,
-          isLoading: false,
-          hasError: false,
-        });
+        setCoins(coins.concat(data));
+        setLoading(false);
+        setPage(page + 1);
       }
     } catch (err) {
-      this.setState({
-        isLoading: false,
-        hasError: true,
-      });
-      console.log(err);
+      setLoading(false);
+      setError(true);
     }
   };
 
-  getNewData = async () => {
-    this.setState({ isLoading: true });
+  const getNewData = async () => {
     try {
+      setLoading(true);
+      setError(false);
       const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${this.props.currency}&order=market_cap_desc&per_page=25&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${props.currency}&order=market_cap_desc&per_page=25&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
       );
-        this.setState({
-          hasData: true,
-          isLoading: false,
-          hasError: false,
-          items: data,
-          page: this.state.page + 1,
-        });
+      setLoading(false);
+      setCoins(data);
+      setPage(page + 1);
     } catch (err) {
-      this.setState({
-        isLoading: false,
-        hasError: true,
-      });
-      console.log(err);
+      setLoading(false);
+      setError(true);
     }
-  }
-
-  fetchMoreData = () => {
-    setTimeout(() => {
-      this.getCoinData();
-    }, 1500);
   };
 
-  componentDidUpdate(prevProps) {
-    if (this.props.currency !== prevProps.currency) {
-      this.setState({ items: null, page: 1 })
-      this.getNewData();
-    }
-  }
+  const fetchMoreData = () => {
+    setTimeout(() => {
+      getCoinData();
+    }, 800);
+  };
 
-  componentDidMount() {
-    this.getCoinData();
-  }
+  useEffect(() => {
+    getNewData();
+    //eslint-disable-next-line
+  }, [props.currency]);
 
-  render() {
-    const { hasData, hasError, isLoading, items } = this.state;
-    return (
-      <>
-        {isLoading && <div>Loading data...</div>}
-        <StyledHeader>
-          <StyledOverview>Market Overview</StyledOverview>
-        </StyledHeader>
-        <StyledCoinList>
-          {hasError && <div>error</div>}
-          {hasData && (
-            <div>
+  return (
+    <>
+      {loading && <div>Loading data...</div>}
+      <StyledHeader>
+        <StyledOverview>Market Overview</StyledOverview>
+      </StyledHeader>
+      <StyledCoinList>
+        {error && <div>error on page</div>}
+        {coins && (
+          <div>
             <InfiniteScroll
-              dataLength={this.state.items?.length}
-              next={this.fetchMoreData}
+              dataLength={coins.length}
+              next={fetchMoreData}
               hasMore={true}
               loader={<div>Loading more coins...</div>}
             >
@@ -141,8 +115,8 @@ export default class CoinData extends React.Component {
                   <StyledTableHeaderCell>Last 7d</StyledTableHeaderCell>
                 </StyledTableHeader>
                 <StyledTableBody>
-                  {this.state.items &&
-                    items.map((coin) => (
+                  {coins &&
+                    coins.map((coin) => (
                       <StyledTableRow key={coin.id}>
                         <StyledTableCell>
                           {coin.market_cap_rank}
@@ -173,11 +147,11 @@ export default class CoinData extends React.Component {
                             />
                           )}
                           {coin.price_change_percentage_1h_in_currency >= 0
-                            ? coin.price_change_percentage_1h_in_currency.toFixed(
+                            ? coin.price_change_percentage_1h_in_currency?.toFixed(
                                 2
                               )
                             : RemoveNegative(
-                                coin.price_change_percentage_1h_in_currency.toFixed(
+                                coin.price_change_percentage_1h_in_currency?.toFixed(
                                   2
                                 )
                               )}
@@ -202,9 +176,9 @@ export default class CoinData extends React.Component {
                             />
                           )}
                           {coin.price_change_percentage_24h >= 0
-                            ? coin.price_change_percentage_24h.toFixed(2)
+                            ? coin.price_change_percentage_24h?.toFixed(2)
                             : RemoveNegative(
-                                coin.price_change_percentage_24h.toFixed(2)
+                                coin.price_change_percentage_24h?.toFixed(2)
                               )}
                           %
                         </StyledTableCell>
@@ -227,11 +201,11 @@ export default class CoinData extends React.Component {
                             />
                           )}
                           {coin.price_change_percentage_7d_in_currency >= 0
-                            ? coin.price_change_percentage_7d_in_currency.toFixed(
+                            ? coin.price_change_percentage_7d_in_currency?.toFixed(
                                 2
                               )
                             : RemoveNegative(
-                                coin.price_change_percentage_7d_in_currency.toFixed(
+                                coin.price_change_percentage_7d_in_currency?.toFixed(
                                   2
                                 )
                               )}
@@ -239,8 +213,12 @@ export default class CoinData extends React.Component {
                         </StyledTableCell>
                         <StyledTableCell>
                           <StyledBullets>
-                            <ColoredDiv color={"#FFB528"} >${ConvertCurrency(coin.total_volume)}</ColoredDiv>
-                            <ColoredDiv color={"#E8D587"} >${ConvertCurrency(coin.market_cap)}</ColoredDiv>
+                            <ColoredDiv color={"#FFB528"}>
+                              ${ConvertCurrency(coin.total_volume)}
+                            </ColoredDiv>
+                            <ColoredDiv color={"#E8D587"}>
+                              ${ConvertCurrency(coin.market_cap)}
+                            </ColoredDiv>
                           </StyledBullets>
                           <ProgressBar
                             background={"#FFB528"}
@@ -248,7 +226,7 @@ export default class CoinData extends React.Component {
                             progress={
                               (coin.total_volume / coin.market_cap) * 100
                             }
-                            />
+                          />
                         </StyledTableCell>
                         <StyledTableCell>
                           <StyledBullets>
@@ -263,8 +241,7 @@ export default class CoinData extends React.Component {
                           </StyledBullets>
                           <ProgressBar
                             progress={
-                              (coin.circulating_supply / coin.max_supply) *
-                              100
+                              (coin.circulating_supply / coin.max_supply) * 100
                             }
                             background={"#FE7D43"}
                             mainBackground={"#FFDCCE"}
@@ -322,12 +299,11 @@ export default class CoinData extends React.Component {
                 </StyledTableBody>
               </StyledTable>
             </InfiniteScroll>
-            </div>
-          )}
-        </StyledCoinList>
-      </>
-    );
-  }
-}
+          </div>
+        )}
+      </StyledCoinList>
+    </>
+  );
+};
 
-render(<CoinData />, document.getElementById("root"));
+export default CoinData;

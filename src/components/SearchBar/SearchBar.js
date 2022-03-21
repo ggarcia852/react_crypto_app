@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import search from "assets/search.svg";
@@ -11,81 +11,79 @@ import {
   StyledListItem,
 } from "./styles";
 
-class SearchBar extends React.Component {
-  state = {
-    searchValue: "",
-    list: [],
-    isLoading: false,
-  };
+const SearchBar = (props) => {
+  const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [coins, setCoins] = useState([]);
 
-  handleSubmit = (e) => {
+  useEffect(() => {
+    if (value !== "") {
+      handleSearch(value);
+    }
+  }, [value]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.history.push(`/coin/${this.state.searchValue.toLowerCase()}`);
-    this.setState({ searchValue: "", list: null, isLoading: false });
+    props.history.push(`/coin/${value.toLowerCase()}`);
+    setValue("");
+    setCoins(null);
+    setLoading(false);
   };
 
-  handleChange = (e) => {
-    this.setState({ searchValue: e.target.value, list: null, isLoading: true });
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    if (value === "") {
+      setLoading(false);
+    }
   };
 
-  handleSearch = async (value) => {
+  const handleSearch = async (value) => {
     try {
+      setLoading(true);
       const { data } = await axios(
         `https://crypto-app-server.herokuapp.com/coins/${value}`
       );
-      this.setState({
-        list: data,
-        isLoading: false,
-      });
+      setCoins(data);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
 
-  handleClick = (coin) => {
-    this.props.history.push(`/coin/${coin.id}`);
-    this.setState({ searchValue: "", list: null, isLoading: false });
+  const handleClick = (coin) => {
+    setValue("");
+    setCoins(null);
+    setLoading(false);
+    props.history.push(`/coin/${coin.id}`);
   };
 
-  componentDidUpdate = (prevProps, prevState) => {
-    if (
-      this.state.searchValue !== prevState.searchValue &&
-      this.state.searchValue !== ""
-    ) {
-      this.handleSearch(this.state.searchValue);
-    }
-  };
+  const hasCoins = !loading && coins;
+  const hasValue = value !== "";
 
-  render() {
-    return (
-      <StyledContainer>
-        <StyledImg src={search} alt="search" />
-        <form onSubmit={this.handleSubmit}>
-          <StyledInput
-            value={this.state.searchValue}
-            onChange={this.handleChange}
-            placeholder="Search..."
-          />
-          <StyledList>
-            {this.state.isLoading && <div>loading...</div>}
-            {this.state.list
-              ? this.state.list.map((coin) => (
-                  <StyledListItem
-                    onClick={() => this.handleClick(coin)}
-                    key={coin.id}
-                  >
-                    <StyledLink to={`/coin/${coin.id}`}>
-                      <img src={coin.thumb} alt="coin" /> {coin.name} (
-                      {coin.symbol})
-                    </StyledLink>
-                  </StyledListItem>
-                ))
-              : null}
-          </StyledList>
-        </form>
-      </StyledContainer>
-    );
-  }
-}
+  return (
+    <StyledContainer>
+      <StyledImg src={search} alt="search" />
+      <form onSubmit={handleSubmit}>
+        <StyledInput
+          value={value}
+          onChange={handleChange}
+          placeholder="Search..."
+        />
+        <StyledList>
+          {loading && hasValue && <div>loading...</div>}
+          {hasCoins &&
+            coins.map((coin) => (
+              <StyledListItem onClick={() => handleClick(coin)} key={coin.id}>
+                <StyledLink to={`/coin/${coin.id}`}>
+                  <img src={coin.thumb} alt="coin" /> {coin.name} ({coin.symbol}
+                  )
+                </StyledLink>
+              </StyledListItem>
+            ))}
+        </StyledList>
+      </form>
+    </StyledContainer>
+  );
+};
 
 export default withRouter(SearchBar);

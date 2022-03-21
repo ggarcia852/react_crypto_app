@@ -11,32 +11,32 @@ import {
   StyledButton,
 } from "./styles";
 
-export default class NavBar extends React.Component {
-  render() {
-    return (
-      <StyledNavDiv>
-        <StyledLinks>
-          <StyledNavList>
-            <li>
-              <StyledLink exact to="/" activeClassName="active">
-                Coins
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink exact to="/portfolio" activeClassName="active">
-                Portfolio
-              </StyledLink>
-            </li>
-          </StyledNavList>
-        </StyledLinks>
-        <StyledNavigation>
-          <SearchBar />
-          <CurrencySelector handleCurrency={this.props.handleCurrency} />
-          <StyledButton>
-            <img src={theme} alt="theme" />
-          </StyledButton>
-        </StyledNavigation>
-      </StyledNavDiv>
-    );
-  }
-}
+const NavBar = (props) => {
+  return (
+    <StyledNavDiv>
+      <StyledLinks>
+        <StyledNavList>
+          <li>
+            <StyledLink exact to="/" activeClassName="active">
+              Coins
+            </StyledLink>
+          </li>
+          <li>
+            <StyledLink exact to="/portfolio" activeClassName="active">
+              Portfolio
+            </StyledLink>
+          </li>
+        </StyledNavList>
+      </StyledLinks>
+      <StyledNavigation>
+        <SearchBar />
+        <CurrencySelector handleCurrency={props.handleCurrency} />
+        <StyledButton>
+          <img src={theme} alt="theme" />
+        </StyledButton>
+      </StyledNavigation>
+    </StyledNavDiv>
+  );
+};
+
+export default NavBar;
