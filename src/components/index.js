@@ -7,3 +7,4 @@ export { default as CurrencySelector } from "./CurrencySelector";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as CoinChart } from "./CoinChart";
 export { default as ConversionBar } from "./ConversionBar";
+export { default as CoinInfo } from "./CoinInfo";

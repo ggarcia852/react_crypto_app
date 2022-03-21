@@ -16,6 +16,12 @@ const SearchBar = (props) => {
   const [loading, setLoading] = useState(false);
   const [coins, setCoins] = useState([]);
 
+  useEffect(() => {
+    if (value !== "") {
+      handleSearch(value);
+    }
+  }, [value]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     props.history.push(`/coin/${value.toLowerCase()}`);
@@ -51,14 +57,8 @@ const SearchBar = (props) => {
     props.history.push(`/coin/${coin.id}`);
   };
 
-  useEffect(() => {
-    if (value !== "") {
-      handleSearch(value);
-    }
-  }, [value]);
-
   const hasCoins = !loading && coins;
-  const hasValue = value !== ""
+  const hasValue = value !== "";
 
   return (
     <StyledContainer>
@@ -85,82 +85,5 @@ const SearchBar = (props) => {
     </StyledContainer>
   );
 };
+
 export default withRouter(SearchBar);
-// export default SearchBar;
-
-// class SearchBar extends React.Component {
-//   state = {
-//     searchValue: "",
-//     list: [],
-//     isLoading: false,
-//   };
-
-//   handleSubmit = (e) => {
-//     e.preventDefault();
-//     this.props.history.push(`/coin/${this.state.searchValue.toLowerCase()}`);
-//     this.setState({ searchValue: "", list: null, isLoading: false });
-//   };
-
-//   handleChange = (e) => {
-//     this.setState({ searchValue: e.target.value, list: null, isLoading: true });
-//   };
-
-//   handleSearch = async (value) => {
-//     try {
-//       const { data } = await axios(
-//         `https://crypto-app-server.herokuapp.com/coins/${value}`
-//       );
-//       this.setState({
-//         list: data,
-//         isLoading: false,
-//       });
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   handleClick = (coin) => {
-//     this.props.history.push(`/coin/${coin.id}`);
-//     this.setState({ searchValue: "", list: null, isLoading: false });
-//   };
-
-//   componentDidUpdate = (prevProps, prevState) => {
-//     if (
-//       this.state.searchValue !== prevState.searchValue &&
-//       this.state.searchValue !== ""
-//     ) {
-//       this.handleSearch(this.state.searchValue);
-//     }
-//   };
-
-//   render() {
-//     return (
-//       <StyledContainer>
-//         <StyledImg src={search} alt="search" />
-//         <form onSubmit={this.handleSubmit}>
-//           <StyledInput
-//             value={this.state.searchValue}
-//             onChange={this.handleChange}
-//             placeholder="Search..."
-//           />
-//           <StyledList>
-//             {this.state.isLoading && <div>loading...</div>}
-//             {this.state.list
-//               ? this.state.list.map((coin) => (
-//                   <StyledListItem
-//                     onClick={() => this.handleClick(coin)}
-//                     key={coin.id}
-//                   >
-//                     <StyledLink to={`/coin/${coin.id}`}>
-//                       <img src={coin.thumb} alt="coin" /> {coin.name} (
-//                       {coin.symbol})
-//                     </StyledLink>
-//                   </StyledListItem>
-//                 ))
-//               : null}
-//           </StyledList>
-//         </form>
-//       </StyledContainer>
-//     );
-//   }
-// }

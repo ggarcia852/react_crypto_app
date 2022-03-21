@@ -21,9 +21,6 @@ const App = () => {
             <Route exact path="/">
               <CoinList currency={currency} />
             </Route>
-            {/* <Route  exact path="/coin/:coinId">
-              <CoinPage currency={currency} />
-            </Route>  */}
             <Route
               exact
               path="/coin/:coinId"
@@ -38,38 +35,3 @@ const App = () => {
 };
 
 export default App;
-// export default class App extends React.Component {
-//   state = {
-//     currency: "usd",
-//   };
-
-//   handleCurrency = (currency) => {
-//     this.setState({ currency });
-//   };
-
-//   render() {
-//     return (
-//       <Container>
-//         <GlobalStyle />
-//         <Router>
-//           <div>
-//             <NavBar handleCurrency={this.handleCurrency} />
-//             <Switch>
-//               <Route exact path="/">
-//                 <CoinList currency={this.state.currency} />
-//               </Route>
-//               <Route
-//                 exact
-//                 path="/coin/:coinId"
-//                 render={(props) => (
-//                   <CoinPage {...props} currency={this.state.currency} />
-//                 )}
-//               />
-//               <Route path="/portfolio" component={Portfolio} />
-//             </Switch>
-//           </div>
-//         </Router>
-//       </Container>
-//     );
-//   }
-// }

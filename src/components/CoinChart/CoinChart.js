@@ -7,17 +7,28 @@ import { ConvertDate } from "../../utils";
 import { StyledChart, StyledDayContainer, StyledButtonInput } from "./styles";
 
 export default function CoinChart(props) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [chartData, setChartData] = useState(null);
   const [chartDays, setChartDays] = useState("30");
+  
+  useEffect(() => {
+    getChartData(props.match.params.coinId, props.currency);
+    // eslint-disable-next-line
+  }, [chartDays, props.match.params.coinId, props.currency]);
 
   const getChartData = async (coin, currency) => {
     try {
+      setError(false);
+      setLoading(true);
       const { data } = await axios(
         `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${chartDays}`
       );
+      setLoading(false);
       setChartData(data);
     } catch (err) {
-      //   setError(true);
+      setLoading(false);
+      setError(true);
     }
   };
 
@@ -25,18 +36,10 @@ export default function CoinChart(props) {
     setChartDays(e.target.value);
   };
 
-  useEffect(() => {
-    getChartData(props.match.params.coinId, props.currency);
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    getChartData(props.match.params.coinId, props.currency);
-    // eslint-disable-next-line
-  }, [chartDays, props.match.params.coinId, props.currency]);
-
   return (
     <>
+      {loading && <div>Loading chart...</div>}
+      {error && <div>Error loading chart</div>}
       <StyledDayContainer>
         <div>
           <StyledButtonInput
@@ -130,4 +133,4 @@ export default function CoinChart(props) {
       </StyledChart>
     </>
   );
-}
+};

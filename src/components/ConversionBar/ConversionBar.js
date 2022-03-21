@@ -40,4 +40,4 @@ export default function ConversionBar(props) {
       <StyledCurrencyInput value={coinAmount} onChange={handleCoinChange} />
     </StyledBarContainer>
   );
-}
+};
