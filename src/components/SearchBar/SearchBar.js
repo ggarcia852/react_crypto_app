@@ -18,7 +18,6 @@ const SearchBar = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e, value);
     props.history.push(`/coin/${value.toLowerCase()}`);
     setValue("");
     setCoins(null);
