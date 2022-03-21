@@ -4,22 +4,25 @@ import { ProgressBar } from "components";
 import { ConvertCurrency } from "../../utils";
 import btc from "assets/bitcoin.svg";
 import eth from "assets/ethereum.svg";
+import greenUp from "assets/greenUp.svg";
+import redDown from "assets/redDown.svg";
 import {
   StyledGlobalData,
   StyledHeader,
   StyledData,
   StyledIcon,
   StyledBar,
+  StyledArrow,
 } from "./styles";
 
-const GlobalData = () => {
+const GlobalData = (props) => {
   const [globalData, setGlobalData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     getGlobalData();
-  }, [])
+  }, []);
 
   const getGlobalData = async () => {
     setError(false);
@@ -35,6 +38,8 @@ const GlobalData = () => {
   };
 
   const hasData = !loading && globalData;
+  const marketCap = globalData.data.total_market_cap[props.currency]
+  const volume = globalData.data.total_volume[props.currency]
 
   return (
     <StyledHeader>
@@ -44,16 +49,21 @@ const GlobalData = () => {
         {hasData && (
           <>
             <StyledData>
-              Coins {globalData.data.active_cryptocurrencies}
+              Coins: {globalData.data.active_cryptocurrencies}
             </StyledData>
-            <StyledData>Exchanges {globalData.data.markets}</StyledData>
+            <StyledData>Markets: {globalData.data.markets}</StyledData>
             <StyledData>
               <li>
-                ${ConvertCurrency(globalData.data.total_market_cap.usd)}
+                ${ConvertCurrency(marketCap)}
+                {globalData.data.market_cap_change_percentage_24h_usd > 0 ? (
+                  <StyledArrow src={greenUp} alt="up arrow" />
+                ) : (
+                  <StyledArrow src={redDown} alt="down arrow" />
+                )}
               </li>
             </StyledData>
             <StyledData>
-              <li>${ConvertCurrency(globalData.data.total_volume.usd)}</li>
+              <li>${ConvertCurrency(volume)}</li>
               <StyledBar>
                 <ProgressBar
                   background={"#2775C9"}

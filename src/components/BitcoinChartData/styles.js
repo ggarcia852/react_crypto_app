@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const StyledHeader = styled.div`
+export const StyledHeader = styled.span`
   display: flex;
+  align-items: center;
   height: 86px;
   font-size: 22px;
   color: #ffffff;
-  align-items: center;
   margin-left: 93px;
 `;
 

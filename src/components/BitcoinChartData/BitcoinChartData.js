@@ -67,8 +67,10 @@ const BitcoinCharts = (props) => {
 
   return (
     <>
-      <StyledHeader>Bitcoin Overview</StyledHeader>
-      {loading && <div>Loading data...</div>}
+      <StyledHeader>
+        Bitcoin Overview
+        {loading && <span> (Loading charts...)</span>}
+      </StyledHeader>
       <ChartsDiv>
         <StyledCharts>
           {error && <div>error on page</div>}

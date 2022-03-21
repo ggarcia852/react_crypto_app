@@ -1,7 +1,12 @@
-import React from 'react';
+import React from "react";
+import { GlobalData } from "components";
 
 export default class Portfolio extends React.Component {
   render() {
-    return <div>Portfolio Page</div>;
+    return (
+      <>
+        <GlobalData />
+      </>
+    );
   }
 }

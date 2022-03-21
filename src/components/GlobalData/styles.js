@@ -30,3 +30,8 @@ export const StyledBar = styled.span`
   padding-left: 7px;
 `
 
+export const StyledArrow = styled.img`
+  padding-left: 15px;
+  padding-bottom: 3px;
+`
+

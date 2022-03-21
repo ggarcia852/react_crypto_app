@@ -5,7 +5,7 @@ import { Container } from "./styles";
 const CoinList = (props) => {
   return (
     <Container>
-      <GlobalData />
+      <GlobalData currency={props.currency} />
       <BitcoinChartData currency={props.currency} />
       <CoinData currency={props.currency} />
     </Container>
