@@ -26,7 +26,9 @@ const App = () => {
               path="/coin/:coinId"
               render={(props) => <CoinPage {...props} currency={currency} />}
             />
-            <Route path="/portfolio" component={Portfolio} />
+            <Route exact path="/portfolio">
+              <Portfolio currency={currency} />
+            </Route>
           </Switch>
         </div>
       </Router>

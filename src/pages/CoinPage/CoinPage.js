@@ -52,7 +52,7 @@ const CoinPage = (props) => {
 
   return (
     <>
-      <GlobalData />
+      <GlobalData currency={props.currency} />
       {loading && <span>Loading data...</span>}
       {error && <div>{userMessage}</div>}
       {marketData && coinData && (

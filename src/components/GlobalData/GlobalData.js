@@ -38,8 +38,8 @@ const GlobalData = (props) => {
   };
 
   const hasData = !loading && globalData;
-  const marketCap = globalData.data.total_market_cap[props.currency]
-  const volume = globalData.data.total_volume[props.currency]
+  const marketCap = globalData?.data.total_market_cap[props.currency]
+  const volume = globalData?.data.total_volume[props.currency]
 
   return (
     <StyledHeader>

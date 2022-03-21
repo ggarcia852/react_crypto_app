@@ -1,12 +1,10 @@
 import React from "react";
 import { GlobalData } from "components";
 
-export default class Portfolio extends React.Component {
-  render() {
-    return (
-      <>
-        <GlobalData />
-      </>
-    );
-  }
+export default function Portfolio(props) {
+  return (
+    <>
+      <GlobalData currency={props.currency} />
+    </>
+  );
 }
