@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Line } from "react-chartjs-2";
-//eslint-disable-next-line
-import { Chart as ChartJS } from "chart.js/auto";
+// import { Line } from "react-chartjs-2";
+// //eslint-disable-next-line
+// import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertCurrency, ConvertDate, RemoveNegative } from "../../utils";
 import bluePlus from "assets/bluePlus.svg";
 import greenUp from "assets/greenUp.svg";
@@ -34,9 +34,9 @@ import {
   StyledPriceLayers,
   BoldText,
   StyledBullets,
-  StyledChart,
-  StyledDayContainer,
-  StyledButtonInput,
+  // StyledChart,
+  // StyledDayContainer,
+  // StyledButtonInput,
   StyledBarContainer,
   StyledCurrencyImg,
   StyledCurrencyName,
@@ -46,7 +46,7 @@ import {
   StyledPricePercentArrow,
   ColoredDiv,
 } from "./styles";
-import { ProgressBar } from "components";
+import { CoinChart, ProgressBar } from "components";
 
 const CoinPage = (props) => {
   const [loading, setLoading] = useState(false);
@@ -54,8 +54,8 @@ const CoinPage = (props) => {
   const [userMessage, setUserMessage] = useState("");
   const [coinData, setCoinData] = useState(null);
   const [marketData, setMarketData] = useState(null);
-  const [chartData, setChartData] = useState(null);
-  const [chartDays, setChartDays] = useState(30);
+  // const [chartData, setChartData] = useState(null);
+  // const [chartDays, setChartDays] = useState(30);
   const [coinPrice, setCoinPrice] = useState(0);
   const [conversionAmount, setConversionAmount] = useState(1);
   const [coinAmount, setCoinAmount] = useState(1);
@@ -63,28 +63,27 @@ const CoinPage = (props) => {
   useEffect(() =>{
     getCoinData(props.match.params.coinId);
     getMarketData(props.match.params.coinId, props.currency);
-    getChartData(props.match.params.coinId, props.currency);
+    // getChartData(props.match.params.coinId, props.currency);
     // eslint-disable-next-line
   }, [])
 
   useEffect(() =>{
     getCoinData(props.match.params.coinId);
     getMarketData(props.match.params.coinId, props.currency);
-    getChartData(props.match.params.coinId, props.currency);
+    // getChartData(props.match.params.coinId, props.currency);
     // eslint-disable-next-line
   }, [props.match.params.coinId])
 
   useEffect(() =>{
     getMarketData(props.match.params.coinId, props.currency);
-    getChartData(props.match.params.coinId, props.currency);
+    // getChartData(props.match.params.coinId, props.currency);
     currencyReset();
     // eslint-disable-next-line
   }, [props.currency])
 
-  useEffect(() =>{
-    getChartData(props.match.params.coinId, props.currency);
-    // eslint-disable-next-line
-  }, [chartDays])
+  // useEffect(() =>{
+  //   getChartData(props.match.params.coinId, props.currency);
+  // }, [chartDays])
 
   const getCoinData = async (coin) => {
     setLoading(true);
@@ -122,24 +121,24 @@ const CoinPage = (props) => {
     }
   };
 
-  const getChartData = async (coin, currency) => {
-    try {
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${chartDays}`
-      );
-      setChartData(data);
-    } catch (err) {
-      setError(true);
-    }
-  };
+  // const getChartData = async (coin, currency) => {
+  //   try {
+  //     const { data } = await axios(
+  //       `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${chartDays}`
+  //     );
+  //     setChartData(data);
+  //   } catch (err) {
+  //     setError(true);
+  //   }
+  // };
 
   const handleCopy = (site) => {
     navigator.clipboard.writeText(site);
   };
 
-  const handleChange = (e) => {
-    setChartDays(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   setChartDays(e.target.value);
+  // };
 
   const handleCurrencyChange = (e) => {
     setConversionAmount(e.target.value);
@@ -437,7 +436,8 @@ const CoinPage = (props) => {
               </>
             )}
           </StyledBarContainer>
-          <StyledDayContainer>
+          <CoinChart {...props} currency={props.currency} />
+          {/* <StyledDayContainer>
             <div>
               <StyledButtonInput
                 type="radio"
@@ -529,7 +529,7 @@ const CoinPage = (props) => {
                 />
               </div>
             )}
-          </StyledChart>
+          </StyledChart> */}
         </>
       )}
     </>

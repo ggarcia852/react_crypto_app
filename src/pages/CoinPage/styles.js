@@ -191,9 +191,9 @@ export const BoldText = styled.span`
   font-size: 18px;
 `;
 
-export const StyledChart = styled.div`
-  margin-top: 40px;
-`;
+// export const StyledChart = styled.div`
+//   margin-top: 40px;
+// `;
 
 export const StyledBarContainer = styled.div`
   display: flex;
@@ -201,20 +201,20 @@ export const StyledBarContainer = styled.div`
   margin-bottom: 50px;
 `;
 
-export const StyledDayContainer = styled.div`
-  display: flex;
-  height: 35px;
-  justify-content: center;
-  font-size: 20px;
-`;
+// export const StyledDayContainer = styled.div`
+//   display: flex;
+//   height: 35px;
+//   justify-content: center;
+//   font-size: 20px;
+// `;
 
-export const StyledButtonInput = styled.input`
-  margin-left: 30px;
-  margin-right: 7px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+// export const StyledButtonInput = styled.input`
+//   margin-left: 30px;
+//   margin-right: 7px;
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
 
 export const StyledCurrencyName = styled.div`
   display: flex;
