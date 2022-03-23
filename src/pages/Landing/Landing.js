@@ -2,7 +2,7 @@ import React from "react";
 import { GlobalData, CoinData, BitcoinChartData } from "components";
 import { Container } from "./styles";
 
-const CoinList = (props) => {
+const Landing = (props) => {
   return (
     <Container>
       <GlobalData currency={props.currency} />
@@ -12,4 +12,4 @@ const CoinList = (props) => {
   );
 }
 
-export default CoinList;
+export default Landing;

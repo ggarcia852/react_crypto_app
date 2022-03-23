@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { CoinList, CoinPage, Portfolio } from "pages";
+import {connect} from "react-redux";
+import { CoinPage, Landing, Portfolio } from "pages";
 import { NavBar } from "components";
 import { Container, GlobalStyle } from "GlobalStyles/styles";
 
@@ -19,7 +20,7 @@ const App = () => {
           <NavBar handleCurrency={handleCurrency} />
           <Switch>
             <Route exact path="/">
-              <CoinList currency={currency} />
+              <Landing currency={currency} />
             </Route>
             <Route
               exact
@@ -36,4 +37,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect()(App);
