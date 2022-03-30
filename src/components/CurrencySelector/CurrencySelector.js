@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import currencySymbol from "assets/currencySymbol.svg";
 import { StyledBackground, StyledContainer, StyledDropdown } from "./styles";
-import { StyledImg } from "components/CoinData/styles";
+import { StyledImg } from "components/CoinsTable/styles";
 
 const CurrencySelector = (props) => {
   const [currency, setCurrency] = useState("usd")

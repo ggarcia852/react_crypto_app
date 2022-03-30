@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { CoinChart, CoinInfo, ConversionBar } from "components";
+import { CoinPageChart, CoinPageInfo, ConversionBar } from "components";
 
 const CoinPage = (props) => {
   const [loading, setLoading] = useState(false);
@@ -55,14 +55,14 @@ const CoinPage = (props) => {
       {loading && <span>Loading data...</span>}
       {error && <div>{userMessage}</div>}
       {marketData && coinData && (
-        <CoinInfo coinData={coinData} marketData={marketData} />
+        <CoinPageInfo coinData={coinData} marketData={marketData} />
       )}
       <ConversionBar
         coinPrice={coinPrice}
         symbol={coinData?.symbol.toUpperCase()}
         currency={props.currency}
       />
-      <CoinChart {...props} currency={props.currency} />
+      <CoinPageChart {...props} currency={props.currency} />
     </>
   );
 };

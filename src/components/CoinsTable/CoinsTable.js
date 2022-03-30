@@ -26,7 +26,7 @@ import {
 import {
   ColoredDiv,
   StyledPricePercentArrow,
-} from "components/CoinInfo/styles";
+} from "components/CoinPageInfo/styles";
 
 const CoinData = (props) => {
   const [coins, setCoins] = useState(null);

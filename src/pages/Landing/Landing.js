@@ -1,12 +1,12 @@
 import React from "react";
-import { CoinData, BitcoinChartData } from "components";
+import { CoinsTable, BitcoinCharts } from "components";
 import { Container } from "./styles";
 
 const Landing = (props) => {
   return (
     <Container>
-      <BitcoinChartData currency={props.currency} />
-      <CoinData currency={props.currency} />
+      <BitcoinCharts currency={props.currency} />
+      <CoinsTable currency={props.currency} />
     </Container>
   );
 }

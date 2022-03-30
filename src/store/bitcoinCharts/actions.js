@@ -5,8 +5,8 @@ import {
   GET_BITCOIN_CHARTS_ERROR,
 } from "./index";
 
-export const getBitcoinCharts = (chartDays, chartInterval) => async (dispatch, getState) => {
-//   const state = getState();
+export const getBitcoinCharts = (chartDays, chartInterval, props) => async (dispatch, getState) => {
+  // const state = getState();
   try {
     dispatch({ type: GET_BITCOIN_CHARTS_PENDING });
     const { data } = await axios(
