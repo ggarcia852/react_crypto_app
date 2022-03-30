@@ -23,10 +23,10 @@ const GlobalData = (props) => {
   }, []);
 
   const currency = props.currency;
-  const hasData = !props.isLoading && props.globalData;
   const marketCap = props.globalData?.total_market_cap[currency];
   const volume = props.globalData?.total_volume[currency];
   const globalData = props.globalData;
+  const hasData = !props.isLoading && props.globalData;
 
   return (
     <StyledHeader>

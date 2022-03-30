@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { getBitcoinCharts } from "store/bitcoinCharts/actions";
 import { Bar, Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
@@ -19,32 +20,14 @@ import {
 } from "./styles";
 
 const BitcoinCharts = (props) => {
-  const [chartData, setChartData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [activeButton, setActiveButton] = useState(30);
   const [chartDays, setChartDays] = useState(30);
   const [chartInterval, setChartInterval] = useState("daily");
 
   useEffect(() => {
-    getChartData();
+    props.getBitcoinCharts(chartDays, chartInterval);
     // eslint-disable-next-line
   }, [chartDays, props.currency]);
-
-  const getChartData = async () => {
-    try {
-      setError(false);
-      setLoading(true);
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${props.currency}&days=${chartDays}&interval=${chartInterval}`
-      );
-      setLoading(false);
-      setChartData(data);
-    } catch (err) {
-      setLoading(false);
-      setError(true);
-    }
-  };
 
   const handleClick = (button) => {
     setActiveButton(button.id);
@@ -62,19 +45,24 @@ const BitcoinCharts = (props) => {
   ];
 
   let today = new Date().toDateString();
-  let price = chartData?.prices.slice(-1)[0].slice(-1)[0].toFixed(0);
-  let volume = chartData?.total_volumes.slice(-1)[0].slice(-1)[0].toFixed(0);
+  let price = props.chartData?.prices.slice(-1)[0].slice(-1)[0].toFixed(0);
+  let volume = props.chartData?.total_volumes
+    .slice(-1)[0]
+    .slice(-1)[0]
+    .toFixed(0);
+  const chartData = props.chartData;
+  const hasData = !props.isLoading && props.chartData;
 
   return (
     <>
       <StyledHeader>
         Bitcoin Overview
-        {loading && <span> (Loading charts...)</span>}
+        {props.isLoading && <span> (Loading charts...)</span>}
       </StyledHeader>
       <ChartsDiv>
         <StyledCharts>
-          {error && <div>error on page</div>}
-          {chartData && (
+          {props.hasError && <div>error on page</div>}
+          {hasData && (
             <StyledChart>
               <StyledHeading>
                 <StyledTitle>Price</StyledTitle>
@@ -186,4 +174,14 @@ const BitcoinCharts = (props) => {
   );
 };
 
-export default BitcoinCharts;
+const mapStateToProps = (state) => ({
+  chartData: state.bitcoinCharts.chartData,
+  isLoading: state.bitcoinCharts.isLoading,
+  hasError: state.bitcoinCharts.hasError,
+});
+
+const mapDispatchToProps = {
+  getBitcoinCharts,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BitcoinCharts);
