@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {connect} from "react-redux";
+// import { connect } from "react-redux";
 import { CoinPage, Landing, Portfolio } from "pages";
 import { NavBar } from "components";
 import { Container, GlobalStyle } from "GlobalStyles/styles";
+import GlobalDataBar from "components/GlobalDataBar";
 
 const App = () => {
   const [currency, setCurrency] = useState("usd");
@@ -18,6 +19,7 @@ const App = () => {
       <Router>
         <div>
           <NavBar handleCurrency={handleCurrency} />
+          <GlobalDataBar currency={currency} />
           <Switch>
             <Route exact path="/">
               <Landing currency={currency} />
@@ -37,4 +39,4 @@ const App = () => {
   );
 };
 
-export default connect()(App);
+export default App;
