@@ -5,12 +5,13 @@ import {
   GET_BITCOIN_CHARTS_ERROR,
 } from "./index";
 
-export const getBitcoinCharts = (chartDays, chartInterval, props) => async (dispatch, getState) => {
-  // const state = getState();
+export const getBitcoinCharts = (chartDays, chartInterval) => async (dispatch, getState) => {
+  const state = getState();
+  let currency = state.currency.currency
   try {
     dispatch({ type: GET_BITCOIN_CHARTS_PENDING });
     const { data } = await axios(
-      `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${chartDays}&interval=${chartInterval}`
+      `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=${currency}&days=${chartDays}&interval=${chartInterval}`
     );
     dispatch({
       type: GET_BITCOIN_CHARTS_SUCCESS,

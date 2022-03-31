@@ -178,6 +178,7 @@ const mapStateToProps = (state) => ({
   chartData: state.bitcoinCharts.chartData,
   isLoading: state.bitcoinCharts.isLoading,
   hasError: state.bitcoinCharts.hasError,
+  currency: state.currency,
 });
 
 const mapDispatchToProps = {

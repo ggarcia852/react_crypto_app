@@ -8,7 +8,7 @@ import {
   GET_MARKET_DATA_ERROR,
 } from "./index";
 
-export const getCoinData = (coin) => async (dispatch, getState) => {
+export const getCoinData = (coin) => async (dispatch) => {
   try {
     dispatch({ type: GET_COIN_DATA_PENDING });
     const { data } = await axios(
@@ -24,10 +24,12 @@ export const getCoinData = (coin) => async (dispatch, getState) => {
 };
 
 export const getMarketData = (coin) => async (dispatch, getState) => {
+  const state = getState();
+  let currency = state.currency.currency
   try {
     dispatch({ type: GET_MARKET_DATA_PENDING });
     const { data } = await axios(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coin}&sparkline=false`
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coin}&sparkline=false`
     );
     dispatch({
       type: GET_MARKET_DATA_SUCCESS,

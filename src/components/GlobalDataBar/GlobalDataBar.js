@@ -94,6 +94,7 @@ const mapStateToProps = (state) => ({
   globalData: state.globalData.data,
   isLoading: state.globalData.isLoading,
   hasError: state.globalData.hasError,
+  currency: state.currency.currency,
 });
 
 const mapDispatchToProps = {

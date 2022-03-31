@@ -39,6 +39,7 @@ const mapStateToProps = (state) => ({
   marketData: state.coinPageData.marketData,
   isLoading: state.coinPageData.isLoading,
   hasError: state.coinPageData.hasError,
+  currency: state.currency.currency,
 });
 
 const mapDispatchToProps = {

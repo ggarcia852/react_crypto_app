@@ -3,8 +3,10 @@ import thunk from "redux-thunk";
 import globalData from "./globalData";
 import bitcoinCharts from "./bitcoinCharts";
 import coinPageData from "./coinPageData";
+import currency from "./currency"
 
 const reducers = combineReducers({
+  currency,
   globalData,
   bitcoinCharts,
   coinPageData,
