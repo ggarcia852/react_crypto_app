@@ -2,10 +2,12 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import globalData from "./globalData";
 import bitcoinCharts from "./bitcoinCharts";
+import coinPageData from "./coinPageData";
 
 const reducers = combineReducers({
   globalData,
   bitcoinCharts,
+  coinPageData,
 });
 
 export const store = createStore(

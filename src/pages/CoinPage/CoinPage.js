@@ -1,62 +1,29 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getCoinData, getMarketData } from "store/coinPageData/actions";
 import { CoinPageChart, CoinPageInfo, ConversionBar } from "components";
 
 const CoinPage = (props) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [userMessage, setUserMessage] = useState("");
-  const [coinData, setCoinData] = useState(null);
-  const [marketData, setMarketData] = useState(null);
-  const [coinPrice, setCoinPrice] = useState(0);
-
   useEffect(() => {
-    getCoinData(props.match.params.coinId);
-    getMarketData(props.match.params.coinId, props.currency);
+    props.getCoinData(props.match.params.coinId);
+    props.getMarketData(props.match.params.coinId);
+    //eslint-disable-next-line
   }, [props.match.params.coinId, props.currency]);
 
-  const getCoinData = async (coin) => {
-    setLoading(true);
-    setError(false);
-    setUserMessage("");
-    try {
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true`
-      );
-      setCoinData(data);
-    } catch (err) {
-      setLoading(false);
-      setError(true);
-      setUserMessage(
-        "Coin not found. Please select a coin from the list or try again!"
-      );
-    }
-  };
-
-  const getMarketData = async (coin, currency) => {
-    setLoading(true);
-    setError(false);
-    try {
-      const data = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coin}&sparkline=false`
-      );
-      const coinPrice = data.data[0].current_price;
-      setLoading(false);
-      setMarketData(data.data[0]);
-      setCoinPrice(coinPrice);
-    } catch (err) {
-      setLoading(false);
-      setError(true);
-    }
-  };
+  const coinData = props.coinData;
+  const marketData = props.marketData;
+  const coinPrice = marketData?.current_price;
+  const hasData = !props.isLoading && props.coinData && props.marketData;
 
   return (
     <>
-      {loading && <span>Loading data...</span>}
-      {error && <div>{userMessage}</div>}
-      {marketData && coinData && (
-        <CoinPageInfo coinData={coinData} marketData={marketData} />
+      {props.isLoading && <span>Loading data...</span>}
+      {props.hasError && (
+        <div>
+          Coin not found. Please select a coin from the list or try again!{" "}
+        </div>
       )}
+      {hasData && <CoinPageInfo coinData={coinData} marketData={marketData} />}
       <ConversionBar
         coinPrice={coinPrice}
         symbol={coinData?.symbol.toUpperCase()}
@@ -67,4 +34,16 @@ const CoinPage = (props) => {
   );
 };
 
-export default CoinPage;
+const mapStateToProps = (state) => ({
+  coinData: state.coinPageData.coinData,
+  marketData: state.coinPageData.marketData,
+  isLoading: state.coinPageData.isLoading,
+  hasError: state.coinPageData.hasError,
+});
+
+const mapDispatchToProps = {
+  getCoinData,
+  getMarketData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoinPage);
