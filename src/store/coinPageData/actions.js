@@ -6,6 +6,9 @@ import {
   GET_MARKET_DATA_SUCCESS,
   GET_MARKET_DATA_PENDING,
   GET_MARKET_DATA_ERROR,
+  GET_MARKET_CHARTS_SUCCESS,
+  GET_MARKET_CHARTS_PENDING,
+  GET_MARKET_CHARTS_ERROR,
 } from "./index";
 
 export const getCoinData = (coin) => async (dispatch) => {
@@ -37,5 +40,22 @@ export const getMarketData = (coin) => async (dispatch, getState) => {
     });
   } catch (err) {
     dispatch({ type: GET_MARKET_DATA_ERROR, payload: err });
+  }
+};
+
+export const getMarketCharts = (coin, chartDays) => async (dispatch, getState) => {
+  const state = getState();
+  let currency = state.currency.currency
+  try {
+    dispatch({ type: GET_MARKET_CHARTS_PENDING });
+    const { data } = await axios(
+      `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${chartDays}`
+    );
+    dispatch({
+      type: GET_MARKET_CHARTS_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({ type: GET_MARKET_CHARTS_ERROR, payload: err });
   }
 };
