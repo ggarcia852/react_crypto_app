@@ -35,10 +35,10 @@ const CoinPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  coinData: state.coinPageData.coinData,
-  marketData: state.coinPageData.marketData,
-  isLoading: state.coinPageData.isLoading,
-  hasError: state.coinPageData.hasError,
+  coinData: state.coinPage.coinData,
+  marketData: state.coinPage.marketData,
+  isLoading: state.coinPage.isLoading,
+  hasError: state.coinPage.hasError,
   currency: state.currency.currency,
 });
 

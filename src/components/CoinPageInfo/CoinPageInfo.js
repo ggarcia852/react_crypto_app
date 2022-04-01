@@ -42,7 +42,7 @@ export default function CoinInfo(props) {
   };
 
   const linkSize = (link) => {
-    if (link.length > 20) {
+    if (link?.length > 20) {
       return link.substring(0, 20) + "...";
     }
     return link;

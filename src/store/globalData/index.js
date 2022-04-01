@@ -10,24 +10,24 @@ export const GET_GLOBAL_DATA_ERROR = "GET_GLOBAL_DATA_ERROR";
 
 function globalDataReducer(state = initialState, action) {
   switch (action.type) {
-      case GET_GLOBAL_DATA_PENDING: 
+    case GET_GLOBAL_DATA_PENDING:
       return {
-        ...state, 
+        ...state,
         hasError: false,
-        isLoading: true
-      }
+        isLoading: true,
+      };
     case GET_GLOBAL_DATA_SUCCESS:
       return {
         ...state,
         data: action.payload.data,
-        isLoading: false
+        isLoading: false,
       };
-      case GET_GLOBAL_DATA_ERROR: 
+    case GET_GLOBAL_DATA_ERROR:
       return {
-          ...state,
-          hasError: true,
-          isLoading: false
-      }
+        ...state,
+        hasError: true,
+        isLoading: false,
+      };
     default:
       return state;
   }

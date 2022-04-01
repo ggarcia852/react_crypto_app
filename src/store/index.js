@@ -2,14 +2,16 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import globalData from "./globalData";
 import bitcoinCharts from "./bitcoinCharts";
-import coinPageData from "./coinPageData";
+import coinPage from "./coinPageData";
 import currency from "./currency"
+import searchBar from "./searchBar"
 
 const reducers = combineReducers({
   currency,
   globalData,
   bitcoinCharts,
-  coinPageData,
+  coinPage,
+  searchBar
 });
 
 export const store = createStore(

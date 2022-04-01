@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { searchCoins } from "store/searchBar/actions"
 import { withRouter } from "react-router-dom";
 import search from "assets/search.svg";
 import {
@@ -13,52 +14,31 @@ import {
 
 const SearchBar = (props) => {
   const [value, setValue] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [coins, setCoins] = useState([]);
 
   useEffect(() => {
     if (value !== "") {
-      handleSearch(value);
+      props.searchCoins(value);
     }
+    // eslint-disable-next-line
   }, [value]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     props.history.push(`/coin/${value.toLowerCase()}`);
     setValue("");
-    setCoins(null);
-    setLoading(false);
   };
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (value === "") {
-      setLoading(false);
-    }
-  };
-
-  const handleSearch = async (value) => {
-    try {
-      setLoading(true);
-      const { data } = await axios(
-        `https://crypto-app-server.herokuapp.com/coins/${value}`
-      );
-      setCoins(data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   const handleClick = (coin) => {
     setValue("");
-    setCoins(null);
-    setLoading(false);
     props.history.push(`/coin/${coin.id}`);
   };
 
-  const hasCoins = !loading && coins;
   const hasValue = value !== "";
+  const hasCoins = !props.isLoading && props.coins && hasValue;
 
   return (
     <StyledContainer>
@@ -70,9 +50,9 @@ const SearchBar = (props) => {
           placeholder="Search..."
         />
         <StyledList>
-          {loading && hasValue && <div>loading...</div>}
+          {props.isLoading && hasValue && <div>loading...</div>}
           {hasCoins &&
-            coins.map((coin) => (
+            props.coins.map((coin) => (
               <StyledListItem onClick={() => handleClick(coin)} key={coin.id}>
                 <StyledLink to={`/coin/${coin.id}`}>
                   <img src={coin.thumb} alt="coin" /> {coin.name} ({coin.symbol}
@@ -86,4 +66,14 @@ const SearchBar = (props) => {
   );
 };
 
-export default withRouter(SearchBar);
+const mapStateToProps = (state) => ({
+  isLoading: state.searchBar.isLoading,
+  hasError: state.searchBar.hasError,
+  coins: state.searchBar.coins
+})
+
+const mapDispatchToProps = {
+  searchCoins,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SearchBar));

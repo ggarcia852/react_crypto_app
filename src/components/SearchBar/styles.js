@@ -39,7 +39,7 @@ export const StyledListItem = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
-  padding-left: 15px;
+  padding: 10px 15px;
   text-decoration: none;
   color: #ffffff;
 `;

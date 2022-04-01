@@ -19,7 +19,6 @@ function MarketChart(props) {
     setChartDays(e.target.value);
   };
 
-  const hasData = !props.isLoading && props.chartData
   const chartData = props.chartData
 
   return (
@@ -79,7 +78,7 @@ function MarketChart(props) {
         </div>
       </StyledDayContainer>
       <StyledChart>
-        {hasData && (
+        {chartData && (
           <div>
             <Line
               data={{
@@ -122,9 +121,9 @@ function MarketChart(props) {
 };
 
 const mapStateToProps = (state) => ({
-  chartData: state.coinPageData.chartData,
-  isLoading: state.coinPageData.isLoading,
-  hasError: state.coinPageData.hasError,
+  chartData: state.coinPage.chartData,
+  isLoading: state.coinPage.isLoading,
+  hasError: state.coinPage.hasError,
   currency: state.currency.currency,
 });
 
