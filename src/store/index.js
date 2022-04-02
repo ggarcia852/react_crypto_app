@@ -5,13 +5,15 @@ import bitcoinCharts from "./bitcoinCharts";
 import coinPage from "./coinPageData";
 import currency from "./currency"
 import searchBar from "./searchBar"
+import coinsTable from "./coinsTable"
 
 const reducers = combineReducers({
   currency,
   globalData,
   bitcoinCharts,
   coinPage,
-  searchBar
+  searchBar,
+  coinsTable
 });
 
 export const store = createStore(
