@@ -5,7 +5,7 @@ import { getCoins, coinsReset } from "store/coinsTable/action";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertCurrency, RemoveNegative } from "../../utils";
+import { ConvertCurrency, CurrencyFormat, RemoveNegative } from "../../utils";
 import { ProgressBar } from "components";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
@@ -91,7 +91,9 @@ const CoinData = (props) => {
                             {coin.name} ({coin.symbol.toUpperCase()})
                           </StyledCoinLink>
                         </StyledTableCell>
-                        <StyledTableCell>${coin.current_price}</StyledTableCell>
+                        <StyledTableCell>
+                          ${CurrencyFormat(coin.current_price)}
+                        </StyledTableCell>
                         <StyledTableCell
                           color={
                             coin.price_change_percentage_1h_in_currency >= 0

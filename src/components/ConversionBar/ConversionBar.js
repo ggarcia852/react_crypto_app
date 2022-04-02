@@ -16,17 +16,31 @@ function ConversionBar(props) {
 
   useEffect(() => {
     setConversionAmount(1);
-    setCoinAmount(((1 / props.coinPrice) * 1).toFixed(6));
+    setCoinAmount(
+      (1 / props.coinPrice) * 1 > 1
+        ? ((1 / props.coinPrice) * 1).toFixed(2)
+        : (1 / props.coinPrice).toFixed(5)
+    );
   }, [props.currency, props.coinPrice]);
 
   const handleCurrencyChange = (e) => {
     setConversionAmount(e.target.value);
-    setCoinAmount(((1 / props.coinPrice) * e.target.value).toFixed(6));
+    setCoinAmount(
+      (1 / props.coinPrice) * e.target.value > 0.1 ||
+        (1 / props.coinPrice) * e.target.value === 0
+        ? ((1 / props.coinPrice) * e.target.value).toFixed(2)
+        : ((1 / props.coinPrice) * e.target.value).toFixed(5)
+    );
   };
 
   const handleCoinChange = (e) => {
     setCoinAmount(e.target.value);
-    setConversionAmount((e.target.value * props.coinPrice).toFixed(6));
+    setConversionAmount(
+      e.target.value * props.coinPrice > 0.1 ||
+        e.target.value * props.coinPrice === 0
+        ? (e.target.value * props.coinPrice).toFixed(2)
+        : (e.target.value * props.coinPrice).toFixed(5)
+    );
   };
 
   return (
