@@ -10,7 +10,6 @@ export const GET_COINS_DATA_ERROR = "GET_COINS_DATA_ERROR";
 export const COINS_RESET = "COINS_RESET";
 
 function coinsTableReducer(state = initialState, action) {
-  console.log(state.coins);
   switch (action.type) {
     case GET_COINS_DATA_PENDING:
       return {

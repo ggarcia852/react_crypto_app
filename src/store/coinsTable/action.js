@@ -27,5 +27,4 @@ export const coinsReset = () => (dispatch) => {
   dispatch({
     type: COINS_RESET,
   });
-//   dispatch(getCoins(page));
 };
