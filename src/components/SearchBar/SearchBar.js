@@ -39,6 +39,7 @@ const SearchBar = (props) => {
 
   const hasValue = value !== "";
   const hasCoins = !props.isLoading && props.coins && hasValue;
+  const noCoins = hasValue && props.coins?.length === 0;
 
   return (
     <StyledContainer>
@@ -51,6 +52,7 @@ const SearchBar = (props) => {
         />
         <StyledList>
           {props.isLoading && hasValue && <div>loading...</div>}
+          {noCoins && <div>Coin not found.</div>}
           {hasCoins &&
             props.coins.map((coin) => (
               <StyledListItem onClick={() => handleClick(coin)} key={coin.id}>
