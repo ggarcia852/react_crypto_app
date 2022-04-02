@@ -3,9 +3,9 @@ import thunk from "redux-thunk";
 import globalData from "./globalData";
 import bitcoinCharts from "./bitcoinCharts";
 import coinPage from "./coinPageData";
-import currency from "./currency"
-import searchBar from "./searchBar"
-import coinsTable from "./coinsTable"
+import currency from "./currency";
+import searchBar from "./searchBar";
+import coinsTable from "./coinsTable";
 
 const reducers = combineReducers({
   currency,
@@ -13,7 +13,7 @@ const reducers = combineReducers({
   bitcoinCharts,
   coinPage,
   searchBar,
-  coinsTable
+  coinsTable,
 });
 
 export const store = createStore(

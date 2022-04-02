@@ -9,9 +9,9 @@ import { StyledChart, StyledDayContainer, StyledButtonInput } from "./styles";
 
 function MarketChart(props) {
   const [chartDays, setChartDays] = useState("30");
-  
+
   useEffect(() => {
-    props.getMarketCharts(props.match.params.coinId, chartDays)
+    props.getMarketCharts(props.match.params.coinId, chartDays);
     // eslint-disable-next-line
   }, [chartDays, props.match.params.coinId, props.currency]);
 
@@ -19,7 +19,7 @@ function MarketChart(props) {
     setChartDays(e.target.value);
   };
 
-  const chartData = props.chartData
+  const chartData = props.chartData;
 
   return (
     <>
@@ -118,7 +118,7 @@ function MarketChart(props) {
       </StyledChart>
     </>
   );
-};
+}
 
 const mapStateToProps = (state) => ({
   chartData: state.coinPage.chartData,
@@ -128,7 +128,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  getMarketCharts
+  getMarketCharts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarketChart);

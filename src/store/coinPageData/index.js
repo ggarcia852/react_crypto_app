@@ -4,6 +4,8 @@ const initialState = {
   marketData: null,
   coinData: null,
   chartData: null,
+  coinPrice: 0,
+  coinSymbol: "",
 };
 
 export const GET_COIN_DATA_PENDING = "GET_COIN_DATA_PENDING";
@@ -27,8 +29,10 @@ function coinPageReducer(state = initialState, action) {
     case GET_MARKET_DATA_SUCCESS:
       return {
         ...state,
-        marketData: action.payload,
         isLoading: false,
+        marketData: action.payload,
+        coinPrice: action.payload.current_price,
+        coinSymbol: action.payload.symbol.toUpperCase(),
       };
     case GET_MARKET_DATA_ERROR:
       return {
