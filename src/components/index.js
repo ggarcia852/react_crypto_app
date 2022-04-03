@@ -1,10 +1,10 @@
 export { default as NavBar } from "./NavBar";
-export { default as GlobalData } from "./GlobalData";
-export { default as CoinData } from "./CoinData";
-export { default as BitcoinChartData } from "./BitcoinChartData";
+export { default as GlobalDataBar } from "./GlobalDataBar";
+export { default as CoinsTable } from "./CoinsTable";
+export { default as BitcoinCharts } from "./BitcoinCharts";
 export { default as SearchBar } from "./SearchBar";
 export { default as CurrencySelector } from "./CurrencySelector";
 export { default as ProgressBar } from "./ProgressBar";
-export { default as CoinChart } from "./CoinChart";
+export { default as CoinPageChart } from "./CoinPageChart";
 export { default as ConversionBar } from "./ConversionBar";
-export { default as CoinInfo } from "./CoinInfo";
+export { default as CoinPageInfo } from "./CoinPageInfo";

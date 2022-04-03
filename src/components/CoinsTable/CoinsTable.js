@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import axios from "axios";
+import { connect } from "react-redux";
+import { getCoins, coinsReset } from "store/coinsTable/action";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertCurrency, RemoveNegative } from "../../utils";
+import { ConvertCurrency, CurrencyFormat, RemoveNegative } from "../../utils";
 import { ProgressBar } from "components";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
@@ -26,74 +27,37 @@ import {
 import {
   ColoredDiv,
   StyledPricePercentArrow,
-} from "components/CoinInfo/styles";
+} from "components/CoinPageInfo/styles";
 
 const CoinData = (props) => {
-  const [coins, setCoins] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
-
-  const getCoinData = async () => {
-    try {
-      setLoading(true);
-      setError(false);
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${props.currency}&order=market_cap_desc&per_page=25&page=${page}&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
-      );
-      if (!coins) {
-        setCoins(data);
-        setLoading(false);
-      } else {
-        setCoins(coins.concat(data));
-        setLoading(false);
-        setPage(page + 1);
-      }
-    } catch (err) {
-      setLoading(false);
-      setError(true);
-    }
-  };
-
-  const getNewData = async () => {
-    try {
-      setLoading(true);
-      setError(false);
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${props.currency}&order=market_cap_desc&per_page=25&page=1&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
-      );
-      setLoading(false);
-      setCoins(data);
-      setPage(2);
-    } catch (err) {
-      setLoading(false);
-      setError(true);
-    }
-  };
 
   const fetchMoreData = () => {
     setTimeout(() => {
-      getCoinData();
+      props.getCoins(page);
+      setPage(page + 1);
     }, 800);
   };
 
   useEffect(() => {
-    getNewData();
+    props.coinsReset();
+    props.getCoins(1);
+    setPage(2);
     //eslint-disable-next-line
   }, [props.currency]);
 
   return (
     <>
-      {loading && <div>Loading data...</div>}
+      {props.isLoading && <div>Loading coins...</div>}
       <StyledHeader>
         <StyledOverview>Market Overview</StyledOverview>
       </StyledHeader>
       <StyledCoinList>
-        {error && <div>error on page</div>}
-        {coins && (
+        {props.hasError && <div>Error loading coins.</div>}
+        {props.coins && (
           <div>
             <InfiniteScroll
-              dataLength={coins.length}
+              dataLength={props.coins.length}
               next={fetchMoreData}
               hasMore={true}
               loader={<div>Loading more coins...</div>}
@@ -115,8 +79,8 @@ const CoinData = (props) => {
                   <StyledTableHeaderCell>Last 7d</StyledTableHeaderCell>
                 </StyledTableHeader>
                 <StyledTableBody>
-                  {coins &&
-                    coins.map((coin) => (
+                  {props.coins &&
+                    props.coins.map((coin) => (
                       <StyledTableRow key={coin.id}>
                         <StyledTableCell>
                           {coin.market_cap_rank}
@@ -127,7 +91,9 @@ const CoinData = (props) => {
                             {coin.name} ({coin.symbol.toUpperCase()})
                           </StyledCoinLink>
                         </StyledTableCell>
-                        <StyledTableCell>${coin.current_price}</StyledTableCell>
+                        <StyledTableCell>
+                          ${CurrencyFormat(coin.current_price)}
+                        </StyledTableCell>
                         <StyledTableCell
                           color={
                             coin.price_change_percentage_1h_in_currency >= 0
@@ -306,4 +272,16 @@ const CoinData = (props) => {
   );
 };
 
-export default CoinData;
+const mapStateToProps = (state) => ({
+  isLoading: state.coinsTable.isLoading,
+  hasError: state.coinsTable.hasError,
+  coins: state.coinsTable.coins,
+  currency: state.currency.currency,
+});
+
+const mapDispatchToProps = {
+  getCoins,
+  coinsReset,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoinData);

@@ -1,45 +1,30 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { getMarketCharts } from "store/coinPageData/actions";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertDate } from "../../utils";
 import { StyledChart, StyledDayContainer, StyledButtonInput } from "./styles";
 
-export default function CoinChart(props) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [chartData, setChartData] = useState(null);
+function MarketChart(props) {
   const [chartDays, setChartDays] = useState("30");
-  
+
   useEffect(() => {
-    getChartData(props.match.params.coinId, props.currency);
+    props.getMarketCharts(props.match.params.coinId, chartDays);
     // eslint-disable-next-line
   }, [chartDays, props.match.params.coinId, props.currency]);
-
-  const getChartData = async (coin, currency) => {
-    try {
-      setError(false);
-      setLoading(true);
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${chartDays}`
-      );
-      setLoading(false);
-      setChartData(data);
-    } catch (err) {
-      setLoading(false);
-      setError(true);
-    }
-  };
 
   const handleChange = (e) => {
     setChartDays(e.target.value);
   };
 
+  const chartData = props.chartData;
+
   return (
     <>
-      {loading && <div>Loading chart...</div>}
-      {error && <div>Error loading chart</div>}
+      {props.isLoading && <div>Loading chart...</div>}
+      {props.hasError && <div>Error loading chart</div>}
       <StyledDayContainer>
         <div>
           <StyledButtonInput
@@ -133,4 +118,17 @@ export default function CoinChart(props) {
       </StyledChart>
     </>
   );
+}
+
+const mapStateToProps = (state) => ({
+  chartData: state.coinPage.chartData,
+  isLoading: state.coinPage.isLoading,
+  hasError: state.coinPage.hasError,
+  currency: state.currency.currency,
+});
+
+const mapDispatchToProps = {
+  getMarketCharts,
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(MarketChart);

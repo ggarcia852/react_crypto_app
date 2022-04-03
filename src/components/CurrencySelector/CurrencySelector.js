@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { selectCurrency } from "store/currency/actions";
 import currencySymbol from "assets/currencySymbol.svg";
 import { StyledBackground, StyledContainer, StyledDropdown } from "./styles";
-import { StyledImg } from "components/CoinData/styles";
+import { StyledImg } from "components/CoinsTable/styles";
 
 const CurrencySelector = (props) => {
-  const [currency, setCurrency] = useState("usd")
-  
-  useEffect(() => {
-    props.handleCurrency(currency)
-    //eslint-disable-next-line
-  }, [currency])
-
-  const handleSelect = (e) => {
-    setCurrency(e.target.value);
-  };
-
   return (
     <StyledContainer>
       <StyledBackground>
         <StyledImg src={currencySymbol} alt="currency" />
       </StyledBackground>
-      <StyledDropdown onChange={handleSelect}>
+      <StyledDropdown onChange={(e) => props.selectCurrency(e.target.value)}>
         <option value="usd">USD</option>
         <option value="eur">EUR</option>
         <option value="gbp">GBP</option>
@@ -29,6 +20,14 @@ const CurrencySelector = (props) => {
       </StyledDropdown>
     </StyledContainer>
   );
-}
+};
 
-export default CurrencySelector;
+const mapStateToProps = (state) => ({
+  currency: state.currency,
+});
+
+const mapDispatchToProps = {
+  selectCurrency,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencySelector);

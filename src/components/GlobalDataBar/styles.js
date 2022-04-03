@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.div`
   display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+   justify-content: center;
 `;
 
 export const StyledGlobalData = styled.div`
