@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "components/SearchBar";
 import { CurrencySelector } from "components";
 import theme from "assets/theme.svg";
+import themeLight from "assets/themeLight.svg";
 import {
   StyledNavDiv,
   StyledLinks,
@@ -12,6 +13,9 @@ import {
 } from "./styles";
 
 const NavBar = (props) => {
+  const handleTheme = () => {
+    props.handleTheme()
+  }
   return (
     <StyledNavDiv>
       <StyledLinks>
@@ -31,8 +35,8 @@ const NavBar = (props) => {
       <StyledNavigation>
         <SearchBar />
         <CurrencySelector handleCurrency={props.handleCurrency} />
-        <StyledButton>
-          <img src={theme} alt="theme" />
+        <StyledButton onClick={handleTheme}>
+          {props.darkThemeOn ? <img src={theme} alt="theme" /> : <img src={themeLight} alt="theme" />}
         </StyledButton>
       </StyledNavigation>
     </StyledNavDiv>

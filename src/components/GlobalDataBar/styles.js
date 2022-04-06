@@ -11,7 +11,7 @@ export const StyledGlobalData = styled.div`
   width: 906px;
   align-items: center;
   justify-content: space-between;
-  background: #191b1f;
+  background: ${props => props.theme.secondary};
   margin-top: 0px;
   border-radius: 0px 0px 15px 15px;
   padding: 0px 50px 0px 50px;

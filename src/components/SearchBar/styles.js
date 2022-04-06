@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
   display: flex;
   height: 63px;
   width: 350px;
-  background: #2c2f36;
+  background: ${props => props.theme.navBox};
   border-radius: 15px;
   border: none;
   align-items: center;
@@ -13,13 +13,13 @@ export const StyledContainer = styled.div`
 
 export const StyledInput = styled.input`
   height: 60px;
-  background: #2c2f36;
+  background: ${props => props.theme.navBox};
   border: none;
   outline: 0px;
   font-size: 17px;
-  color: #ffffff;
+  color: ${props => props.theme.color};
   &::-webkit-input-placeholder {
-    color: #ffffff;
+    color: ${props => props.theme.color};
   }
 `;
 
@@ -28,8 +28,8 @@ export const StyledList = styled.div`
   max-height: 150px;
   min-width: 150px;
   overflow: scroll;
-  background: #212329;
-  border: 1px solid #191B1F;
+  background: ${(props) => props.theme.secondary};
+  border: 1px solid ${(props) => props.theme.secondary};
   border-radius: 5px;
 `;
 
@@ -41,7 +41,7 @@ export const StyledListItem = styled.div`
 export const StyledLink = styled(Link)`
   padding: 10px 15px;
   text-decoration: none;
-  color: #ffffff;
+  color: ${(props) => props.theme.color};
 `;
 
 export const StyledImg = styled.img`

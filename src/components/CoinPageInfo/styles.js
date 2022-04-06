@@ -25,7 +25,7 @@ export const StyledCoinContainer = styled.div`
   margin-right: 30px;
   padding: 0px 40px;
   height: 80%;
-  background: #191b1f;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   flex-flow: column;
   justify-content: center;
@@ -36,7 +36,7 @@ export const StyledCoinContainer = styled.div`
 export const StyledCoinImg = styled.img`
   width: 45px;
   padding: 30px;
-  background: #1f2128;
+  background: ${(props) => props.theme.main};
   margin-bottom: 10px;
   border-radius: 10px;
 `;
@@ -46,7 +46,7 @@ export const StyledLinkContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   height: 15%;
-  background: #191b1f;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   font-size: 15px;
   padding: 15px;
@@ -66,7 +66,7 @@ export const StyledPriceContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0px 40px;
-  background: #191b1f;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   margin-right: 30px;
   overflow: scroll;
@@ -110,7 +110,7 @@ export const StyledMarketContainer = styled.div`
   justify-content: center;
   overflow: scroll;
   padding: 0px 40px;
-  background: #191b1f;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
 `;
 
@@ -163,7 +163,7 @@ export const StyledDescription = styled.div`
   flex-flow: column;
   min-height: 0px;
   text-align: center;
-  background: #191b1f;
+  background: ${(props) => props.theme.secondary};
   padding: 30px 27px 52px 27px;
   margin: 0px 12% 30px;
   border-radius: 10px;
@@ -180,7 +180,7 @@ export const StyledBlockchainContainer = styled.div`
   display: flex;
   width: 25%;
   padding: 20px 15px;
-  background: #191b1f;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   font-size: 15px;
   justify-content: space-between;

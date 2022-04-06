@@ -5,7 +5,7 @@ export const StyledNavDiv = styled.div`
   display: flex;
   width: 100%;
   height: 93px;
-  background: #191B1F;
+  background: ${props => props.theme.secondary};
   align-items: center;
   justify-content: space-between;
 `;
@@ -17,7 +17,7 @@ export const StyledLinks = styled.div`
 export const StyledLink = styled(NavLink)`
   display: flex;
   text-decoration: none;
-  color: #fafbfb;
+  color: ${props => props.theme.color};
   font-size: 23px;
   height: 57px;
   width: 167px;
@@ -25,7 +25,7 @@ export const StyledLink = styled(NavLink)`
   justify-content: center;
   border-radius: 15px;
   &.active {
-    background: #2c2f36;
+    background: ${props => props.theme.navBox};
   }
 `;
 
@@ -44,7 +44,7 @@ export const StyledNavigation = styled.div`
 export const StyledButton = styled.button`
   height: 63px;
   width: 67px;
-  background: #2c2f36;
+  background:${props => props.theme.navBox};
   border-radius: 15px;
   border-color: #2c2f36;
   margin-left: 25px;
