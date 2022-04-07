@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { searchCoins } from "store/searchBar/actions"
+import { searchCoins } from "store/searchBar/actions";
 import { withRouter } from "react-router-dom";
 import search from "assets/search.svg";
+import searchLight from "assets/searchLight.svg";
 import {
   StyledContainer,
   StyledImg,
@@ -43,7 +44,7 @@ const SearchBar = (props) => {
 
   return (
     <StyledContainer>
-      <StyledImg src={search} alt="search" />
+      <StyledImg src={props.theme ? search : searchLight} alt="search" />
       <form onSubmit={handleSubmit}>
         <StyledInput
           value={value}
@@ -71,11 +72,15 @@ const SearchBar = (props) => {
 const mapStateToProps = (state) => ({
   isLoading: state.searchBar.isLoading,
   hasError: state.searchBar.hasError,
-  coins: state.searchBar.coins
-})
+  coins: state.searchBar.coins,
+  theme: state.theme.darkTheme,
+});
 
 const mapDispatchToProps = {
   searchCoins,
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SearchBar));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(SearchBar));

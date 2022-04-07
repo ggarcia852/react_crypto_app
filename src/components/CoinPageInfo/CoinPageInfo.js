@@ -7,8 +7,11 @@ import bluePlus from "assets/bluePlus.svg";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
 import link from "assets/link.svg";
+import linkLight from "assets/linkLight.svg";
 import layers from "assets/layers.svg";
+import layersLight from "assets/layersLight.svg";
 import feather from "assets/feather.svg";
+import featherLight from "assets/featherLight.svg";
 import {
   StyledTitle,
   StyledCoinContainer,
@@ -85,7 +88,10 @@ function CoinPageInfo(props) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg src={link} alt="link" />
+                  <StyledLinkImg
+                    src={props.theme ? link : linkLight}
+                    alt="link"
+                  />
                 </a>
                 {linkSize(coinData.links.homepage[0])}
               </StyledLinkContainer>
@@ -114,7 +120,10 @@ function CoinPageInfo(props) {
                 </StyledPriceStatPercent>
               </span>
               <div>
-                <StyledPriceLayers src={layers} alt="layers" />
+                <StyledPriceLayers
+                  src={props.theme ? layers : layersLight}
+                  alt="layers"
+                />
               </div>
               <div>
                 <StyledPriceStat>
@@ -260,7 +269,7 @@ function CoinPageInfo(props) {
           <StyledDescriptionTitle>Description</StyledDescriptionTitle>
           <StyledDescription>
             <StyledDescImg>
-              <img src={layers} alt="layers" />
+              <img src={props.theme ? layers : layersLight} alt="layers" />
             </StyledDescImg>
             <div
               dangerouslySetInnerHTML={{ __html: coinData.description.en }}
@@ -273,12 +282,15 @@ function CoinPageInfo(props) {
                 target="_blank"
                 rel="noreferrer"
               >
-                <StyledLinkImg src={link} alt="link" />
+                <StyledLinkImg
+                  src={props.theme ? link : linkLight}
+                  alt="link"
+                />
               </a>
               {linkSize(coinData.links.blockchain_site[0])}
               <StyledLinkImg
                 onClick={(e) => handleCopy(coinData.links.blockchain_site[0])}
-                src={feather}
+                src={props.theme ? feather : featherLight}
                 alt="feather"
               />
             </StyledBlockchainContainer>
@@ -288,12 +300,15 @@ function CoinPageInfo(props) {
                 target="_blank"
                 rel="noreferrer"
               >
-                <StyledLinkImg src={link} alt="link" />
+                <StyledLinkImg
+                  src={props.theme ? link : linkLight}
+                  alt="link"
+                />
               </a>
               {linkSize(coinData.links.blockchain_site[1])}
               <StyledLinkImg
                 onClick={(e) => handleCopy(coinData.links.blockchain_site[1])}
-                src={feather}
+                src={props.theme ? feather : featherLight}
                 alt="feather"
               />
             </StyledBlockchainContainer>
@@ -303,12 +318,15 @@ function CoinPageInfo(props) {
                 target="_blank"
                 rel="noreferrer"
               >
-                <StyledLinkImg src={link} alt="link" />
+                <StyledLinkImg
+                  src={props.theme ? link : linkLight}
+                  alt="link"
+                />
               </a>
               {linkSize(coinData.links.blockchain_site[2])}
               <StyledLinkImg
                 onClick={(e) => handleCopy(coinData.links.blockchain_site[2])}
-                src={feather}
+                src={props.theme ? feather : featherLight}
                 alt="feather"
               />
             </StyledBlockchainContainer>
@@ -325,6 +343,7 @@ const mapStateToProps = (state) => ({
   isLoading: state.coinPage.isLoading,
   hasError: state.coinPage.hasError,
   currency: state.currency.currency,
+  theme: state.theme.darkTheme,
 });
 
 const mapDispatchToProps = {

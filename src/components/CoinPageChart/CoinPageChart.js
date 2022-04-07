@@ -88,8 +88,8 @@ function MarketChart(props) {
                     label: "Price",
                     data: chartData.prices.map((price) => price[1]),
                     pointRadius: 0,
-                    borderColor: "#707070",
-                    backgroundColor: "#191B1F",
+                    borderColor: props.theme ? "#707070" : "#1049E2",
+                    backgroundColor: props.theme ? "#191B1F" : "#ffffff",
                     fill: true,
                     tension: 0.4,
                   },
@@ -125,6 +125,7 @@ const mapStateToProps = (state) => ({
   isLoading: state.coinPage.isLoading,
   hasError: state.coinPage.hasError,
   currency: state.currency.currency,
+  theme: state.theme.darkTheme
 });
 
 const mapDispatchToProps = {

@@ -4,11 +4,13 @@ import globalData from "./globalData";
 import bitcoinCharts from "./bitcoinCharts";
 import coinPage from "./coinPageData";
 import currency from "./currency";
+import theme from "./theme";
 import searchBar from "./searchBar";
 import coinsTable from "./coinsTable";
 
 const reducers = combineReducers({
   currency,
+  theme,
   globalData,
   bitcoinCharts,
   coinPage,
