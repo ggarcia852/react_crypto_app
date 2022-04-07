@@ -7,6 +7,7 @@ import currency from "./currency";
 import theme from "./theme";
 import searchBar from "./searchBar";
 import coinsTable from "./coinsTable";
+import portfolio from "./portfolio";
 
 const reducers = combineReducers({
   currency,
@@ -16,10 +17,7 @@ const reducers = combineReducers({
   coinPage,
   searchBar,
   coinsTable,
+  portfolio,
 });
 
-export const store = createStore(
-  reducers,
-  window._REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(thunk)
-);
+export const store = createStore(reducers, applyMiddleware(thunk));

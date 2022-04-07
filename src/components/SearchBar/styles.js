@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
   display: flex;
   height: 63px;
   width: 350px;
-  background: ${props => props.theme.navBox};
+  background: ${(props) => props.theme.navBox};
   border-radius: 15px;
   border: none;
   align-items: center;
@@ -13,13 +13,13 @@ export const StyledContainer = styled.div`
 
 export const StyledInput = styled.input`
   height: 60px;
-  background: ${props => props.theme.navBox};
+  background: ${(props) => props.theme.navBox};
   border: none;
   outline: 0px;
   font-size: 17px;
-  color: ${props => props.theme.color};
+  color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {
-    color: ${props => props.theme.color};
+    color: ${(props) => props.theme.color};
   }
 `;
 
@@ -29,7 +29,6 @@ export const StyledList = styled.div`
   min-width: 150px;
   overflow: scroll;
   background: ${(props) => props.theme.secondary};
-  border: 1px solid ${(props) => props.theme.secondary};
   border-radius: 5px;
 `;
 
