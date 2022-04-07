@@ -224,8 +224,8 @@ const CoinData = (props) => {
                                   {
                                     data: coin.sparkline_in_7d.price,
                                     borderColor:
-                                      coin.sparkline_in_7d.price.slice(0, 1) <
-                                      coin.sparkline_in_7d.price.slice(-1)
+                                      coin.sparkline_in_7d.price[1] <=
+                                      coin.sparkline_in_7d.price[coin.sparkline_in_7d.price.length -1]
                                         ? "#00FC2A"
                                         : "#FE1040",
                                     fill: false,

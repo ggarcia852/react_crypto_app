@@ -10,6 +10,7 @@ export const StyledBarContainer = styled.div`
 export const StyledCurrencyName = styled.div`
   display: flex;
   background: #06d554;
+  color: ${props => props.theme.color};
   width: 80px;
   height: 45px;
   justify-content: center;
@@ -24,7 +25,7 @@ export const StyledCurrencyImg = styled.img`
 `;
 
 export const StyledCurrencyInput = styled.input`
-  background-color: #2c2d33;
+  background-color: ${props => props.theme.navBox};
   border: none;
   outline: 0px;
   height: 45px;
@@ -32,10 +33,7 @@ export const StyledCurrencyInput = styled.input`
   border-radius: 0px 10px 10px 0px;
   font-size: 14px;
   padding-left: 20px;
-  color: #ffffff;
-  &::-webkit-input-placeholder {
-    color: #ffffff;
-  }
+  color: ${props => props.theme.color};
   &:hover {
     cursor: pointer;
   }

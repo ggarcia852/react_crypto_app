@@ -1,10 +1,10 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
   body {
-    background: #1F2128;
-    color: #FFFFFF;
+    background: ${props => props.theme.main};
+    color: ${props => props.theme.color};
     margin: 0px;
     width: 1920;
     font-family: Poppins
@@ -16,3 +16,17 @@ export const Container = styled.div`
   flex-flow: column;
   width: 100%;
 `
+
+export const darkTheme = {
+  main: '#1F2128',
+  secondary: '#191B1F',
+  color: '#FFFFFF',
+  navBox: '#2C2F36',
+}
+
+export const lightTheme = {
+  main: '#FCFCFC',
+  secondary: '#FFFFFF',
+  color: '#2C2F36',
+  navBox: '#FFFFFF',
+}

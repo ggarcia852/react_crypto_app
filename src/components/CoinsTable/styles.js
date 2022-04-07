@@ -9,7 +9,7 @@ export const StyledHeader = styled.div`
 export const StyledOverview = styled.div`
   display: flex;
   font-size: 22px;
-  color: #ffffff;
+  color: ${props => props.theme.color};
   height: 61px;
   padding-left: 93px;
   padding-top: 65px;
@@ -21,7 +21,7 @@ export const StyledCoinList = styled.div`
 
 export const StyledTable = styled.div`
   display: table;
-  background: #191b1f;
+  background: ${(props) => props.theme.secondary};
   padding: 50px 35px 30px 50px;
   border-radius: 10px;
   width: 100%;
@@ -66,7 +66,7 @@ export const StyledImg = styled.img`
 
 export const StyledCoinLink = styled(Link)`
   text-decoration: none;
-  color: #ffffff;
+  color: ${(props) => props.theme.color};
 `;
 
 export const StyledBullets = styled.div`
