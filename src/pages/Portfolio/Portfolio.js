@@ -1,13 +1,25 @@
+import { AddCoin, CoinAsset } from "components";
 import React from "react";
-import { Container, Heading, StyledButton } from "./styles";
+import {
+  AssetContainer,
+  ButtonContainer,
+  Heading,
+  StyledButton,
+} from "./styles";
 
 export default function Portfolio(props) {
   return (
     <>
-      <Container>
+    <div>
+      <AddCoin />
+    </div>
+      <ButtonContainer>
         <StyledButton>Add Asset</StyledButton>
-      </Container>
-      <Heading>Your Statistics</Heading>
+      </ButtonContainer>
+      <AssetContainer>
+        <Heading>Your Statistics</Heading>
+        <CoinAsset />
+      </AssetContainer>
     </>
   );
 }

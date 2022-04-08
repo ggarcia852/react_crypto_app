@@ -8,3 +8,5 @@ export { default as ProgressBar } from "./ProgressBar";
 export { default as CoinPageChart } from "./CoinPageChart";
 export { default as ConversionBar } from "./ConversionBar";
 export { default as CoinPageInfo } from "./CoinPageInfo";
+export {default as AddCoin } from "./AddCoin"
+export { default as CoinAsset } from "./CoinAsset"
