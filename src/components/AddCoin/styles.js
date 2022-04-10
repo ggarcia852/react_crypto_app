@@ -7,4 +7,5 @@ export const Container = styled.div`
 
 export const CoinContainer = styled.div`
     display: flex;
+    justify-content: center;
 `

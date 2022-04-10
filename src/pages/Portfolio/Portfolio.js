@@ -1,5 +1,7 @@
-import { AddCoin, CoinAsset } from "components";
 import React from "react";
+import { connect } from "react-redux";
+import { addAsset } from "store/portfolio/actions";
+import { AddCoin, CoinAsset } from "components";
 import {
   AssetContainer,
   ButtonContainer,
@@ -7,14 +9,18 @@ import {
   StyledButton,
 } from "./styles";
 
-export default function Portfolio(props) {
+const Portfolio = (props) => {
   return (
     <>
-    <div>
-      <AddCoin />
-    </div>
       <ButtonContainer>
-        <StyledButton>Add Asset</StyledButton>
+        <StyledButton onClick={() => props.addAsset(true)}>
+          Add Asset
+        </StyledButton>
+        {props.showAddAsset && (
+          <div>
+            <AddCoin />
+          </div>
+        )}
       </ButtonContainer>
       <AssetContainer>
         <Heading>Your Statistics</Heading>
@@ -22,4 +28,14 @@ export default function Portfolio(props) {
       </AssetContainer>
     </>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  showAddAsset: state.portfolio.showAddAsset,
+});
+
+const mapDispatchToProps = {
+  addAsset,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);
