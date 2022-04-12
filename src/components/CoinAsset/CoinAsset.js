@@ -1,37 +1,56 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Container } from "./styles";
+import pencil from "assets/pencil.svg"
+import {
+  AssetContainer,
+  CoinContainer,
+  Container,
+  EditContainer,
+  EditImg,
+  Heading,
+  ImgContainer,
+  MarketContainer,
+  Stat,
+  StatsContainer,
+  StyledImg,
+} from "./styles";
 
 const CoinAsset = (props) => {
   return (
     <Container>
       {/* {props.assets && (
         <> */}
-          {props.assets?.map((asset) => (
-            <div key={asset.id}>
-              <div>
-                <img src={asset.thumb} alt="coin" />
-                <div>{asset.name} ({asset.symbol})</div>
-              </div>
-              <div>
-                <div>Your coin: </div>
-                <div>
-                  <span>Coin amount: {asset.purchaseAmount}</span>
-                  <span>Amount value: $</span>
-                  <span>Price change since purchase: %</span>
-                  <span>Purchase date: {asset.date}</span>
-                </div>
-                <div>Market price: </div>
-                <div>
-                  <span>Current price: $</span>
-                  <span>Price change 24h: %</span>
-                  <span>Volume/Market Cap: %</span>
-                  <span>Circulating/Max Supply: %</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        {/* </>
+      {props.assets?.map((asset) => (
+        <AssetContainer key={asset.id}>
+          <div>
+            <CoinContainer>
+              <ImgContainer>
+                <StyledImg src={asset.thumb} alt="coin" />
+              </ImgContainer>
+              <Heading>
+                {asset.name} ({asset.symbol})
+              </Heading>
+            </CoinContainer>
+          </div>
+          <MarketContainer>
+            <EditContainer>Your coin: <EditImg src={pencil} alt="edit" /> </EditContainer>
+            <StatsContainer>
+              <Stat>Coin amount: {asset.purchaseAmount}</Stat>
+              <Stat>Amount value: $</Stat>
+              <Stat>Price change since purchase: %</Stat>
+              <Stat>Purchase date: {asset.date}</Stat>
+            </StatsContainer>
+            <div>Market price: </div>
+            <StatsContainer>
+              <Stat>Current price: $</Stat>
+              <Stat>Price change 24h: %</Stat>
+              <Stat>Volume/Market Cap: %</Stat>
+              <Stat>Circulating/Max Supply: %</Stat>
+            </StatsContainer>
+          </MarketContainer>
+        </AssetContainer>
+      ))}
+      {/* </>
       )} */}
     </Container>
   );

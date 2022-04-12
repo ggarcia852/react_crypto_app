@@ -18,6 +18,7 @@ export const StyledButton = styled.button`
 
 export const Heading = styled.div`
   font-size: 22px;
+  margin-bottom: 50px;
 `;
 
 export const AssetContainer = styled.div`
