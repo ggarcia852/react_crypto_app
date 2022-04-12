@@ -4,6 +4,7 @@ import {
   SEARCH_COINS_LOADING,
   SEARCH_COINS_SUCCESS,
   SEARCH_COINS_ERROR,
+  ADD_COIN_TO_ASSETS,
 } from "./index";
 
 export const addAsset = (value) => {
@@ -26,4 +27,11 @@ export const searchCoins = (value) => async (dispatch) => {
   } catch (err) {
     dispatch({ type: SEARCH_COINS_ERROR, payload: err });
   }
+};
+
+export const addCoinToAssets = (coin) => {
+  return {
+    type: ADD_COIN_TO_ASSETS,
+    payload: coin,
+  };
 };

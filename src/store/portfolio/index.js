@@ -1,14 +1,16 @@
 const initialState = {
   showAddAsset: false,
-  coins: [],
+  searchCoins: [],
   isLoading: false,
   hasError: false,
+  assets: [],
 };
 
 export const ADD_ASSET = "ADD_ASSET";
 export const SEARCH_COINS_LOADING = "SEARCH_COINS_LOADING";
 export const SEARCH_COINS_SUCCESS = "SEARCH_COINS_SUCCESS";
 export const SEARCH_COINS_ERROR = "SEARCH_COINS_ERROR";
+export const ADD_COIN_TO_ASSETS = "ADD_COIN_TO_ASSETS";
 
 function selectCoinReducer(state = initialState, action) {
   switch (action.type) {
@@ -27,13 +29,19 @@ function selectCoinReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        coins: action.payload,
+        searchCoins: action.payload,
       };
     case SEARCH_COINS_ERROR:
       return {
         ...state,
         isLoading: false,
         hasError: true,
+      };
+    case ADD_COIN_TO_ASSETS:
+        console.log(state.assets)
+      return {
+        ...state,
+        assets: [...state.assets, action.payload],
       };
     default:
       return state;
