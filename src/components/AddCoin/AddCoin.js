@@ -1,13 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { searchCoins, addAsset, addCoinToAssets } from "store/portfolio/actions";
-import { CoinContainer, Container } from "./styles";
+import {
+  searchCoins,
+  addAsset,
+  addCoinToAssets,
+} from "store/portfolio/actions";
+import {
+  ButtonContainer,
+  CloseButton,
+  CoinContainer,
+  Container,
+  Direction,
+  DirectionsContainer,
+  Heading,
+  ImgContainer,
+  Input,
+  InputContainer,
+  StyledListItem,
+  SaveButton,
+  SelectedCoinContainer,
+  StyledImg,
+  StyledList,
+} from "./styles";
 
 function AddCoin(props) {
   const [value, setValue] = useState("");
   const [coin, setCoin] = useState(null);
   const [purchaseAmount, setPurchaseAmount] = useState(0);
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     if (value !== "") {
@@ -26,17 +46,17 @@ function AddCoin(props) {
   };
 
   const handleAmountChange = (e) => {
-    setPurchaseAmount(e.target.value)
-  }
+    setPurchaseAmount(e.target.value);
+  };
   const handleDateChange = (e) => {
-    setDate(e.target.value)
-  }
+    setDate(e.target.value);
+  };
 
   const saveAsset = (coin) => {
-    setCoin(coin.purchaseAmount= purchaseAmount, coin.date= date)
-    props.addCoinToAssets(coin)
-    props.addAsset(false)
-  }
+    setCoin((coin.purchaseAmount = purchaseAmount), (coin.date = date));
+    props.addCoinToAssets(coin);
+    props.addAsset(false);
+  };
 
   const hasValue = value !== "";
   const hasCoins = !props.isLoading && props.coins && hasValue;
@@ -47,59 +67,72 @@ function AddCoin(props) {
   return (
     <Container>
       <div>
-        <div>Select Coin</div>
+        <Heading>Enter Coin Details</Heading>
       </div>
       <CoinContainer>
         <div>
           {noCoinSelected && (
-            <div>
-              1.) Search and select coin <br /> 2.) Enter purchase
-              amount <br />
-              3.) Select your purchase date
-            </div>
+            <DirectionsContainer>
+              <Direction>1.) Search and select your coin </Direction>
+              <Direction>2.) Enter purchase amount</Direction>
+              <Direction>3.) Select your purchase date</Direction>
+            </DirectionsContainer>
           )}
           {selectedCoin && (
-            <>
-              <img src={coin.thumb} alt="coin" />
+            <SelectedCoinContainer>
+              <ImgContainer>
+                <StyledImg src={coin.thumb} alt="coin" />
+              </ImgContainer>
               <div>
                 {coin.name} ({coin.symbol})
               </div>
-            </>
+            </SelectedCoinContainer>
           )}
         </div>
-        <div>
-          <form>
-            <input
-            type="text"
+        <InputContainer>
+          <div>
+            <Input
+              type="text"
               value={value}
               placeholder="Search Coins"
               onChange={handleChange}
             />
-            <ul>
+            <StyledList>
               {props.isLoading && hasValue && <div>Loading coins...</div>}
               {noCoins && <div>No coins found.</div>}
               {hasCoins &&
                 props.coins.map((coin) => (
-                  <li onClick={() => handleClick(coin)} key={coin.id}>
+                  <StyledListItem
+                    onClick={() => handleClick(coin)}
+                    key={coin.id}
+                  >
                     <img src={coin.thumb} alt="coin" /> {coin.name} (
                     {coin.symbol}){/* </StyledLink> */}
-                  </li>
+                  </StyledListItem>
                 ))}
-            </ul>
-          </form>
-          <div>
-            <input type="number" onChange={handleAmountChange} placeholder="Purchase Amount" />
+            </StyledList>
           </div>
           <div>
-            <input type="date" onChange={handleDateChange} placeholder="Purchase Date" />
+            <Input
+              type="number"
+              onChange={handleAmountChange}
+              placeholder="Purchase Amount"
+            />
           </div>
-        </div>
+          <div>
+            <Input
+              type="date"
+              onChange={handleDateChange}
+              placeholder="Purchase Date"
+            />
+          </div>
+        </InputContainer>
       </CoinContainer>
       <div>
-        <div>
-          <button onClick={() => props.addAsset(false)}>Close</button>
-          <button onClick={() => saveAsset(coin)}>Save Coin</button>
-        </div>
+        <ButtonContainer>
+          <CloseButton onClick={() => props.addAsset(false)}>Close</CloseButton>
+          <SaveButton onClick={() => saveAsset(coin)}>Save Coin</SaveButton>
+        </ButtonContainer>
       </div>
     </Container>
   );

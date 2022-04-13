@@ -1,13 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
+import Modal from "react-modal";
 import { addAsset } from "store/portfolio/actions";
 import { AddCoin, CoinAsset } from "components";
 import {
   AssetContainer,
   ButtonContainer,
-  Heading,
   StyledButton,
+  customModalStyles,
 } from "./styles";
+
+Modal.setAppElement("#root");
 
 const Portfolio = (props) => {
   return (
@@ -16,14 +19,11 @@ const Portfolio = (props) => {
         <StyledButton onClick={() => props.addAsset(true)}>
           Add Asset
         </StyledButton>
-        {props.showAddAsset && (
-          <div>
-            <AddCoin />
-          </div>
-        )}
+        <Modal isOpen={props.showAddAsset} style={customModalStyles}>
+          <AddCoin />
+        </Modal>
       </ButtonContainer>
       <AssetContainer>
-        <Heading>Your Statistics</Heading>
         <CoinAsset />
       </AssetContainer>
     </>
@@ -32,6 +32,7 @@ const Portfolio = (props) => {
 
 const mapStateToProps = (state) => ({
   showAddAsset: state.portfolio.showAddAsset,
+  theme: state.portfolio.darkTheme,
 });
 
 const mapDispatchToProps = {

@@ -5,9 +5,14 @@ export const Container = styled.div`
   flex-flow: column;
 `;
 
-export const Heading = styled.div`
-    font-size: 25px;
+export const CoinHeading = styled.div`
+    max-font-size: 25px;
     margin-top: 10px;
+`;
+
+export const StatisticHeading = styled.div`
+  font-size: 22px;
+  margin-bottom: 50px;
 `;
 
 export const AssetContainer = styled.div`
@@ -17,7 +22,7 @@ export const AssetContainer = styled.div`
 `;
 
 export const StatsContainer = styled.div`
-  background: #191B1F;
+  background: ${(props) => props.theme.secondary};
   padding: 40px;
 `;
 
@@ -47,7 +52,7 @@ export const CoinContainer = styled.div`
   justify-content: center;
   height: 295px;
   width: 258px;
-  background: #191b1f;
+  background: ${(props) => props.theme.secondary};
   border-radius: 10px;
 `;
 
@@ -58,7 +63,7 @@ export const ImgContainer = styled.div`
   height: 105px;
   width: 105px;
   border-radius: 10px;
-  background: #1f2128;
+  background: ${(props) => props.theme.main};
 `;
 
 export const StyledImg = styled.img`
@@ -70,10 +75,3 @@ export const StyledImg = styled.img`
 export const Stat = styled.span`
     margin-right: 50px;
 `
-
-// export const = styled.div`
-// `
-// export const = styled.div`
-// `
-// export const = styled.div`
-// `

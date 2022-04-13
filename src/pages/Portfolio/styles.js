@@ -14,13 +14,25 @@ export const StyledButton = styled.button`
   border-radius: 7px;
   font-size: 20px;
   font-weight: 600;
-`;
-
-export const Heading = styled.div`
-  font-size: 22px;
-  margin-bottom: 50px;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
 `;
 
 export const AssetContainer = styled.div`
   margin-left 111px;
 `;
+
+export const customModalStyles = {
+  content: {
+    background: "#2C2F36",
+    borderRadius: "10px",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
