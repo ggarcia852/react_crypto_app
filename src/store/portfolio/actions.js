@@ -1,19 +1,25 @@
 import axios from "axios";
 import {
   ADD_ASSET,
+  RESET_ASSETS,
   SEARCH_COINS_LOADING,
   SEARCH_COINS_SUCCESS,
   SEARCH_COINS_ERROR,
   GET_COIN_STATS_LOADING,
   GET_COIN_STATS_SUCCESS,
   GET_COIN_STATS_ERROR,
-  ADD_COIN_TO_ASSETS,
 } from "./index";
 
 export const addAsset = (value) => {
   return {
     type: ADD_ASSET,
     payload: value,
+  };
+};
+export const resetAssets = () => {
+  return {
+    type: RESET_ASSETS,
+    payload: [],
   };
 };
 
@@ -32,27 +38,36 @@ export const searchCoins = (value) => async (dispatch) => {
   }
 };
 
-export const addCoinToAssets = (coin) => {
-    return {
-        type: ADD_COIN_TO_ASSETS,
-        payload: coin,
-    };
-};
-
 export const getCoinStats = (coin) => async (dispatch, getState) => {
-    const state = getState();
-    let currency = state.currency.currency
-    try {
-      dispatch({ type: GET_COIN_STATS_LOADING });
-      const { data } = await axios(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coin}&sparkline=false`
-      );
-      console.log(data[0])
-      dispatch({
-        type: GET_COIN_STATS_SUCCESS,
-        payload: data[0],
-      });
-    } catch (err) {
-      dispatch({ type: GET_COIN_STATS_ERROR, payload: err });
-    }
+  const state = getState();
+  let currency = state.currency.currency;
+  try {
+    dispatch({ type: GET_COIN_STATS_LOADING });
+    const { data } = await axios(
+      `https://api.coingecko.com/api/v3/coins/${coin.id}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false
+`
+    );
+    const price = data.market_data.current_price[currency];
+    const priceChange24 =
+      data.market_data.price_change_percentage_24h_in_currency[currency];
+    const circulatingSupply = data.market_data.circulating_supply;
+    const maxSupply = data.market_data.max_supply;
+    const marketCap = data.market_data.market_cap[currency];
+    const volume = data.market_data.total_volume[currency];
+
+    dispatch({
+      type: GET_COIN_STATS_SUCCESS,
+      payload: {
+        ...coin,
+        price,
+        priceChange24,
+        circulatingSupply,
+        maxSupply,
+        marketCap,
+        volume,
+      },
+    });
+  } catch (err) {
+    dispatch({ type: GET_COIN_STATS_ERROR, payload: err });
+  }
 };

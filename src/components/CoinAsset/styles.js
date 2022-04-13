@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -6,8 +7,8 @@ export const Container = styled.div`
 `;
 
 export const CoinHeading = styled.div`
-    max-font-size: 25px;
-    margin-top: 10px;
+  max-font-size: 25px;
+  margin-top: 10px;
 `;
 
 export const StatisticHeading = styled.div`
@@ -24,12 +25,12 @@ export const AssetContainer = styled.div`
 export const StatsContainer = styled.div`
   background: ${(props) => props.theme.secondary};
   padding: 40px;
+  width: 100%;
 `;
 
 export const EditContainer = styled.div`
-display: flex;
-align-items: center;
-
+  display: flex;
+  align-items: center;
 `;
 
 export const EditImg = styled.img`
@@ -38,10 +39,9 @@ export const EditImg = styled.img`
 `;
 
 export const MarketContainer = styled.div`
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 `;
 
 export const CoinContainer = styled.div`
@@ -68,10 +68,23 @@ export const ImgContainer = styled.div`
 
 export const StyledImg = styled.img`
   width: 45px;
-//   height: 45px;
 `;
 
-
 export const Stat = styled.span`
-    margin-right: 50px;
-`
+  margin-right: 50px;
+`;
+
+export const ColoredSpan = styled.span.attrs((props) => ({
+  style: {
+    color: `${props.color}`,
+  },
+}))``;
+
+export const Green = styled.span`
+  color: #06d554;
+`;
+
+export const StyledCoinLink = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => props.theme.color};
+`;

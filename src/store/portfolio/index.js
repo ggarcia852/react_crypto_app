@@ -7,13 +7,13 @@ const initialState = {
 };
 
 export const ADD_ASSET = "ADD_ASSET";
+export const RESET_ASSETS = "RESET_ASSETS";
 export const SEARCH_COINS_LOADING = "SEARCH_COINS_LOADING";
 export const SEARCH_COINS_SUCCESS = "SEARCH_COINS_SUCCESS";
 export const SEARCH_COINS_ERROR = "SEARCH_COINS_ERROR";
 export const GET_COIN_STATS_LOADING = "GET_COIN_STATS_LOADING";
 export const GET_COIN_STATS_SUCCESS = "GET_COIN_STATS_SUCCESS";
 export const GET_COIN_STATS_ERROR = "GET_COIN_STATS_ERROR";
-export const ADD_COIN_TO_ASSETS = "ADD_COIN_TO_ASSETS";
 
 function selectCoinReducer(state = initialState, action) {
   switch (action.type) {
@@ -21,6 +21,11 @@ function selectCoinReducer(state = initialState, action) {
       return {
         ...state,
         showAddAsset: action.payload,
+      };
+    case RESET_ASSETS:
+      return {
+        ...state,
+        assets: action.payload,
       };
     case SEARCH_COINS_LOADING:
       return {
@@ -50,20 +55,13 @@ function selectCoinReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        // function to add coin stats to assets array item with matching id...filter
-        //  action.payload,
+        assets: [...state.assets, action.payload],
       };
     case GET_COIN_STATS_ERROR:
       return {
         ...state,
         isLoading: false,
         hasError: true,
-      };
-    case ADD_COIN_TO_ASSETS:
-        console.log(state.assets)
-      return {
-        ...state,
-        assets: [...state.assets, action.payload],
       };
     default:
       return state;

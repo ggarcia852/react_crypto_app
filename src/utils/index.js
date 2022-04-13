@@ -15,6 +15,7 @@ export const CurrencyFormat = (n) => {
 
 export const RemoveNegative = (n) => {
   if (n < 0) return n * -1;
+  if (n > 0) return n;
 };
 
 export const ConvertTime = (n) => {

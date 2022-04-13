@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  searchCoins,
-  addAsset,
-  addCoinToAssets,
-} from "store/portfolio/actions";
+import { searchCoins, addAsset, getCoinStats } from "store/portfolio/actions";
 import {
   ButtonContainer,
   CloseButton,
@@ -26,7 +22,7 @@ import {
 function AddCoin(props) {
   const [value, setValue] = useState("");
   const [coin, setCoin] = useState(null);
-  const [purchaseAmount, setPurchaseAmount] = useState(0);
+  const [purchaseAmount, setPurchaseAmount] = useState();
   const [date, setDate] = useState("");
 
   useEffect(() => {
@@ -54,7 +50,7 @@ function AddCoin(props) {
 
   const saveAsset = (coin) => {
     setCoin((coin.purchaseAmount = purchaseAmount), (coin.date = date));
-    props.addCoinToAssets(coin);
+    props.getCoinStats(coin);
     props.addAsset(false);
   };
 
@@ -63,6 +59,11 @@ function AddCoin(props) {
   const noCoins = hasCoins && props.coins?.length === 0;
   const selectedCoin = coin;
   const noCoinSelected = !coin;
+  let year = new Date().getFullYear();
+  let day = new Date().getDate();
+  let month = new Date().getMonth();
+  const today = `${year}-${month}-${day}`;
+  // console.log(today)
 
   return (
     <Container>
@@ -107,7 +108,7 @@ function AddCoin(props) {
                     key={coin.id}
                   >
                     <img src={coin.thumb} alt="coin" /> {coin.name} (
-                    {coin.symbol}){/* </StyledLink> */}
+                    {coin.symbol})
                   </StyledListItem>
                 ))}
             </StyledList>
@@ -115,6 +116,7 @@ function AddCoin(props) {
           <div>
             <Input
               type="number"
+              min=".01"
               onChange={handleAmountChange}
               placeholder="Purchase Amount"
             />
@@ -122,6 +124,7 @@ function AddCoin(props) {
           <div>
             <Input
               type="date"
+              // max={today}
               onChange={handleDateChange}
               placeholder="Purchase Date"
             />
@@ -149,7 +152,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   searchCoins,
   addAsset,
-  addCoinToAssets,
+  getCoinStats,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCoin);
