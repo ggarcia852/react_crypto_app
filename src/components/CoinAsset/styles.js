@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
   display: flex;
   flex-flow: column;
+  width: 100%;
 `;
 
 export const CoinHeading = styled.div`
@@ -14,18 +15,24 @@ export const CoinHeading = styled.div`
 export const StatisticHeading = styled.div`
   font-size: 22px;
   margin-bottom: 50px;
+  font-weight: 500;
 `;
 
 export const AssetContainer = styled.div`
   display: flex;
   margin-bottom: 40px;
-  font-size: 18px;
+  // width: 100%;
+  // font-size: 18px;
 `;
 
 export const StatsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   background: ${(props) => props.theme.secondary};
-  padding: 40px;
-  width: 100%;
+  padding: 25px;
+  border-radius: 10px;
+  // margin-right: 
+  // width: 100%;
 `;
 
 export const EditContainer = styled.div`
@@ -42,6 +49,8 @@ export const MarketContainer = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  width: 100%;
+  margin: 10px 0px;
 `;
 
 export const CoinContainer = styled.div`
@@ -71,7 +80,7 @@ export const StyledImg = styled.img`
 `;
 
 export const Stat = styled.span`
-  margin-right: 50px;
+  // margin-right: 40px;
 `;
 
 export const ColoredSpan = styled.span.attrs((props) => ({

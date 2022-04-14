@@ -21,7 +21,7 @@ export const StyledButton = styled.button`
 `;
 
 export const AssetContainer = styled.div`
-  margin-left 111px;
+  margin: 0px 100px;
 `;
 
 export const customModalStyles = {

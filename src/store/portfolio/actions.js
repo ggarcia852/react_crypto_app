@@ -38,7 +38,7 @@ export const searchCoins = (value) => async (dispatch) => {
   }
 };
 
-export const getCoinStats = (coin) => async (dispatch, getState) => {
+export const getCoinStats = (coin, date) => async (dispatch, getState) => {
   const state = getState();
   let currency = state.currency.currency;
   try {
@@ -55,6 +55,10 @@ export const getCoinStats = (coin) => async (dispatch, getState) => {
     const marketCap = data.market_data.market_cap[currency];
     const volume = data.market_data.total_volume[currency];
 
+    const history =
+      await axios(`https://api.coingecko.com/api/v3/coins/${coin.id}/history?date=${date}
+  `);
+    const purchasePrice = history.data.market_data?.current_price[currency];
     dispatch({
       type: GET_COIN_STATS_SUCCESS,
       payload: {
@@ -65,9 +69,28 @@ export const getCoinStats = (coin) => async (dispatch, getState) => {
         maxSupply,
         marketCap,
         volume,
+        purchasePrice,
       },
     });
   } catch (err) {
     dispatch({ type: GET_COIN_STATS_ERROR, payload: err });
   }
 };
+
+// export const getPurchasePrice = (coin, date) => async (dispatch, getState) => {
+//   const state = getState();
+//   let currency = state.currency.currency;
+//   // 30-12-2017
+//   try {
+//     dispatch({ type: GET_PURCHASE_PRICE_LOADING });
+//     const { data } =
+//       await axios(`https://api.coingecko.com/api/v3/coins/${coin.id}/history?date=${date}
+//     `);
+//     console.log(data)
+//     const purchasePrice = data.market_data?.current_price[currency]
+//     console.log("price:", purchasePrice);
+//     dispatch({ type: GET_PURCHASE_PRICE_SUCCESS, payload: { ...coin, purchasePrice } });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };

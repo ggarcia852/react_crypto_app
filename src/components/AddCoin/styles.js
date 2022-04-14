@@ -78,7 +78,7 @@ export const Input = styled.input`
   }
   border: none;
   border-radius: 10px;
-  padding: 0px 0px 0px 15px;
+  padding: 0px 15px;
 `;
 
 export const StyledList = styled.div`

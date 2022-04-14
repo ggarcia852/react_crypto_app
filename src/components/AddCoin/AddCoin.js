@@ -45,12 +45,16 @@ function AddCoin(props) {
     setPurchaseAmount(e.target.value);
   };
   const handleDateChange = (e) => {
-    setDate(e.target.value);
+    const year = e.target.value.slice(0, 4);
+    const month = e.target.value.slice(5, 7);
+    const day = e.target.value.slice(-2);
+    const newDate = `${day}-${month}-${year}`;
+    setDate(newDate);
   };
 
   const saveAsset = (coin) => {
     setCoin((coin.purchaseAmount = purchaseAmount), (coin.date = date));
-    props.getCoinStats(coin);
+    props.getCoinStats(coin, date);
     props.addAsset(false);
   };
 
@@ -59,11 +63,6 @@ function AddCoin(props) {
   const noCoins = hasCoins && props.coins?.length === 0;
   const selectedCoin = coin;
   const noCoinSelected = !coin;
-  let year = new Date().getFullYear();
-  let day = new Date().getDate();
-  let month = new Date().getMonth();
-  const today = `${year}-${month}-${day}`;
-  // console.log(today)
 
   return (
     <Container>
@@ -124,7 +123,7 @@ function AddCoin(props) {
           <div>
             <Input
               type="date"
-              // max={today}
+              id="date"
               onChange={handleDateChange}
               placeholder="Purchase Date"
             />
