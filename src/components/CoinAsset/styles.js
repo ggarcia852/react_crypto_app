@@ -8,12 +8,13 @@ export const Container = styled.div`
 `;
 
 export const CoinHeading = styled.div`
-  max-font-size: 25px;
+  font-size: 20px;
   margin-top: 10px;
+  margin-bottom: 40px;
 `;
 
 export const StatisticHeading = styled.div`
-  font-size: 22px;
+  font-size: 21px;
   margin-bottom: 50px;
   font-weight: 500;
 `;
@@ -21,8 +22,6 @@ export const StatisticHeading = styled.div`
 export const AssetContainer = styled.div`
   display: flex;
   margin-bottom: 40px;
-  // width: 100%;
-  // font-size: 18px;
 `;
 
 export const StatsContainer = styled.div`
@@ -31,18 +30,11 @@ export const StatsContainer = styled.div`
   background: ${(props) => props.theme.secondary};
   padding: 25px;
   border-radius: 10px;
-  // margin-right: 
-  // width: 100%;
 `;
 
 export const EditContainer = styled.div`
   display: flex;
   align-items: center;
-`;
-
-export const EditImg = styled.img`
-  width: 35px;
-  margin-left: 10px;
 `;
 
 export const MarketContainer = styled.div`
@@ -83,15 +75,15 @@ export const Stat = styled.span`
   // margin-right: 40px;
 `;
 
+export const Coin = styled.span`
+  margin-right: 10px;
+`;
+
 export const ColoredSpan = styled.span.attrs((props) => ({
   style: {
     color: `${props.color}`,
   },
 }))``;
-
-export const Green = styled.span`
-  color: #06d554;
-`;
 
 export const StyledCoinLink = styled(Link)`
   text-decoration: none;

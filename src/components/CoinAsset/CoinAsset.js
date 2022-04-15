@@ -5,6 +5,7 @@ import pencil from "assets/pencil.svg";
 import pencilLight from "assets/pencilLight.svg";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
+import redExit from "assets/redExit.svg";
 import { RemoveNegative } from "../../utils";
 import { StyledPricePercentArrow } from "components/CoinPageInfo/styles";
 import {
@@ -12,7 +13,6 @@ import {
   CoinContainer,
   Container,
   EditContainer,
-  EditImg,
   CoinHeading,
   StatisticHeading,
   ImgContainer,
@@ -20,18 +20,35 @@ import {
   Stat,
   StatsContainer,
   StyledImg,
-  Green,
   ColoredSpan,
   StyledCoinLink,
+  Coin,
 } from "./styles";
 
 const CoinAsset = (props) => {
   useEffect(() => {
     const assets = props.assets;
     props.resetAssets();
-    assets.map((asset) => props.getCoinStats(asset));
+    assets.map((asset) => props.getCoinStats(asset, asset.date));
     // eslint-disable-next-line
   }, [props.currency]);
+
+  const formatDate = (date) => {
+    const year = date.slice(-4);
+    const month = date.slice(3, 5);
+    const day = date.slice(0, 2);
+    const newDate = `${month}-${day}-${year}`;
+    return newDate;
+  };
+
+  const handleDelete = (asset) => {
+    console.log("delete", asset);
+  };
+
+  const handleEdit = (asset) => {
+    console.log("edit", asset);
+  };
+
   return (
     <>
       <Container>
@@ -49,32 +66,47 @@ const CoinAsset = (props) => {
                   {asset.name} ({asset.symbol})
                 </StyledCoinLink>
               </CoinHeading>
+              <input
+                type="image"
+                alt="delete"
+                src={redExit}
+                width="20px"
+                onClick={() => handleDelete(asset)}
+              />
             </CoinContainer>
             <MarketContainer>
               <EditContainer>
-                Coin Stats:{" "}
+                <Coin>Coin Stats:</Coin>
                 {props.theme ? (
-                  <EditImg src={pencil} alt="edit" />
+                  <input
+                    type="image"
+                    src={pencil}
+                    alt="edit"
+                    width="35px"
+                    onClick={() => handleEdit(asset)}
+                  />
                 ) : (
-                  <EditImg src={pencilLight} alt="edit" />
+                  <input
+                    type="image"
+                    src={pencilLight}
+                    alt="edit"
+                    width="35px"
+                    onClick={() => handleEdit(asset)}
+                  />
                 )}{" "}
               </EditContainer>
               <StatsContainer>
+                <Stat>Coin Amount: {asset.purchaseAmount}</Stat>
                 <Stat>
-                  Coin amount: <Green>{asset.purchaseAmount}</Green>
-                </Stat>
-                <Stat>
-                  Current value:{" "}
-                  <Green>
-                    ${(asset.purchaseAmount * asset.price).toFixed(2)}
-                  </Green>
+                  Total Value: $
+                  {(asset.purchaseAmount * asset.price).toFixed(2)}
                 </Stat>
                 <Stat>
                   Total Gain/Loss:{" "}
                   <ColoredSpan
                     color={
-                      (asset.price - asset.purchasePrice) *
-                        asset.purchaseAmount >=
+                      asset.purchaseAmount * asset.price -
+                        asset.purchaseAmount * asset.purchasePrice >=
                       0
                         ? "#00FC2A"
                         : "#FE1040"
@@ -82,39 +114,19 @@ const CoinAsset = (props) => {
                   >
                     $
                     {(
-                      (asset.price - asset.purchasePrice) *
-                      asset.purchaseAmount
+                      asset.purchaseAmount * asset.price -
+                      asset.purchaseAmount * asset.purchasePrice
                     ).toFixed(2)}
                   </ColoredSpan>
                 </Stat>
-                <Stat>
-                  Purchase date: <Green>{asset.date}</Green>
-                </Stat>
+                <Stat>Purchase Date: {formatDate(asset.date)}</Stat>
               </StatsContainer>
               <div>Market Stats: </div>
               <StatsContainer>
+                <Stat>Current Price: ${asset.price}</Stat>
+                <Stat>Purchase Price: ${asset.purchasePrice?.toFixed(2)}</Stat>
                 <Stat>
-                  Current price:{" "}
-                  <ColoredSpan
-                    color={
-                      asset.price >= asset.purchasePrice ? "#00FC2A" : "#FE1040"
-                    }
-                  >
-                    ${asset.price}
-                  </ColoredSpan>
-                </Stat>
-                <Stat>
-                  Purchase Price:{" "}
-                  <ColoredSpan
-                    color={
-                      asset.price < asset.purchasePrice ? "#00FC2A" : "#FE1040"
-                    }
-                  >
-                    ${asset.purchasePrice.toFixed(2)}
-                  </ColoredSpan>
-                </Stat>
-                <Stat>
-                  Price change since purchase:{" "}
+                  Net Gain/Loss:{" "}
                   {(asset.price - asset.purchasePrice) / asset.purchasePrice >
                   0 ? (
                     <StyledPricePercentArrow src={greenUp} alt="up arrow" />
@@ -140,7 +152,7 @@ const CoinAsset = (props) => {
                   </ColoredSpan>
                 </Stat>
                 <Stat>
-                  Price change 24h:{" "}
+                  Price Change 24h:{" "}
                   {asset.priceChange24 >= 0 ? (
                     <StyledPricePercentArrow src={greenUp} alt="up arrow" />
                   ) : (
@@ -152,7 +164,6 @@ const CoinAsset = (props) => {
                     {RemoveNegative(asset.priceChange24.toFixed(2))}%
                   </ColoredSpan>
                 </Stat>
-
                 {/* <Stat>
                   Volume/Market Cap:{" "}
                   <Green>

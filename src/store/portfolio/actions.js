@@ -76,21 +76,3 @@ export const getCoinStats = (coin, date) => async (dispatch, getState) => {
     dispatch({ type: GET_COIN_STATS_ERROR, payload: err });
   }
 };
-
-// export const getPurchasePrice = (coin, date) => async (dispatch, getState) => {
-//   const state = getState();
-//   let currency = state.currency.currency;
-//   // 30-12-2017
-//   try {
-//     dispatch({ type: GET_PURCHASE_PRICE_LOADING });
-//     const { data } =
-//       await axios(`https://api.coingecko.com/api/v3/coins/${coin.id}/history?date=${date}
-//     `);
-//     console.log(data)
-//     const purchasePrice = data.market_data?.current_price[currency]
-//     console.log("price:", purchasePrice);
-//     dispatch({ type: GET_PURCHASE_PRICE_SUCCESS, payload: { ...coin, purchasePrice } });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
