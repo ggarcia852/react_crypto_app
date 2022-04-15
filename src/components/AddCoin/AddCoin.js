@@ -90,7 +90,7 @@ function AddCoin(props) {
           )}
         </div>
         <InputContainer>
-          <div>
+          <form>
             <Input
               type="text"
               value={value}
@@ -111,7 +111,7 @@ function AddCoin(props) {
                   </StyledListItem>
                 ))}
             </StyledList>
-          </div>
+          </form>
           <div>
             <Input
               type="number"

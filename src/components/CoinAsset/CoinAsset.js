@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getCoinStats, resetAssets } from "store/portfolio/actions";
+import { addAsset, getCoinStats, resetAssets } from "store/portfolio/actions";
 import pencil from "assets/pencil.svg";
 import pencilLight from "assets/pencilLight.svg";
 import greenUp from "assets/greenUp.svg";
@@ -42,11 +42,15 @@ const CoinAsset = (props) => {
   };
 
   const handleDelete = (asset) => {
-    console.log("delete", asset);
+    const list = props.assets.filter((element) => element.id !== asset.id);
+    props.resetAssets();
+    const newList = list.map((asset) => props.getCoinStats(asset, asset.date));
+    return newList;
   };
 
   const handleEdit = (asset) => {
     console.log("edit", asset);
+    // props.addAsset(true);
   };
 
   return (
@@ -164,22 +168,6 @@ const CoinAsset = (props) => {
                     {RemoveNegative(asset.priceChange24.toFixed(2))}%
                   </ColoredSpan>
                 </Stat>
-                {/* <Stat>
-                  Volume/Market Cap:{" "}
-                  <Green>
-                    {((asset.volume / asset.marketCap) * 100).toFixed(2)}%
-                  </Green>
-                </Stat>
-                <Stat>
-                  Circulating/Max Supply:{" "}
-                  <Green>
-                    {(
-                      (asset.circulatingSupply / asset.maxSupply) *
-                      100
-                    ).toFixed(2)}
-                    %
-                  </Green>
-                </Stat> */}
               </StatsContainer>
             </MarketContainer>
           </AssetContainer>
@@ -197,6 +185,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+  addAsset,
   resetAssets,
   getCoinStats,
 };

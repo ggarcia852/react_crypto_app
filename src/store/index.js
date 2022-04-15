@@ -20,4 +20,8 @@ const reducers = combineReducers({
   portfolio,
 });
 
+
+
+
+
 export const store = createStore(reducers, applyMiddleware(thunk));
