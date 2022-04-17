@@ -19,6 +19,7 @@ export const ChartsDiv = styled.div`
 
 export const StyledCharts = styled.div`
   display: flex;
+  justify-content: center;
   width: 48%;
   margin-bottom: 50px;
   background: ${(props) => props.theme.secondary};
@@ -83,3 +84,9 @@ export const StyledDate = styled.div`
   display: flex;
   font-size: 22px;
 `;
+
+export const Loader = styled.div`
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+`
