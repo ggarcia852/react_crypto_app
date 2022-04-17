@@ -20,7 +20,7 @@ export const getBitcoinCharts =
           type: GET_BITCOIN_CHARTS_SUCCESS,
           payload: data,
         });
-      }, 800);
+      }, 300);
     } catch (err) {
       dispatch({ type: GET_BITCOIN_CHARTS_ERROR, payload: err });
     }

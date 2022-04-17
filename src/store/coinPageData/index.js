@@ -1,6 +1,10 @@
 const initialState = {
-  isLoading: false,
-  hasError: false,
+  coinDataLoading: false,
+  coinDataError: false,
+  marketDataLoading: false,
+  marketDataError: false,
+  marketChartsLoading: false,
+  marketChartsError: false,
   marketData: null,
   coinData: null,
   chartData: null,
@@ -23,13 +27,13 @@ function coinPageReducer(state = initialState, action) {
     case GET_MARKET_DATA_PENDING:
       return {
         ...state,
-        hasError: false,
-        isLoading: true,
+        marketDataError: false,
+        marketDataLoading: true,
       };
     case GET_MARKET_DATA_SUCCESS:
       return {
         ...state,
-        isLoading: false,
+        marketDataLoading: false,
         marketData: action.payload,
         coinPrice: action.payload.current_price,
         coinSymbol: action.payload.symbol.toUpperCase(),
@@ -37,44 +41,44 @@ function coinPageReducer(state = initialState, action) {
     case GET_MARKET_DATA_ERROR:
       return {
         ...state,
-        hasError: true,
-        isLoading: false,
+        marketDataError: true,
+        marketDataLoading: false,
       };
     case GET_COIN_DATA_PENDING:
       return {
         ...state,
-        hasError: false,
-        isLoading: true,
+        coinDataError: false,
+        coinDataLoading: true,
       };
     case GET_COIN_DATA_SUCCESS:
       return {
         ...state,
         coinData: action.payload,
-        isLoading: false,
+        coinDataLoading: false,
       };
     case GET_COIN_DATA_ERROR:
       return {
         ...state,
-        hasError: true,
-        isLoading: false,
+        coinDataError: true,
+        coinDataLoading: false,
       };
     case GET_MARKET_CHARTS_PENDING:
       return {
         ...state,
-        hasError: false,
-        isLoading: true,
+        marketChartsError: false,
+        marketChartsLoading: true,
       };
     case GET_MARKET_CHARTS_SUCCESS:
       return {
         ...state,
         chartData: action.payload,
-        isLoading: false,
+        marketChartsLoading: false,
       };
     case GET_MARKET_CHARTS_ERROR:
       return {
         ...state,
-        hasError: true,
-        isLoading: false,
+        marketChartsError: true,
+        marketChartsLoading: false,
       };
     default:
       return state;

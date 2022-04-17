@@ -11,7 +11,7 @@ import {
   ChartsDiv,
   StyledCharts,
   StyledChart,
-  StyledContainer,
+  StyledBarContainer,
   StyledButton,
   StyledBar,
   StyledHeading,
@@ -176,7 +176,7 @@ const BitcoinCharts = (props) => {
           )}
         </StyledCharts>
       </ChartsDiv>
-      <StyledContainer>
+      <StyledBarContainer>
         <StyledBar>
           {chartButtons.map((button) => (
             <StyledButton
@@ -188,7 +188,7 @@ const BitcoinCharts = (props) => {
             </StyledButton>
           ))}
         </StyledBar>
-      </StyledContainer>
+      </StyledBarContainer>
     </>
   );
 };

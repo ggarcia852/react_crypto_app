@@ -43,22 +43,32 @@ function ConversionBar(props) {
     );
   };
 
+  const hasMarketData = !props.marketDataLoading && props.marketData;
+
   return (
-    <StyledBarContainer>
-      <StyledCurrencyName>{props.currency.toUpperCase()}</StyledCurrencyName>
-      <StyledCurrencyInput
-        value={conversionAmount}
-        onChange={handleCurrencyChange}
-      />
-      <StyledCurrencyImg src={exchange} alt="exchange" />
-      <StyledCurrencyName>{props.coinSymbol}</StyledCurrencyName>
-      <StyledCurrencyInput value={coinAmount} onChange={handleCoinChange} />
-    </StyledBarContainer>
+    <>
+      {hasMarketData && (
+        <StyledBarContainer>
+          <StyledCurrencyName>
+            {props.currency.toUpperCase()}
+          </StyledCurrencyName>
+          <StyledCurrencyInput
+            value={conversionAmount}
+            onChange={handleCurrencyChange}
+          />
+          <StyledCurrencyImg src={exchange} alt="exchange" />
+          <StyledCurrencyName>{props.coinSymbol}</StyledCurrencyName>
+          <StyledCurrencyInput value={coinAmount} onChange={handleCoinChange} />
+        </StyledBarContainer>
+      )}
+    </>
   );
 }
 
 const mapStateToProps = (state) => ({
   currency: state.currency.currency,
+  marketData: state.coinPage.marketData,
+  marketDataLoading: state.coinPage.marketDataLoading,
   coinPrice: state.coinPage.coinPrice,
   coinSymbol: state.coinPage.coinSymbol,
 });

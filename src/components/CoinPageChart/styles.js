@@ -17,4 +17,11 @@ export const StyledButtonInput = styled.input`
 
 export const StyledChart = styled.div`
   margin-top: 40px;
+  height: 350px;
 `;
+
+export const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  `
