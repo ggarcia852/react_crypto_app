@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getCoinData, getMarketData } from "store/coinPageData/actions";
 import { Oval } from "react-loader-spinner";
-import { ConvertCurrency, ConvertDate, RemoveNegative } from "../../utils";
+import { CurrencyFormat, ConvertDate, RemoveNegative } from "../../utils";
 import { ProgressBar } from "components";
 import bluePlus from "assets/bluePlus.svg";
 import greenUp from "assets/greenUp.svg";
@@ -128,7 +128,9 @@ function CoinPageInfo(props) {
             )}
             {hasMarketData && (
               <>
-                <StyledPrice>${marketData.current_price}</StyledPrice>
+                <StyledPrice>
+                  ${CurrencyFormat(marketData.current_price)}
+                </StyledPrice>
                 <span>
                   {marketData.price_change_percentage_24h >= 0 ? (
                     <StyledPricePercentArrow src={greenUp} alt="up arrow" />
@@ -162,7 +164,8 @@ function CoinPageInfo(props) {
                       <StyledPriceArrow src={greenUp} alt="up arrow" />
                     </div>
                     <div>
-                      <BoldText>All Time High: </BoldText> ${marketData.ath}
+                      <BoldText>All Time High: </BoldText> $
+                      {CurrencyFormat(marketData.ath)}
                       <div>{ConvertDate(marketData.ath_date)}</div>
                     </div>
                   </StyledPriceStat>
@@ -171,7 +174,8 @@ function CoinPageInfo(props) {
                       <StyledPriceArrow src={redDown} alt="down arrow" />
                     </div>
                     <div>
-                      <BoldText>All Time Low: </BoldText>${marketData.atl}
+                      <BoldText>All Time Low: </BoldText>$
+                      {CurrencyFormat(marketData.atl)}
                       <div>{ConvertDate(marketData.atl_date)}</div>
                     </div>
                   </StyledPriceStat>
@@ -195,7 +199,7 @@ function CoinPageInfo(props) {
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Market Cap:</BoldText> $
-                  {ConvertCurrency(marketData.market_cap)}{" "}
+                  {CurrencyFormat(marketData.market_cap)}{" "}
                   <span>
                     {marketData.market_cap_change_percentage_24h >= 0 ? (
                       <StyledPricePercentArrow src={greenUp} alt="up arrow" />
@@ -227,12 +231,12 @@ function CoinPageInfo(props) {
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Fully Diluted Valuation:</BoldText> $
-                  {ConvertCurrency(marketData.fully_diluted_valuation)}
+                  {CurrencyFormat(marketData.fully_diluted_valuation)}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Volume 24h:</BoldText> $
-                  {ConvertCurrency(marketData.market_cap_change_24h)}
+                  {CurrencyFormat(marketData.market_cap_change_24h)}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
@@ -246,19 +250,19 @@ function CoinPageInfo(props) {
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Total Volume:</BoldText>{" "}
-                  {ConvertCurrency(marketData.total_volume)}
+                  {CurrencyFormat(marketData.total_volume)}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Circulating Supply:</BoldText>{" "}
-                  {ConvertCurrency(marketData.circulating_supply)}{" "}
+                  {CurrencyFormat(marketData.circulating_supply)}{" "}
                   {coinData?.symbol?.toUpperCase()}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Max Supply:</BoldText>{" "}
                   {marketData.max_supply
-                    ? ConvertCurrency(marketData.max_supply) +
+                    ? CurrencyFormat(marketData.max_supply) +
                       " " +
                       coinData.symbol?.toUpperCase()
                     : "∞"}{" "}

@@ -6,7 +6,7 @@ import { getCoins, coinsReset } from "store/coinsTable/action";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertCurrency, CurrencyFormat, RemoveNegative } from "../../utils";
+import { CurrencyFormat, RemoveNegative } from "../../utils";
 import { ProgressBar } from "components";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
@@ -180,10 +180,10 @@ const CoinData = (props) => {
                       <StyledTableCell>
                         <StyledBullets>
                           <ColoredDiv color={"#FFB528"}>
-                            ${ConvertCurrency(coin.total_volume)}
+                            ${CurrencyFormat(coin.total_volume)}
                           </ColoredDiv>
                           <ColoredDiv color={"#E8D587"}>
-                            ${ConvertCurrency(coin.market_cap)}
+                            ${CurrencyFormat(coin.market_cap)}
                           </ColoredDiv>
                         </StyledBullets>
                         <ProgressBar
@@ -195,11 +195,11 @@ const CoinData = (props) => {
                       <StyledTableCell>
                         <StyledBullets>
                           <ColoredDiv color={"#FE7D43"}>
-                            ${ConvertCurrency(coin.circulating_supply)}
+                            ${CurrencyFormat(coin.circulating_supply)}
                           </ColoredDiv>
                           <ColoredDiv color={"#FFDCCE"}>
                             {coin.max_supply
-                              ? "$" + ConvertCurrency(coin.max_supply)
+                              ? "$" + CurrencyFormat(coin.max_supply)
                               : "∞"}
                           </ColoredDiv>
                         </StyledBullets>

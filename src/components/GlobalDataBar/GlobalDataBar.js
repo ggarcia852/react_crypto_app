@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Oval } from "react-loader-spinner";
 import { getData } from "store/globalData/actions";
 import { ProgressBar } from "components";
-import { ConvertCurrency } from "../../utils";
+import { CurrencyFormat } from "../../utils";
 import btc from "assets/bitcoin.svg";
 import eth from "assets/ethereum.svg";
 import greenUp from "assets/greenUp.svg";
@@ -41,11 +41,11 @@ const GlobalData = (props) => {
         <StyledGlobalData>
           {props.hasError && <div>Error loading data.</div>}
           <>
-            <StyledData>Coins: {globalData.active_cryptocurrencies}</StyledData>
+            <StyledData>Coins: {globalData.active_cryptocurrencies.toLocaleString()}</StyledData>
             <StyledData>Markets: {globalData.markets}</StyledData>
             <StyledData>
               <li>
-                ${ConvertCurrency(marketCap)}
+                ${CurrencyFormat(marketCap)}
                 {globalData.market_cap_change_percentage_24h_usd > 0 ? (
                   <StyledArrow src={greenUp} alt="up arrow" />
                 ) : (
@@ -54,7 +54,7 @@ const GlobalData = (props) => {
               </li>
             </StyledData>
             <StyledData>
-              <li>${ConvertCurrency(volume)}</li>
+              <li>${CurrencyFormat(volume)}</li>
               <StyledBar>
                 <ProgressBar
                   background={"#2775C9"}

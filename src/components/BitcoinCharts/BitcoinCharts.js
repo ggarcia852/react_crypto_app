@@ -5,7 +5,7 @@ import { Bar, Line } from "react-chartjs-2";
 import { Oval } from "react-loader-spinner";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertCurrency, ConvertDay } from "utils";
+import { ConvertDay, CurrencyFormat } from "utils";
 import {
   StyledHeader,
   ChartsDiv,
@@ -47,7 +47,7 @@ const BitcoinCharts = (props) => {
   ];
 
   let today = new Date().toDateString();
-  let price = props.chartData?.prices.slice(-1)[0].slice(-1)[0].toFixed(0);
+  let price = props.chartData?.prices.slice(-1)[0].slice(-1)[0];
   let volume = props.chartData?.total_volumes
     .slice(-1)[0]
     .slice(-1)[0]
@@ -75,7 +75,7 @@ const BitcoinCharts = (props) => {
             <StyledChart>
               <StyledHeading>
                 <StyledTitle>Price</StyledTitle>
-                <StyledAmount>${price}</StyledAmount>
+                <StyledAmount>${price.toLocaleString()}</StyledAmount>
                 <StyledDate>{today}</StyledDate>
               </StyledHeading>
               <Line
@@ -133,7 +133,7 @@ const BitcoinCharts = (props) => {
             <StyledChart>
               <StyledHeading>
                 <StyledTitle>Volume</StyledTitle>
-                <StyledAmount>${ConvertCurrency(volume)}</StyledAmount>
+                <StyledAmount>${CurrencyFormat(volume)}</StyledAmount>
                 <StyledDate>{today}</StyledDate>
               </StyledHeading>
               <Bar
