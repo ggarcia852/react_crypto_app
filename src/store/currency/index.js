@@ -1,4 +1,4 @@
-const initialState = { currency: "usd" };
+const initialState = { currency: "" };
 
 export const SET_CURRENCY = "SET_CURRENCY";
 
