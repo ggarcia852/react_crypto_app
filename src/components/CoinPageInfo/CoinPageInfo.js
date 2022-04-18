@@ -62,6 +62,8 @@ function CoinPageInfo(props) {
 
   const coinData = props.coinData;
   const marketData = props.marketData;
+  const hasCoinData = !props.coinDataLoading && props.coinData;
+  const hasMarketData = !props.marketDataLoading && props.marketData;
   const hasData = !props.isLoading && props.coinData && props.marketData;
 
   return (
@@ -71,30 +73,33 @@ function CoinPageInfo(props) {
           Coin not found. Please select a coin from the list or try again!
         </div>
       )}
-      {/* {hasData && ( */}
       <>
         <StyledTitle>Summary</StyledTitle>
         <StyledContainer>
           <StyledLeftContainer>
-            {props.coinDataLoading && (
-              <span>
-                <Oval
-                  height="100"
-                  width="100"
-                  color="green"
-                  ariaLabel="loading"
-                />
-              </span>
-            )}
-            {hasData && (
-              <>
-                <StyledCoinContainer>
+            <StyledCoinContainer>
+              {props.coinDataLoading && (
+                <span>
+                  <Oval
+                    height="100"
+                    width="100"
+                    color="green"
+                    ariaLabel="loading"
+                  />
+                </span>
+              )}
+              {hasCoinData && (
+                <>
                   <StyledCoinImg src={coinData.image.small} alt="coinData" />
                   <div>
                     {coinData.name}({coinData.symbol?.toUpperCase()})
                   </div>
-                </StyledCoinContainer>
-                <StyledLinkContainer>
+                </>
+              )}
+            </StyledCoinContainer>
+            <StyledLinkContainer>
+              {hasCoinData && (
+                <>
                   <a
                     href={coinData.links.homepage[0]}
                     target="_blank"
@@ -106,9 +111,9 @@ function CoinPageInfo(props) {
                     />
                   </a>
                   {linkSize(coinData.links.homepage[0])}
-                </StyledLinkContainer>
-              </>
-            )}
+                </>
+              )}
+            </StyledLinkContainer>
           </StyledLeftContainer>
           <StyledPriceContainer>
             {props.marketDataLoading && (
@@ -121,7 +126,7 @@ function CoinPageInfo(props) {
                 />
               </span>
             )}
-            {hasData && (
+            {hasMarketData && (
               <>
                 <StyledPrice>${marketData.current_price}</StyledPrice>
                 <span>
@@ -185,7 +190,7 @@ function CoinPageInfo(props) {
                 />
               </span>
             )}
-            {hasData && (
+            {hasMarketData && (
               <>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
@@ -247,7 +252,7 @@ function CoinPageInfo(props) {
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Circulating Supply:</BoldText>{" "}
                   {ConvertCurrency(marketData.circulating_supply)}{" "}
-                  {coinData.symbol?.toUpperCase()}
+                  {coinData?.symbol?.toUpperCase()}
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
@@ -395,7 +400,6 @@ function CoinPageInfo(props) {
           )}
         </StyledLinksContainer>
       </>
-      {/* )} */}
     </>
   );
 }

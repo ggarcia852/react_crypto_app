@@ -9,7 +9,7 @@ export const StyledHeader = styled.div`
 export const StyledOverview = styled.div`
   display: flex;
   font-size: 22px;
-  color: ${props => props.theme.color};
+  color: ${(props) => props.theme.color};
   height: 61px;
   padding-left: 93px;
   padding-top: 65px;
@@ -47,7 +47,7 @@ export const StyledTableRow = styled.div`
   display: table-row;
 `;
 
-export const StyledTableCell = styled.div.attrs((props)=>({
+export const StyledTableCell = styled.div.attrs((props) => ({
   style: {
     color: `${props.color}`,
   },
@@ -79,4 +79,11 @@ export const StyledChart = styled.div`
   display: flex;
   max-width: 115px;
   height: 45px;
+`;
+
+export const Loader = styled.span`
+  display: flex;
+  justify-content: center;
+  background: ${(props) => props.theme.secondary};
+  width: 100;
 `;

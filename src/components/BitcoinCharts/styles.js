@@ -11,7 +11,7 @@ export const StyledHeader = styled.span`
 
 export const ChartsDiv = styled.div`
   display: flex;
-  max-height: 575px;
+  height: 550px;
   margin: 0px 93px 50px;
   justify-content: space-between;
 `;
