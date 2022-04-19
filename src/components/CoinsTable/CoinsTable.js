@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from "react-redux";
+import { Oval } from "react-loader-spinner";
 import { getCoins, coinsReset } from "store/coinsTable/action";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertCurrency, CurrencyFormat, RemoveNegative } from "../../utils";
+import { CurrencyFormat, RemoveNegative } from "../../utils";
 import { ProgressBar } from "components";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
@@ -23,6 +24,7 @@ import {
   StyledCoinLink,
   StyledBullets,
   StyledChart,
+  Loader,
 } from "./styles";
 import {
   ColoredDiv,
@@ -36,7 +38,7 @@ const CoinData = (props) => {
     setTimeout(() => {
       props.getCoins(page);
       setPage(page + 1);
-    }, 800);
+    }, 500);
   };
 
   useEffect(() => {
@@ -48,10 +50,10 @@ const CoinData = (props) => {
 
   return (
     <>
-      {props.isLoading && <div>Loading coins...</div>}
       <StyledHeader>
         <StyledOverview>Market Overview</StyledOverview>
       </StyledHeader>
+<<<<<<< HEAD
       <StyledCoinList>
         {props.hasError && <div>Error loading coins.</div>}
         {props.coins && (
@@ -227,39 +229,222 @@ const CoinData = (props) => {
                               }}
                               options={{
                                 maintainAspectRatio: false,
+=======
+      {props.hasError && <div>Error loading coins.</div>}
+      {props.coins && (
+        <StyledCoinList>
+          <InfiniteScroll
+            dataLength={props.coins.length}
+            next={fetchMoreData}
+            hasMore={true}
+            loader={
+              <Loader>
+                <Oval width="50" color="green" ariaLabel="loading" />
+              </Loader>
+            }
+          >
+            <StyledTable>
+              <StyledTableHeader>
+                <StyledTableHeaderCell>#</StyledTableHeaderCell>
+                <StyledTableHeaderCell>Name</StyledTableHeaderCell>
+                <StyledTableHeaderCell>Price</StyledTableHeaderCell>
+                <StyledTableHeaderCell>1h%</StyledTableHeaderCell>
+                <StyledTableHeaderCell>24h%</StyledTableHeaderCell>
+                <StyledTableHeaderCell>7d%</StyledTableHeaderCell>
+                <StyledTableHeaderCell>Volume/MarketCap</StyledTableHeaderCell>
+                <StyledTableHeaderCell>
+                  Circulating/Total Supply
+                </StyledTableHeaderCell>
+                <StyledTableHeaderCell>Last 7d</StyledTableHeaderCell>
+              </StyledTableHeader>
+              <StyledTableBody>
+                {props.coins &&
+                  props.coins.map((coin) => (
+                    <StyledTableRow key={coin.id}>
+                      <StyledTableCell>{coin.market_cap_rank}</StyledTableCell>
+                      <StyledTableCell>
+                        <StyledCoinLink to={`/coin/${coin.id}`}>
+                          <StyledImg src={coin.image} alt="coin"></StyledImg>
+                          {coin.name} ({coin.symbol.toUpperCase()})
+                        </StyledCoinLink>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        ${CurrencyFormat(coin.current_price)}
+                      </StyledTableCell>
+                      <StyledTableCell
+                        color={
+                          coin.price_change_percentage_1h_in_currency >= 0
+                            ? "#00FC2A"
+                            : "#FE1040"
+                        }
+                      >
+                        {coin.price_change_percentage_1h_in_currency >= 0 ? (
+                          <StyledPricePercentArrow
+                            src={greenUp}
+                            alt="up arrow"
+                          />
+                        ) : (
+                          <StyledPricePercentArrow
+                            src={redDown}
+                            alt="down arrow"
+                          />
+                        )}
+                        {coin.price_change_percentage_1h_in_currency >= 0
+                          ? coin.price_change_percentage_1h_in_currency?.toFixed(
+                              2
+                            )
+                          : RemoveNegative(
+                              coin.price_change_percentage_1h_in_currency?.toFixed(
+                                2
+                              )
+                            )}
+                        %
+                      </StyledTableCell>
+                      <StyledTableCell
+                        color={
+                          coin.price_change_percentage_24h >= 0
+                            ? "#00FC2A"
+                            : "#FE1040"
+                        }
+                      >
+                        {coin.price_change_percentage_24h >= 0 ? (
+                          <StyledPricePercentArrow
+                            src={greenUp}
+                            alt="up arrow"
+                          />
+                        ) : (
+                          <StyledPricePercentArrow
+                            src={redDown}
+                            alt="down arrow"
+                          />
+                        )}
+                        {coin.price_change_percentage_24h >= 0
+                          ? coin.price_change_percentage_24h?.toFixed(2)
+                          : RemoveNegative(
+                              coin.price_change_percentage_24h?.toFixed(2)
+                            )}
+                        %
+                      </StyledTableCell>
+                      <StyledTableCell
+                        color={
+                          coin.price_change_percentage_7d_in_currency >= 0
+                            ? "#00FC2A"
+                            : "#FE1040"
+                        }
+                      >
+                        {coin.price_change_percentage_7d_in_currency >= 0 ? (
+                          <StyledPricePercentArrow
+                            src={greenUp}
+                            alt="up arrow"
+                          />
+                        ) : (
+                          <StyledPricePercentArrow
+                            src={redDown}
+                            alt="down arrow"
+                          />
+                        )}
+                        {coin.price_change_percentage_7d_in_currency >= 0
+                          ? coin.price_change_percentage_7d_in_currency?.toFixed(
+                              2
+                            )
+                          : RemoveNegative(
+                              coin.price_change_percentage_7d_in_currency?.toFixed(
+                                2
+                              )
+                            )}
+                        %
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <StyledBullets>
+                          <ColoredDiv color={"#FFB528"}>
+                            ${CurrencyFormat(coin.total_volume)}
+                          </ColoredDiv>
+                          <ColoredDiv color={"#E8D587"}>
+                            ${CurrencyFormat(coin.market_cap)}
+                          </ColoredDiv>
+                        </StyledBullets>
+                        <ProgressBar
+                          background={"#FFB528"}
+                          mainBackground={"#E8D587"}
+                          progress={(coin.total_volume / coin.market_cap) * 100}
+                        />
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <StyledBullets>
+                          <ColoredDiv color={"#FE7D43"}>
+                            ${CurrencyFormat(coin.circulating_supply)}
+                          </ColoredDiv>
+                          <ColoredDiv color={"#FFDCCE"}>
+                            {coin.max_supply
+                              ? "$" + CurrencyFormat(coin.max_supply)
+                              : "∞"}
+                          </ColoredDiv>
+                        </StyledBullets>
+                        <ProgressBar
+                          progress={
+                            (coin.circulating_supply / coin.max_supply) * 100
+                          }
+                          background={"#FE7D43"}
+                          mainBackground={"#FFDCCE"}
+                        />
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <StyledChart>
+                          <Line
+                            data={{
+                              labels: coin.sparkline_in_7d.price.map(
+                                (price, index) => index
+                              ),
+                              datasets: [
+                                {
+                                  data: coin.sparkline_in_7d.price,
+                                  borderColor:
+                                    coin.sparkline_in_7d.price[1] <=
+                                    coin.sparkline_in_7d.price[
+                                      coin.sparkline_in_7d.price.length - 1
+                                    ]
+                                      ? "#00FC2A"
+                                      : "#FE1040",
+                                  fill: false,
+                                  tension: 0.5,
+                                },
+                              ],
+                            }}
+                            options={{
+                              maintainAspectRatio: false,
+                              legend: {
+                                display: false,
+                              },
+                              plugins: {
+>>>>>>> Loader
                                 legend: {
                                   display: false,
                                 },
-                                plugins: {
-                                  legend: {
-                                    display: false,
-                                  },
+                              },
+                              elements: {
+                                point: {
+                                  radius: 0,
                                 },
-                                elements: {
-                                  point: {
-                                    radius: 0,
-                                  },
+                              },
+                              scales: {
+                                y: {
+                                  display: false,
                                 },
-                                scales: {
-                                  y: {
-                                    display: false,
-                                  },
-                                  x: {
-                                    display: false,
-                                  },
+                                x: {
+                                  display: false,
                                 },
-                              }}
-                            />
-                          </StyledChart>
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                </StyledTableBody>
-              </StyledTable>
-            </InfiniteScroll>
-          </div>
-        )}
-      </StyledCoinList>
+                              },
+                            }}
+                          />
+                        </StyledChart>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+              </StyledTableBody>
+            </StyledTable>
+          </InfiniteScroll>
+        </StyledCoinList>
+      )}
     </>
   );
 };

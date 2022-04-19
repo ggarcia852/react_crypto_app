@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { Oval } from "react-loader-spinner";
 import { getMarketCharts } from "store/coinPageData/actions";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertDate } from "../../utils";
-import { StyledChart, StyledDayContainer, StyledButtonInput } from "./styles";
+import { StyledChart, StyledDayContainer, StyledButtonInput, Loader } from "./styles";
 
 function MarketChart(props) {
   const [chartDays, setChartDays] = useState("30");
@@ -19,12 +20,11 @@ function MarketChart(props) {
     setChartDays(e.target.value);
   };
 
+  const hasChartData = !props.marketChartsLoading && props.chartData;
   const chartData = props.chartData;
 
   return (
     <>
-      {props.isLoading && <div>Loading chart...</div>}
-      {props.hasError && <div>Error loading chart</div>}
       <StyledDayContainer>
         <div>
           <StyledButtonInput
@@ -78,7 +78,13 @@ function MarketChart(props) {
         </div>
       </StyledDayContainer>
       <StyledChart>
-        {chartData && (
+        {props.marketChartsLoading && (
+          <Loader>
+            <Oval height="100" width="100" color="green" ariaLabel="loading" />
+          </Loader>
+        )}
+        {props.marketChartsError && <div>Error loading chart</div>}
+        {hasChartData && (
           <div>
             <Line
               data={{
@@ -122,10 +128,10 @@ function MarketChart(props) {
 
 const mapStateToProps = (state) => ({
   chartData: state.coinPage.chartData,
-  isLoading: state.coinPage.isLoading,
-  hasError: state.coinPage.hasError,
+  marketChartsLoading: state.coinPage.marketChartsLoading,
+  marketChartsError: state.coinPage.marketChartsError,
   currency: state.currency.currency,
-  theme: state.theme.darkTheme
+  theme: state.theme.darkTheme,
 });
 
 const mapDispatchToProps = {

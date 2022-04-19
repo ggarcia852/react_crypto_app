@@ -11,14 +11,15 @@ export const StyledHeader = styled.span`
 
 export const ChartsDiv = styled.div`
   display: flex;
-  min-height: 449px;
-  margin-left: 93px;
-  margin-right: 93px;
+  height: 550px;
+  margin: 0px 93px 50px;
   justify-content: space-between;
 `;
 
 export const StyledCharts = styled.div`
   display: flex;
+  justify-content: center;
+  height: 100%;
   width: 48%;
   margin-bottom: 50px;
   background: ${(props) => props.theme.secondary};
@@ -31,9 +32,8 @@ export const StyledChart = styled.div`
   width: 99%;
 `;
 
-export const StyledContainer = styled.div`
+export const StyledBarContainer = styled.div`
   display: flex;
-  height: 80px;
   justify-content: center;
 `;
 
@@ -41,6 +41,7 @@ export const StyledBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  height: 80px;
   width: 800px;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
@@ -83,3 +84,9 @@ export const StyledDate = styled.div`
   display: flex;
   font-size: 22px;
 `;
+
+export const Loader = styled.div`
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+`

@@ -14,10 +14,12 @@ export const getCoins = (page) => async (dispatch, getState) => {
     const { data } = await axios(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=25&page=${page}&sparkline=true&price_change_percentage=1h%2C%2024h%2C7d`
     );
-    dispatch({
-      type: GET_COINS_DATA_SUCCESS,
-      payload: data,
-    });
+    setTimeout(() => {
+      dispatch({
+        type: GET_COINS_DATA_SUCCESS,
+        payload: data,
+      });
+    }, 300);
   } catch (err) {
     dispatch({ type: GET_COINS_DATA_ERROR, payload: err });
   }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { Oval } from "react-loader-spinner";
 import { searchCoins } from "store/searchBar/actions";
 import { withRouter } from "react-router-dom";
 import search from "assets/search.svg";
@@ -52,8 +53,15 @@ const SearchBar = (props) => {
           placeholder="Search..."
         />
         <StyledList>
+<<<<<<< HEAD
           {props.isLoading && hasValue && <div>Loading coins...</div>}
           {noCoins && <div>Coin not found.</div>}
+=======
+          {props.isLoading && hasValue && (
+            <Oval height="25" color="green" ariaLabel="loading" />
+          )}
+          {noCoins && <div>No coins found.</div>}
+>>>>>>> Loader
           {hasCoins &&
             props.coins.map((coin) => (
               <StyledListItem onClick={() => handleClick(coin)} key={coin.id}>

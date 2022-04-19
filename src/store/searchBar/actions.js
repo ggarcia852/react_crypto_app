@@ -11,10 +11,12 @@ export const searchCoins = (value) => async (dispatch) => {
     const { data } = await axios(
       `https://crypto-app-server.herokuapp.com/coins/${value}`
     );
-    dispatch({
-      type: SEARCH_COINS_SUCCESS,
-      payload: data,
-    });
+    setTimeout(() => {
+      dispatch({
+        type: SEARCH_COINS_SUCCESS,
+        payload: data,
+      });
+    }, 300);
   } catch (err) {
     dispatch({ type: SEARCH_COINS_ERROR, payload: err });
   }

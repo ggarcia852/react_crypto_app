@@ -17,10 +17,12 @@ export const getCoinData = (coin) => async (dispatch) => {
     const { data } = await axios(
       `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=true`
     );
-    dispatch({
-      type: GET_COIN_DATA_SUCCESS,
-      payload: data,
-    });
+    setTimeout(() => {
+      dispatch({
+        type: GET_COIN_DATA_SUCCESS,
+        payload: data,
+      });
+    }, 300);
   } catch (err) {
     dispatch({ type: GET_COIN_DATA_ERROR, payload: err });
   }
@@ -28,34 +30,39 @@ export const getCoinData = (coin) => async (dispatch) => {
 
 export const getMarketData = (coin) => async (dispatch, getState) => {
   const state = getState();
-  let currency = state.currency.currency
+  let currency = state.currency.currency;
   try {
     dispatch({ type: GET_MARKET_DATA_PENDING });
     const { data } = await axios(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coin}&sparkline=false`
     );
-    dispatch({
-      type: GET_MARKET_DATA_SUCCESS,
-      payload: data[0],
-    });
+    setTimeout(() => {
+      dispatch({
+        type: GET_MARKET_DATA_SUCCESS,
+        payload: data[0],
+      });
+    }, 300);
   } catch (err) {
     dispatch({ type: GET_MARKET_DATA_ERROR, payload: err });
   }
 };
 
-export const getMarketCharts = (coin, chartDays) => async (dispatch, getState) => {
-  const state = getState();
-  let currency = state.currency.currency
-  try {
-    dispatch({ type: GET_MARKET_CHARTS_PENDING });
-    const { data } = await axios(
-      `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${chartDays}`
-    );
-    dispatch({
-      type: GET_MARKET_CHARTS_SUCCESS,
-      payload: data,
-    });
-  } catch (err) {
-    dispatch({ type: GET_MARKET_CHARTS_ERROR, payload: err });
-  }
-};
+export const getMarketCharts =
+  (coin, chartDays) => async (dispatch, getState) => {
+    const state = getState();
+    let currency = state.currency.currency;
+    try {
+      dispatch({ type: GET_MARKET_CHARTS_PENDING });
+      const { data } = await axios(
+        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${chartDays}`
+      );
+      setTimeout(() => {
+        dispatch({
+          type: GET_MARKET_CHARTS_SUCCESS,
+          payload: data,
+        });
+      }, 300);
+    } catch (err) {
+      dispatch({ type: GET_MARKET_CHARTS_ERROR, payload: err });
+    }
+  };

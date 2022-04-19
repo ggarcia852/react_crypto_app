@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { getBitcoinCharts } from "store/bitcoinCharts/actions";
 import { Bar, Line } from "react-chartjs-2";
+import { Oval } from "react-loader-spinner";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertCurrency, ConvertDay } from "utils";
+import { ConvertDay, CurrencyFormat } from "utils";
 import {
   StyledHeader,
   ChartsDiv,
   StyledCharts,
   StyledChart,
-  StyledContainer,
+  StyledBarContainer,
   StyledButton,
   StyledBar,
   StyledHeading,
   StyledTitle,
   StyledAmount,
   StyledDate,
+  Loader,
 } from "./styles";
 
 const BitcoinCharts = (props) => {
@@ -45,7 +47,7 @@ const BitcoinCharts = (props) => {
   ];
 
   let today = new Date().toDateString();
-  let price = props.chartData?.prices.slice(-1)[0].slice(-1)[0].toFixed(0);
+  let price = props.chartData?.prices.slice(-1)[0].slice(-1)[0];
   let volume = props.chartData?.total_volumes
     .slice(-1)[0]
     .slice(-1)[0]
@@ -55,18 +57,25 @@ const BitcoinCharts = (props) => {
 
   return (
     <>
-      <StyledHeader>
-        Bitcoin Overview
-        {props.isLoading && <span> (Loading charts...)</span>}
-      </StyledHeader>
+      <StyledHeader>Bitcoin Overview</StyledHeader>
+      {props.hasError && <div>error on page</div>}
       <ChartsDiv>
         <StyledCharts>
-          {props.hasError && <div>error on page</div>}
+          {props.isLoading && (
+            <Loader>
+              <Oval
+                height="100"
+                width="100"
+                color="green"
+                ariaLabel="loading"
+              />
+            </Loader>
+          )}
           {hasData && (
             <StyledChart>
               <StyledHeading>
                 <StyledTitle>Price</StyledTitle>
-                <StyledAmount>${price}</StyledAmount>
+                <StyledAmount>${price.toLocaleString()}</StyledAmount>
                 <StyledDate>{today}</StyledDate>
               </StyledHeading>
               <Line
@@ -109,13 +118,23 @@ const BitcoinCharts = (props) => {
           )}
         </StyledCharts>
         <StyledCharts>
-          <StyledChart>
-            <StyledHeading>
-              <StyledTitle>Volume</StyledTitle>
-              <StyledAmount>${ConvertCurrency(volume)}</StyledAmount>
-              <StyledDate>{today}</StyledDate>
-            </StyledHeading>
-            {chartData && (
+          {props.isLoading && (
+            <Loader>
+              <Oval
+                height="100"
+                width="100"
+                color="green"
+                ariaLabel="loading"
+              />
+            </Loader>
+          )}
+          {hasData && (
+            <StyledChart>
+              <StyledHeading>
+                <StyledTitle>Volume</StyledTitle>
+                <StyledAmount>${CurrencyFormat(volume)}</StyledAmount>
+                <StyledDate>{today}</StyledDate>
+              </StyledHeading>
               <Bar
                 data={{
                   labels: chartData.total_volumes.map((volume) =>
@@ -152,11 +171,11 @@ const BitcoinCharts = (props) => {
                   },
                 }}
               />
-            )}
-          </StyledChart>
+            </StyledChart>
+          )}
         </StyledCharts>
       </ChartsDiv>
-      <StyledContainer>
+      <StyledBarContainer>
         <StyledBar>
           {chartButtons.map((button) => (
             <StyledButton
@@ -168,7 +187,7 @@ const BitcoinCharts = (props) => {
             </StyledButton>
           ))}
         </StyledBar>
-      </StyledContainer>
+      </StyledBarContainer>
     </>
   );
 };
