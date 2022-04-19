@@ -78,9 +78,8 @@ const BitcoinCharts = (props) => {
                       data: chartData.prices.map((price) => price[1].toFixed()),
                       pointRadius: 0,
                       borderColor: "#00FF5F",
-                      backgroundColor: "#518665",
                       fill: true,
-                      tension: 0.2,
+                      tension: 0.3,
                     },
                   ],
                 }}
