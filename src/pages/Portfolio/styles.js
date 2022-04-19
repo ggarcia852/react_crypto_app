@@ -1,22 +1,41 @@
 import styled from "styled-components";
+import { store }from '../../store'
 
-export const Container = styled.div`
+export const ButtonContainer = styled.div`
   padding: 75px 0px 35px;
   text-align: center;
 `;
 
 export const StyledButton = styled.button`
-width: 30%;
-height: 75px;
-background: #06d554;
-color: ${(props) => props.theme.color};
-border: none;
-border-radius: 7px;
-font-size: 20px;
-font-weight: 600;
+  width: 30%;
+  height: 75px;
+  background: #06d554;
+  color: ${(props) => props.theme.color};
+  border: none;
+  border-radius: 7px;
+  font-size: 20px;
+  font-weight: 600;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
 `;
 
-export const Heading = styled.div`
-  font-size: 22px;
-    margin-left 111px;
+export const AssetContainer = styled.div`
+  margin: 0px 100px;
 `;
+
+let background = store.getState().theme.darkTheme ? '#2C2F36' : '#FFFFFF'
+
+export const customModalStyles = {
+  content: {
+    background: `${background}`,
+    borderRadius: "10px",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
