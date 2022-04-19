@@ -87,6 +87,5 @@ export const StyledDate = styled.div`
 
 export const Loader = styled.div`
   display: flex;
-  // justify-content: center;
   align-items: center;
 `

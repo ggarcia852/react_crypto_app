@@ -62,7 +62,7 @@ const CoinData = (props) => {
             hasMore={true}
             loader={
               <Loader>
-                <Oval width="50" color="green" ariaLabel="loading" />
+                <Oval width="50" color="#06D554" ariaLabel="loading" />
               </Loader>
             }
           >

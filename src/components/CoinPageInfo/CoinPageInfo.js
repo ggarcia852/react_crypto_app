@@ -83,7 +83,7 @@ function CoinPageInfo(props) {
                   <Oval
                     height="100"
                     width="100"
-                    color="green"
+                    color="#06D554"
                     ariaLabel="loading"
                   />
                 </span>
@@ -121,7 +121,7 @@ function CoinPageInfo(props) {
                 <Oval
                   height="100"
                   width="100"
-                  color="green"
+                  color="#06D554"
                   ariaLabel="loading"
                 />
               </span>
@@ -189,7 +189,7 @@ function CoinPageInfo(props) {
                 <Oval
                   height="100"
                   width="100"
-                  color="green"
+                  color="#06D554"
                   ariaLabel="loading"
                 />
               </span>
@@ -327,7 +327,7 @@ function CoinPageInfo(props) {
               <Oval
                 height="100"
                 width="100"
-                color="green"
+                color="#06D554"
                 ariaLabel="loading"
               />
             </span>

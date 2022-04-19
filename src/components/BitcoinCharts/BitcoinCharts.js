@@ -66,7 +66,7 @@ const BitcoinCharts = (props) => {
               <Oval
                 height="100"
                 width="100"
-                color="green"
+                color="#06D554"
                 ariaLabel="loading"
               />
             </Loader>
@@ -86,7 +86,8 @@ const BitcoinCharts = (props) => {
                       label: "Bitcoin Price",
                       data: chartData.prices.map((price) => price[1].toFixed()),
                       pointRadius: 0,
-                      borderColor: "#00FF5F",
+                      borderColor: props.theme ? "#0DE65E" : "#2550EA",
+                      backgroundColor: props.theme ? "#1F2128" : "#FCFCFC",
                       fill: true,
                       tension: 0.3,
                     },
@@ -123,7 +124,7 @@ const BitcoinCharts = (props) => {
               <Oval
                 height="100"
                 width="100"
-                color="green"
+                color="#06D554"
                 ariaLabel="loading"
               />
             </Loader>
@@ -144,7 +145,7 @@ const BitcoinCharts = (props) => {
                     {
                       label: "Bitcoin Volume",
                       data: chartData.total_volumes.map((volume) => volume[1]),
-                      backgroundColor: "#2172E5",
+                      backgroundColor: props.theme ? "#2550EA": "#0DE65E",
                       borderRadius: 5,
                     },
                   ],
@@ -197,6 +198,7 @@ const mapStateToProps = (state) => ({
   isLoading: state.bitcoinCharts.isLoading,
   hasError: state.bitcoinCharts.hasError,
   currency: state.currency,
+  theme: state.theme.darkTheme,
 });
 
 const mapDispatchToProps = {

@@ -6,7 +6,12 @@ import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertDate } from "../../utils";
-import { StyledChart, StyledDayContainer, StyledButtonInput, Loader } from "./styles";
+import {
+  StyledChart,
+  StyledDayContainer,
+  StyledButtonInput,
+  Loader
+} from "./styles";
 
 function MarketChart(props) {
   const [chartDays, setChartDays] = useState("30");
@@ -80,7 +85,12 @@ function MarketChart(props) {
       <StyledChart>
         {props.marketChartsLoading && (
           <Loader>
-            <Oval height="100" width="100" color="green" ariaLabel="loading" />
+            <Oval
+              height="100"
+              width="100"
+              color="#06D554"
+              ariaLabel="loading"
+            />
           </Loader>
         )}
         {props.marketChartsError && <div>Error loading chart</div>}
@@ -94,7 +104,7 @@ function MarketChart(props) {
                     label: "Price",
                     data: chartData.prices.map((price) => price[1]),
                     pointRadius: 0,
-                    borderColor: props.theme ? "#707070" : "#0075ff",
+                    borderColor: props.theme ? "#707070" : "#2550EA",
                     backgroundColor: props.theme ? "#191B1F" : "#ffffff",
                     fill: true,
                     tension: 0.4,

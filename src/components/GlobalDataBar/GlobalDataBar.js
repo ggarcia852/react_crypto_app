@@ -34,14 +34,16 @@ const GlobalData = (props) => {
     <StyledHeader>
       {props.isLoading && (
         <Loading>
-          <Oval height="35" color="green" ariaLabel="loading" />
+          <Oval height="35" color="#06D554" ariaLabel="loading" />
         </Loading>
       )}
       {hasData && (
         <StyledGlobalData>
           {props.hasError && <div>Error loading data.</div>}
           <>
-            <StyledData>Coins: {globalData.active_cryptocurrencies.toLocaleString()}</StyledData>
+            <StyledData>
+              Coins: {globalData.active_cryptocurrencies.toLocaleString()}
+            </StyledData>
             <StyledData>Markets: {globalData.markets}</StyledData>
             <StyledData>
               <li>
