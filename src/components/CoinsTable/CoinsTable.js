@@ -112,15 +112,11 @@ const CoinData = (props) => {
                               alt="down arrow"
                             />
                           )}
-                          {coin.price_change_percentage_1h_in_currency >= 0
-                            ? coin.price_change_percentage_1h_in_currency?.toFixed(
-                                2
-                              )
-                            : RemoveNegative(
-                                coin.price_change_percentage_1h_in_currency?.toFixed(
-                                  2
-                                )
-                              )}
+                          {RemoveNegative(
+                            coin.price_change_percentage_1h_in_currency?.toFixed(
+                              2
+                            )
+                          )}
                           %
                         </StyledTableCell>
                         <StyledTableCell
@@ -141,11 +137,9 @@ const CoinData = (props) => {
                               alt="down arrow"
                             />
                           )}
-                          {coin.price_change_percentage_24h >= 0
-                            ? coin.price_change_percentage_24h?.toFixed(2)
-                            : RemoveNegative(
-                                coin.price_change_percentage_24h?.toFixed(2)
-                              )}
+                          {RemoveNegative(
+                            coin.price_change_percentage_24h?.toFixed(2)
+                          )}
                           %
                         </StyledTableCell>
                         <StyledTableCell
@@ -166,15 +160,11 @@ const CoinData = (props) => {
                               alt="down arrow"
                             />
                           )}
-                          {coin.price_change_percentage_7d_in_currency >= 0
-                            ? coin.price_change_percentage_7d_in_currency?.toFixed(
-                                2
-                              )
-                            : RemoveNegative(
-                                coin.price_change_percentage_7d_in_currency?.toFixed(
-                                  2
-                                )
-                              )}
+                          {RemoveNegative(
+                            coin.price_change_percentage_7d_in_currency?.toFixed(
+                              2
+                            )
+                          )}
                           %
                         </StyledTableCell>
                         <StyledTableCell>
@@ -225,7 +215,9 @@ const CoinData = (props) => {
                                     data: coin.sparkline_in_7d.price,
                                     borderColor:
                                       coin.sparkline_in_7d.price[1] <=
-                                      coin.sparkline_in_7d.price[coin.sparkline_in_7d.price.length -1]
+                                      coin.sparkline_in_7d.price[
+                                        coin.sparkline_in_7d.price.length - 1
+                                      ]
                                         ? "#00FC2A"
                                         : "#FE1040",
                                     fill: false,

@@ -1,13 +1,42 @@
 import React from "react";
-import { Container, Heading, StyledButton } from "./styles";
+import { connect } from "react-redux";
+import Modal from "react-modal";
+import { addAsset } from "store/portfolio/actions";
+import { AddCoin, CoinAsset } from "components";
+import {
+  AssetContainer,
+  ButtonContainer,
+  StyledButton,
+  customModalStyles,
+} from "./styles";
 
-export default function Portfolio(props) {
+Modal.setAppElement("#root");
+
+const Portfolio = (props) => {
   return (
     <>
-      <Container>
-        <StyledButton>Add Asset</StyledButton>
-      </Container>
-      <Heading>Your Statistics</Heading>
+      <ButtonContainer>
+        <StyledButton onClick={() => props.addAsset(true)}>
+          Add Asset
+        </StyledButton>
+        <Modal isOpen={props.showAddAsset} style={customModalStyles}>
+          <AddCoin />
+        </Modal>
+      </ButtonContainer>
+      <AssetContainer>
+        <CoinAsset />
+      </AssetContainer>
     </>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  showAddAsset: state.portfolio.showAddAsset,
+  theme: state.portfolio.darkTheme,
+});
+
+const mapDispatchToProps = {
+  addAsset,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);

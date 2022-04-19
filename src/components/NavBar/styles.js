@@ -24,6 +24,9 @@ export const StyledLink = styled(NavLink)`
   align-items: center;
   justify-content: center;
   border-radius: 15px;
+  &:hover{
+    opacity: .7;
+}
   &.active {
     background: ${props => props.theme.navBox};
   }

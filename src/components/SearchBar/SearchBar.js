@@ -52,7 +52,7 @@ const SearchBar = (props) => {
           placeholder="Search..."
         />
         <StyledList>
-          {props.isLoading && hasValue && <div>loading...</div>}
+          {props.isLoading && hasValue && <div>Loading coins...</div>}
           {noCoins && <div>Coin not found.</div>}
           {hasCoins &&
             props.coins.map((coin) => (
