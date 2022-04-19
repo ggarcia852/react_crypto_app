@@ -70,7 +70,7 @@ export const InputContainer = styled.div`
 export const Input = styled.input`
   width: 400px;
   height: 65px;
-  color-scheme: dark;
+  color-scheme: ${(props) => props.theme.modal};
   background: ${(props) => props.theme.secondary};
   color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {
@@ -84,10 +84,11 @@ export const Input = styled.input`
 export const StyledList = styled.div`
   position: absolute;
   max-height: 175px;
-  min-width: 150px;
+  min-width: 200px;
   overflow: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;
+  margin-top: 64px;
 `;
 
 export const StyledListItem = styled.div`
@@ -127,4 +128,9 @@ export const SaveButton = styled.button`
     opacity: 0.9;
     cursor: pointer;
   }
+`;
+
+export const Error = styled.div`
+  color: #fe1040;
+  font-size: 15px;
 `;

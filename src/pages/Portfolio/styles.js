@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { store }from '../../store'
 
 export const ButtonContainer = styled.div`
   padding: 75px 0px 35px;
@@ -24,9 +25,11 @@ export const AssetContainer = styled.div`
   margin: 0px 100px;
 `;
 
+let background = store.getState().theme.darkTheme ? '#2C2F36' : '#FFFFFF'
+
 export const customModalStyles = {
   content: {
-    background: "#2C2F36",
+    background: `${background}`,
     borderRadius: "10px",
     top: "50%",
     left: "50%",

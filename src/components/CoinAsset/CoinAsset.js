@@ -42,10 +42,20 @@ const CoinAsset = (props) => {
   };
 
   const handleDelete = (asset) => {
-    const list = props.assets.filter((element) => element.id !== asset.id);
-    props.resetAssets();
-    const newList = list.map((asset) => props.getCoinStats(asset, asset.date));
-    return newList;
+    if (window.confirm("Permanently delete this asset?")) {
+      const list = props.assets.filter(
+        (element) =>
+          element.id !== asset.id ||
+          element.purchaseAmount !== asset.purchaseAmount ||
+          element.date !== asset.date
+      );
+      props.resetAssets();
+      const newList = list.map((asset) =>
+        props.getCoinStats(asset, asset.date)
+      );
+      return newList;
+    }
+    return;
   };
 
   const handleEdit = (asset) => {
@@ -60,7 +70,7 @@ const CoinAsset = (props) => {
           <StatisticHeading>Your Assets</StatisticHeading>
         )}
         {props.assets?.map((asset) => (
-          <AssetContainer key={asset.id}>
+          <AssetContainer key={asset.id + Math.random()}>
             <CoinContainer>
               <ImgContainer>
                 <StyledImg src={asset.thumb} alt="coin" />
@@ -123,7 +133,12 @@ const CoinAsset = (props) => {
                     ).toFixed(2)}
                   </ColoredSpan>
                 </Stat>
-                <Stat>Purchase Date: {formatDate(asset.date)}</Stat>
+                <Stat>
+                  Purchase Date:{" "}
+                  <ColoredSpan color={"#00FC2A"}>
+                    {formatDate(asset.date)}
+                  </ColoredSpan>
+                </Stat>
               </StatsContainer>
               <div>Market Stats: </div>
               <StatsContainer>
@@ -165,7 +180,7 @@ const CoinAsset = (props) => {
                   <ColoredSpan
                     color={asset.priceChange24 >= 0 ? "#00FC2A" : "#FE1040"}
                   >
-                    {RemoveNegative(asset.priceChange24.toFixed(2))}%
+                    {RemoveNegative(asset.priceChange24?.toFixed(2))}%
                   </ColoredSpan>
                 </Stat>
               </StatsContainer>
