@@ -16,6 +16,7 @@ export const DirectionsContainer = styled.div`
   justify-content: space-around;
   text-align: center;
   margin: 15px;
+  padding: 10px 0px;
   border-radius: 10px;
   font-size: 15px;
   height: 235px;
@@ -133,4 +134,8 @@ export const SaveButton = styled.button`
 export const Error = styled.div`
   color: #fe1040;
   font-size: 15px;
+`;
+
+export const Loading = styled.div`
+  padding-left: 20px;
 `;

@@ -6,7 +6,7 @@ import pencilLight from "assets/pencilLight.svg";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
 import redExit from "assets/redExit.svg";
-import { RemoveNegative } from "../../utils";
+import { RemoveNegative, CurrencyFormat } from "../../utils";
 import { StyledPricePercentArrow } from "components/CoinPageInfo/styles";
 import {
   AssetContainer,
@@ -110,10 +110,10 @@ const CoinAsset = (props) => {
                 )}{" "}
               </EditContainer>
               <StatsContainer>
-                <Stat>Coin Amount: {asset.purchaseAmount}</Stat>
+                <Stat>Coin Amount: {CurrencyFormat(asset.purchaseAmount)}</Stat>
                 <Stat>
                   Total Value: $
-                  {(asset.purchaseAmount * asset.price).toFixed(2)}
+                  {CurrencyFormat(asset.purchaseAmount * asset.price)}
                 </Stat>
                 <Stat>
                   Total Gain/Loss:{" "}
@@ -127,10 +127,10 @@ const CoinAsset = (props) => {
                     }
                   >
                     $
-                    {(
+                    {CurrencyFormat(
                       asset.purchaseAmount * asset.price -
                       asset.purchaseAmount * asset.purchasePrice
-                    ).toFixed(2)}
+                    )}
                   </ColoredSpan>
                 </Stat>
                 <Stat>
@@ -142,8 +142,8 @@ const CoinAsset = (props) => {
               </StatsContainer>
               <div>Market Stats: </div>
               <StatsContainer>
-                <Stat>Current Price: ${asset.price}</Stat>
-                <Stat>Purchase Price: ${asset.purchasePrice?.toFixed(2)}</Stat>
+                <Stat>Current Price: ${CurrencyFormat(asset.price)}</Stat>
+                <Stat>Purchase Price: ${CurrencyFormat(asset.purchasePrice)}</Stat>
                 <Stat>
                   Net Gain/Loss:{" "}
                   {(asset.price - asset.purchasePrice) / asset.purchasePrice >
