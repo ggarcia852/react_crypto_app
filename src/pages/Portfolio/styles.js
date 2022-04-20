@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { store }from '../../store'
 
 export const ButtonContainer = styled.div`
   padding: 75px 0px 35px;
@@ -25,12 +24,14 @@ export const AssetContainer = styled.div`
   margin: 0px 100px;
 `;
 
-let background = store.getState().theme.darkTheme ? '#2C2F36' : '#FFFFFF'
+export const NoAssetsContainer = styled.div`
+  text-align: center;
+  font-size: 25px;
+`;
 
 export const customModalStyles = {
   content: {
-    background: `${background}`,
-    borderRadius: "10px",
+    background: "none",
     top: "50%",
     left: "50%",
     right: "auto",

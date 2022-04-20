@@ -108,7 +108,9 @@ function AddCoin(props) {
               <DirectionsContainer>
                 <Direction>1. Search and select your coin </Direction>
                 <Direction>2. Enter amount of coin purchased</Direction>
-                <Direction>3. Click on calendar to select your purchase date</Direction>
+                <Direction>
+                  3. Click on calendar to select your purchase date
+                </Direction>
               </DirectionsContainer>
             )}
             {selectedCoin && (
@@ -131,7 +133,9 @@ function AddCoin(props) {
             />
             {errors.coin?.length > 0 && <Error>{errors.coin}</Error>}
             <StyledList>
-              {props.isLoading && hasValue && <Loading>Loading coins...</Loading>}
+              {props.isLoading && hasValue && (
+                <Loading>Loading coins...</Loading>
+              )}
               {noCoins && <div>No coins found.</div>}
               {hasCoins &&
                 props.coins.map((coin) => (

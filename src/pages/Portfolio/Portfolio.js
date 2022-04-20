@@ -8,6 +8,7 @@ import {
   ButtonContainer,
   StyledButton,
   customModalStyles,
+  NoAssetsContainer,
 } from "./styles";
 
 Modal.setAppElement("#root");
@@ -23,6 +24,11 @@ const Portfolio = (props) => {
           <AddCoin />
         </Modal>
       </ButtonContainer>
+      {props.assets.length === 0 && (
+        <NoAssetsContainer>
+          ↑↑ Add Assets to start building your Portfolio ↑↑
+        </NoAssetsContainer>
+      )}
       <AssetContainer>
         <CoinAsset />
       </AssetContainer>
@@ -33,6 +39,7 @@ const Portfolio = (props) => {
 const mapStateToProps = (state) => ({
   showAddAsset: state.portfolio.showAddAsset,
   theme: state.portfolio.darkTheme,
+  assets: state.portfolio.assets,
 });
 
 const mapDispatchToProps = {

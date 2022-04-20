@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-flow: column;
+  background: ${(props) => props.theme.navBox};
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid #707070;
 `;
 
 export const CoinContainer = styled.div`
@@ -22,6 +26,7 @@ export const DirectionsContainer = styled.div`
   height: 235px;
   width: 205px;
   background: ${(props) => props.theme.secondary};
+  border: 1px solid #707070;
 `;
 
 export const Direction = styled.div`
@@ -73,13 +78,15 @@ export const Input = styled.input`
   height: 65px;
   color-scheme: ${(props) => props.theme.modal};
   background: ${(props) => props.theme.secondary};
-  color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {
     color: ${(props) => props.theme.color};
   }
-  border: none;
+  border: 1px solid #707070;
   border-radius: 10px;
   padding: 0px 15px;
+  &::-webkit-inner-spin-button {
+    opacity: 1;
+  }
 `;
 
 export const StyledList = styled.div`
@@ -95,7 +102,7 @@ export const StyledList = styled.div`
 export const StyledListItem = styled.div`
 padding: 0px 15px;
 &:hover {
-  background: #146AE3;
+  background: #2550EA;
 `;
 
 export const ButtonContainer = styled.div`
@@ -110,6 +117,7 @@ export const CloseButton = styled.button`
     color:   color: ${(props) => props.theme.color};
     margin: 5px;
     border: none;
+    border: 1px solid #06d554;
     border-radius: 10px;
     &:hover{
         opacity: .9;

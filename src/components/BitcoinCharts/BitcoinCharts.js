@@ -145,7 +145,7 @@ const BitcoinCharts = (props) => {
                     {
                       label: "Bitcoin Volume",
                       data: chartData.total_volumes.map((volume) => volume[1]),
-                      backgroundColor: props.theme ? "#2550EA": "#0DE65E",
+                      backgroundColor: props.theme ? "#2550EA" : "#0DE65E",
                       borderRadius: 5,
                     },
                   ],

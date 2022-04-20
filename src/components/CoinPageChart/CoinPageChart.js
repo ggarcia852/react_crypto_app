@@ -10,7 +10,7 @@ import {
   StyledChart,
   StyledDayContainer,
   StyledButtonInput,
-  Loader
+  Loader,
 } from "./styles";
 
 function MarketChart(props) {
