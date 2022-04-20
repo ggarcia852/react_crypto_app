@@ -88,12 +88,12 @@ export const StyledPriceStatPercent = styled.span.attrs((props) => ({
   },
 }))`
   font-size: 19px;
-  padding-left: 10px;
 `;
 
 export const StyledPricePercentArrow = styled.img`
   padding-bottom: 5px;
   padding-right: 2px;
+  margin-left: 7px;
 `;
 
 export const StyledPriceArrow = styled.img`
@@ -145,6 +145,11 @@ export const ColoredDiv = styled.div.attrs((props) => ({
 }))`
   display: flex;
 `;
+export const ColoredSpan = styled.span.attrs((props) => ({
+  style: {
+    color: `${props.color}`,
+  },
+}))``;
 
 export const StyledDescriptionTitle = styled.div`
   margin: 50px 12%;
@@ -189,4 +194,9 @@ export const StyledBlockchainContainer = styled.div`
 export const BoldText = styled.span`
   font-weight: 600;
   font-size: 18px;
+`;
+
+export const PriceContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;

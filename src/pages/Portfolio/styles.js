@@ -15,7 +15,7 @@ export const StyledButton = styled.button`
   font-size: 20px;
   font-weight: 600;
   &:hover {
-    opacity: 0.8;
+    opacity: 0.9;
     cursor: pointer;
   }
 `;
@@ -26,7 +26,7 @@ export const AssetContainer = styled.div`
 
 export const NoAssetsContainer = styled.div`
   text-align: center;
-  font-size: 25px;
+  font-size: 17px;
 `;
 
 export const customModalStyles = {

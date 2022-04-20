@@ -36,10 +36,11 @@ import {
   StyledPriceLayers,
   BoldText,
   StyledBullets,
-  StyledMarketStatPercent,
   StyledPriceStatPercent,
   StyledPricePercentArrow,
   ColoredDiv,
+  ColoredSpan,
+  PriceContainer,
 } from "./styles";
 
 function CoinPageInfo(props) {
@@ -65,6 +66,18 @@ function CoinPageInfo(props) {
   const hasCoinData = !props.coinDataLoading && props.coinData;
   const hasMarketData = !props.marketDataLoading && props.marketData;
   const hasData = !props.isLoading && props.coinData && props.marketData;
+  const assets = props.assets.filter(
+    (asset) => asset.id === props.match.params.coinId
+  );
+  const profit = assets.map((asset) => {
+    const currentPrice = asset.price;
+    const purchasePrice = asset.purchasePrice;
+    const amount = asset.purchaseAmount;
+    const total = amount * currentPrice - amount * purchasePrice;
+    return total;
+  });
+
+  const totalProfit = profit.reduce((a, b) => a + b, 0);
 
   return (
     <>
@@ -128,30 +141,42 @@ function CoinPageInfo(props) {
             )}
             {hasMarketData && (
               <>
-                <StyledPrice>
-                  ${CurrencyFormat(marketData.current_price)}
-                </StyledPrice>
-                <span>
-                  {marketData.price_change_percentage_24h >= 0 ? (
-                    <StyledPricePercentArrow src={greenUp} alt="up arrow" />
-                  ) : (
-                    <StyledPricePercentArrow src={redDown} alt="down arrow" />
-                  )}
-                  <StyledPriceStatPercent
-                    color={
-                      marketData.price_change_percentage_24h >= 0
-                        ? "#00FC2A"
-                        : "#FE1040"
-                    }
-                  >
-                    {marketData.price_change_percentage_24h > 0
-                      ? marketData.price_change_percentage_24h?.toFixed(2)
-                      : RemoveNegative(
-                          marketData.price_change_percentage_24h?.toFixed(2)
-                        )}
-                    %
-                  </StyledPriceStatPercent>
-                </span>
+                <PriceContainer>
+                  <StyledPrice>
+                    ${CurrencyFormat(marketData.current_price)}
+                  </StyledPrice>
+                  <span>
+                    {marketData.price_change_percentage_24h >= 0 ? (
+                      <StyledPricePercentArrow src={greenUp} alt="up arrow" />
+                    ) : (
+                      <StyledPricePercentArrow src={redDown} alt="down arrow" />
+                    )}
+                    <StyledPriceStatPercent
+                      color={
+                        marketData.price_change_percentage_24h >= 0
+                          ? "#00FC2A"
+                          : "#FE1040"
+                      }
+                    >
+                      {marketData.price_change_percentage_24h > 0
+                        ? marketData.price_change_percentage_24h?.toFixed(2)
+                        : RemoveNegative(
+                            marketData.price_change_percentage_24h?.toFixed(2)
+                          )}
+                      %
+                    </StyledPriceStatPercent>
+                  </span>
+                </PriceContainer>
+                {assets.length > 0 && (
+                  <span>
+                    Profit:{" "}
+                    <ColoredSpan
+                      color={totalProfit >= 0 ? "#00FC2A" : "#FE1040"}
+                    >
+                      ${CurrencyFormat(totalProfit)}
+                    </ColoredSpan>
+                  </span>
+                )}
                 <div>
                   <StyledPriceLayers
                     src={props.theme ? layers : layersLight}
@@ -200,33 +225,6 @@ function CoinPageInfo(props) {
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Market Cap:</BoldText> $
                   {CurrencyFormat(marketData.market_cap)}{" "}
-                  <span>
-                    {marketData.market_cap_change_percentage_24h >= 0 ? (
-                      <StyledPricePercentArrow src={greenUp} alt="up arrow" />
-                    ) : (
-                      <StyledPricePercentArrow src={redDown} alt="down arrow" />
-                    )}
-                  </span>
-                  <StyledMarketStatPercent
-                    color={
-                      marketData.market_cap_change_percentage_24h >= 0
-                        ? "#00FC2A"
-                        : "#FE1040"
-                    }
-                  >
-                    <span>
-                      {marketData.market_cap_change_percentage_24h > 0
-                        ? marketData.market_cap_change_percentage_24h?.toFixed(
-                            2
-                          )
-                        : RemoveNegative(
-                            marketData.market_cap_change_percentage_24h?.toFixed(
-                              2
-                            )
-                          )}
-                      %
-                    </span>
-                  </StyledMarketStatPercent>
                 </StyledMarketStat>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
@@ -417,6 +415,7 @@ const mapStateToProps = (state) => ({
   coinDataError: state.coinPage.coinDataError,
   currency: state.currency.currency,
   theme: state.theme.darkTheme,
+  assets: state.portfolio.assets,
 });
 
 const mapDispatchToProps = {

@@ -129,7 +129,7 @@ const CoinAsset = (props) => {
                     $
                     {CurrencyFormat(
                       asset.purchaseAmount * asset.price -
-                      asset.purchaseAmount * asset.purchasePrice
+                        asset.purchaseAmount * asset.purchasePrice
                     )}
                   </ColoredSpan>
                 </Stat>
@@ -143,7 +143,9 @@ const CoinAsset = (props) => {
               <div>Market Stats: </div>
               <StatsContainer>
                 <Stat>Current Price: ${CurrencyFormat(asset.price)}</Stat>
-                <Stat>Purchase Price: ${CurrencyFormat(asset.purchasePrice)}</Stat>
+                <Stat>
+                  Purchase Price: ${CurrencyFormat(asset.purchasePrice)}
+                </Stat>
                 <Stat>
                   Net Gain/Loss:{" "}
                   {(asset.price - asset.purchasePrice) / asset.purchasePrice >

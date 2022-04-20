@@ -96,7 +96,7 @@ export const StyledList = styled.div`
   overflow: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;
-  margin-top: 64px;
+  margin-top: 70px;
 `;
 
 export const StyledListItem = styled.div`
