@@ -41,6 +41,7 @@ import {
   ColoredDiv,
   ColoredSpan,
   PriceContainer,
+  StyledProfit,
 } from "./styles";
 
 function CoinPageInfo(props) {
@@ -168,21 +169,19 @@ function CoinPageInfo(props) {
                   </span>
                 </PriceContainer>
                 {assets.length > 0 && (
-                  <span>
+                  <StyledProfit>
                     Profit:{" "}
                     <ColoredSpan
                       color={totalProfit >= 0 ? "#00FC2A" : "#FE1040"}
                     >
                       ${CurrencyFormat(totalProfit)}
                     </ColoredSpan>
-                  </span>
+                  </StyledProfit>
                 )}
-                <div>
-                  <StyledPriceLayers
-                    src={props.theme ? layers : layersLight}
-                    alt="layers"
-                  />
-                </div>
+                <StyledPriceLayers
+                  src={props.theme ? layers : layersLight}
+                  alt="layers"
+                />
                 <div>
                   <StyledPriceStat>
                     <div>
