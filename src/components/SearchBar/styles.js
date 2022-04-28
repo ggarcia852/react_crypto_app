@@ -1,32 +1,39 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { devices } from "GlobalStyles/devices";
 
-export const StyledContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   height: 63px;
-  width: 350px;
+  width: 300px;
   background: ${(props) => props.theme.navBox};
   border-radius: 15px;
   border: none;
   align-items: center;
+  @media ${devices.desktop} {
+    width: 400px;
+  }
 `;
 
 export const StyledInput = styled.input`
   height: 60px;
+  width: 100%;
   background: ${(props) => props.theme.navBox};
   border: none;
   outline: 0px;
-  font-size: 17px;
+  font-size: 1rem;
   color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {
     color: ${(props) => props.theme.color};
   }
+  // @media ${devices.desktop} {
+  //   width: 100%;
+  // }
 `;
 
 export const StyledList = styled.div`
   position: absolute;
   max-height: 150px;
-  min-width: 150px;
   overflow: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;

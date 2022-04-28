@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
 
-export const StyledHeader = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
 `;
@@ -10,34 +11,42 @@ export const Loading = styled.div`
   align-items: center;
   justify-content: center;
   height: 55px;
-  width: 906px;
+  width: 50%;
   background: ${(props) => props.theme.secondary};
 `;
 
 export const StyledGlobalData = styled.div`
   display: flex;
-  height: 55px;
-  width: 906px;
+  justify-content: space-around;
   align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  padding: 1.5%;
+  font-size: 1vw;
   background: ${(props) => props.theme.secondary};
-  margin-top: 0px;
   border-radius: 0px 0px 15px 15px;
-  padding: 0px 50px 0px 50px;
+  @media ${devices.laptop} {
+    width: 70%;
+  }
+  @media ${devices.desktop} {
+    width: 60%;
+    padding: 1%;
+  }
 `;
 
 export const StyledData = styled.div`
   display: flex;
   align-items: center;
 `;
+
 export const StyledIcon = styled.span`
-  padding-right: 7px;
+  padding-right: 5px;
 `;
+
 export const StyledBar = styled.span`
-  padding-left: 7px;
+  padding-left: 5px;
 `;
 
 export const StyledArrow = styled.img`
-  padding-left: 15px;
+  padding-left: 5px;
   padding-bottom: 3px;
 `;

@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import search from "assets/search.svg";
 import searchLight from "assets/searchLight.svg";
 import {
-  StyledContainer,
+  Container,
   StyledImg,
   StyledInput,
   StyledLink,
@@ -43,7 +43,7 @@ const SearchBar = (props) => {
   const noCoins = hasValue && props.coins?.length === 0;
 
   return (
-    <StyledContainer>
+    <Container>
       <StyledImg src={props.theme ? search : searchLight} alt="search" />
       <form onSubmit={handleSubmit}>
         <StyledInput
@@ -52,9 +52,7 @@ const SearchBar = (props) => {
           placeholder="Search..."
         />
         <StyledList>
-          {props.isLoading && hasValue && (
-            <div>Loading coins...</div>
-          )}
+          {props.isLoading && hasValue && <div>Loading coins...</div>}
           {noCoins && <div>No coins found.</div>}
           {hasCoins &&
             props.coins.map((coin) => (
@@ -67,7 +65,7 @@ const SearchBar = (props) => {
             ))}
         </StyledList>
       </form>
-    </StyledContainer>
+    </Container>
   );
 };
 

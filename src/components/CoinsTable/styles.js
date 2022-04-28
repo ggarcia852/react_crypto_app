@@ -1,42 +1,35 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.div`
-  display: flex;
-  height: 131px;
-`;
-
-export const StyledOverview = styled.div`
-  display: flex;
-  font-size: 22px;
+  font-size: 2vw;
+  font-weight: 500;
   color: ${(props) => props.theme.color};
-  height: 61px;
-  padding-left: 93px;
-  padding-top: 65px;
+  margin-left: 5%;
+  padding: 5% 0 3%;
 `;
 
-export const StyledCoinList = styled.div`
-  margin: 0px 93px 187px 93px;
+export const TableContainer = styled.div`
+  margin: 0 5% 5%;
 `;
 
 export const StyledTable = styled.div`
   display: table;
   background: ${(props) => props.theme.secondary};
-  padding: 50px 35px 30px 50px;
+  padding: 2%;
   border-radius: 10px;
   width: 100%;
 `;
 
 export const StyledTableHeader = styled.div`
   display: table-header-group;
-  font-size: 19px;
-  font-weight: bold;
+  font-size: 1.25vw;
+  font-weight: 600;
 `;
 
 export const StyledTableHeaderCell = styled.div`
   display: table-cell;
-  text-align: justify;
-  padding: 10px 10px 0px;
 `;
 
 export const StyledTableBody = styled.div`
@@ -53,18 +46,20 @@ export const StyledTableCell = styled.div.attrs((props) => ({
   },
 }))`
   display: table-cell;
-  max-font-size: 19px;
+  font-size: 1.15vw;
   border-bottom: 1px solid #707070;
-  padding: 25px 10px 25px 0px;
+  padding: 1% 0.5% 1% 0;
+  vertical-align: middle;
 `;
 
 export const StyledImg = styled.img`
-  width: 33.5px;
-  height: 33.5px;
-  padding-right: 13px;
+  width: 1.75vw;
+  padding-right: 5px;
 `;
 
 export const StyledCoinLink = styled(Link)`
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: ${(props) => props.theme.color};
 `;

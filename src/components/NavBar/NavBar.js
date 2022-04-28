@@ -6,39 +6,54 @@ import SearchBar from "components/SearchBar";
 import theme from "assets/theme.svg";
 import themeLight from "assets/themeLight.svg";
 import {
-  StyledNavDiv,
-  StyledLinks,
+  StyledNav,
   StyledLink,
-  StyledNavList,
-  StyledNavigation,
-  StyledButton,
+  StyledNavLinks,
+  StyledNavOptions,
+  StyledThemeButton,
+  NavContainer,
+  StyledImg,
 } from "./styles";
+
+const mobileNav = <div>THis is the mobile nav</div>
+
+const mql = window.matchMedia('(max-width: 600px)');
+
+let mobileView = mql.matches;
+console.log(mobileView)
+
+// if (mobileView) {
+//   setNavInnerHTML(Component1);
+// } else {
+//   setNavInnerHTML(Component2);
+// }
 
 const NavBar = (props) => {
   return (
-    <StyledNavDiv>
-      <StyledLinks>
-        <StyledNavList>
-          <li>
-            <StyledLink exact to="/" activeClassName="active">
-              Coins
-            </StyledLink>
-          </li>
-          <li>
-            <StyledLink exact to="/portfolio" activeClassName="active">
-              Portfolio
-            </StyledLink>
-          </li>
-        </StyledNavList>
-      </StyledLinks>
-      <StyledNavigation>
-        <SearchBar />
-        <CurrencySelector handleCurrency={props.handleCurrency} />
-        <StyledButton onClick={(e) => props.changeTheme(props.theme)}>
-          <img src={props.theme ? theme : themeLight} alt="theme" />
-        </StyledButton>
-      </StyledNavigation>
-    </StyledNavDiv>
+    <NavContainer>
+      {mobileView && mobileNav}
+      <StyledNav>
+          <StyledNavLinks>
+            <li>
+              <StyledLink exact to="/" activeClassName="active">
+                Coins
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink exact to="/portfolio" activeClassName="active">
+                Portfolio
+              </StyledLink>
+            </li>
+          </StyledNavLinks>
+        <StyledNavOptions>
+          <SearchBar />
+          <CurrencySelector handleCurrency={props.handleCurrency} />
+          <StyledThemeButton onClick={(e) => props.changeTheme(props.theme)}>
+            <StyledImg src={props.theme ? theme : themeLight} alt="theme" />
+          </StyledThemeButton>
+        </StyledNavOptions>
+      </StyledNav>
+    </NavContainer>
   );
 };
 

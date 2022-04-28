@@ -27,8 +27,7 @@ const App = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  theme: state.theme.darkTheme
-})
-
+  theme: state.theme.darkTheme,
+});
 
 export default connect(mapStateToProps)(App);

@@ -80,13 +80,13 @@ function CoinPageInfo(props) {
   const totalProfit = profit.reduce((a, b) => a + b, 0);
 
   return (
-    <>
+    <div>
       {props.coinDataError && (
         <div>
           Coin not found. Please select a coin from the list or try again!
         </div>
       )}
-      <>
+      <div>
         <StyledTitle>Summary</StyledTitle>
         <StyledContainer>
           <StyledLeftContainer>
@@ -401,8 +401,8 @@ function CoinPageInfo(props) {
             </>
           )}
         </StyledLinksContainer>
-      </>
-    </>
+      </div>
+    </div>
   );
 }
 

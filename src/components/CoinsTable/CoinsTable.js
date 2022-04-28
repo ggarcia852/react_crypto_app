@@ -12,8 +12,7 @@ import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
 import {
   StyledHeader,
-  StyledOverview,
-  StyledCoinList,
+  TableContainer,
   StyledImg,
   StyledTable,
   StyledTableHeader,
@@ -50,12 +49,10 @@ const CoinData = (props) => {
 
   return (
     <>
-      <StyledHeader>
-        <StyledOverview>Market Overview</StyledOverview>
-      </StyledHeader>
+      <StyledHeader>Market Overview</StyledHeader>
       {props.hasError && <div>Error loading coins.</div>}
       {props.coins && (
-        <StyledCoinList>
+        <TableContainer>
           <InfiniteScroll
             dataLength={props.coins.length}
             next={fetchMoreData}
@@ -69,7 +66,7 @@ const CoinData = (props) => {
             <StyledTable>
               <StyledTableHeader>
                 <StyledTableHeaderCell>#</StyledTableHeaderCell>
-                <StyledTableHeaderCell>Name</StyledTableHeaderCell>
+                <StyledTableHeaderCell>&nbsp;Coin</StyledTableHeaderCell>
                 <StyledTableHeaderCell>Price</StyledTableHeaderCell>
                 <StyledTableHeaderCell>1h%</StyledTableHeaderCell>
                 <StyledTableHeaderCell>24h%</StyledTableHeaderCell>
@@ -265,7 +262,7 @@ const CoinData = (props) => {
               </StyledTableBody>
             </StyledTable>
           </InfiniteScroll>
-        </StyledCoinList>
+        </TableContainer>
       )}
     </>
   );

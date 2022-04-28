@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
+
+
+const Container = styled.div`
+  margin: auto;
+`
 
 export const StyledTitle = styled.div`
   font-size: 22px;

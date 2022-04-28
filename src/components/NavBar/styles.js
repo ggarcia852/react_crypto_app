@@ -1,59 +1,66 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
 
-export const StyledNavDiv = styled.div`
-  display: flex;
+export const NavContainer = styled.div`
+  background: ${(props) => props.theme.secondary};
   width: 100%;
-  height: 93px;
-  background: ${props => props.theme.secondary};
+`;
+
+export const StyledNav = styled.div`
+  display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const StyledLinks = styled.div`
+export const StyledNavLinks = styled.ul`
   display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin: 1% 5%;
+  padding: 0px;
+  gap: 10%;
+  width: 100%;
 `;
 
 export const StyledLink = styled(NavLink)`
   display: flex;
-  text-decoration: none;
-  color: ${props => props.theme.color};
-  font-size: 23px;
-  height: 57px;
-  width: 167px;
-  align-items: center;
   justify-content: center;
-  border-radius: 15px;
-  &:hover{
-    opacity: .8;
-}
+  align-items: center;
+  text-decoration: none;
+  color: ${(props) => props.theme.color};
+  font-size: 2vw;
+  width: 100%;
+  padding: 10% 15%;
+  border-radius: 10px;
+  &:hover {
+    opacity: 0.8;
+  }
   &.active {
-    background: ${props => props.theme.navBox};
+    background: ${(props) => props.theme.navBox};
   }
 `;
 
-export const StyledNavList = styled.ul`
+export const StyledNavOptions = styled.div`
   display: flex;
-  list-style-type: none;
-  align-items: center;
-  margin-left: 93px;
-  padding: 0px;
+  gap: 5%;
 `;
 
-export const StyledNavigation = styled.div`
-  display: flex;
-`;
-
-export const StyledButton = styled.button`
-  height: 63px;
-  width: 67px;
-  background:${props => props.theme.navBox};
-  border-radius: 15px;
+export const StyledThemeButton = styled.button`
+  // height: 100;
+  // width: 67px;
+  background: ${(props) => props.theme.navBox};
+  border-radius: 10px;
   border-color: #2c2f36;
-  margin-left: 25px;
-  margin-right: 5px;
+  margin: 1%;
   border: none;
   &:hover {
     cursor: pointer;
   }
 `;
+
+export const StyledImg = styled.img`
+  width: 2vw;
+  padding: 10px;
+
+`

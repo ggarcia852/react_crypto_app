@@ -8,7 +8,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertDay, CurrencyFormat } from "utils";
 import {
   StyledHeader,
-  ChartsDiv,
+  ChartsContainer,
   StyledCharts,
   StyledChart,
   StyledBarContainer,
@@ -46,7 +46,7 @@ const BitcoinCharts = (props) => {
     { id: 365, value: "365d", days: 365, interval: "daily" },
   ];
 
-  let today = new Date().toDateString();
+  let today = new Date().toDateString().slice(3);
   let price = props.chartData?.prices.slice(-1)[0].slice(-1)[0];
   let volume = props.chartData?.total_volumes
     .slice(-1)[0]
@@ -59,7 +59,7 @@ const BitcoinCharts = (props) => {
     <>
       <StyledHeader>Bitcoin Overview</StyledHeader>
       {props.hasError && <div>error on page</div>}
-      <ChartsDiv>
+      <ChartsContainer>
         <StyledCharts>
           {props.isLoading && (
             <Loader>
@@ -107,10 +107,9 @@ const BitcoinCharts = (props) => {
                   },
                   layout: {
                     padding: {
-                      left: 50,
-                      right: 50,
-                      bottom: 40,
-                      top: 30,
+                      left: 25,
+                      right: 25,
+                      bottom: 25,
                     },
                   },
                 }}
@@ -164,10 +163,9 @@ const BitcoinCharts = (props) => {
                   },
                   layout: {
                     padding: {
-                      left: 50,
-                      right: 50,
-                      bottom: 40,
-                      top: 30,
+                      left: 25,
+                      right: 25,
+                      bottom: 25,
                     },
                   },
                 }}
@@ -175,9 +173,10 @@ const BitcoinCharts = (props) => {
             </StyledChart>
           )}
         </StyledCharts>
-      </ChartsDiv>
+      </ChartsContainer>
       <StyledBarContainer>
         <StyledBar>
+          {/* <div> */}
           {chartButtons.map((button) => (
             <StyledButton
               key={button.value}
@@ -187,6 +186,7 @@ const BitcoinCharts = (props) => {
               {button.value}
             </StyledButton>
           ))}
+          {/* </div> */}
         </StyledBar>
       </StyledBarContainer>
     </>

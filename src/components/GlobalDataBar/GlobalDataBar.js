@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { Oval } from "react-loader-spinner";
 import { getData } from "store/globalData/actions";
 import { ProgressBar } from "components";
-import { CurrencyFormat } from "../../utils";
+import { CurrencyFormat } from "utils";
 import btc from "assets/bitcoin.svg";
 import eth from "assets/ethereum.svg";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
 import {
   StyledGlobalData,
-  StyledHeader,
+  Container,
   StyledData,
   StyledIcon,
   StyledBar,
@@ -31,7 +31,7 @@ const GlobalData = (props) => {
   const hasData = !props.isLoading && props.globalData;
 
   return (
-    <StyledHeader>
+    <Container>
       {props.isLoading && (
         <Loading>
           <Oval height="35" color="#06D554" ariaLabel="loading" />
@@ -94,7 +94,7 @@ const GlobalData = (props) => {
           </>
         </StyledGlobalData>
       )}
-    </StyledHeader>
+    </Container>
   );
 };
 
