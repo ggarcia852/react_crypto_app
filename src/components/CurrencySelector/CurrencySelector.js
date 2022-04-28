@@ -2,15 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { selectCurrency } from "store/currency/actions";
 import currencySymbol from "assets/currencySymbol.svg";
-import { StyledImgBackground, Container, StyledDropdown } from "./styles";
-import { StyledImg } from "components/CoinsTable/styles";
+import { Container, StyledImg, StyledDropdown } from "./styles";
 
 const CurrencySelector = (props) => {
   return (
     <Container>
-      <StyledImgBackground>
-        <StyledImg src={currencySymbol} alt="currency" />
-      </StyledImgBackground>
+      <StyledImg src={currencySymbol} alt="currency" />
       <StyledDropdown onChange={(e) => props.selectCurrency(e.target.value)}>
         <option value="usd">USD</option>
         <option value="eur">EUR</option>

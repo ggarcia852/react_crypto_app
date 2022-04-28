@@ -11,6 +11,7 @@ import {
   StyledLink,
   StyledList,
   StyledListItem,
+  StyledPlaceholder,
 } from "./styles";
 
 const SearchBar = (props) => {
@@ -22,12 +23,6 @@ const SearchBar = (props) => {
     }
     // eslint-disable-next-line
   }, [value]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.history.push(`/coin/${value.toLowerCase()}`);
-    setValue("");
-  };
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -44,13 +39,15 @@ const SearchBar = (props) => {
 
   return (
     <Container>
-      <StyledImg src={props.theme ? search : searchLight} alt="search" />
-      <form onSubmit={handleSubmit}>
+      <StyledPlaceholder>
+        <StyledImg src={props.theme ? search : searchLight} alt="search" />
         <StyledInput
           value={value}
           onChange={handleChange}
           placeholder="Search..."
         />
+      </StyledPlaceholder>
+      <div>
         <StyledList>
           {props.isLoading && hasValue && <div>Loading coins...</div>}
           {noCoins && <div>No coins found.</div>}
@@ -58,13 +55,13 @@ const SearchBar = (props) => {
             props.coins.map((coin) => (
               <StyledListItem onClick={() => handleClick(coin)} key={coin.id}>
                 <StyledLink to={`/coin/${coin.id}`}>
-                  <img src={coin.thumb} alt="coin" /> {coin.name} ({coin.symbol}
-                  )
+                  <StyledImg src={coin.thumb} alt="coin" /> {coin.name} (
+                  {coin.symbol})
                 </StyledLink>
               </StyledListItem>
             ))}
         </StyledList>
-      </form>
+      </div>
     </Container>
   );
 };

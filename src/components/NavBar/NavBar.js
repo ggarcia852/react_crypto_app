@@ -15,12 +15,12 @@ import {
   StyledImg,
 } from "./styles";
 
-const mobileNav = <div>THis is the mobile nav</div>
+// const mobileNav = <div>THis is the mobile nav</div>;
 
-const mql = window.matchMedia('(max-width: 600px)');
+// const mql = window.matchMedia("(max-width: 600px)");
 
-let mobileView = mql.matches;
-console.log(mobileView)
+// let mobileView = mql.matches;
+// console.log(mobileView);
 
 // if (mobileView) {
 //   setNavInnerHTML(Component1);
@@ -31,20 +31,16 @@ console.log(mobileView)
 const NavBar = (props) => {
   return (
     <NavContainer>
-      {mobileView && mobileNav}
+      {/* {mobileView && mobileNav} */}
       <StyledNav>
-          <StyledNavLinks>
-            <li>
-              <StyledLink exact to="/" activeClassName="active">
-                Coins
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink exact to="/portfolio" activeClassName="active">
-                Portfolio
-              </StyledLink>
-            </li>
-          </StyledNavLinks>
+        <StyledNavLinks>
+          <StyledLink exact to="/" activeClassName="active">
+            Coins
+          </StyledLink>
+          <StyledLink exact to="/portfolio" activeClassName="active">
+            Portfolio
+          </StyledLink>
+        </StyledNavLinks>
         <StyledNavOptions>
           <SearchBar />
           <CurrencySelector handleCurrency={props.handleCurrency} />

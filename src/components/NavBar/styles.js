@@ -4,35 +4,25 @@ import { devices } from "GlobalStyles/devices";
 
 export const NavContainer = styled.div`
   background: ${(props) => props.theme.secondary};
-  width: 100%;
 `;
 
 export const StyledNav = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
 `;
 
-export const StyledNavLinks = styled.ul`
+export const StyledNavLinks = styled.div`
   display: flex;
   align-items: center;
-  list-style-type: none;
   margin: 1% 5%;
-  padding: 0px;
-  gap: 10%;
-  width: 100%;
 `;
 
 export const StyledLink = styled(NavLink)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-decoration: none;
   color: ${(props) => props.theme.color};
-  font-size: 2vw;
-  width: 100%;
-  padding: 10% 15%;
-  border-radius: 10px;
+  font-size: 1.75vw;
+  padding: 1vw 1.5vw;
+  border-radius: 12px;
   &:hover {
     opacity: 0.8;
   }
@@ -43,16 +33,15 @@ export const StyledLink = styled(NavLink)`
 
 export const StyledNavOptions = styled.div`
   display: flex;
-  gap: 5%;
+  align-items:center;
+  gap: 1vw;
 `;
 
 export const StyledThemeButton = styled.button`
-  // height: 100;
-  // width: 67px;
+  padding: 1vw;
   background: ${(props) => props.theme.navBox};
-  border-radius: 10px;
+  border-radius: 12px;
   border-color: #2c2f36;
-  margin: 1%;
   border: none;
   &:hover {
     cursor: pointer;
@@ -60,7 +49,6 @@ export const StyledThemeButton = styled.button`
 `;
 
 export const StyledImg = styled.img`
-  width: 2vw;
-  padding: 10px;
-
+  width: 1.75vw;
+  height: 1.75vw;
 `
