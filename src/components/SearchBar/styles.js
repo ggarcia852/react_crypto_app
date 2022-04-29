@@ -36,7 +36,6 @@ export const StyledList = styled.div`
   position: absolute;
   max-height: 20%;
   overflow: scroll;
-  // overflow-y: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;
   width: 100%;

@@ -199,7 +199,7 @@ export const StyledBlockchainContainer = styled.div`
   display: flex;
   align-items: center;
   width: 25%;
-  padding: 1vw;
+  padding: .75vw;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   font-size: 1.25vw;
