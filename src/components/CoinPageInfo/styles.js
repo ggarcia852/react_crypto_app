@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-const Container = styled.div`
-  margin: auto;
-`
-
 export const StyledTitle = styled.div`
   font-size: 1.75vw;
   font-weight: 500;
@@ -14,46 +10,56 @@ export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 8%;
-  gap: 10px;
 `;
 
 export const StyledLeftContainer = styled.div`
   display: flex;
   flex-flow: column;
+  justify-content: space-between;
+  min-width: 25%;
 `;
 
 export const StyledCoinContainer = styled.div`
   display: flex;
   flex-flow: column;
-  align-items: center;
-  margin-bottom: 10%;
-  padding: 25%;
+  justify-content: center;
+  padding: 15%;
+  min-height: 50%;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   font-size: 1.75vw;
 `;
 
 export const StyledCoinImg = styled.img`
-  width: 5vw;
-  padding: 15%;
+  width: 4.5vw;
+  padding: 12%;
   background: ${(props) => props.theme.main};
   margin-bottom: 10%;
-  border-radius: 10px;
+  border-radius: 12px;
+`;
+
+export const StyledCoinBox = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
 `;
 
 export const StyledLinkContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   font-size: 1.25vw;
-  padding: 10%;
+  padding: 3%;
+`;
+
+export const StyledLinkBox = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const StyledLinkImg = styled.img`
-  width: 1.5vw;
-  margin-right: 10px;
+  width: 1vw;
+  margin: 1vw;
   &:hover {
     cursor: pointer;
   }
@@ -67,23 +73,31 @@ export const StyledPriceContainer = styled.div`
   padding: 3%;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
-  overflow: scroll;
+  min-width: 25%;
+`;
+
+export const PriceContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const StyledPrice = styled.div`
-  font-size: 3.25vw;
+  font-size: 3vw;
   font-weight: 600;
+  margin-top: 1.5vw;
 `;
 
 export const StyledProfit = styled.span`
   font-size: 1.25vw;
-`
+`;
 
 export const StyledPriceStat = styled.div`
   display: flex;
+  align-items: center;
   font-size: 1.25vw;
-  margin-bottom: 10%;
+  margin-bottom: 2vw;
 `;
+
 export const StyledPriceStatPercent = styled.span.attrs((props) => ({
   style: {
     color: `${props.color}`,
@@ -94,40 +108,36 @@ export const StyledPriceStatPercent = styled.span.attrs((props) => ({
 
 export const StyledPricePercentArrow = styled.img`
   width: 1vw;
-  padding-bottom: 5px;
-  padding-right: 2px;
-  margin-left: 7px;
+  margin: 0.5vw;
 `;
 
 export const StyledPriceArrow = styled.img`
   width: 1vw;
-  margin: 25px 15px 0px 0px;
+  margin-right: 1vw;
 `;
 
 export const StyledPriceLayers = styled.img`
   width: 1.75vw;
-  margin: 10%;
+  margin: 2vw;
 `;
 
 export const StyledMarketContainer = styled.div`
   display: flex;
   flex-flow: column;
-  justify-content: center;
-  overflow: scroll;
   padding: 3%;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
+  min-width: 25%;
 `;
 
 export const StyledMarketStat = styled.div`
-  // display: flex;
   font-size: 1.25vw;
-  padding-top: 5px;
+  padding-top: 0.75vw;
 `;
 
 export const StyledStatImg = styled.img`
-  width: 1.75vw;
-  margin-right: 15px;
+  width: 1.5vw;
+  margin-right: 1vw;
 `;
 
 export const StyledBullets = styled.div`
@@ -140,9 +150,8 @@ export const ColoredDiv = styled.div.attrs((props) => ({
   style: {
     color: `${props.color}`,
   },
-}))`
-  display: flex;
-`;
+}))``;
+
 export const ColoredSpan = styled.span.attrs((props) => ({
   style: {
     color: `${props.color}`,
@@ -155,19 +164,26 @@ export const StyledDescriptionTitle = styled.div`
   font-weight: 500;
 `;
 
-export const StyledDescImg = styled.div`
+export const StyledDescImgContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: 3%;
+
+`;
+
+export const StyledDescImg = styled.img`
+  display: flex;
+  margin-bottom: 2vw;
+  width: 1.75vw;
 `;
 
 export const StyledDescription = styled.div`
   display: flex;
   flex-flow: column;
-  min-height: 0px;
+  align-items: center;
+  // min-height: 0px;
   text-align: center;
   background: ${(props) => props.theme.secondary};
-  padding: 30px 27px 52px 27px;
+  padding: 3%;
   margin: 0 8% 3%;
   border-radius: 10px;
   font-size: 1.35vw;
@@ -181,8 +197,9 @@ export const StyledLinksContainer = styled.div`
 
 export const StyledBlockchainContainer = styled.div`
   display: flex;
+  align-items: center;
   width: 25%;
-  padding: 20px 15px;
+  padding: 1vw;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   font-size: 1.25vw;
@@ -192,9 +209,4 @@ export const StyledBlockchainContainer = styled.div`
 export const BoldText = styled.span`
   font-weight: 600;
   font-size: 1.25vw;
-`;
-
-export const PriceContainer = styled.div`
-  display: flex;
-  align-items: center;
 `;

@@ -34,16 +34,17 @@ export const StyledList = styled.div`
   margin: 1%;
   font-size: 1vw;
   position: absolute;
-  max-height: 25%;
+  max-height: 20%;
   overflow: scroll;
+  // overflow-y: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;
   width: 100%;
 `;
 
 export const StyledListItem = styled.div`
-max-width: 20%;
-padding: 1%;
+max-width: 18%;
+padding: .5%;
 &:hover {
   background: #146AE3;
 `;

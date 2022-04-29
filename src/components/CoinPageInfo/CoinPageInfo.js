@@ -16,6 +16,7 @@ import featherLight from "assets/featherLight.svg";
 import {
   StyledTitle,
   StyledCoinContainer,
+  StyledCoinBox,
   StyledCoinImg,
   StyledLinkContainer,
   StyledContainer,
@@ -42,6 +43,8 @@ import {
   ColoredSpan,
   PriceContainer,
   StyledProfit,
+  StyledDescImgContainer,
+  StyledLinkBox,
 } from "./styles";
 
 function CoinPageInfo(props) {
@@ -103,17 +106,17 @@ function CoinPageInfo(props) {
                 </span>
               )}
               {hasCoinData && (
-                <>
+                <StyledCoinBox>
                   <StyledCoinImg src={coinData.image.small} alt="coinData" />
                   <div>
-                    {coinData.name}({coinData.symbol?.toUpperCase()})
+                    {coinData.name}({coinData.symbol.toUpperCase()})
                   </div>
-                </>
+                </StyledCoinBox>
               )}
             </StyledCoinContainer>
             <StyledLinkContainer>
               {hasCoinData && (
-                <>
+                <StyledLinkBox>
                   <a
                     href={coinData.links.homepage[0]}
                     target="_blank"
@@ -124,8 +127,8 @@ function CoinPageInfo(props) {
                       alt="link"
                     />
                   </a>
-                  {linkSize(coinData.links.homepage[0])}
-                </>
+                  {(coinData.links.homepage[0])}
+                </StyledLinkBox>
               )}
             </StyledLinkContainer>
           </StyledLeftContainer>
@@ -190,7 +193,9 @@ function CoinPageInfo(props) {
                     <div>
                       <BoldText>All Time High: </BoldText> $
                       {CurrencyFormat(marketData.ath)}
-                      <div>{ConvertDate(marketData.ath_date)}</div>
+                      <div>
+                        {new Date(marketData.ath_date).toLocaleString()}
+                      </div>
                     </div>
                   </StyledPriceStat>
                   <StyledPriceStat>
@@ -198,9 +203,10 @@ function CoinPageInfo(props) {
                       <StyledPriceArrow src={redDown} alt="down arrow" />
                     </div>
                     <div>
-                      <BoldText>All Time Low: </BoldText>$
-                      {CurrencyFormat(marketData.atl)}
-                      <div>{ConvertDate(marketData.atl_date)}</div>
+                      <BoldText>All Time Low: </BoldText>${marketData.atl}
+                      <div>
+                        {new Date(marketData.atl_date).toLocaleString()}
+                      </div>
                     </div>
                   </StyledPriceStat>
                 </div>
@@ -331,9 +337,12 @@ function CoinPageInfo(props) {
           )}
           {hasData && (
             <>
-              <StyledDescImg>
-                <img src={props.theme ? layers : layersLight} alt="layers" />
-              </StyledDescImg>
+              <StyledDescImgContainer>
+                <StyledDescImg
+                  src={props.theme ? layers : layersLight}
+                  alt="layers"
+                />
+              </StyledDescImgContainer>
               <div
                 dangerouslySetInnerHTML={{ __html: coinData.description.en }}
               />
