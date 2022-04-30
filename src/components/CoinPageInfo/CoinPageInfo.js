@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getCoinData, getMarketData } from "store/coinPageData/actions";
 import { Oval } from "react-loader-spinner";
-import { CurrencyFormat, ConvertDate, RemoveNegative } from "../../utils";
+import { CurrencyFormat, RemoveNegative } from "../../utils";
 import { ProgressBar } from "components";
 import bluePlus from "assets/bluePlus.svg";
 import greenUp from "assets/greenUp.svg";
@@ -45,6 +45,7 @@ import {
   StyledProfit,
   StyledDescImgContainer,
   StyledLinkBox,
+  StyledMarketBox,
 } from "./styles";
 
 function CoinPageInfo(props) {
@@ -127,7 +128,7 @@ function CoinPageInfo(props) {
                       alt="link"
                     />
                   </a>
-                  {(coinData.links.homepage[0])}
+                  {coinData.links.homepage[0]}
                 </StyledLinkBox>
               )}
             </StyledLinkContainer>
@@ -225,7 +226,7 @@ function CoinPageInfo(props) {
               </span>
             )}
             {hasMarketData && (
-              <>
+              <StyledMarketBox>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Market Cap:</BoldText> $
@@ -319,7 +320,7 @@ function CoinPageInfo(props) {
                     mainBackground={"#FFDCCE"}
                   />
                 </StyledMarketStat>
-              </>
+              </StyledMarketBox>
             )}
           </StyledMarketContainer>
         </StyledContainer>

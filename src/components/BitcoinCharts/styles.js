@@ -20,7 +20,6 @@ export const StyledCharts = styled.div`
   display: flex;
   justify-content: center;
   width: 48%;
-  // min-height: 300px;
   margin-bottom: 5%;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;

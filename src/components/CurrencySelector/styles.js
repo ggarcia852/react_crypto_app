@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 1vw;
+  padding: 2.75%;
   background: ${(props) => props.theme.navBox};
   border-radius: 12px;
 `;

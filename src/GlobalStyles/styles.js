@@ -4,13 +4,13 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: ${(props) => props.theme.main};
     color: ${(props) => props.theme.color};
-    font-family: Poppins
+    font-family: Poppins;
+    margin: 0px;
   }
 `;
 
 export const Container = styled.div`
   display: flex;
-  margin: auto;
   flex-direction: column;
 `;
 

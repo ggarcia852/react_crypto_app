@@ -111,7 +111,7 @@ function MarketChart(props) {
                   },
                 ],
               }}
-              height={"350px"}
+              height={"250vw"}
               options={{
                 maintainAspectRatio: false,
                 scales: {

@@ -98,10 +98,8 @@ function AddCoin(props) {
 
   return (
     <Container>
-      <div>
-        <Heading>Enter Coin Details</Heading>
-      </div>
-      <form>
+      <Heading>Enter Coin Details</Heading>
+      {/* <form> */}
         <CoinContainer>
           <div>
             {noCoinSelected && (
@@ -171,7 +169,7 @@ function AddCoin(props) {
             </div>
           </InputContainer>
         </CoinContainer>
-      </form>
+      {/* </form> */}
 
       <div>
         <ButtonContainer>

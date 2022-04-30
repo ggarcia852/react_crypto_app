@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  flex-flow: column;
-  background: ${(props) => props.theme.navBox};
-  border-radius: 10px;
-  padding: 15px;
-  border: 1px solid #707070;
+display: flex;
+flex-flow: column;
+background: ${(props) => props.theme.navBox};
+border-radius: 10px;
+padding: 3%;
+border: 1px solid #707070;
+`;
+
+export const Heading = styled.div`
+  text-align: center;
+  margin: 3%;
+  font-size: 3vw;
 `;
 
 export const CoinContainer = styled.div`
@@ -33,11 +39,6 @@ export const Direction = styled.div`
   padding: 15px;
 `;
 
-export const Heading = styled.div`
-  text-align: center;
-  margin: 20px 0px 35px;
-  font-size: 28px;
-`;
 
 export const SelectedCoinContainer = styled.div`
   display: flex;

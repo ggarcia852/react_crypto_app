@@ -38,7 +38,8 @@ export const StyledNavOptions = styled.div`
 `;
 
 export const StyledThemeButton = styled.button`
-  padding: 1vw;
+  padding: 2.5%;
+  margin-right: 1%;
   background: ${(props) => props.theme.navBox};
   border-radius: 12px;
   border-color: #2c2f36;
