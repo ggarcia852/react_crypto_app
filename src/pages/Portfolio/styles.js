@@ -20,10 +20,9 @@ export const StyledButton = styled.button`
     cursor: pointer;
   }
   @media ${devices.tablet} {
-    width: 12vw;
-    height: 4vw;
-  font-size: 1.5vw;
-
+    width: 25vw;
+    height: 6vw;
+    font-size: 1.5vw;
   }
 `;
 
@@ -38,7 +37,7 @@ export const NoAssetsContainer = styled.div`
 
 export const customModalStyles = {
   content: {
-    background: "none",
+    background: "white",
     top: "50%",
     left: "50%",
     right: "auto",

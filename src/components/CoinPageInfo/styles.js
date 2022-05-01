@@ -80,12 +80,16 @@ export const StyledLinkContainer = styled.div`
 export const StyledLinkBox = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+`;
+
+export const StyledLink = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const StyledLinkImg = styled.img`
   width: 2vw;
-  margin: 1vw;
+  margin: 0 3vw;
   &:hover {
     cursor: pointer;
   }
@@ -192,7 +196,7 @@ export const StyledMarketBox = styled.div`
   @media ${devices.tablet} {
     text-align: justify;
   }
-`
+`;
 
 export const StyledMarketStat = styled.div`
   font-size: 3vw;

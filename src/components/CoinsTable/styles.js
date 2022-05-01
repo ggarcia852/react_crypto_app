@@ -6,12 +6,12 @@ export const StyledHeader = styled.div`
   font-size: 2vw;
   font-weight: 500;
   color: ${(props) => props.theme.color};
-  margin-left: 5%;
+  margin-left: 8%;
   padding: 5% 0 3%;
 `;
 
 export const TableContainer = styled.div`
-  margin: 0 5% 5%;
+  margin: 0 8% 5%;
 `;
 
 export const StyledTable = styled.div`

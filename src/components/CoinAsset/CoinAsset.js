@@ -73,7 +73,7 @@ const CoinAsset = (props) => {
           <AssetContainer key={asset.id + Math.random()}>
             <CoinContainer>
               <ImgContainer>
-                <StyledImg src={asset.thumb} alt="coin" />
+                <StyledImg src={asset.large} alt="coin" />
               </ImgContainer>
               <StyledCoin>
                 <StyledCoinLink to={`/coin/${asset.id}`}>

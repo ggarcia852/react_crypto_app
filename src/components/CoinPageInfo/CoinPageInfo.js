@@ -46,6 +46,7 @@ import {
   StyledDescImgContainer,
   StyledLinkBox,
   StyledMarketBox,
+  StyledLink,
 } from "./styles";
 
 function CoinPageInfo(props) {
@@ -118,17 +119,19 @@ function CoinPageInfo(props) {
             <StyledLinkContainer>
               {hasCoinData && (
                 <StyledLinkBox>
-                  <a
-                    href={coinData.links.homepage[0]}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <StyledLinkImg
-                      src={props.theme ? link : linkLight}
-                      alt="link"
-                    />
-                  </a>
-                  {coinData.links.homepage[0]}
+                  <div>
+                    <a
+                      href={coinData.links.homepage[0]}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <StyledLinkImg
+                        src={props.theme ? link : linkLight}
+                        alt="link"
+                      />
+                    </a>
+                  </div>
+                  <StyledLink>{coinData.links.homepage[0]}</StyledLink>
                 </StyledLinkBox>
               )}
             </StyledLinkContainer>

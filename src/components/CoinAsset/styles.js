@@ -17,8 +17,10 @@ export const StatisticHeading = styled.div`
 export const AssetContainer = styled.div`
   margin-bottom: 3%;
   width: 100%;
+  border-bottom: 1px dotted red;
   @media ${devices.tablet} {
     display: flex;
+    border: none;
   }
 `;
 
@@ -108,7 +110,7 @@ export const StatsContainer = styled.div`
 `;
 
 export const Stat = styled.div`
-  // margin-right: 40px;
+  // margin-right: 1%;
 `;
 
 export const ColoredSpan = styled.span.attrs((props) => ({

@@ -1,13 +1,8 @@
 import styled from "styled-components";
-import { devices } from "GlobalStyles/devices";
 
 export const StyledDayContainer = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 3vw;
-  @media ${devices.tablet} {
-    font -size: 1.5vw;
-  }
 `;
 
 export const StyledButtonInput = styled.input`

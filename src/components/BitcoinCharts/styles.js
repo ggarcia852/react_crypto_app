@@ -7,13 +7,13 @@ export const StyledHeader = styled.span`
   font-size: 2vw;
   font-weight: 500;
   color: ${(props) => props.theme.color};
-  margin: 3% 5%;
+  margin: 3% 8%;
 `;
 
 export const ChartsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 5%;
+  margin: 0 8%;
 `;
 
 export const StyledCharts = styled.div`
