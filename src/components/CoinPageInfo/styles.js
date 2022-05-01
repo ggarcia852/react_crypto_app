@@ -184,12 +184,14 @@ export const StyledMarketContainer = styled.div`
   border-radius: 10px;
   min-width: 25%;
   @media ${devices.tablet} {
-    
   }
 `;
 
 export const StyledMarketBox = styled.div`
- 
+  text-align: center;
+  @media ${devices.tablet} {
+    text-align: justify;
+  }
 `
 
 export const StyledMarketStat = styled.div`

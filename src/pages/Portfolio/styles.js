@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
 
 export const ButtonContainer = styled.div`
   padding: 3%;
@@ -6,22 +7,28 @@ export const ButtonContainer = styled.div`
 `;
 
 export const StyledButton = styled.button`
-  width: 12vw;
-  height: 4vw;
+  width: 85vw;
+  height: 8vw;
   background: #06d554;
   color: ${(props) => props.theme.color};
   border: none;
   border-radius: 7px;
-  font-size: 1.5vw;
+  font-size: 3vw;
   font-weight: 600;
   &:hover {
     opacity: 0.9;
     cursor: pointer;
   }
+  @media ${devices.tablet} {
+    width: 12vw;
+    height: 4vw;
+  font-size: 1.5vw;
+
+  }
 `;
 
 export const AssetContainer = styled.div`
-  margin: 0px 100px;
+  margin: 0 8%;
 `;
 
 export const NoAssetsContainer = styled.div`
