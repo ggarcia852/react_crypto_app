@@ -6,7 +6,8 @@ export const StyledFullBar = styled.div.attrs((props) => ({
 	background: `${props.mainBackground}`,
   },
 }))`
-  // min-width: 50%;
+  min-width: 5vw;
+  margin-left: .25vw;
   // max-width: 90%;
   border-radius: 20px;
 `;

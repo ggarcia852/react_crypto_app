@@ -21,15 +21,12 @@ export const StyledGlobalData = styled.div`
   align-items: center;
   width: 100%;
   padding: 1.5%;
-  font-size: 1vw;
+  font-size: 2.5vw;
   background: ${(props) => props.theme.secondary};
-  border-radius: 0 0 15px 15px;
-  @media ${devices.laptop} {
-    width: 70%;
-  }
-  @media ${devices.desktop} {
-    width: 60%;
-    padding: 1%;
+  @media ${devices.tablet} {
+    border-radius: 0 0 15px 15px;
+    font-size: 1vw;
+    width: 60vw;
   }
 `;
 
@@ -38,15 +35,21 @@ export const StyledData = styled.div`
   align-items: center;
 `;
 
+export const StyledMobileData = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const StyledIcon = styled.span`
-  padding-right: .75vw;
+  padding-right: 0.75vw;
 `;
 
 export const StyledBar = styled.span`
-  // padding-left: 5px;
+  // margin-right: 4%;
 `;
 
 export const StyledArrow = styled.img`
-  padding-left: .75vw;
-  padding-bottom: .25vw;
+  padding-left: 0.75vw;
+  padding-bottom: 0.25vw;
 `;

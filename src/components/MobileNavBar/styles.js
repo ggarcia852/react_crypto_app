@@ -11,7 +11,7 @@ export const NavContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    margin: 2% 8%;
+    margin: 2% 1% 2% 8%;
 `
 
 export const NavBarBottom = styled.div`
