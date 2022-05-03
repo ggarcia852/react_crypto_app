@@ -40,7 +40,7 @@ const GlobalData = (props) => {
         </Loading>
       )}
       {hasData && (
-        <Media queries={{ small: { maxWidth: 599 } }}>
+        <Media queries={{ small: { maxWidth: 768 } }}>
           {(matches) =>
             matches.small ? (
               <StyledGlobalData>

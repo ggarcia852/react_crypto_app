@@ -32,7 +32,6 @@ export const StyledTableHeader = styled.div`
   @media ${devices.tablet} {
     font-size: 1.25vw;
     font-weight: 600;
-
   }
 `;
 
@@ -68,7 +67,7 @@ export const StyledImg = styled.img`
   width: 5vw;
   padding-right: 1%;
   @media ${devices.tablet} {
-   width: 1.75vw;
+    width: 1.75vw;
   }
 `;
 
@@ -78,9 +77,9 @@ export const StyledPercentImg = styled.img`
   @media ${devices.tablet} {
     width: 1vw;
     display: inline;
-    padding-bottom: .5vh;
-   }
-`
+    padding-bottom: 0.5vh;
+  }
+`;
 
 export const StyledCoinLink = styled(Link)`
   display: flex;

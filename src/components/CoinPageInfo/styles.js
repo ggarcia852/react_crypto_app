@@ -192,8 +192,6 @@ export const StyledMarketContainer = styled.div`
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   min-width: 25%;
-  @media ${devices.tablet} {
-  }
 `;
 
 export const StyledMarketBox = styled.div`

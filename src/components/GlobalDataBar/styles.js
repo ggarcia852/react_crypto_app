@@ -19,17 +19,20 @@ export const StyledGlobalData = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   padding: 1.5%;
   font-size: 2.5vw;
   background: ${(props) => props.theme.secondary};
-  @media ${devices.mobileL} {
-    font-size: 1vw;
-  }
+  // @media {max-width: 600px} {
+  //   font-size: 2.5vw;
+  // }
+  // @media {min-width: 601px} {
+  //   font-size: 1vw;
+  // }
   @media ${devices.tablet} {
     border-radius: 0 0 15px 15px;
-    font-size: 1vw;
     width: 60vw;
+    font-size: 1.25vw;
   }
 `;
 

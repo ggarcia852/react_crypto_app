@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { devices } from "GlobalStyles/devices";
 
 export const NavContainer = styled.div`
   background: ${(props) => props.theme.secondary};
@@ -33,7 +32,7 @@ export const StyledLink = styled(NavLink)`
 
 export const StyledNavOptions = styled.div`
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 1vw;
 `;
 
@@ -52,4 +51,4 @@ export const StyledThemeButton = styled.button`
 export const StyledImg = styled.img`
   width: 1.75vw;
   height: 1.75vw;
-`
+`;

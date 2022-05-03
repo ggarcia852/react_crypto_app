@@ -16,26 +16,30 @@ export const StyledHeader = styled.span`
 export const ChartsContainer = styled.div`
   display: flex;
   margin: 0 8%;
-  @media ${devices.mobileL} {
-    justify-content: space-between;
-  }
+  width: 85vw;
+  overflow-x: auto;
+  &::-webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory; 
 `;
 
 export const StyledCharts = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+  width: 100%;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
-  @media ${devices.mobileL} {
-    width: 48%;
+  @media ${devices.tablet} {
+    margin-right: 5%;
   }
 `;
 
 export const StyledChart = styled.div`
   width: 85vw;
-  @media ${devices.mobileL} {
-    width: 100%;
+  @media ${devices.tablet} {
+    width: 40vw;
 `;
 
 export const StyledBarContainer = styled.div`
