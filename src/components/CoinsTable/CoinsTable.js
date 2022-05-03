@@ -24,10 +24,11 @@ import {
   StyledBullets,
   StyledChart,
   Loader,
+  StyledPercentImg,
+
 } from "./styles";
 import {
   ColoredDiv,
-  StyledPricePercentArrow,
 } from "components/CoinPageInfo/styles";
 
 const CoinData = (props) => {
@@ -89,7 +90,7 @@ const CoinData = (props) => {
                         </StyledCoinLink>
                       </StyledTableCell>
                       <StyledTableCell>
-                        ${CurrencyFormat(coin.current_price)}
+                        ${CurrencyFormat(coin.current_price)}&nbsp;
                       </StyledTableCell>
                       <StyledTableCell
                         color={
@@ -99,12 +100,12 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_1h_in_currency >= 0 ? (
-                          <StyledPricePercentArrow
+                          <StyledPercentImg
                             src={greenUp}
                             alt="up arrow"
                           />
                         ) : (
-                          <StyledPricePercentArrow
+                          <StyledPercentImg
                             src={redDown}
                             alt="down arrow"
                           />
@@ -118,7 +119,7 @@ const CoinData = (props) => {
                                 2
                               )
                             )}
-                        %
+                        %&nbsp;
                       </StyledTableCell>
                       <StyledTableCell
                         color={
@@ -128,12 +129,12 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_24h >= 0 ? (
-                          <StyledPricePercentArrow
+                          <StyledPercentImg
                             src={greenUp}
                             alt="up arrow"
                           />
                         ) : (
-                          <StyledPricePercentArrow
+                          <StyledPercentImg
                             src={redDown}
                             alt="down arrow"
                           />
@@ -143,7 +144,7 @@ const CoinData = (props) => {
                           : RemoveNegative(
                               coin.price_change_percentage_24h?.toFixed(2)
                             )}
-                        %
+                        %&nbsp;
                       </StyledTableCell>
                       <StyledTableCell
                         color={
@@ -153,12 +154,12 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_7d_in_currency >= 0 ? (
-                          <StyledPricePercentArrow
+                          <StyledPercentImg
                             src={greenUp}
                             alt="up arrow"
                           />
                         ) : (
-                          <StyledPricePercentArrow
+                          <StyledPercentImg
                             src={redDown}
                             alt="down arrow"
                           />
@@ -172,7 +173,7 @@ const CoinData = (props) => {
                                 2
                               )
                             )}
-                        %
+                        %&nbsp;
                       </StyledTableCell>
                       <StyledTableCell>
                         <StyledBullets>
@@ -180,7 +181,7 @@ const CoinData = (props) => {
                             ${CurrencyFormat(coin.total_volume)}
                           </ColoredDiv>
                           <ColoredDiv color={"#E8D587"}>
-                            ${CurrencyFormat(coin.market_cap)}
+                            ${CurrencyFormat(coin.market_cap)}&nbsp;
                           </ColoredDiv>
                         </StyledBullets>
                         <ProgressBar
@@ -197,7 +198,7 @@ const CoinData = (props) => {
                           <ColoredDiv color={"#FFDCCE"}>
                             {coin.max_supply
                               ? "$" + CurrencyFormat(coin.max_supply)
-                              : "∞"}
+                              : "∞"}&nbsp;
                           </ColoredDiv>
                         </StyledBullets>
                         <ProgressBar

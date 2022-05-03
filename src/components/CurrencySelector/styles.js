@@ -5,7 +5,7 @@ export const Container = styled.div`
   align-items: center;
   padding: 2.75%;
   background: ${(props) => props.theme.navBox};
-  border-radius: 12px;
+  border-radius: 12%;
 `;
 
 export const StyledDropdown = styled.select`

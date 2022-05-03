@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="49.513" viewBox="0 0 40 49.513">
+  <g id="Group_3860" data-name="Group 3860" transform="translate(-406 -923.5)">
+    <g id="Group_3801" data-name="Group 3801" transform="translate(-1.703 -2)">
+      <g id="Group_3658" data-name="Group 3658" transform="translate(820.702 139.013)">
+        <text id="Search" transform="translate(-413 832)" fill="#fff" font-size="11" font-family="Poppins-SemiBold, Poppins" font-weight="600"><tspan x="0" y="0">Search</tspan></text>
+      </g>
+    </g>
+    <g id="Iconly_Bulk_Search" data-name="Iconly/Bulk/Search" transform="translate(409.241 921.24)">
+      <path id="Path_3460" data-name="Path 3460" d="M9.5,0A9.5,9.5,0,1,1,0,9.5,9.5,9.5,0,0,1,9.5,0Z" transform="translate(4.556 5)" fill="#00ff5f" opacity="0.4"/>
+      <g id="Search-2" data-name="Search" transform="translate(2.759 2.759)">
+        <path id="Subtraction_2" data-name="Subtraction 2" d="M-2177.34,52.117a11.749,11.749,0,0,1-8.389-3.5,11.9,11.9,0,0,1-3.475-8.442,11.9,11.9,0,0,1,3.475-8.441,11.749,11.749,0,0,1,8.389-3.5,11.749,11.749,0,0,1,8.389,3.5,11.9,11.9,0,0,1,3.475,8.441,11.9,11.9,0,0,1-3.475,8.442A11.749,11.749,0,0,1-2177.34,52.117Zm-.068-20.136a8.509,8.509,0,0,0-8.5,8.5,8.51,8.51,0,0,0,8.5,8.5,8.51,8.51,0,0,0,8.5-8.5A8.51,8.51,0,0,0-2177.408,31.982Z" transform="translate(2189.204 -28.241)" fill="#00ff5f" stroke="rgba(0,0,0,0)" stroke-width="1"/>
+        <path id="Path_34202" d="M4.522,6.314A1.823,1.823,0,0,1,3.3,5.783L.486,2.5A1.5,1.5,0,0,1,.376.4h0A1.344,1.344,0,0,1,2.29.4L5.823,3.228a1.86,1.86,0,0,1,.4,1.974A1.841,1.841,0,0,1,4.6,6.376Z" transform="translate(21.242 21.217)" fill="#00ff5f" opacity="0.4"/>
+      </g>
+    </g>
+  </g>
+</svg>

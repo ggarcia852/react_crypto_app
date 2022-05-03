@@ -71,7 +71,6 @@ export const StyledLinkContainer = styled.div`
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   font-size: 3vw;
-  padding: 3%;
   @media ${devices.tablet} {
     font-size: 1.25vw;
   }
@@ -80,21 +79,27 @@ export const StyledLinkContainer = styled.div`
 export const StyledLinkBox = styled.div`
   display: flex;
   justify-content: center;
+  padding: 8%;
+  @media ${devices.tablet} {
+    justify-content: space-between;
+    padding: 10%;
+  }
 `;
 
 export const StyledLink = styled.div`
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
 `;
 
 export const StyledLinkImg = styled.img`
   width: 2vw;
-  margin: 0 3vw;
+  margin: 0 4vw;
   &:hover {
     cursor: pointer;
   }
   @media ${devices.tablet} {
     width: 1vw;
+    margin: 0;
   }
 `;
 
@@ -217,7 +222,6 @@ export const StyledStatImg = styled.img`
 export const StyledBullets = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 230px;
 `;
 
 export const ColoredDiv = styled.div.attrs((props) => ({
@@ -282,18 +286,28 @@ export const StyledBlockchainContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1vw;
+  padding: 2vw 0;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
-  font-size: 2.2vw;
+  font-size: 2.5vw;
   margin: 3% 0;
   @media ${devices.tablet} {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 1.25vw;
-    width: 25%;
-    padding: 0.75vw;
+  }
+`;
+
+export const StyledBlockchainImg = styled.img`
+  width: 2vw;
+  margin: 0 3vw;
+  &:hover {
+    cursor: pointer;
+  }
+  @media ${devices.tablet} {
+    width: 1vw;
+    margin: 0 2vw;
   }
 `;
 

@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
 
 export const StyledFullBar = styled.div.attrs((props) => ({
   style: {
 	background: `${props.mainBackground}`,
   },
 }))`
-  min-width: 60px;
-  max-width: 230px;
+  // min-width: 50%;
+  // max-width: 90%;
   border-radius: 20px;
 `;
 
@@ -16,7 +17,10 @@ export const StyledProgress = styled.div.attrs((props) => ({
     background: `${props.background}`,
   },
 }))`
-  height: 8px;
+  height: 1.5vw;
   border-radius: 20px;
   width: ${(props) => props.progress};
+  @media ${devices.tablet} {
+    height: .75vw;
+  }
 `;

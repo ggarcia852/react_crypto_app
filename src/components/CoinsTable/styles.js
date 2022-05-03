@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.div`
-  font-size: 2vw;
+  font-size: 3.5vw;
   font-weight: 500;
   color: ${(props) => props.theme.color};
   margin-left: 8%;
   padding: 5% 0 3%;
+  @media ${devices.tablet} {
+    font-size: 2vw;
+  }
 `;
 
 export const TableContainer = styled.div`
@@ -17,15 +20,20 @@ export const TableContainer = styled.div`
 export const StyledTable = styled.div`
   display: table;
   background: ${(props) => props.theme.secondary};
-  padding: 2%;
+  padding: 4%;
   border-radius: 10px;
   width: 100%;
 `;
 
 export const StyledTableHeader = styled.div`
   display: table-header-group;
-  font-size: 1.25vw;
-  font-weight: 600;
+  font-size: 3.5vw;
+  font-weight: 500;
+  @media ${devices.tablet} {
+    font-size: 1.25vw;
+    font-weight: 600;
+
+  }
 `;
 
 export const StyledTableHeaderCell = styled.div`
@@ -46,16 +54,33 @@ export const StyledTableCell = styled.div.attrs((props) => ({
   },
 }))`
   display: table-cell;
-  font-size: 1.15vw;
+  font-size: 3.25vw;
   border-bottom: 1px solid #707070;
-  padding: 1% 0.5% 1% 0;
   vertical-align: middle;
+  padding: 1%;
+  @media ${devices.tablet} {
+    font-size: 1.15vw;
+    padding: 1.5% 0;
+  }
 `;
 
 export const StyledImg = styled.img`
-  width: 1.75vw;
-  padding-right: 5px;
+  width: 5vw;
+  padding-right: 1%;
+  @media ${devices.tablet} {
+   width: 1.75vw;
+  }
 `;
+
+export const StyledPercentImg = styled.img`
+  display: flex;
+  width: 2vw;
+  @media ${devices.tablet} {
+    width: 1vw;
+    display: inline;
+    padding-bottom: .5vh;
+   }
+`
 
 export const StyledCoinLink = styled(Link)`
   display: flex;
@@ -67,13 +92,14 @@ export const StyledCoinLink = styled(Link)`
 export const StyledBullets = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 230px;
 `;
 
 export const StyledChart = styled.div`
-  display: flex;
-  max-width: 115px;
-  height: 45px;
+  width: 15vw;
+  height: 5vh;
+  @media ${devices.tablet} {
+    width: 10vw;
+  }
 `;
 
 export const Loader = styled.span`

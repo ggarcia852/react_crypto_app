@@ -36,13 +36,13 @@ export const StyledList = styled.div`
   position: absolute;
   max-height: 20%;
   overflow: scroll;
+  // overflow-y: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;
-  width: 100%;
 `;
 
 export const StyledListItem = styled.div`
-max-width: 18%;
+max-width: 15vw;
 padding: .5%;
 &:hover {
   background: #146AE3;

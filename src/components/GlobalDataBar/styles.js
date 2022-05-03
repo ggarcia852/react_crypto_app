@@ -23,7 +23,7 @@ export const StyledGlobalData = styled.div`
   padding: 1.5%;
   font-size: 1vw;
   background: ${(props) => props.theme.secondary};
-  border-radius: 0px 0px 15px 15px;
+  border-radius: 0 0 15px 15px;
   @media ${devices.laptop} {
     width: 70%;
   }
@@ -39,14 +39,14 @@ export const StyledData = styled.div`
 `;
 
 export const StyledIcon = styled.span`
-  padding-right: 5px;
+  padding-right: .75vw;
 `;
 
 export const StyledBar = styled.span`
-  padding-left: 5px;
+  // padding-left: 5px;
 `;
 
 export const StyledArrow = styled.img`
-  padding-left: 5px;
-  padding-bottom: 3px;
+  padding-left: .75vw;
+  padding-bottom: .25vw;
 `;

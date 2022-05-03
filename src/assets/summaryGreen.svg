@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="49.878" viewBox="0 0 56 49.878">
+  <g id="Group_3657" data-name="Group 3657" transform="translate(472.203 -786.122)">
+    <text id="Summary" transform="translate(-472.203 832)" fill="#fff" font-size="11" font-family="Poppins-SemiBold, Poppins" font-weight="600"><tspan x="0" y="0">Summary</tspan></text>
+    <g id="Iconly_Bulk_Activity" data-name="Iconly/Bulk/Activity" transform="translate(-461.184 783.363)">
+      <g id="Activity" transform="translate(2.759 2.759)">
+        <path id="Path_34168" d="M18.008,25.6H7.6a7.7,7.7,0,0,1-5.6-2.007A7.682,7.682,0,0,1,0,18.006V7.617a7.72,7.72,0,0,1,2.005-5.6A7.68,7.68,0,0,1,7.6,0h11.33a5.56,5.56,0,0,0-.1,1.05,5.73,5.73,0,0,0,5.728,5.719,5.89,5.89,0,0,0,1.038-.1V18.006a7.687,7.687,0,0,1-2,5.585A7.682,7.682,0,0,1,18.008,25.6ZM10.271,10.068a1.069,1.069,0,0,0-.14.009,1.053,1.053,0,0,0-.7.412l-4.2,5.419a1.036,1.036,0,0,0-.225.65,1.051,1.051,0,0,0,1.939.612l3.513-4.546,3.9,3.06a1.062,1.062,0,0,0,.66.232,1.054,1.054,0,0,0,.841-.42l4.064-5.244v-.026a1.066,1.066,0,0,0-.2-1.486,1.038,1.038,0,0,0-1.476.212l-3.426,4.408-3.9-3.072A1.055,1.055,0,0,0,10.271,10.068Z" transform="translate(0 2.844)" fill="#00ff5f"/>
+        <circle id="Ellipse_742" cx="3.555" cy="3.555" r="3.555" transform="translate(21.333)" fill="#00ff5f" opacity="0.4"/>
+      </g>
+    </g>
+  </g>
+</svg>

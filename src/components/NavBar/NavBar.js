@@ -1,8 +1,8 @@
 import React from "react";
+import Media from "react-media";
 import { connect } from "react-redux";
 import { changeTheme } from "store/theme/actions";
-import { CurrencySelector } from "components";
-import SearchBar from "components/SearchBar";
+import { CurrencySelector, SearchBar, MobileNavBar } from "components";
 import theme from "assets/theme.svg";
 import themeLight from "assets/themeLight.svg";
 import {
@@ -15,41 +15,40 @@ import {
   StyledImg,
 } from "./styles";
 
-// const mobileNav = <div>THis is the mobile nav</div>;
-
-// const mql = window.matchMedia("(max-width: 600px)");
-
-// let mobileView = mql.matches;
-// console.log(mobileView);
-
-// if (mobileView) {
-//   setNavInnerHTML(Component1);
-// } else {
-//   setNavInnerHTML(Component2);
-// }
-
 const NavBar = (props) => {
   return (
-    <NavContainer>
-      {/* {mobileView && mobileNav} */}
-      <StyledNav>
-        <StyledNavLinks>
-          <StyledLink exact to="/" activeClassName="active">
-            Coins
-          </StyledLink>
-          <StyledLink exact to="/portfolio" activeClassName="active">
-            Portfolio
-          </StyledLink>
-        </StyledNavLinks>
-        <StyledNavOptions>
-          <SearchBar />
-          <CurrencySelector handleCurrency={props.handleCurrency} />
-          <StyledThemeButton onClick={(e) => props.changeTheme(props.theme)}>
-            <StyledImg src={props.theme ? theme : themeLight} alt="theme" />
-          </StyledThemeButton>
-        </StyledNavOptions>
-      </StyledNav>
-    </NavContainer>
+    <Media queries={{ small: { maxWidth: 599 } }}>
+      {(matches) =>
+        matches.small ? (
+          <MobileNavBar />
+        ) : (
+          <NavContainer>
+            <StyledNav>
+              <StyledNavLinks>
+                <StyledLink exact to="/" activeClassName="active">
+                  Coins
+                </StyledLink>
+                <StyledLink exact to="/portfolio" activeClassName="active">
+                  Portfolio
+                </StyledLink>
+              </StyledNavLinks>
+              <StyledNavOptions>
+                <SearchBar />
+                <CurrencySelector handleCurrency={props.handleCurrency} />
+                <StyledThemeButton
+                  onClick={(e) => props.changeTheme(props.theme)}
+                >
+                  <StyledImg
+                    src={props.theme ? theme : themeLight}
+                    alt="theme"
+                  />
+                </StyledThemeButton>
+              </StyledNavOptions>
+            </StyledNav>
+          </NavContainer>
+        )
+      }
+    </Media>
   );
 };
 

@@ -17,6 +17,7 @@ import {
   StatisticHeading,
   ImgContainer,
   MarketContainer,
+  MobileCoinContainer,
   Stat,
   StatsContainer,
   StyledImg,
@@ -71,7 +72,8 @@ const CoinAsset = (props) => {
       <Container>
         {props.assets?.map((asset) => (
           <AssetContainer key={asset.id + Math.random()}>
-            <CoinContainer>
+            {/* <MobileCoinContainer> */}
+               <CoinContainer>
               <ImgContainer>
                 <StyledImg src={asset.large} alt="coin" />
               </ImgContainer>
@@ -88,6 +90,8 @@ const CoinAsset = (props) => {
                 onClick={() => handleDelete(asset)}
               />
             </CoinContainer>
+            {/* </MobileCoinContainer> */}
+           
             <MarketContainer>
               <EditContainer>
                 <CoinHeading>Coin Stats:</CoinHeading>

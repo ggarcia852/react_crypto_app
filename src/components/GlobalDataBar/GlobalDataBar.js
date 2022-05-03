@@ -69,7 +69,7 @@ const GlobalData = (props) => {
               <StyledIcon>
                 <img src={btc} alt="bitcoin" />
               </StyledIcon>
-              {globalData.market_cap_percentage.btc.toFixed(0)}%
+              {globalData.market_cap_percentage.btc.toFixed()}%
               <StyledBar>
                 <ProgressBar
                   background={"#2775C9"}
@@ -82,12 +82,12 @@ const GlobalData = (props) => {
               <StyledIcon>
                 <img src={eth} alt="ethereum" />
               </StyledIcon>
-              {globalData.market_cap_percentage.eth.toFixed(0)}%
+              {globalData.market_cap_percentage.eth.toFixed()}%
               <StyledBar>
                 <ProgressBar
+                  progress={globalData.market_cap_percentage.eth}
                   background={"#2775C9"}
                   mainBackground={"#A7C2F5"}
-                  progress={globalData.market_cap_percentage.eth}
                 />
               </StyledBar>
             </StyledData>

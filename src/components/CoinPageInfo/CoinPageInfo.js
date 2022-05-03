@@ -47,6 +47,7 @@ import {
   StyledLinkBox,
   StyledMarketBox,
   StyledLink,
+  StyledBlockchainImg,
 } from "./styles";
 
 function CoinPageInfo(props) {
@@ -362,13 +363,13 @@ function CoinPageInfo(props) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg
+                  <StyledBlockchainImg
                     src={props.theme ? link : linkLight}
                     alt="link"
                   />
                 </a>
                 {linkSize(coinData.links.blockchain_site[0])}
-                <StyledLinkImg
+                <StyledBlockchainImg
                   onClick={(e) => handleCopy(coinData.links.blockchain_site[0])}
                   src={props.theme ? feather : featherLight}
                   alt="feather"
@@ -380,13 +381,13 @@ function CoinPageInfo(props) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg
+                  <StyledBlockchainImg
                     src={props.theme ? link : linkLight}
                     alt="link"
                   />
                 </a>
                 {linkSize(coinData.links.blockchain_site[1])}
-                <StyledLinkImg
+                <StyledBlockchainImg
                   onClick={(e) => handleCopy(coinData.links.blockchain_site[1])}
                   src={props.theme ? feather : featherLight}
                   alt="feather"
@@ -398,13 +399,13 @@ function CoinPageInfo(props) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg
+                  <StyledBlockchainImg
                     src={props.theme ? link : linkLight}
                     alt="link"
                   />
                 </a>
                 {linkSize(coinData.links.blockchain_site[2])}
-                <StyledLinkImg
+                <StyledBlockchainImg
                   onClick={(e) => handleCopy(coinData.links.blockchain_site[2])}
                   src={props.theme ? feather : featherLight}
                   alt="feather"

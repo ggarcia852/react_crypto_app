@@ -24,11 +24,22 @@ export const AssetContainer = styled.div`
   }
 `;
 
+export const MobileCoinContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  @media ${devices.tablet} {
+   display: block;
+  width: 15%;
+  }
+`
+
 export const CoinContainer = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
+  margin: auto;
   padding: 5%;
+  width: 50vw;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   @media ${devices.tablet} {
