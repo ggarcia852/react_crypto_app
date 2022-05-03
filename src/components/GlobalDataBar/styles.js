@@ -23,6 +23,9 @@ export const StyledGlobalData = styled.div`
   padding: 1.5%;
   font-size: 2.5vw;
   background: ${(props) => props.theme.secondary};
+  @media ${devices.mobileL} {
+    font-size: 1vw;
+  }
   @media ${devices.tablet} {
     border-radius: 0 0 15px 15px;
     font-size: 1vw;

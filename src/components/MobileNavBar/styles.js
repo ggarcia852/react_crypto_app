@@ -19,7 +19,7 @@ export const NavBarBottom = styled.div`
     justify-content: space-around;
     position: fixed;
     bottom: 0%;
-    width: 100%;
+    width: 100vw;
     height: 8vh;
     background: ${props => props.theme.secondary}
 `
