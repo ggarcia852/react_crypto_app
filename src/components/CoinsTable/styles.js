@@ -66,9 +66,10 @@ export const StyledTableCell = styled.div.attrs((props) => ({
 
 export const StyledImg = styled.img`
   width: 5vw;
-  padding-right: 1%;
+  padding-right: 5%;
   @media ${devices.tablet} {
     width: 1.75vw;
+    padding-right: 3%;
   }
 `;
 

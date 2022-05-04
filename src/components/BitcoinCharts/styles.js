@@ -13,6 +13,24 @@ export const StyledHeader = styled.span`
   }
 `;
 
+export const StyledHeading = styled.div`
+  display: flex;
+  flex-flow: column;
+  padding: 5%;
+  width: 70%;
+`;
+
+export const StyledHeaderBox = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const StyledArrows = styled.div`
+  font-size: 5vw;
+  font-weight: 500;
+  float: right;
+`
+
 export const ChartsContainer = styled.div`
   display: flex;
   margin: 0 8%;
@@ -88,12 +106,6 @@ export const StyledButton = styled.button`
     padding: 1.5%;
     font-size: 1.5vw;
   }
-`;
-
-export const StyledHeading = styled.div`
-  display: flex;
-  flex-flow: column;
-  padding: 5%;
 `;
 
 export const StyledTitle = styled.div`

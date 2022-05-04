@@ -11,5 +11,4 @@ export { default as CoinPageInfo } from "./CoinPageInfo";
 export {default as AddCoin } from "./AddCoin"
 export { default as CoinAsset } from "./CoinAsset"
 export { default as MobileNavBar } from "./MobileNavBar"
-export { default as MobileBitcoinCharts } from "./MobileBitcoinCharts"
 export { default as MobileSearch } from "./MobileSearch"

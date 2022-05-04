@@ -19,6 +19,8 @@ import {
   StyledAmount,
   StyledDate,
   Loader,
+  StyledHeaderBox,
+  StyledArrows,
 } from "./styles";
 
 const BitcoinCharts = (props) => {
@@ -55,6 +57,9 @@ const BitcoinCharts = (props) => {
   const chartData = props.chartData;
   const hasData = !props.isLoading && props.chartData;
 
+  const mql = window.matchMedia("(max-width: 767px)");
+  let mobileView = mql.matches;
+
   return (
     <>
       <StyledHeader>Bitcoin Overview</StyledHeader>
@@ -73,11 +78,18 @@ const BitcoinCharts = (props) => {
           )}
           {hasData && (
             <StyledChart>
-              <StyledHeading>
-                <StyledTitle>Price</StyledTitle>
-                <StyledAmount>${price.toLocaleString()}</StyledAmount>
-                <StyledDate>{today}</StyledDate>
-              </StyledHeading>
+              <StyledHeaderBox>
+                <StyledHeading>
+                  <StyledTitle>Price</StyledTitle>
+                  <StyledAmount>${price.toLocaleString()}</StyledAmount>
+                  <StyledDate>{today}</StyledDate>
+                </StyledHeading>
+                {mobileView && (
+                  <StyledArrows>
+                    {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
+                  </StyledArrows>
+                )}
+              </StyledHeaderBox>
               <Line
                 data={{
                   labels: chartData.prices.map((price) => ConvertDay(price[0])),
@@ -132,11 +144,18 @@ const BitcoinCharts = (props) => {
           )}
           {hasData && (
             <StyledChart>
-              <StyledHeading>
-                <StyledTitle>Volume</StyledTitle>
-                <StyledAmount>${CurrencyFormat(volume)}</StyledAmount>
-                <StyledDate>{today}</StyledDate>
-              </StyledHeading>
+              <StyledHeaderBox>
+                <StyledHeading>
+                  <StyledTitle>Volume</StyledTitle>
+                  <StyledAmount>${CurrencyFormat(volume)}</StyledAmount>
+                  <StyledDate>{today}</StyledDate>
+                </StyledHeading>
+                {mobileView && (
+                  <StyledArrows>
+                    {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
+                  </StyledArrows>
+                )}
+              </StyledHeaderBox>
               <Bar
                 data={{
                   labels: chartData.total_volumes.map((volume) =>
@@ -179,7 +198,6 @@ const BitcoinCharts = (props) => {
       </ChartsContainer>
       <StyledBarContainer>
         <StyledBar>
-          {/* <div> */}
           {chartButtons.map((button) => (
             <StyledButton
               key={button.value}
@@ -189,7 +207,6 @@ const BitcoinCharts = (props) => {
               {button.value}
             </StyledButton>
           ))}
-          {/* </div> */}
         </StyledBar>
       </StyledBarContainer>
     </>
