@@ -47,25 +47,12 @@ export const StyledCharts = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
-  min-height: 30vh;
+  min-height: 33vh;
   scroll-snap-align: start;
   scroll-behavior: smooth;
   width: 100%;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
-  @media ${devices.mobileM} {
-   min-height: 40vh;
-  }
-  @media ${devices.mobileL} {
-   min-height: 50vh;
-  }
-  @media ${devices.laptop} {
-   min-height: 60vh;
-   overflow: hidden;
-  }
-  @media ${devices.laptopL} {
-    // height: 91vh;
-  }
 `;
 
 export const StyledChart = styled.div`
@@ -74,7 +61,7 @@ export const StyledChart = styled.div`
   justify-content: center;
   width: 84vw;
   @media ${devices.tablet} {
-    width: 42vw;
+    width: 39vw;
 `;
 
 export const StyledBarContainer = styled.div`
@@ -141,4 +128,6 @@ export const StyledDate = styled.div`
 export const Loader = styled.div`
   display: flex;
   align-items: center;
-`;
+  justify-content: center;
+  width: 84vw;
+  `;
