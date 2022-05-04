@@ -47,20 +47,20 @@ export const StyledCharts = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
-  min-height: 35vh;
+  min-height: 30vh;
   scroll-snap-align: start;
   scroll-behavior: smooth;
   width: 100%;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
   @media ${devices.mobileM} {
-   min-height: 45vh;
+   min-height: 40vh;
   }
   @media ${devices.mobileL} {
-   min-height: 55vh;
+   min-height: 50vh;
   }
   @media ${devices.laptop} {
-   min-height: 65vh;
+   min-height: 60vh;
    overflow: hidden;
   }
   @media ${devices.laptopL} {
