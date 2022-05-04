@@ -31,6 +31,6 @@ export const StyledImg = styled.img`
   border-radius: 50%;
   @media ${devices.tablet} {
     width: 1.75vw;
-  height: 1.75vw;
+    height: 1.75vw;
     }
 `;

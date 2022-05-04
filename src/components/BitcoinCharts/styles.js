@@ -35,8 +35,6 @@ export const ChartsContainer = styled.div`
   display: flex;
   margin: 0 8%;
   width: 84vw;
-  // height: 100%;
-  // min-height: 54vh;
   overflow-x: auto;
   &::-webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory; 
@@ -49,22 +47,32 @@ export const StyledCharts = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 5%;
+  min-height: 42vh;
   scroll-snap-align: start;
   scroll-behavior: smooth;
   width: 100%;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
-  @media ${devices.tablet} {
-    overflow: hidden;
+  @media ${devices.mobileM} {
+   min-height: 50vh;
+  }
+  @media ${devices.mobileL} {
+   min-height: 56vh;
   }
   @media ${devices.laptop} {
-    // height: 50vh;
+   min-height: 69vh;
+   overflow: hidden;
+  }
+  @media ${devices.laptopL} {
+    // height: 91vh;
   }
 `;
 
 export const StyledChart = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
   width: 84vw;
-  // height: ;
   @media ${devices.tablet} {
     width: 42vw;
 `;

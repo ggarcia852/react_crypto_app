@@ -55,6 +55,7 @@ export const StyledList = styled.div`
   margin-left: 8%;
   font-size: 4vw;
   position: absolute;
+  overflow: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;
 `;

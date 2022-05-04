@@ -6,8 +6,9 @@ export const Container = styled.div`
   flex-direction: column;
   padding: 1vw;
   width: 20vw;
+  height: 1.5vw;
   background: ${(props) => props.theme.navBox};
-  border-radius: 12px;
+  border-radius: 7px;
   border: none;
 `;
 
@@ -23,7 +24,7 @@ export const StyledInput = styled.input`
   margin-left: 5%;
   outline: 0px;
   font-size: 1vw;
-  height: 1.5vw;
+  height: 1.4vw;
   width: 15vw;
   color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {
