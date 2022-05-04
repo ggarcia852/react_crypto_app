@@ -28,7 +28,6 @@ export const StyledHeaderBox = styled.div`
 export const StyledArrows = styled.div`
   font-size: 5vw;
   font-weight: 500;
-  float: right;
 `
 
 export const ChartsContainer = styled.div`
@@ -45,20 +44,22 @@ export const ChartsContainer = styled.div`
 
 export const StyledCharts = styled.div`
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   margin-bottom: 5%;
   min-height: 33vh;
   scroll-snap-align: start;
   scroll-behavior: smooth;
-  width: 100%;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
+  @media ${devices.tablet} {
+    width: 50%;
+  }
 `;
 
 export const StyledChart = styled.div`
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  // justify-content: center;
   width: 84vw;
   @media ${devices.tablet} {
     width: 39vw;

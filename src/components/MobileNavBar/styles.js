@@ -28,7 +28,7 @@ export const NavBarBottomBox = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  margin: 2% 8%;
+  margin: 0 8%;
 `;
 
 export const StyledInputImg = styled.img`

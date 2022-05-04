@@ -57,6 +57,10 @@ function CoinPageInfo(props) {
     //eslint-disable-next-line
   }, [props.match.params.coinId, props.currency]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleCopy = (site) => {
     navigator.clipboard.writeText(site);
   };
@@ -85,6 +89,7 @@ function CoinPageInfo(props) {
   });
 
   const totalProfit = profit.reduce((a, b) => a + b, 0);
+  const symbol = coinData?.symbol.toUpperCase()
 
   return (
     <div>
@@ -112,7 +117,7 @@ function CoinPageInfo(props) {
                 <StyledCoinBox>
                   <StyledCoinImg src={coinData.image.small} alt="coinData" />
                   <div>
-                    {coinData.name}({coinData.symbol.toUpperCase()})
+                    {coinData.name}({symbol})
                   </div>
                 </StyledCoinBox>
               )}

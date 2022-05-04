@@ -5,10 +5,11 @@ export const StyledBarContainer = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  margin-bottom: 5%;
+  margin: 8%;
   @media ${devices.tablet} {
     flex-flow: row;
     justify-content: center;
+    margin: 3%;
   }
 `;
 
@@ -40,6 +41,7 @@ border: none;
 outline: 0px;
 height: 9vw;
 width:50vw;
+padding: 0;
 border-radius: 0 .5vw .5vw 0;
 font-size: 2.5vw;
 padding-left: 2vw;

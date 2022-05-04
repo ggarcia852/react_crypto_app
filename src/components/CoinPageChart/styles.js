@@ -4,6 +4,7 @@ import { devices } from "GlobalStyles/devices";
 export const StyledDayContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin: 3%;
 `;
 
 export const StyledButtonInput = styled.input`

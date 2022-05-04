@@ -15,7 +15,7 @@ export const StatisticHeading = styled.div`
 `;
 
 export const AssetContainer = styled.div`
-  margin-bottom: 3%;
+  margin-bottom: 10vh;
   width: 100%;
   border-bottom: 1px dotted red;
   @media ${devices.tablet} {
@@ -28,10 +28,10 @@ export const MobileCoinContainer = styled.div`
   display: flex;
   justify-content: center;
   @media ${devices.tablet} {
-   display: block;
-  width: 15%;
+    display: block;
+    width: 15%;
   }
-`
+`;
 
 export const CoinContainer = styled.div`
   display: flex;

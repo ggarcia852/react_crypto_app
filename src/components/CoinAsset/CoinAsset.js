@@ -73,7 +73,7 @@ const CoinAsset = (props) => {
         {props.assets?.map((asset) => (
           <AssetContainer key={asset.id + Math.random()}>
             {/* <MobileCoinContainer> */}
-               <CoinContainer>
+            <CoinContainer>
               <ImgContainer>
                 <StyledImg src={asset.large} alt="coin" />
               </ImgContainer>
@@ -91,7 +91,6 @@ const CoinAsset = (props) => {
               />
             </CoinContainer>
             {/* </MobileCoinContainer> */}
-           
             <MarketContainer>
               <EditContainer>
                 <CoinHeading>Coin Stats:</CoinHeading>
@@ -114,7 +113,7 @@ const CoinAsset = (props) => {
                 )}{" "}
               </EditContainer>
               <StatsContainer>
-                <Stat>Coin Amount: {CurrencyFormat(asset.purchaseAmount)}</Stat>
+                <Stat>Coin Amount: {asset.purchaseAmount}</Stat>
                 <Stat>
                   Total Value: $
                   {CurrencyFormat(asset.purchaseAmount * asset.price)}

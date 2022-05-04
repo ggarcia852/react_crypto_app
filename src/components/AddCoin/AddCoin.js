@@ -104,7 +104,7 @@ function AddCoin(props) {
             <DirectionsContainer>
               <div>1. Search and select your coin </div>
               <div>2. Enter amount of coin purchased</div>
-              <div>3. Click on calendar to select your purchase date</div>
+              <div>3. Select your purchase date</div>
             </DirectionsContainer>
           )}
           {selectedCoin && (

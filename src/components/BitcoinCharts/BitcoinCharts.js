@@ -132,7 +132,7 @@ const BitcoinCharts = (props) => {
           )}
         </StyledCharts>
         <StyledCharts>
-          {props.isLoading && !mobileView && (
+          {props.isLoading && (
             <Loader>
               <Oval
                 height="100"

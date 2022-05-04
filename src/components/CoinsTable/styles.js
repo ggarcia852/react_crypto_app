@@ -14,7 +14,10 @@ export const StyledHeader = styled.div`
 `;
 
 export const TableContainer = styled.div`
-  margin: 0 8% 2%;
+  margin: 0 8% 12%;
+  @media ${devices.tablet} {
+    margin: 0 8% 5%;
+  }
 `;
 
 export const StyledTable = styled.div`
@@ -66,7 +69,7 @@ export const StyledTableCell = styled.div.attrs((props) => ({
 
 export const StyledImg = styled.img`
   width: 5vw;
-  padding-right: 5%;
+  padding: 0 5%;
   @media ${devices.tablet} {
     width: 1.75vw;
     padding-right: 3%;
