@@ -6,6 +6,37 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
+export const StyledGlobalData = styled.div`
+  display: flex;
+  overflow-x: auto;
+  &::-webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory; 
+  align-items: center;
+  width: 100vw;
+  height: 5vh;
+  padding: 1% 1.5%;
+  font-size: 2.5vw;
+  background: ${(props) => props.theme.secondary};
+  @media ${devices.tablet} {
+    border-radius: 0 0 15px 15px;
+    width: 60vw;
+    font-size: 1.25vw;
+    justify-content: space-around;
+  }
+`;
+
+export const StyledMobileDataBar = styled.div`
+  display: flex;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+`;
+
+export const StyledSlide = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+`;
+
 export const Loading = styled.div`
   display: flex;
   align-items: center;
@@ -15,22 +46,6 @@ export const Loading = styled.div`
   background: ${(props) => props.theme.secondary};
   @media ${devices.tablet} {
     width: 60vw;
-  }
-`;
-
-export const StyledGlobalData = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100vw;
-  height: 5vh;
-  padding: 1.5%;
-  font-size: 2.5vw;
-  background: ${(props) => props.theme.secondary};
-  @media ${devices.tablet} {
-    border-radius: 0 0 15px 15px;
-    width: 60vw;
-    font-size: 1.25vw;
   }
 `;
 
@@ -49,9 +64,6 @@ export const StyledIcon = styled.span`
   padding-right: 0.75vw;
 `;
 
-export const StyledBar = styled.span`
-  // margin-right: 4%;
-`;
 
 export const StyledArrow = styled.img`
   padding-left: 0.75vw;

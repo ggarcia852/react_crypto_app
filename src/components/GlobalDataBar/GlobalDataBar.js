@@ -15,9 +15,10 @@ import {
   StyledData,
   StyledMobileData,
   StyledIcon,
-  StyledBar,
   StyledArrow,
   Loading,
+  StyledMobileDataBar,
+  StyledSlide,
 } from "./styles";
 
 const GlobalData = (props) => {
@@ -46,42 +47,66 @@ const GlobalData = (props) => {
               <StyledGlobalData>
                 {props.hasError && <div>Error loading data.</div>}
                 <>
-                  <StyledMobileData>
-                    {CurrencyFormat(volume)}
-                    <StyledBar>
-                      <ProgressBar
-                        background={"#2775C9"}
-                        mainBackground={"#A7C2F5"}
-                        progress={(volume / marketCap) * 100}
-                      />
-                    </StyledBar>
-                  </StyledMobileData>
-                  <StyledMobileData>
-                    <StyledIcon>
-                      <img src={btc} alt="bitcoin" />
-                    </StyledIcon>
-                    {globalData.market_cap_percentage.btc.toFixed()}%
-                    <StyledBar>
-                      <ProgressBar
-                        background={"#2775C9"}
-                        mainBackground={"#A7C2F5"}
-                        progress={globalData.market_cap_percentage.btc}
-                      />
-                    </StyledBar>
-                  </StyledMobileData>
-                  <StyledMobileData>
-                    <StyledIcon>
-                      <img src={eth} alt="ethereum" />
-                    </StyledIcon>
-                    {globalData.market_cap_percentage.eth.toFixed()}%
-                    <StyledBar>
-                      <ProgressBar
-                        progress={globalData.market_cap_percentage.eth}
-                        background={"#2775C9"}
-                        mainBackground={"#A7C2F5"}
-                      />
-                    </StyledBar>
-                  </StyledMobileData>
+                  <StyledMobileDataBar>
+                    <StyledSlide>
+                      <StyledMobileData>
+                        {CurrencyFormat(volume)}
+                        <span>
+                          <ProgressBar
+                            background={"#2775C9"}
+                            mainBackground={"#A7C2F5"}
+                            progress={(volume / marketCap) * 100}
+                          />
+                        </span>
+                      </StyledMobileData>
+                      <StyledMobileData>
+                        <StyledIcon>
+                          <img src={btc} alt="bitcoin" />
+                        </StyledIcon>
+                        {globalData.market_cap_percentage.btc.toFixed()}%
+                        <span>
+                          <ProgressBar
+                            background={"#2775C9"}
+                            mainBackground={"#A7C2F5"}
+                            progress={globalData.market_cap_percentage.btc}
+                          />
+                        </span>
+                      </StyledMobileData>
+                      <StyledMobileData>
+                        <StyledIcon>
+                          <img src={eth} alt="ethereum" />
+                        </StyledIcon>
+                        {globalData.market_cap_percentage.eth.toFixed()}%
+                        <span>
+                          <ProgressBar
+                            progress={globalData.market_cap_percentage.eth}
+                            background={"#2775C9"}
+                            mainBackground={"#A7C2F5"}
+                          />
+                        </span>
+                      </StyledMobileData>
+                    </StyledSlide>
+                  </StyledMobileDataBar>
+                  <StyledMobileDataBar>
+                    <StyledSlide>
+                      <StyledData>
+                        Coins:{" "}
+                        {globalData.active_cryptocurrencies.toLocaleString()}
+                      </StyledData>
+                      <StyledData>Markets: {globalData.markets}</StyledData>
+                      <StyledData>
+                        <li>
+                          ${CurrencyFormat(marketCap)}
+                          {globalData.market_cap_change_percentage_24h_usd >
+                          0 ? (
+                            <StyledArrow src={greenUp} alt="up arrow" />
+                          ) : (
+                            <StyledArrow src={redDown} alt="down arrow" />
+                          )}
+                        </li>
+                      </StyledData>
+                    </StyledSlide>
+                  </StyledMobileDataBar>
                 </>
               </StyledGlobalData>
             ) : (
@@ -104,39 +129,39 @@ const GlobalData = (props) => {
                   </StyledData>
                   <StyledData>
                     <li>${CurrencyFormat(volume)}</li>
-                    <StyledBar>
+                    <span>
                       <ProgressBar
                         background={"#2775C9"}
                         mainBackground={"#A7C2F5"}
                         progress={(volume / marketCap) * 100}
                       />
-                    </StyledBar>
+                    </span>
                   </StyledData>
                   <StyledData>
                     <StyledIcon>
                       <img src={btc} alt="bitcoin" />
                     </StyledIcon>
                     {globalData.market_cap_percentage.btc.toFixed()}%
-                    <StyledBar>
+                    <span>
                       <ProgressBar
                         background={"#2775C9"}
                         mainBackground={"#A7C2F5"}
                         progress={globalData.market_cap_percentage.btc}
                       />
-                    </StyledBar>
+                    </span>
                   </StyledData>
                   <StyledData>
                     <StyledIcon>
                       <img src={eth} alt="ethereum" />
                     </StyledIcon>
                     {globalData.market_cap_percentage.eth.toFixed()}%
-                    <StyledBar>
+                    <span>
                       <ProgressBar
                         progress={globalData.market_cap_percentage.eth}
                         background={"#2775C9"}
                         mainBackground={"#A7C2F5"}
                       />
-                    </StyledBar>
+                    </span>
                   </StyledData>
                 </>
               </StyledGlobalData>

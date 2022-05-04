@@ -44,7 +44,6 @@ export const ChartsContainer = styled.div`
 
 export const StyledCharts = styled.div`
   display: flex;
-  // justify-content: center;
   margin-bottom: 5%;
   min-height: 33vh;
   scroll-snap-align: start;
@@ -59,7 +58,6 @@ export const StyledCharts = styled.div`
 export const StyledChart = styled.div`
   display: flex;
   flex-flow: column;
-  // justify-content: center;
   width: 84vw;
   @media ${devices.tablet} {
     width: 39vw;
