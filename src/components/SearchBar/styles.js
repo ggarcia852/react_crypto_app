@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 1vw;
-  width: 20vw;
-  height: 1.5vw;
+  height: 60%;
+  margin-right: 3%;
   background: ${(props) => props.theme.navBox};
-  border-radius: 7px;
+  border-radius: 8px;
   border: none;
 `;
 
 export const StyledPlaceholder = styled.div`
+  margin-left: 5%;
   display: flex;
   align-items: center;
 `;
@@ -20,11 +19,11 @@ export const StyledPlaceholder = styled.div`
 export const StyledInput = styled.input`
   background: ${(props) => props.theme.navBox};
   border: none;
-  padding: 0;
   margin-left: 5%;
   outline: 0px;
-  font-size: 1vw;
-  height: 1.4vw;
+  font-size: 1.25vw;
+  border-radius: 8px;
+  height: 100%;
   width: 15vw;
   color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {

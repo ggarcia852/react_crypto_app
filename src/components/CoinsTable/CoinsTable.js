@@ -242,6 +242,11 @@ const CoinData = (props) => {
                                   display: false,
                                 },
                               },
+                              layout: {
+                                padding: {
+                                    left: 15
+                                }
+                            },
                               elements: {
                                 point: {
                                   radius: 0,

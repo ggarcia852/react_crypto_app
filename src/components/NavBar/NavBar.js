@@ -1,18 +1,17 @@
 import React from "react";
 import Media from "react-media";
-import { connect } from "react-redux";
-import { changeTheme } from "store/theme/actions";
-import { CurrencySelector, SearchBar, MobileNavBar } from "components";
-import theme from "assets/theme.svg";
-import themeLight from "assets/themeLight.svg";
+import {
+  CurrencySelector,
+  SearchBar,
+  MobileNavBar,
+  ThemeSelector,
+} from "components";
 import {
   StyledNav,
   StyledLink,
   StyledNavLinks,
   StyledNavOptions,
-  StyledThemeButton,
   NavContainer,
-  StyledImg,
 } from "./styles";
 
 const NavBar = (props) => {
@@ -35,14 +34,7 @@ const NavBar = (props) => {
               <StyledNavOptions>
                 <SearchBar />
                 <CurrencySelector handleCurrency={props.handleCurrency} />
-                <StyledThemeButton
-                  onClick={(e) => props.changeTheme(props.theme)}
-                >
-                  <StyledImg
-                    src={props.theme ? theme : themeLight}
-                    alt="theme"
-                  />
-                </StyledThemeButton>
+                <ThemeSelector />
               </StyledNavOptions>
             </StyledNav>
           </NavContainer>
@@ -52,12 +44,4 @@ const NavBar = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  theme: state.theme.darkTheme,
-});
-
-const mapDispatchToProps = {
-  changeTheme,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default NavBar;

@@ -14,6 +14,12 @@ export const NavContainer = styled.div`
   margin: 2% 1% 2% 8%;
 `;
 
+export const StyledRightNav = styled.nav`
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+`;
+
 export const NavBarBottom = styled.div`
   display: flex;
   justify-content: space-around;

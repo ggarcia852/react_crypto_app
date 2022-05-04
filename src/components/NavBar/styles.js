@@ -33,22 +33,7 @@ export const StyledLink = styled(NavLink)`
 export const StyledNavOptions = styled.div`
   display: flex;
   align-items: center;
-  gap: 1vw;
-`;
-
-export const StyledThemeButton = styled.button`
-  padding: 2.5%;
-  margin-right: 1%;
-  background: ${(props) => props.theme.navBox};
-  border-radius: 12px;
-  border-color: #2c2f36;
-  border: none;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const StyledImg = styled.img`
-  width: 1.75vw;
-  height: 1.75vw;
+  justify-content: end;
+  width: 40%;
+  gap: 2vw;
 `;

@@ -4,9 +4,14 @@ import { devices } from "GlobalStyles/devices";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 2.75%;
+  padding: 0 2%;
+  height: 5vh;
   background: ${(props) => props.theme.navBox};
   border-radius: 12%;
+  @media ${devices.tablet} {
+    border-radius: 8px;
+    height: 60%;
+  }
 `;
 
 export const StyledDropdown = styled.select`
@@ -20,7 +25,7 @@ export const StyledDropdown = styled.select`
     cursor: pointer;
   }
   @media ${devices.tablet} {
-  font-size: 1vw;
+    font-size: 1.5vw;
   }
 `;
 
@@ -30,7 +35,7 @@ export const StyledImg = styled.img`
   background: ${(props) => props.theme.secondary};
   border-radius: 50%;
   @media ${devices.tablet} {
-    width: 1.75vw;
-    height: 1.75vw;
-    }
+    width: 2vw;
+    height: 2vw;
+  }
 `;

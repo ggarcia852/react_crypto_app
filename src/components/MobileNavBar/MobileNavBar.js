@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CurrencySelector, MobileSearch } from "components";
+import { CurrencySelector, MobileSearch, ThemeSelector } from "components";
 import {
   Container,
   NavBarBottom,
@@ -7,6 +7,7 @@ import {
   NavContainer,
   StyledInputImg,
   StyledLink,
+  StyledRightNav,
 } from "./styles";
 import overview from "assets/overview.svg";
 import portfolio from "assets/portfolio.svg";
@@ -24,7 +25,10 @@ export default function MobileNavBar() {
       <Container>
         <NavContainer>
           <div>Overview</div>
-          <CurrencySelector />
+          <StyledRightNav>
+            <CurrencySelector />
+            <ThemeSelector />
+          </StyledRightNav>
         </NavContainer>
         {showSearch && <MobileSearch showSearch={setShowSearch} />}
       </Container>
