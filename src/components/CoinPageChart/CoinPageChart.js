@@ -104,7 +104,13 @@ function MarketChart(props) {
                     label: "Price",
                     data: chartData.prices.map((price) => price[1]),
                     pointRadius: 0,
-                    borderColor: props.theme ? "#707070" : "#2550EA",
+                    // borderColor: props.theme ? "#707070" : "#2550EA",
+
+                    borderColor:
+                      chartData.prices[0][1] <=
+                      chartData.prices[chartData.prices.length - 1][1]
+                        ? "#00FC2A"
+                        : "#FE1040",
                     backgroundColor: props.theme ? "#191B1F" : "#ffffff",
                     fill: true,
                     tension: 0.1,

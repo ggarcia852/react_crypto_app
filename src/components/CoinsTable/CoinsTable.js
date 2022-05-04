@@ -25,11 +25,8 @@ import {
   StyledChart,
   Loader,
   StyledPercentImg,
-
 } from "./styles";
-import {
-  ColoredDiv,
-} from "components/CoinPageInfo/styles";
+import { ColoredDiv } from "components/CoinPageInfo/styles";
 
 const CoinData = (props) => {
   const [page, setPage] = useState(1);
@@ -100,15 +97,9 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_1h_in_currency >= 0 ? (
-                          <StyledPercentImg
-                            src={greenUp}
-                            alt="up arrow"
-                          />
+                          <StyledPercentImg src={greenUp} alt="up arrow" />
                         ) : (
-                          <StyledPercentImg
-                            src={redDown}
-                            alt="down arrow"
-                          />
+                          <StyledPercentImg src={redDown} alt="down arrow" />
                         )}
                         {coin.price_change_percentage_1h_in_currency >= 0
                           ? coin.price_change_percentage_1h_in_currency?.toFixed(
@@ -129,15 +120,9 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_24h >= 0 ? (
-                          <StyledPercentImg
-                            src={greenUp}
-                            alt="up arrow"
-                          />
+                          <StyledPercentImg src={greenUp} alt="up arrow" />
                         ) : (
-                          <StyledPercentImg
-                            src={redDown}
-                            alt="down arrow"
-                          />
+                          <StyledPercentImg src={redDown} alt="down arrow" />
                         )}
                         {coin.price_change_percentage_24h >= 0
                           ? coin.price_change_percentage_24h?.toFixed(2)
@@ -154,15 +139,9 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_7d_in_currency >= 0 ? (
-                          <StyledPercentImg
-                            src={greenUp}
-                            alt="up arrow"
-                          />
+                          <StyledPercentImg src={greenUp} alt="up arrow" />
                         ) : (
-                          <StyledPercentImg
-                            src={redDown}
-                            alt="down arrow"
-                          />
+                          <StyledPercentImg src={redDown} alt="down arrow" />
                         )}
                         {coin.price_change_percentage_7d_in_currency >= 0
                           ? coin.price_change_percentage_7d_in_currency?.toFixed(
@@ -198,7 +177,8 @@ const CoinData = (props) => {
                           <ColoredDiv color={"#FFDCCE"}>
                             {coin.max_supply
                               ? "$" + CurrencyFormat(coin.max_supply)
-                              : "∞"}&nbsp;
+                              : "∞"}
+                            &nbsp;
                           </ColoredDiv>
                         </StyledBullets>
                         <ProgressBar
@@ -220,14 +200,14 @@ const CoinData = (props) => {
                                 {
                                   data: coin.sparkline_in_7d.price,
                                   borderColor:
-                                    coin.sparkline_in_7d.price[1] <=
+                                    coin.sparkline_in_7d.price[0] <=
                                     coin.sparkline_in_7d.price[
                                       coin.sparkline_in_7d.price.length - 1
                                     ]
                                       ? "#00FC2A"
                                       : "#FE1040",
                                   fill: false,
-                                  tension: .1,
+                                  tension: 0.1,
                                   borderWidth: 1,
                                 },
                               ],
@@ -244,9 +224,9 @@ const CoinData = (props) => {
                               },
                               layout: {
                                 padding: {
-                                    left: 15
-                                }
-                            },
+                                  left: 15,
+                                },
+                              },
                               elements: {
                                 point: {
                                   radius: 0,

@@ -98,7 +98,11 @@ const BitcoinCharts = (props) => {
                       label: "Bitcoin Price",
                       data: chartData.prices.map((price) => price[1].toFixed()),
                       pointRadius: 0,
-                      borderColor: props.theme ? "#0DE65E" : "#2550EA",
+                      borderColor:
+                        chartData.prices[0][1] <=
+                        chartData.prices[chartData.prices.length - 1][1]
+                          ? "#00FC2A"
+                          : "#FE1040",
                       backgroundColor: props.theme ? "#1F2128" : "#FCFCFC",
                       fill: true,
                       tension: 0.3,
@@ -165,7 +169,7 @@ const BitcoinCharts = (props) => {
                     {
                       label: "Bitcoin Volume",
                       data: chartData.total_volumes.map((volume) => volume[1]),
-                      backgroundColor: props.theme ? "#2550EA" : "#0DE65E",
+                      backgroundColor: "#2550EA",
                       borderRadius: 5,
                     },
                   ],
