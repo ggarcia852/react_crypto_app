@@ -107,7 +107,8 @@ function MarketChart(props) {
                     borderColor: props.theme ? "#707070" : "#2550EA",
                     backgroundColor: props.theme ? "#191B1F" : "#ffffff",
                     fill: true,
-                    tension: 0.4,
+                    tension: 0.1,
+                    borderWidth: 2,
                   },
                 ],
               }}

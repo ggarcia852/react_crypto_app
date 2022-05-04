@@ -90,9 +90,11 @@ const BitcoinCharts = (props) => {
                       backgroundColor: props.theme ? "#1F2128" : "#FCFCFC",
                       fill: true,
                       tension: 0.3,
+                      borderWidth: 2,
                     },
                   ],
                 }}
+                height={"175px"}
                 options={{
                   scales: {
                     y: {
@@ -149,6 +151,7 @@ const BitcoinCharts = (props) => {
                     },
                   ],
                 }}
+                height={"175px"}
                 options={{
                   scales: {
                     y: {

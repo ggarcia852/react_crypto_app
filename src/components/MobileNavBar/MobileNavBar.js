@@ -1,5 +1,5 @@
-import React from "react";
-import { CurrencySelector } from "components";
+import React, { useState } from "react";
+import { CurrencySelector, MobileSearch } from "components";
 import {
   Container,
   NavBarBottom,
@@ -14,6 +14,11 @@ import summary from "assets/summary.svg";
 import searchNav from "assets/searchNav.svg";
 
 export default function MobileNavBar() {
+  const [showSearch, setShowSearch] = useState(false);
+
+  const handleClick = (e) => {
+    setShowSearch(true);
+  };
   return (
     <>
       <Container>
@@ -21,19 +26,23 @@ export default function MobileNavBar() {
           <div>Overview</div>
           <CurrencySelector />
         </NavContainer>
+        {showSearch && <MobileSearch showSearch={setShowSearch} />}
       </Container>
       <NavBarBottom>
         <NavBarBottomBox>
           <StyledLink exact to="/">
-            <StyledInputImg type="image" src={overview} alt="" />
+            <StyledInputImg type="image" src={overview} alt="overview" />
           </StyledLink>
           <StyledLink exact to="/portfolio">
-            <StyledInputImg type="image" src={portfolio} alt="" />
+            <StyledInputImg type="image" src={portfolio} alt="portfolio" />
           </StyledLink>
-            <StyledInputImg type="image" src={summary} alt="" />
-          <StyledLink exact to="/">
-            <StyledInputImg type="image" src={searchNav} alt="" />
-          </StyledLink>
+          <StyledInputImg type="image" src={summary} alt="summary" />
+          <StyledInputImg
+            type="image"
+            src={searchNav}
+            alt="search"
+            onClick={handleClick}
+          />
         </NavBarBottomBox>
       </NavBarBottom>
     </>

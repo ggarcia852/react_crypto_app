@@ -152,6 +152,7 @@ function AddCoin(props) {
             max={today}
             onChange={handleDateChange}
             onKeyDown={(e) => e.preventDefault()}
+            placeholder="Purchase Date"
           />
           {errors.date?.length > 0 && <Error>{errors.date}</Error>}
         </InputContainer>

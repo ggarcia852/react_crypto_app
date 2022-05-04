@@ -36,11 +36,11 @@ const GlobalData = (props) => {
     <Container>
       {props.isLoading && (
         <Loading>
-          <Oval height="35" color="#06D554" ariaLabel="loading" />
+          <Oval height="25" color="#06D554" ariaLabel="loading" />
         </Loading>
       )}
       {hasData && (
-        <Media queries={{ small: { maxWidth: 768 } }}>
+        <Media queries={{ small: { maxWidth: 767 } }}>
           {(matches) =>
             matches.small ? (
               <StyledGlobalData>

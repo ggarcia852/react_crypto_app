@@ -14,13 +14,14 @@ export const StyledHeader = styled.div`
 `;
 
 export const TableContainer = styled.div`
-  margin: 0 8% 5%;
+  margin: 0 8% 2%;
 `;
 
 export const StyledTable = styled.div`
   display: table;
   background: ${(props) => props.theme.secondary};
   padding: 4%;
+  padding-bottom: 1%;
   border-radius: 10px;
   width: 100%;
 `;

@@ -227,7 +227,8 @@ const CoinData = (props) => {
                                       ? "#00FC2A"
                                       : "#FE1040",
                                   fill: false,
-                                  tension: 0.5,
+                                  tension: .1,
+                                  borderWidth: 1,
                                 },
                               ],
                             }}

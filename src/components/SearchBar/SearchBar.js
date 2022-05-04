@@ -43,6 +43,7 @@ const SearchBar = (props) => {
         <StyledImg src={props.theme ? search : searchLight} alt="search" />
         <StyledInput
           value={value}
+          type="search"
           onChange={handleChange}
           placeholder="Search..."
         />

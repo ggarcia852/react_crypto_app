@@ -36,6 +36,7 @@ export const StyledCoinContainer = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: center;
+  align-items: center;
   padding: 15%;
   min-height: 50%;
   background: ${(props) => props.theme.secondary};
@@ -49,7 +50,7 @@ export const StyledCoinContainer = styled.div`
 `;
 
 export const StyledCoinImg = styled.img`
-  width: 25vw;
+  width: 15vw;
   padding: 15%;
   background: ${(props) => props.theme.main};
   margin-bottom: 10%;
@@ -188,6 +189,7 @@ export const StyledPriceLayers = styled.img`
 export const StyledMarketContainer = styled.div`
   display: flex;
   flex-flow: column;
+  align-items: center;
   padding: 3%;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;

@@ -24,6 +24,7 @@ export const StyledInput = styled.input`
   outline: 0px;
   font-size: 1vw;
   height: 1.5vw;
+  width: 15vw;
   color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {
     color: ${(props) => props.theme.color};
@@ -36,7 +37,6 @@ export const StyledList = styled.div`
   position: absolute;
   max-height: 20%;
   overflow: scroll;
-  // overflow-y: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;
 `;

@@ -330,16 +330,6 @@ function CoinPageInfo(props) {
         </StyledContainer>
         <StyledDescriptionTitle>Description</StyledDescriptionTitle>
         <StyledDescription>
-          {props.coinDataLoading && (
-            <span>
-              <Oval
-                height="100"
-                width="100"
-                color="#06D554"
-                ariaLabel="loading"
-              />
-            </span>
-          )}
           {hasData && (
             <>
               <StyledDescImgContainer>

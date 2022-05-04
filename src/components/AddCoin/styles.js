@@ -121,7 +121,7 @@ export const Input = styled.input`
 
 export const StyledList = styled.div`
   position: absolute;
-  max-height: 30vh;
+  max-height: 45vh;
   width: 70vw;
   overflow: scroll;
   background: ${(props) => props.theme.secondary};

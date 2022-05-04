@@ -10,9 +10,12 @@ export const Loading = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 55px;
-  width: 50%;
+  height: 7vh;
+  width: 100%;
   background: ${(props) => props.theme.secondary};
+  @media ${devices.tablet} {
+    width: 60vw;
+  }
 `;
 
 export const StyledGlobalData = styled.div`
@@ -20,15 +23,10 @@ export const StyledGlobalData = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100vw;
+  height: 5vh;
   padding: 1.5%;
   font-size: 2.5vw;
   background: ${(props) => props.theme.secondary};
-  // @media {max-width: 600px} {
-  //   font-size: 2.5vw;
-  // }
-  // @media {min-width: 601px} {
-  //   font-size: 1vw;
-  // }
   @media ${devices.tablet} {
     border-radius: 0 0 15px 15px;
     width: 60vw;

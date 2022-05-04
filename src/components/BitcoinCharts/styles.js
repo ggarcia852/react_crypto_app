@@ -16,10 +16,15 @@ export const StyledHeader = styled.span`
 export const ChartsContainer = styled.div`
   display: flex;
   margin: 0 8%;
-  width: 85vw;
+  width: 84vw;
+  // height: 100%;
+  // min-height: 54vh;
   overflow-x: auto;
   &::-webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory; 
+  @media ${devices.tablet} {
+    gap: 5%;
+  }
 `;
 
 export const StyledCharts = styled.div`
@@ -32,14 +37,18 @@ export const StyledCharts = styled.div`
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
   @media ${devices.tablet} {
-    margin-right: 5%;
+    overflow: hidden;
+  }
+  @media ${devices.laptop} {
+    // height: 50vh;
   }
 `;
 
 export const StyledChart = styled.div`
-  width: 85vw;
+  width: 84vw;
+  // height: ;
   @media ${devices.tablet} {
-    width: 40vw;
+    width: 42vw;
 `;
 
 export const StyledBarContainer = styled.div`
