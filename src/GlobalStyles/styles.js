@@ -4,16 +4,14 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background: ${(props) => props.theme.main};
     color: ${(props) => props.theme.color};
+    font-family: Poppins;
     margin: 0px;
-    width: 1920;
-    font-family: Poppins
   }
 `;
 
 export const Container = styled.div`
   display: flex;
-  flex-flow: column;
-  width: 100%;
+  flex-direction: column;
 `;
 
 export const darkTheme = {

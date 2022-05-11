@@ -1,43 +1,70 @@
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
 
-export const StyledHeader = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const StyledGlobalData = styled.div`
+  display: flex;
+  overflow-x: auto;
+  &::-webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory; 
+  align-items: center;
+  width: 100vw;
+  height: 5vh;
+  padding: 1% 1.5%;
+  font-size: 2.5vw;
+  background: ${(props) => props.theme.secondary};
+  @media ${devices.tablet} {
+    border-radius: 0 0 15px 15px;
+    width: 60vw;
+    font-size: 1.25vw;
+    justify-content: space-around;
+  }
+`;
+
+export const StyledMobileDataBar = styled.div`
+  display: flex;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+`;
+
+export const StyledSlide = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
 `;
 
 export const Loading = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 55px;
-  width: 906px;
+  height: 7vh;
+  width: 100%;
   background: ${(props) => props.theme.secondary};
-`;
-
-export const StyledGlobalData = styled.div`
-  display: flex;
-  height: 55px;
-  width: 906px;
-  align-items: center;
-  justify-content: space-between;
-  background: ${(props) => props.theme.secondary};
-  margin-top: 0px;
-  border-radius: 0px 0px 15px 15px;
-  padding: 0px 50px 0px 50px;
+  @media ${devices.tablet} {
+    width: 60vw;
+  }
 `;
 
 export const StyledData = styled.div`
   display: flex;
   align-items: center;
 `;
-export const StyledIcon = styled.span`
-  padding-right: 7px;
+
+export const StyledMobileData = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
-export const StyledBar = styled.span`
-  padding-left: 7px;
+
+export const StyledIcon = styled.span`
+  padding-right: 0.75vw;
 `;
 
 export const StyledArrow = styled.img`
-  padding-left: 15px;
-  padding-bottom: 3px;
+  padding-left: 0.75vw;
+  padding-bottom: 0.25vw;
 `;

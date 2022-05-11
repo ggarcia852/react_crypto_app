@@ -5,12 +5,13 @@ import { withRouter } from "react-router-dom";
 import search from "assets/search.svg";
 import searchLight from "assets/searchLight.svg";
 import {
-  StyledContainer,
+  Container,
   StyledImg,
   StyledInput,
   StyledLink,
   StyledList,
   StyledListItem,
+  StyledPlaceholder,
 } from "./styles";
 
 const SearchBar = (props) => {
@@ -22,12 +23,6 @@ const SearchBar = (props) => {
     }
     // eslint-disable-next-line
   }, [value]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    props.history.push(`/coin/${value.toLowerCase()}`);
-    setValue("");
-  };
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -43,31 +38,32 @@ const SearchBar = (props) => {
   const noCoins = hasValue && props.coins?.length === 0;
 
   return (
-    <StyledContainer>
-      <StyledImg src={props.theme ? search : searchLight} alt="search" />
-      <form onSubmit={handleSubmit}>
+    <Container>
+      <StyledPlaceholder>
+        <StyledImg src={props.theme ? search : searchLight} alt="search" />
         <StyledInput
           value={value}
+          type="search"
           onChange={handleChange}
           placeholder="Search..."
         />
+      </StyledPlaceholder>
+      <div>
         <StyledList>
-          {props.isLoading && hasValue && (
-            <div>Loading coins...</div>
-          )}
+          {props.isLoading && hasValue && <div>Loading coins...</div>}
           {noCoins && <div>No coins found.</div>}
           {hasCoins &&
             props.coins.map((coin) => (
               <StyledListItem onClick={() => handleClick(coin)} key={coin.id}>
                 <StyledLink to={`/coin/${coin.id}`}>
-                  <img src={coin.thumb} alt="coin" /> {coin.name} ({coin.symbol}
-                  )
+                  <StyledImg src={coin.thumb} alt="coin" /> {coin.name} (
+                  {coin.symbol})
                 </StyledLink>
               </StyledListItem>
             ))}
         </StyledList>
-      </form>
-    </StyledContainer>
+      </div>
+    </Container>
   );
 };
 

@@ -4,21 +4,20 @@ import { searchCoins, addAsset, getCoinStats } from "store/portfolio/actions";
 import {
   ButtonContainer,
   CloseButton,
-  CoinContainer,
+  FormContainer,
   Container,
-  Direction,
   DirectionsContainer,
   Heading,
   ImgContainer,
   Input,
   InputContainer,
+  LeftContainer,
   StyledListItem,
   SaveButton,
   SelectedCoinContainer,
   StyledImg,
   StyledList,
   Error,
-  Loading,
 } from "./styles";
 
 function AddCoin(props) {
@@ -98,81 +97,66 @@ function AddCoin(props) {
 
   return (
     <Container>
-      <div>
-        <Heading>Enter Coin Details</Heading>
-      </div>
-      <form>
-        <CoinContainer>
-          <div>
-            {noCoinSelected && (
-              <DirectionsContainer>
-                <Direction>1. Search and select your coin </Direction>
-                <Direction>2. Enter amount of coin purchased</Direction>
-                <Direction>
-                  3. Click on calendar to select your purchase date
-                </Direction>
-              </DirectionsContainer>
-            )}
-            {selectedCoin && (
-              <SelectedCoinContainer>
-                <ImgContainer>
-                  <StyledImg src={coin.thumb} alt="coin" />
-                </ImgContainer>
-                <div>
-                  {coin.name} ({coin.symbol})
-                </div>
-              </SelectedCoinContainer>
-            )}
-          </div>
-          <InputContainer>
-            <Input
-              type="text"
-              value={value}
-              placeholder="Search Coins"
-              onChange={handleChange}
-            />
-            {errors.coin?.length > 0 && <Error>{errors.coin}</Error>}
-            <StyledList>
-              {props.isLoading && hasValue && (
-                <Loading>Loading coins...</Loading>
-              )}
-              {noCoins && <div>No coins found.</div>}
-              {hasCoins &&
-                props.coins.map((coin) => (
-                  <StyledListItem
-                    onClick={() => handleClick(coin)}
-                    key={coin.id}
-                  >
-                    <img src={coin.thumb} alt="coin" /> {coin.name} (
-                    {coin.symbol})
-                  </StyledListItem>
-                ))}
-            </StyledList>
-            <div>
-              <Input
-                type="number"
-                min=".0001"
-                step=".0001"
-                onChange={handleAmountChange}
-                placeholder="Coin Amount"
-              />
-              {errors.purchaseAmount?.length > 0 && (
-                <Error>{errors.purchaseAmount}</Error>
-              )}
-            </div>
-            <div>
-              <Input
-                type="date"
-                max={today}
-                onChange={handleDateChange}
-                onKeyDown={(e) => e.preventDefault()}
-              />
-              {errors.date?.length > 0 && <Error>{errors.date}</Error>}
-            </div>
-          </InputContainer>
-        </CoinContainer>
-      </form>
-
+      <Heading>Enter Coin Details</Heading>
+      <FormContainer>
+        <LeftContainer>
+          {noCoinSelected && (
+            <DirectionsContainer>
+              <div>1. Search and select your coin </div>
+              <div>2. Enter amount of coin purchased</div>
+              <div>3. Select your purchase date</div>
+            </DirectionsContainer>
+          )}
+          {selectedCoin && (
+            <SelectedCoinContainer>
+              <ImgContainer>
+                <StyledImg src={coin.large} alt="coin" />
+              </ImgContainer>
+              <div>
+                {coin.name} ({coin.symbol})
+              </div>
+            </SelectedCoinContainer>
+          )}
+        </LeftContainer>
+        <InputContainer>
+          <Input
+            type="text"
+            value={value}
+            placeholder="Search Coins"
+            onChange={handleChange}
+          />
+          {errors.coin?.length > 0 && <Error>{errors.coin}</Error>}
+          <StyledList>
+            {props.isLoading && hasValue && <div>Loading coins...</div>}
+            {noCoins && <div>No coins found.</div>}
+            {hasCoins &&
+              props.coins.map((coin) => (
+                <StyledListItem onClick={() => handleClick(coin)} key={coin.id}>
+                  <img src={coin.thumb} alt="coin" /> {coin.name} ({coin.symbol}
+                  )
+                </StyledListItem>
+              ))}
+          </StyledList>
+          <Input
+            type="number"
+            min=".0001"
+            step=".0001"
+            onChange={handleAmountChange}
+            placeholder="Coin Amount"
+          />
+          {errors.purchaseAmount?.length > 0 && (
+            <Error>{errors.purchaseAmount}</Error>
+          )}
+          <Input
+            type="date"
+            max={today}
+            onChange={handleDateChange}
+            onKeyDown={(e) => e.preventDefault()}
+            placeholder="Purchase Date"
+          />
+          {errors.date?.length > 0 && <Error>{errors.date}</Error>}
+        </InputContainer>
+      </FormContainer>
       <div>
         <ButtonContainer>
           <CloseButton onClick={() => props.addAsset(false)}>Close</CloseButton>

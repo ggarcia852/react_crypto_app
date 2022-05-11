@@ -1,42 +1,46 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.div`
-  display: flex;
-  height: 131px;
-`;
-
-export const StyledOverview = styled.div`
-  display: flex;
-  font-size: 22px;
+  font-size: 3.5vw;
+  font-weight: 500;
   color: ${(props) => props.theme.color};
-  height: 61px;
-  padding-left: 93px;
-  padding-top: 65px;
+  margin-left: 8%;
+  padding: 5% 0 3%;
+  @media ${devices.tablet} {
+    font-size: 2vw;
+  }
 `;
 
-export const StyledCoinList = styled.div`
-  margin: 0px 93px 187px 93px;
+export const TableContainer = styled.div`
+  margin: 0 8% 12%;
+  @media ${devices.tablet} {
+    margin: 0 8% 5%;
+  }
 `;
 
 export const StyledTable = styled.div`
   display: table;
   background: ${(props) => props.theme.secondary};
-  padding: 50px 35px 30px 50px;
+  padding: 4%;
+  padding-bottom: 1%;
   border-radius: 10px;
   width: 100%;
 `;
 
 export const StyledTableHeader = styled.div`
   display: table-header-group;
-  font-size: 19px;
-  font-weight: bold;
+  font-size: 3.5vw;
+  font-weight: 500;
+  @media ${devices.tablet} {
+    font-size: 1.25vw;
+    font-weight: 600;
+  }
 `;
 
 export const StyledTableHeaderCell = styled.div`
   display: table-cell;
-  text-align: justify;
-  padding: 10px 10px 0px;
 `;
 
 export const StyledTableBody = styled.div`
@@ -53,18 +57,38 @@ export const StyledTableCell = styled.div.attrs((props) => ({
   },
 }))`
   display: table-cell;
-  max-font-size: 19px;
+  font-size: 3.25vw;
   border-bottom: 1px solid #707070;
-  padding: 25px 10px 25px 0px;
+  vertical-align: middle;
+  padding: 1%;
+  @media ${devices.tablet} {
+    font-size: 1.15vw;
+    padding: 1.5% 0;
+  }
 `;
 
 export const StyledImg = styled.img`
-  width: 33.5px;
-  height: 33.5px;
-  padding-right: 13px;
+  width: 5vw;
+  padding: 0 5%;
+  @media ${devices.tablet} {
+    width: 1.75vw;
+    padding-right: 3%;
+  }
+`;
+
+export const StyledPercentImg = styled.img`
+  display: flex;
+  width: 2vw;
+  @media ${devices.tablet} {
+    width: 1vw;
+    display: inline;
+    padding-bottom: 0.5vh;
+  }
 `;
 
 export const StyledCoinLink = styled(Link)`
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: ${(props) => props.theme.color};
 `;
@@ -72,13 +96,14 @@ export const StyledCoinLink = styled(Link)`
 export const StyledBullets = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 230px;
 `;
 
 export const StyledChart = styled.div`
-  display: flex;
-  max-width: 115px;
-  height: 45px;
+  width: 15vw;
+  height: 5vh;
+  @media ${devices.tablet} {
+    width: 10vw;
+  }
 `;
 
 export const Loader = styled.span`

@@ -10,3 +10,6 @@ export { default as ConversionBar } from "./ConversionBar";
 export { default as CoinPageInfo } from "./CoinPageInfo";
 export {default as AddCoin } from "./AddCoin"
 export { default as CoinAsset } from "./CoinAsset"
+export { default as MobileNavBar } from "./MobileNavBar"
+export { default as MobileSearch } from "./MobileSearch"
+export { default as ThemeSelector } from "./ThemeSelector"

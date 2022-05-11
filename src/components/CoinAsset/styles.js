@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { devices } from "GlobalStyles/devices";
 
 export const Container = styled.div`
   display: flex;
@@ -7,29 +8,81 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const CoinHeading = styled.div`
-  font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 40px;
-`;
-
 export const StatisticHeading = styled.div`
-  font-size: 21px;
-  margin-bottom: 50px;
+  font-size: 2.5vw;
+  margin-bottom: 3%;
   font-weight: 500;
 `;
 
 export const AssetContainer = styled.div`
-  display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 10vh;
+  width: 100%;
+  border-bottom: 1px dotted red;
+  @media ${devices.tablet} {
+    display: flex;
+    border: none;
+  }
 `;
 
-export const StatsContainer = styled.div`
+export const CoinContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  align-items: center;
+  margin: auto;
+  padding: 5%;
+  width: 50vw;
   background: ${(props) => props.theme.secondary};
-  padding: 25px;
   border-radius: 10px;
+  @media ${devices.tablet} {
+    margin-right: 3%;
+    padding: 3%;
+    width: 15%;
+  }
+`;
+
+export const ImgContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10%;
+  background: ${(props) => props.theme.main};
+  @media ${devices.tablet} {
+    padding: 25%;
+  }
+`;
+
+export const StyledImg = styled.img`
+  width: 10vw;
+  @media ${devices.tablet} {
+    width: 5vw;
+  }
+`;
+
+export const StyledCoin = styled.div`
+  font-size: 5vw;
+  text-align: center;
+  margin: 5%;
+  @media ${devices.tablet} {
+    margin: 25%;
+    font-size: 1.75vw;
+  }
+`;
+
+export const StyledCoinLink = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => props.theme.color};
+`;
+
+export const MarketContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  margin: 3% 0;
+  @media ${devices.tablet} {
+    justify-content: space-between;
+    width: 100%;
+    margin: 1% 0;
+  }
 `;
 
 export const EditContainer = styled.div`
@@ -37,46 +90,25 @@ export const EditContainer = styled.div`
   align-items: center;
 `;
 
-export const MarketContainer = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  width: 100%;
-  margin: 10px 0px;
+export const CoinHeading = styled.span`
+  font-size: 3vw;
+  margin: 2%;
+  @media ${devices.tablet} {
+    font-size: 1.25vw;
+  }
 `;
 
-export const CoinContainer = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  margin-right: 30px;
-  justify-content: center;
-  height: 295px;
-  width: 258px;
+export const StatsContainer = styled.div`
   background: ${(props) => props.theme.secondary};
+  padding: 4%;
   border-radius: 10px;
-`;
-
-export const ImgContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 105px;
-  width: 105px;
-  border-radius: 10px;
-  background: ${(props) => props.theme.main};
-`;
-
-export const StyledImg = styled.img`
-  width: 45px;
-`;
-
-export const Stat = styled.span`
-  // margin-right: 40px;
-`;
-
-export const Coin = styled.span`
-  margin-right: 10px;
+  font-size: 3.5vw;
+  @media ${devices.tablet} {
+    display: flex;
+    font-size: 1.25vw;
+    justify-content: space-between;
+    flew-flow: row;
+  }
 `;
 
 export const ColoredSpan = styled.span.attrs((props) => ({
@@ -84,8 +116,3 @@ export const ColoredSpan = styled.span.attrs((props) => ({
     color: `${props.color}`,
   },
 }))``;
-
-export const StyledCoinLink = styled(Link)`
-  text-decoration: none;
-  color: ${(props) => props.theme.color};
-`;

@@ -6,6 +6,7 @@ import {
   StyledCurrencyImg,
   StyledCurrencyName,
   StyledCurrencyInput,
+  StyledConversionBox,
 } from "./styles";
 
 function ConversionBar(props) {
@@ -49,16 +50,23 @@ function ConversionBar(props) {
     <>
       {hasMarketData && (
         <StyledBarContainer>
-          <StyledCurrencyName>
-            {props.currency.toUpperCase()}
-          </StyledCurrencyName>
-          <StyledCurrencyInput
-            value={conversionAmount}
-            onChange={handleCurrencyChange}
-          />
+          <StyledConversionBox>
+            <StyledCurrencyName>
+              {props.currency.toUpperCase()}
+            </StyledCurrencyName>
+            <StyledCurrencyInput
+              value={conversionAmount}
+              onChange={handleCurrencyChange}
+            />
+          </StyledConversionBox>
           <StyledCurrencyImg src={exchange} alt="exchange" />
-          <StyledCurrencyName>{props.coinSymbol}</StyledCurrencyName>
-          <StyledCurrencyInput value={coinAmount} onChange={handleCoinChange} />
+          <StyledConversionBox>
+            <StyledCurrencyName>{props.coinSymbol}</StyledCurrencyName>
+            <StyledCurrencyInput
+              value={coinAmount}
+              onChange={handleCoinChange}
+            />
+          </StyledConversionBox>
         </StyledBarContainer>
       )}
     </>

@@ -13,16 +13,15 @@ import {
   CoinContainer,
   Container,
   EditContainer,
-  CoinHeading,
+  StyledCoin,
   StatisticHeading,
   ImgContainer,
   MarketContainer,
-  Stat,
   StatsContainer,
   StyledImg,
   ColoredSpan,
   StyledCoinLink,
-  Coin,
+  CoinHeading,
 } from "./styles";
 
 const CoinAsset = (props) => {
@@ -65,38 +64,38 @@ const CoinAsset = (props) => {
 
   return (
     <>
+      {props.assets?.length > 0 && (
+        <StatisticHeading>Your Assets</StatisticHeading>
+      )}
       <Container>
-        {props.assets?.length > 0 && (
-          <StatisticHeading>Your Assets</StatisticHeading>
-        )}
         {props.assets?.map((asset) => (
           <AssetContainer key={asset.id + Math.random()}>
             <CoinContainer>
               <ImgContainer>
-                <StyledImg src={asset.thumb} alt="coin" />
+                <StyledImg src={asset.large} alt="coin" />
               </ImgContainer>
-              <CoinHeading>
+              <StyledCoin>
                 <StyledCoinLink to={`/coin/${asset.id}`}>
                   {asset.name} ({asset.symbol})
                 </StyledCoinLink>
-              </CoinHeading>
+              </StyledCoin>
               <input
                 type="image"
                 alt="delete"
                 src={redExit}
-                width="20px"
+                width="15vw"
                 onClick={() => handleDelete(asset)}
               />
             </CoinContainer>
             <MarketContainer>
               <EditContainer>
-                <Coin>Coin Stats:</Coin>
+                <CoinHeading>Coin Stats:</CoinHeading>
                 {props.theme ? (
                   <input
                     type="image"
                     src={pencil}
                     alt="edit"
-                    width="35px"
+                    width="25vw"
                     onClick={() => handleEdit(asset)}
                   />
                 ) : (
@@ -104,18 +103,18 @@ const CoinAsset = (props) => {
                     type="image"
                     src={pencilLight}
                     alt="edit"
-                    width="35px"
+                    width="25vw"
                     onClick={() => handleEdit(asset)}
                   />
                 )}{" "}
               </EditContainer>
               <StatsContainer>
-                <Stat>Coin Amount: {CurrencyFormat(asset.purchaseAmount)}</Stat>
-                <Stat>
+                <div>Coin Amount: {asset.purchaseAmount}</div>
+                <div>
                   Total Value: $
                   {CurrencyFormat(asset.purchaseAmount * asset.price)}
-                </Stat>
-                <Stat>
+                </div>
+                <div>
                   Total Gain/Loss:{" "}
                   <ColoredSpan
                     color={
@@ -132,21 +131,16 @@ const CoinAsset = (props) => {
                         asset.purchaseAmount * asset.purchasePrice
                     )}
                   </ColoredSpan>
-                </Stat>
-                <Stat>
-                  Purchase Date:{" "}
-                  <ColoredSpan color={"#00FC2A"}>
-                    {formatDate(asset.date)}
-                  </ColoredSpan>
-                </Stat>
+                </div>
+                <div>Purchase Date: {formatDate(asset.date)}</div>
               </StatsContainer>
-              <div>Market Stats: </div>
+              <CoinHeading>Market Stats: </CoinHeading>
               <StatsContainer>
-                <Stat>Current Price: ${CurrencyFormat(asset.price)}</Stat>
-                <Stat>
+                <div>Current Price: ${CurrencyFormat(asset.price)}</div>
+                <div>
                   Purchase Price: ${CurrencyFormat(asset.purchasePrice)}
-                </Stat>
-                <Stat>
+                </div>
+                <div>
                   Net Gain/Loss:{" "}
                   {(asset.price - asset.purchasePrice) / asset.purchasePrice >
                   0 ? (
@@ -171,8 +165,8 @@ const CoinAsset = (props) => {
                     ).toFixed(2)}{" "}
                     %
                   </ColoredSpan>
-                </Stat>
-                <Stat>
+                </div>
+                <div>
                   Price Change 24h:{" "}
                   {asset.priceChange24 >= 0 ? (
                     <StyledPricePercentArrow src={greenUp} alt="up arrow" />
@@ -184,7 +178,7 @@ const CoinAsset = (props) => {
                   >
                     {RemoveNegative(asset.priceChange24?.toFixed(2))}%
                   </ColoredSpan>
-                </Stat>
+                </div>
               </StatsContainer>
             </MarketContainer>
           </AssetContainer>

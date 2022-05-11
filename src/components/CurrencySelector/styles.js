@@ -1,34 +1,41 @@
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
 
-export const StyledContainer = styled.div`
-  height: 63px;
-  width: 135px;
+export const Container = styled.div`
   display: flex;
-  background: ${props => props.theme.navBox};
-  margin-left: 25px;
-  border-radius: 15px;
   align-items: center;
+  padding: 0 2%;
+  height: 5vh;
+  background: ${(props) => props.theme.navBox};
+  border-radius: 12%;
+  @media ${devices.tablet} {
+    border-radius: 8px;
+    height: 60%;
+  }
 `;
+
 export const StyledDropdown = styled.select`
   display: flex;
   border: none;
   outline: 0px;
-  background: ${props => props.theme.navBox};
-  color :${props => props.theme.color};
-  font-size: 17px;
+  background: ${(props) => props.theme.navBox};
+  color: ${(props) => props.theme.color};
+  font-size: 2vw;
   &:hover {
     cursor: pointer;
   }
-`;
-
-export const StyledBackground = styled.div`
-  background: ${props => props.theme.secondary};
-  width: 33px;
-  height: 35px;
-  border-radius: 20px;
-  margin: 10px;
+  @media ${devices.tablet} {
+    font-size: 1.5vw;
+  }
 `;
 
 export const StyledImg = styled.img`
-  width: 33px;
+  width: 3vw;
+  height: 3vw;
+  background: ${(props) => props.theme.secondary};
+  border-radius: 50%;
+  @media ${devices.tablet} {
+    width: 2vw;
+    height: 2vw;
+  }
 `;

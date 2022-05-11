@@ -8,7 +8,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertDay, CurrencyFormat } from "utils";
 import {
   StyledHeader,
-  ChartsDiv,
+  ChartsContainer,
   StyledCharts,
   StyledChart,
   StyledBarContainer,
@@ -19,6 +19,8 @@ import {
   StyledAmount,
   StyledDate,
   Loader,
+  StyledHeaderBox,
+  StyledArrows,
 } from "./styles";
 
 const BitcoinCharts = (props) => {
@@ -46,7 +48,7 @@ const BitcoinCharts = (props) => {
     { id: 365, value: "365d", days: 365, interval: "daily" },
   ];
 
-  let today = new Date().toDateString();
+  let today = new Date().toDateString().slice(3);
   let price = props.chartData?.prices.slice(-1)[0].slice(-1)[0];
   let volume = props.chartData?.total_volumes
     .slice(-1)[0]
@@ -55,11 +57,14 @@ const BitcoinCharts = (props) => {
   const chartData = props.chartData;
   const hasData = !props.isLoading && props.chartData;
 
+  const mql = window.matchMedia("(max-width: 767px)");
+  let mobileView = mql.matches;
+
   return (
     <>
       <StyledHeader>Bitcoin Overview</StyledHeader>
       {props.hasError && <div>error on page</div>}
-      <ChartsDiv>
+      <ChartsContainer>
         <StyledCharts>
           {props.isLoading && (
             <Loader>
@@ -73,11 +78,18 @@ const BitcoinCharts = (props) => {
           )}
           {hasData && (
             <StyledChart>
-              <StyledHeading>
-                <StyledTitle>Price</StyledTitle>
-                <StyledAmount>${price.toLocaleString()}</StyledAmount>
-                <StyledDate>{today}</StyledDate>
-              </StyledHeading>
+              <StyledHeaderBox>
+                <StyledHeading>
+                  <StyledTitle>Price</StyledTitle>
+                  <StyledAmount>${price.toLocaleString()}</StyledAmount>
+                  <StyledDate>{today}</StyledDate>
+                </StyledHeading>
+                {mobileView && (
+                  <StyledArrows>
+                    {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
+                  </StyledArrows>
+                )}
+              </StyledHeaderBox>
               <Line
                 data={{
                   labels: chartData.prices.map((price) => ConvertDay(price[0])),
@@ -86,13 +98,19 @@ const BitcoinCharts = (props) => {
                       label: "Bitcoin Price",
                       data: chartData.prices.map((price) => price[1].toFixed()),
                       pointRadius: 0,
-                      borderColor: props.theme ? "#0DE65E" : "#2550EA",
+                      borderColor:
+                        chartData.prices[0][1] <=
+                        chartData.prices[chartData.prices.length - 1][1]
+                          ? "#00FC2A"
+                          : "#FE1040",
                       backgroundColor: props.theme ? "#1F2128" : "#FCFCFC",
                       fill: true,
                       tension: 0.3,
+                      borderWidth: 2,
                     },
                   ],
                 }}
+                height={"200px"}
                 options={{
                   scales: {
                     y: {
@@ -107,10 +125,9 @@ const BitcoinCharts = (props) => {
                   },
                   layout: {
                     padding: {
-                      left: 50,
-                      right: 50,
-                      bottom: 40,
-                      top: 30,
+                      left: 25,
+                      right: 25,
+                      bottom: 25,
                     },
                   },
                 }}
@@ -131,11 +148,18 @@ const BitcoinCharts = (props) => {
           )}
           {hasData && (
             <StyledChart>
-              <StyledHeading>
-                <StyledTitle>Volume</StyledTitle>
-                <StyledAmount>${CurrencyFormat(volume)}</StyledAmount>
-                <StyledDate>{today}</StyledDate>
-              </StyledHeading>
+              <StyledHeaderBox>
+                <StyledHeading>
+                  <StyledTitle>Volume</StyledTitle>
+                  <StyledAmount>${CurrencyFormat(volume)}</StyledAmount>
+                  <StyledDate>{today}</StyledDate>
+                </StyledHeading>
+                {mobileView && (
+                  <StyledArrows>
+                    {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
+                  </StyledArrows>
+                )}
+              </StyledHeaderBox>
               <Bar
                 data={{
                   labels: chartData.total_volumes.map((volume) =>
@@ -145,11 +169,12 @@ const BitcoinCharts = (props) => {
                     {
                       label: "Bitcoin Volume",
                       data: chartData.total_volumes.map((volume) => volume[1]),
-                      backgroundColor: props.theme ? "#2550EA" : "#0DE65E",
+                      backgroundColor: "#2550EA",
                       borderRadius: 5,
                     },
                   ],
                 }}
+                height={"200px"}
                 options={{
                   scales: {
                     y: {
@@ -164,10 +189,9 @@ const BitcoinCharts = (props) => {
                   },
                   layout: {
                     padding: {
-                      left: 50,
-                      right: 50,
-                      bottom: 40,
-                      top: 30,
+                      left: 25,
+                      right: 25,
+                      bottom: 25,
                     },
                   },
                 }}
@@ -175,7 +199,7 @@ const BitcoinCharts = (props) => {
             </StyledChart>
           )}
         </StyledCharts>
-      </ChartsDiv>
+      </ChartsContainer>
       <StyledBarContainer>
         <StyledBar>
           {chartButtons.map((button) => (

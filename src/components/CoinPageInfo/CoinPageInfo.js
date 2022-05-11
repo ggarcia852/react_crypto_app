@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getCoinData, getMarketData } from "store/coinPageData/actions";
 import { Oval } from "react-loader-spinner";
-import { CurrencyFormat, ConvertDate, RemoveNegative } from "../../utils";
+import { CurrencyFormat, RemoveNegative } from "utils";
 import { ProgressBar } from "components";
 import bluePlus from "assets/bluePlus.svg";
 import greenUp from "assets/greenUp.svg";
@@ -16,6 +16,7 @@ import featherLight from "assets/featherLight.svg";
 import {
   StyledTitle,
   StyledCoinContainer,
+  StyledCoinBox,
   StyledCoinImg,
   StyledLinkContainer,
   StyledContainer,
@@ -41,6 +42,11 @@ import {
   ColoredDiv,
   ColoredSpan,
   PriceContainer,
+  StyledProfit,
+  StyledDescImgContainer,
+  StyledLinkBox,
+  StyledMarketBox,
+  StyledBlockchainImg,
 } from "./styles";
 
 function CoinPageInfo(props) {
@@ -49,6 +55,10 @@ function CoinPageInfo(props) {
     props.getMarketData(props.match.params.coinId);
     //eslint-disable-next-line
   }, [props.match.params.coinId, props.currency]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleCopy = (site) => {
     navigator.clipboard.writeText(site);
@@ -78,15 +88,16 @@ function CoinPageInfo(props) {
   });
 
   const totalProfit = profit.reduce((a, b) => a + b, 0);
+  const symbol = marketData?.symbol.toUpperCase();
 
   return (
-    <>
+    <div>
       {props.coinDataError && (
         <div>
           Coin not found. Please select a coin from the list or try again!
         </div>
       )}
-      <>
+      <div>
         <StyledTitle>Summary</StyledTitle>
         <StyledContainer>
           <StyledLeftContainer>
@@ -102,29 +113,31 @@ function CoinPageInfo(props) {
                 </span>
               )}
               {hasCoinData && (
-                <>
+                <StyledCoinBox>
                   <StyledCoinImg src={coinData.image.small} alt="coinData" />
                   <div>
-                    {coinData.name}({coinData.symbol?.toUpperCase()})
+                    {coinData.name}({symbol})
                   </div>
-                </>
+                </StyledCoinBox>
               )}
             </StyledCoinContainer>
             <StyledLinkContainer>
               {hasCoinData && (
-                <>
-                  <a
-                    href={coinData.links.homepage[0]}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <StyledLinkImg
-                      src={props.theme ? link : linkLight}
-                      alt="link"
-                    />
-                  </a>
-                  {linkSize(coinData.links.homepage[0])}
-                </>
+                <StyledLinkBox>
+                  <div>
+                    <a
+                      href={coinData.links.homepage[0]}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <StyledLinkImg
+                        src={props.theme ? link : linkLight}
+                        alt="link"
+                      />
+                    </a>
+                  </div>
+                  <div>{coinData.links.homepage[0]}</div>
+                </StyledLinkBox>
               )}
             </StyledLinkContainer>
           </StyledLeftContainer>
@@ -168,21 +181,19 @@ function CoinPageInfo(props) {
                   </span>
                 </PriceContainer>
                 {assets.length > 0 && (
-                  <span>
+                  <StyledProfit>
                     Profit:{" "}
                     <ColoredSpan
                       color={totalProfit >= 0 ? "#00FC2A" : "#FE1040"}
                     >
                       ${CurrencyFormat(totalProfit)}
                     </ColoredSpan>
-                  </span>
+                  </StyledProfit>
                 )}
-                <div>
-                  <StyledPriceLayers
-                    src={props.theme ? layers : layersLight}
-                    alt="layers"
-                  />
-                </div>
+                <StyledPriceLayers
+                  src={props.theme ? layers : layersLight}
+                  alt="layers"
+                />
                 <div>
                   <StyledPriceStat>
                     <div>
@@ -191,7 +202,9 @@ function CoinPageInfo(props) {
                     <div>
                       <BoldText>All Time High: </BoldText> $
                       {CurrencyFormat(marketData.ath)}
-                      <div>{ConvertDate(marketData.ath_date)}</div>
+                      <div>
+                        {new Date(marketData.ath_date).toLocaleString()}
+                      </div>
                     </div>
                   </StyledPriceStat>
                   <StyledPriceStat>
@@ -199,9 +212,10 @@ function CoinPageInfo(props) {
                       <StyledPriceArrow src={redDown} alt="down arrow" />
                     </div>
                     <div>
-                      <BoldText>All Time Low: </BoldText>$
-                      {CurrencyFormat(marketData.atl)}
-                      <div>{ConvertDate(marketData.atl_date)}</div>
+                      <BoldText>All Time Low: </BoldText>${marketData.atl}
+                      <div>
+                        {new Date(marketData.atl_date).toLocaleString()}
+                      </div>
                     </div>
                   </StyledPriceStat>
                 </div>
@@ -220,7 +234,7 @@ function CoinPageInfo(props) {
               </span>
             )}
             {hasMarketData && (
-              <>
+              <StyledMarketBox>
                 <StyledMarketStat>
                   <StyledStatImg src={bluePlus} alt="plus" />
                   <BoldText>Market Cap:</BoldText> $
@@ -314,27 +328,20 @@ function CoinPageInfo(props) {
                     mainBackground={"#FFDCCE"}
                   />
                 </StyledMarketStat>
-              </>
+              </StyledMarketBox>
             )}
           </StyledMarketContainer>
         </StyledContainer>
         <StyledDescriptionTitle>Description</StyledDescriptionTitle>
         <StyledDescription>
-          {props.coinDataLoading && (
-            <span>
-              <Oval
-                height="100"
-                width="100"
-                color="#06D554"
-                ariaLabel="loading"
-              />
-            </span>
-          )}
           {hasData && (
             <>
-              <StyledDescImg>
-                <img src={props.theme ? layers : layersLight} alt="layers" />
-              </StyledDescImg>
+              <StyledDescImgContainer>
+                <StyledDescImg
+                  src={props.theme ? layers : layersLight}
+                  alt="layers"
+                />
+              </StyledDescImgContainer>
               <div
                 dangerouslySetInnerHTML={{ __html: coinData.description.en }}
               />
@@ -350,13 +357,13 @@ function CoinPageInfo(props) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg
+                  <StyledBlockchainImg
                     src={props.theme ? link : linkLight}
                     alt="link"
                   />
                 </a>
                 {linkSize(coinData.links.blockchain_site[0])}
-                <StyledLinkImg
+                <StyledBlockchainImg
                   onClick={(e) => handleCopy(coinData.links.blockchain_site[0])}
                   src={props.theme ? feather : featherLight}
                   alt="feather"
@@ -368,13 +375,13 @@ function CoinPageInfo(props) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg
+                  <StyledBlockchainImg
                     src={props.theme ? link : linkLight}
                     alt="link"
                   />
                 </a>
                 {linkSize(coinData.links.blockchain_site[1])}
-                <StyledLinkImg
+                <StyledBlockchainImg
                   onClick={(e) => handleCopy(coinData.links.blockchain_site[1])}
                   src={props.theme ? feather : featherLight}
                   alt="feather"
@@ -386,13 +393,13 @@ function CoinPageInfo(props) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StyledLinkImg
+                  <StyledBlockchainImg
                     src={props.theme ? link : linkLight}
                     alt="link"
                   />
                 </a>
                 {linkSize(coinData.links.blockchain_site[2])}
-                <StyledLinkImg
+                <StyledBlockchainImg
                   onClick={(e) => handleCopy(coinData.links.blockchain_site[2])}
                   src={props.theme ? feather : featherLight}
                   alt="feather"
@@ -401,8 +408,8 @@ function CoinPageInfo(props) {
             </>
           )}
         </StyledLinksContainer>
-      </>
-    </>
+      </div>
+    </div>
   );
 }
 

@@ -26,7 +26,7 @@ const Portfolio = (props) => {
       </ButtonContainer>
       {props.assets.length === 0 && (
         <NoAssetsContainer>
-          *Add Assets to start building your Portfolio ↑
+          *Add assets to start building your Portfolio
         </NoAssetsContainer>
       )}
       <AssetContainer>

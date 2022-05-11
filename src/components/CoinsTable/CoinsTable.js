@@ -6,14 +6,13 @@ import { getCoins, coinsReset } from "store/coinsTable/action";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { CurrencyFormat, RemoveNegative } from "../../utils";
+import { CurrencyFormat, RemoveNegative } from "utils";
 import { ProgressBar } from "components";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
 import {
   StyledHeader,
-  StyledOverview,
-  StyledCoinList,
+  TableContainer,
   StyledImg,
   StyledTable,
   StyledTableHeader,
@@ -25,11 +24,9 @@ import {
   StyledBullets,
   StyledChart,
   Loader,
+  StyledPercentImg,
 } from "./styles";
-import {
-  ColoredDiv,
-  StyledPricePercentArrow,
-} from "components/CoinPageInfo/styles";
+import { ColoredDiv } from "components/CoinPageInfo/styles";
 
 const CoinData = (props) => {
   const [page, setPage] = useState(1);
@@ -50,12 +47,10 @@ const CoinData = (props) => {
 
   return (
     <>
-      <StyledHeader>
-        <StyledOverview>Market Overview</StyledOverview>
-      </StyledHeader>
+      <StyledHeader>Market Overview</StyledHeader>
       {props.hasError && <div>Error loading coins.</div>}
       {props.coins && (
-        <StyledCoinList>
+        <TableContainer>
           <InfiniteScroll
             dataLength={props.coins.length}
             next={fetchMoreData}
@@ -69,7 +64,7 @@ const CoinData = (props) => {
             <StyledTable>
               <StyledTableHeader>
                 <StyledTableHeaderCell>#</StyledTableHeaderCell>
-                <StyledTableHeaderCell>Name</StyledTableHeaderCell>
+                <StyledTableHeaderCell>&nbsp;Coin</StyledTableHeaderCell>
                 <StyledTableHeaderCell>Price</StyledTableHeaderCell>
                 <StyledTableHeaderCell>1h%</StyledTableHeaderCell>
                 <StyledTableHeaderCell>24h%</StyledTableHeaderCell>
@@ -92,7 +87,7 @@ const CoinData = (props) => {
                         </StyledCoinLink>
                       </StyledTableCell>
                       <StyledTableCell>
-                        ${CurrencyFormat(coin.current_price)}
+                        ${CurrencyFormat(coin.current_price)}&nbsp;
                       </StyledTableCell>
                       <StyledTableCell
                         color={
@@ -102,15 +97,9 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_1h_in_currency >= 0 ? (
-                          <StyledPricePercentArrow
-                            src={greenUp}
-                            alt="up arrow"
-                          />
+                          <StyledPercentImg src={greenUp} alt="up arrow" />
                         ) : (
-                          <StyledPricePercentArrow
-                            src={redDown}
-                            alt="down arrow"
-                          />
+                          <StyledPercentImg src={redDown} alt="down arrow" />
                         )}
                         {coin.price_change_percentage_1h_in_currency >= 0
                           ? coin.price_change_percentage_1h_in_currency?.toFixed(
@@ -121,7 +110,7 @@ const CoinData = (props) => {
                                 2
                               )
                             )}
-                        %
+                        %&nbsp;
                       </StyledTableCell>
                       <StyledTableCell
                         color={
@@ -131,22 +120,16 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_24h >= 0 ? (
-                          <StyledPricePercentArrow
-                            src={greenUp}
-                            alt="up arrow"
-                          />
+                          <StyledPercentImg src={greenUp} alt="up arrow" />
                         ) : (
-                          <StyledPricePercentArrow
-                            src={redDown}
-                            alt="down arrow"
-                          />
+                          <StyledPercentImg src={redDown} alt="down arrow" />
                         )}
                         {coin.price_change_percentage_24h >= 0
                           ? coin.price_change_percentage_24h?.toFixed(2)
                           : RemoveNegative(
                               coin.price_change_percentage_24h?.toFixed(2)
                             )}
-                        %
+                        %&nbsp;
                       </StyledTableCell>
                       <StyledTableCell
                         color={
@@ -156,15 +139,9 @@ const CoinData = (props) => {
                         }
                       >
                         {coin.price_change_percentage_7d_in_currency >= 0 ? (
-                          <StyledPricePercentArrow
-                            src={greenUp}
-                            alt="up arrow"
-                          />
+                          <StyledPercentImg src={greenUp} alt="up arrow" />
                         ) : (
-                          <StyledPricePercentArrow
-                            src={redDown}
-                            alt="down arrow"
-                          />
+                          <StyledPercentImg src={redDown} alt="down arrow" />
                         )}
                         {coin.price_change_percentage_7d_in_currency >= 0
                           ? coin.price_change_percentage_7d_in_currency?.toFixed(
@@ -175,7 +152,7 @@ const CoinData = (props) => {
                                 2
                               )
                             )}
-                        %
+                        %&nbsp;
                       </StyledTableCell>
                       <StyledTableCell>
                         <StyledBullets>
@@ -183,7 +160,7 @@ const CoinData = (props) => {
                             ${CurrencyFormat(coin.total_volume)}
                           </ColoredDiv>
                           <ColoredDiv color={"#E8D587"}>
-                            ${CurrencyFormat(coin.market_cap)}
+                            ${CurrencyFormat(coin.market_cap)}&nbsp;
                           </ColoredDiv>
                         </StyledBullets>
                         <ProgressBar
@@ -201,6 +178,7 @@ const CoinData = (props) => {
                             {coin.max_supply
                               ? "$" + CurrencyFormat(coin.max_supply)
                               : "∞"}
+                            &nbsp;
                           </ColoredDiv>
                         </StyledBullets>
                         <ProgressBar
@@ -222,14 +200,15 @@ const CoinData = (props) => {
                                 {
                                   data: coin.sparkline_in_7d.price,
                                   borderColor:
-                                    coin.sparkline_in_7d.price[1] <=
+                                    coin.sparkline_in_7d.price[0] <=
                                     coin.sparkline_in_7d.price[
                                       coin.sparkline_in_7d.price.length - 1
                                     ]
                                       ? "#00FC2A"
                                       : "#FE1040",
                                   fill: false,
-                                  tension: 0.5,
+                                  tension: 0.1,
+                                  borderWidth: 1,
                                 },
                               ],
                             }}
@@ -241,6 +220,11 @@ const CoinData = (props) => {
                               plugins: {
                                 legend: {
                                   display: false,
+                                },
+                              },
+                              layout: {
+                                padding: {
+                                  left: 15,
                                 },
                               },
                               elements: {
@@ -265,7 +249,7 @@ const CoinData = (props) => {
               </StyledTableBody>
             </StyledTable>
           </InfiniteScroll>
-        </StyledCoinList>
+        </TableContainer>
       )}
     </>
   );

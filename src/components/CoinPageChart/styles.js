@@ -1,27 +1,33 @@
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
 
 export const StyledDayContainer = styled.div`
   display: flex;
-  height: 35px;
   justify-content: center;
-  font-size: 20px;
+  margin: 3%;
 `;
 
 export const StyledButtonInput = styled.input`
-  margin-left: 30px;
-  margin-right: 7px;
+  margin-left: 3vw;
   &:hover {
     cursor: pointer;
   }
 `;
 
 export const StyledChart = styled.div`
-  margin-top: 40px;
-  height: 350px;
+  margin-top: 3%;
+  margin-bottom: 8vh;
+  min-height: 34vh;
+  @media ${devices.tablet} {
+    margin-bottom: 0;
+  }
 `;
 
 export const Loader = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
-`
+  padding-top: 25%;
+  @media ${devices.tablet} {
+    padding-top: 10%;
+  }
+`;
