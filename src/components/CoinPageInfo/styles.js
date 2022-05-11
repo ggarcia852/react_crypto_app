@@ -87,11 +87,6 @@ export const StyledLinkBox = styled.div`
   }
 `;
 
-export const StyledLink = styled.div`
-  // display: flex;
-  // justify-content: center;
-`;
-
 export const StyledLinkImg = styled.img`
   width: 2vw;
   margin: 0 4vw;

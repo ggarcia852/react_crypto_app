@@ -23,12 +23,12 @@ export const StyledHeading = styled.div`
 export const StyledHeaderBox = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const StyledArrows = styled.div`
   font-size: 5vw;
   font-weight: 500;
-`
+`;
 
 export const ChartsContainer = styled.div`
   display: flex;
@@ -129,4 +129,4 @@ export const Loader = styled.div`
   align-items: center;
   justify-content: center;
   width: 84vw;
-  `;
+`;

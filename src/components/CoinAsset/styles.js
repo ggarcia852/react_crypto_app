@@ -24,15 +24,6 @@ export const AssetContainer = styled.div`
   }
 `;
 
-export const MobileCoinContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  @media ${devices.tablet} {
-    display: block;
-    width: 15%;
-  }
-`;
-
 export const CoinContainer = styled.div`
   display: flex;
   flex-flow: column;
@@ -118,10 +109,6 @@ export const StatsContainer = styled.div`
     justify-content: space-between;
     flew-flow: row;
   }
-`;
-
-export const Stat = styled.div`
-  // margin-right: 1%;
 `;
 
 export const ColoredSpan = styled.span.attrs((props) => ({

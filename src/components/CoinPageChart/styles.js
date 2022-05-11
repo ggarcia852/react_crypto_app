@@ -28,6 +28,6 @@ export const Loader = styled.div`
   justify-content: center;
   padding-top: 25%;
   @media ${devices.tablet} {
-  padding-top: 10%;
+    padding-top: 10%;
   }
-`
+`;

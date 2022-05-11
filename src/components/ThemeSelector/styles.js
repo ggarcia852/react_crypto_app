@@ -16,9 +16,9 @@ export const StyledThemeButton = styled.button`
     cursor: pointer;
   }
   @media ${devices.tablet} {
-  height: 60%;
-  border-radius: 8px;
-  width: 4vw
+    height: 60%;
+    border-radius: 8px;
+    width: 4vw;
   }
 `;
 

@@ -5,7 +5,7 @@ import { getMarketCharts } from "store/coinPageData/actions";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { ConvertDate } from "../../utils";
+import { ConvertDate } from "utils";
 import {
   StyledChart,
   StyledDayContainer,
@@ -104,8 +104,6 @@ function MarketChart(props) {
                     label: "Price",
                     data: chartData.prices.map((price) => price[1]),
                     pointRadius: 0,
-                    // borderColor: props.theme ? "#707070" : "#2550EA",
-
                     borderColor:
                       chartData.prices[0][1] <=
                       chartData.prices[chartData.prices.length - 1][1]

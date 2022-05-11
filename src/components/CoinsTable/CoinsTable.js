@@ -6,7 +6,7 @@ import { getCoins, coinsReset } from "store/coinsTable/action";
 import { Line } from "react-chartjs-2";
 //eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
-import { CurrencyFormat, RemoveNegative } from "../../utils";
+import { CurrencyFormat, RemoveNegative } from "utils";
 import { ProgressBar } from "components";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";

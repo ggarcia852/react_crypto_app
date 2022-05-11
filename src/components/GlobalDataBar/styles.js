@@ -64,7 +64,6 @@ export const StyledIcon = styled.span`
   padding-right: 0.75vw;
 `;
 
-
 export const StyledArrow = styled.img`
   padding-left: 0.75vw;
   padding-bottom: 0.25vw;

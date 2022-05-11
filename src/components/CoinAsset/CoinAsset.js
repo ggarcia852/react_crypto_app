@@ -17,8 +17,6 @@ import {
   StatisticHeading,
   ImgContainer,
   MarketContainer,
-  MobileCoinContainer,
-  Stat,
   StatsContainer,
   StyledImg,
   ColoredSpan,
@@ -72,7 +70,6 @@ const CoinAsset = (props) => {
       <Container>
         {props.assets?.map((asset) => (
           <AssetContainer key={asset.id + Math.random()}>
-            {/* <MobileCoinContainer> */}
             <CoinContainer>
               <ImgContainer>
                 <StyledImg src={asset.large} alt="coin" />
@@ -90,7 +87,6 @@ const CoinAsset = (props) => {
                 onClick={() => handleDelete(asset)}
               />
             </CoinContainer>
-            {/* </MobileCoinContainer> */}
             <MarketContainer>
               <EditContainer>
                 <CoinHeading>Coin Stats:</CoinHeading>
@@ -113,12 +109,12 @@ const CoinAsset = (props) => {
                 )}{" "}
               </EditContainer>
               <StatsContainer>
-                <Stat>Coin Amount: {asset.purchaseAmount}</Stat>
-                <Stat>
+                <div>Coin Amount: {asset.purchaseAmount}</div>
+                <div>
                   Total Value: $
                   {CurrencyFormat(asset.purchaseAmount * asset.price)}
-                </Stat>
-                <Stat>
+                </div>
+                <div>
                   Total Gain/Loss:{" "}
                   <ColoredSpan
                     color={
@@ -135,16 +131,16 @@ const CoinAsset = (props) => {
                         asset.purchaseAmount * asset.purchasePrice
                     )}
                   </ColoredSpan>
-                </Stat>
-                <Stat>Purchase Date: {formatDate(asset.date)}</Stat>
+                </div>
+                <div>Purchase Date: {formatDate(asset.date)}</div>
               </StatsContainer>
               <CoinHeading>Market Stats: </CoinHeading>
               <StatsContainer>
-                <Stat>Current Price: ${CurrencyFormat(asset.price)}</Stat>
-                <Stat>
+                <div>Current Price: ${CurrencyFormat(asset.price)}</div>
+                <div>
                   Purchase Price: ${CurrencyFormat(asset.purchasePrice)}
-                </Stat>
-                <Stat>
+                </div>
+                <div>
                   Net Gain/Loss:{" "}
                   {(asset.price - asset.purchasePrice) / asset.purchasePrice >
                   0 ? (
@@ -169,8 +165,8 @@ const CoinAsset = (props) => {
                     ).toFixed(2)}{" "}
                     %
                   </ColoredSpan>
-                </Stat>
-                <Stat>
+                </div>
+                <div>
                   Price Change 24h:{" "}
                   {asset.priceChange24 >= 0 ? (
                     <StyledPricePercentArrow src={greenUp} alt="up arrow" />
@@ -182,7 +178,7 @@ const CoinAsset = (props) => {
                   >
                     {RemoveNegative(asset.priceChange24?.toFixed(2))}%
                   </ColoredSpan>
-                </Stat>
+                </div>
               </StatsContainer>
             </MarketContainer>
           </AssetContainer>
