@@ -10,16 +10,26 @@ import {
   StyledRightNav,
 } from "./styles";
 import overview from "assets/overview.svg";
+import overviewGreen from "assets/overviewGreen.svg";
 import portfolio from "assets/portfolio.svg";
+import portfolioGreen from "assets/portfolioGreen.svg";
 import summary from "assets/summary.svg";
 import searchNav from "assets/searchNav.svg";
+import searchNavGreen from "assets/searchNavGreen.svg";
 
 export default function MobileNavBar() {
+  const [active, setActive] = useState("overview");
   const [showSearch, setShowSearch] = useState(false);
 
-  const handleClick = (e) => {
+  const handleSearchClick = (e) => {
     setShowSearch(true);
+    setActive("search");
   };
+
+  const handleNavClick = (e) => {
+    setActive(e);
+  };
+
   return (
     <>
       <Container>
@@ -35,17 +45,27 @@ export default function MobileNavBar() {
       <NavBarBottom>
         <NavBarBottomBox>
           <StyledLink exact to="/">
-            <StyledInputImg type="image" src={overview} alt="overview" />
+            <StyledInputImg
+              type="image"
+              src={active === "overview" ? overviewGreen : overview}
+              alt="overview"
+              onClick={(e) => handleNavClick("overview")}
+            />
           </StyledLink>
           <StyledLink exact to="/portfolio">
-            <StyledInputImg type="image" src={portfolio} alt="portfolio" />
+            <StyledInputImg
+              type="image"
+              src={active === "portfolio" ? portfolioGreen : portfolio}
+              alt="portfolio"
+              onClick={(e) => handleNavClick("portfolio")}
+            />
           </StyledLink>
           <StyledInputImg type="image" src={summary} alt="summary" />
           <StyledInputImg
             type="image"
-            src={searchNav}
+            src={active === "search" ? searchNavGreen : searchNav}
             alt="search"
-            onClick={handleClick}
+            onClick={handleSearchClick}
           />
         </NavBarBottomBox>
       </NavBarBottom>
