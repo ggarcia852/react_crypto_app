@@ -276,7 +276,7 @@ function CoinPageInfo(props) {
                   {marketData.max_supply
                     ? CurrencyFormat(marketData.max_supply) +
                       " " +
-                      coinData.symbol?.toUpperCase()
+                      marketData.symbol.toUpperCase()
                     : "∞"}{" "}
                 </StyledMarketStat>
                 <StyledMarketStat>
