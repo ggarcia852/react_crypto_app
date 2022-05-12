@@ -19,33 +19,21 @@ function ConversionBar(props) {
   useEffect(() => {
     const price = props.coinPrice;
     setConversionAmount(1);
-    setCoinAmount(
-      (1 / price) * 1 > 1
-        ? ((1 / price) * 1).toFixed(2)
-        : (1 / price).toFixed(5)
-    );
+    setCoinAmount(CurrencyFormat((1 / price) * 1));
   }, [props.currency, props.coinPrice]);
 
   const handleCurrencyChange = (e) => {
     const amount = e.target.value;
     const price = props.coinPrice;
     setConversionAmount(amount);
-    setCoinAmount(
-      (1 / price) * amount > 0.1 || (1 / price) * amount === 0
-        ? ((1 / price) * amount).toFixed(2)
-        : ((1 / price) * amount).toFixed(5)
-    );
+    setCoinAmount(CurrencyFormat((1 / price) * amount));
   };
 
   const handleCoinChange = (e) => {
     const amount = e.target.value;
     const price = props.coinPrice;
     setCoinAmount(amount);
-    setConversionAmount(
-      amount * price > 0.1 || amount * price === 0
-        ? (amount * price).toFixed(2)
-        : (amount * price).toFixed(5)
-    );
+    setConversionAmount(CurrencyFormat(amount * price));
   };
 
   const hasMarketData = !props.marketDataLoading && props.marketData;
