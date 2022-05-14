@@ -1,6 +1,6 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import throttle from 'lodash.throttle';
+import throttle from "lodash.throttle";
 import globalData from "./globalData";
 import bitcoinCharts from "./bitcoinCharts";
 import coinPage from "./coinPageData";
@@ -23,7 +23,7 @@ const reducers = combineReducers({
 
 export const loadState = () => {
   try {
-    const serializedState = localStorage.getItem('state');
+    const serializedState = localStorage.getItem("state");
     if (serializedState === null) {
       return undefined;
     }
@@ -31,12 +31,12 @@ export const loadState = () => {
   } catch (err) {
     return undefined;
   }
-}; 
+};
 
 export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
+    localStorage.setItem("state", serializedState);
   } catch {
     // ignore write errors
   }
@@ -44,12 +44,18 @@ export const saveState = (state) => {
 
 const persistedState = loadState();
 
-export const store = createStore(reducers,  persistedState, applyMiddleware(thunk));
+export const store = createStore(
+  reducers,
+  persistedState,
+  applyMiddleware(thunk)
+);
 
-store.subscribe(throttle(() => {
-  saveState({
-    theme: store.getState().theme,
-    currency: store.getState().currency,
-    portfolio: store.getState().portfolio,
-  });
-}, 1000));
+store.subscribe(
+  throttle(() => {
+    saveState({
+      theme: store.getState().theme,
+      currency: store.getState().currency,
+      portfolio: store.getState().portfolio,
+    });
+  }, 1000)
+);
