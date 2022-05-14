@@ -105,9 +105,18 @@ export const StatsContainer = styled.div`
   font-size: 3.5vw;
   @media ${devices.tablet} {
     display: flex;
-    font-size: 1.25vw;
-    justify-content: space-between;
+    font-size: 1vw;
+    justify-content: space-around;
     flew-flow: row;
+  }
+`;
+
+export const StyledPercentImg = styled.img`
+  width: 2vw;
+  margin-bottom: 1vw;
+  @media ${devices.tablet} {
+    width: .75vw;
+    margin-bottom: .35vw;
   }
 `;
 
