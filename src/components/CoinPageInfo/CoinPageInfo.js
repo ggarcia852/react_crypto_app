@@ -56,10 +56,6 @@ function CoinPageInfo(props) {
     //eslint-disable-next-line
   }, [props.match.params.coinId, props.currency]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const handleCopy = (site) => {
     navigator.clipboard.writeText(site);
   };
