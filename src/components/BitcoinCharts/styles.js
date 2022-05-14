@@ -33,7 +33,7 @@ export const StyledArrows = styled.div`
 export const ChartsContainer = styled.div`
   display: flex;
   margin: 0 8%;
-  // width: 84vw;
+  width: 84vw;
   overflow-x: auto;
   &::-webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory; 
@@ -45,15 +45,15 @@ export const ChartsContainer = styled.div`
 export const StyledCharts = styled.div`
   display: flex;
   margin-bottom: 5%;
-  // min-height: 33vh;
+  min-height: 33vh;
   scroll-snap-align: start;
   scroll-behavior: smooth;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
   @media ${devices.tablet} {
-    position: relative;
+    // position: relative;
     width: 50%;
-    padding-top: 50%;
+    // padding-top: 50%;
   }
 `;
 
@@ -62,11 +62,12 @@ export const StyledChart = styled.div`
   flex-flow: column;
   width: 84vw;
   @media ${devices.tablet} {
-    position:  absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    width: 39vw;
+    // position:  absolute;
+    // top: 0;
+    // left: 0;
+    // bottom: 0;
+    // right: 0;
 `;
 
 export const StyledBarContainer = styled.div`
