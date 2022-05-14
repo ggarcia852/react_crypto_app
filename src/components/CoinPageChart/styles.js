@@ -16,7 +16,7 @@ export const StyledButtonInput = styled.input`
 
 export const StyledChart = styled.div`
   margin-top: 3%;
-  margin-bottom: 8vh;
+  margin-bottom: 6vh;
   min-height: 34vh;
   @media ${devices.tablet} {
     margin-bottom: 0;
