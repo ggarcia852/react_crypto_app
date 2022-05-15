@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
+  flex-flow: column;
+  justify-content: center;
   height: 60%;
-  margin-right: 3%;
+  width: 17vw;
   background: ${(props) => props.theme.navBox};
   border-radius: 8px;
   border: none;

@@ -110,7 +110,7 @@ const BitcoinCharts = (props) => {
                     },
                   ],
                 }}
-                height={"200px"}
+                // height={"200"}
                 options={{
                   scales: {
                     y: {
@@ -174,7 +174,7 @@ const BitcoinCharts = (props) => {
                     },
                   ],
                 }}
-                height={"200px"}
+                // height={"200px"}
                 options={{
                   scales: {
                     y: {
