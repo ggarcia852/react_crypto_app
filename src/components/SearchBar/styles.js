@@ -26,7 +26,7 @@ export const StyledInput = styled.input`
   font-size: 1.25vw;
   border-radius: 8px;
   height: 100%;
-  width: 15vw;
+  width: 14vw;
   color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {
     color: ${(props) => props.theme.color};

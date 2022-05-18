@@ -19,10 +19,12 @@ import {
   StyledAmount,
   StyledDate,
   Loader,
+  StyledHeaderBox,
+  StyledArrows,
   ChartContainerDos,
 } from "./styles";
 
-const BitcoinCharts = (props) => {
+const MobileBitcoinCharts = (props) => {
   const [activeButton, setActiveButton] = useState(30);
   const [chartDays, setChartDays] = useState(30);
   const [chartInterval, setChartInterval] = useState("daily");
@@ -56,12 +58,16 @@ const BitcoinCharts = (props) => {
   const chartData = props.chartData;
   const hasData = !props.isLoading && props.chartData;
 
+  const mql = window.matchMedia("(max-width: 767px)");
+  let mobileView = mql.matches;
+
   return (
     <>
       <StyledHeader>Bitcoin Overview</StyledHeader>
       {props.hasError && <div>error on page</div>}
       <ChartsWrapper>
         <ChartContainer>
+          <StyledHeaderBox>
             <StyledChartHeading>
               <StyledTitle>Price</StyledTitle>
               <StyledAmount>
@@ -69,6 +75,12 @@ const BitcoinCharts = (props) => {
               </StyledAmount>
               <StyledDate>{today || "loading"}</StyledDate>
             </StyledChartHeading>
+            {mobileView && (
+              <StyledArrows>
+                {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
+              </StyledArrows>
+            )}
+          </StyledHeaderBox>
           <ChartContainerDos>
             <StyledChart>
               {props.isLoading && (
@@ -130,6 +142,7 @@ const BitcoinCharts = (props) => {
           </ChartContainerDos>
         </ChartContainer>
         <ChartContainer>
+          <StyledHeaderBox>
             <StyledChartHeading>
               <StyledTitle>Volume</StyledTitle>
               <StyledAmount>
@@ -137,6 +150,12 @@ const BitcoinCharts = (props) => {
               </StyledAmount>
               <StyledDate>{today || "loading"}</StyledDate>
             </StyledChartHeading>
+            {mobileView && (
+              <StyledArrows>
+                {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
+              </StyledArrows>
+            )}
+          </StyledHeaderBox>
           <ChartContainerDos>
             <StyledChart>
               {props.isLoading && (
@@ -189,6 +208,68 @@ const BitcoinCharts = (props) => {
             </StyledChart>
           </ChartContainerDos>
         </ChartContainer>
+        {/* <StyledCharts>
+        {props.isLoading && (
+          <Loader>
+            <Oval color="#06D554" ariaLabel="loading" />
+          </Loader>
+        )}
+        <StyledChart>
+          {hasData && (
+            <>
+              <StyledHeaderBox>
+                <StyledHeading>
+                  <StyledTitle>Volume</StyledTitle>
+                  <StyledAmount>${CurrencyFormat(volume)}</StyledAmount>
+                  <StyledDate>{today}</StyledDate>
+                </StyledHeading>
+                {mobileView && (
+                  <StyledArrows>
+                    {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
+                  </StyledArrows>
+                )}
+              </StyledHeaderBox>
+              <Bar
+                data={{
+                  labels: chartData.total_volumes.map((volume) =>
+                    ConvertDay(volume[0])
+                  ),
+                  datasets: [
+                    {
+                      label: "Bitcoin Volume",
+                      data: chartData.total_volumes.map(
+                        (volume) => volume[1]
+                      ),
+                      backgroundColor: "#2550EA",
+                      borderRadius: 5,
+                    },
+                  ],
+                }}
+                options={{
+                  scales: {
+                    y: {
+                      beginAtZero: false,
+                      display: false,
+                    },
+                  },
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                  },
+                  layout: {
+                    padding: {
+                      bottom: 15,
+                      left: 15,
+                      right: 15,
+                    },
+                  },
+                }}
+              />
+            </>
+          )}
+        </StyledChart>
+      </StyledCharts> */}
       </ChartsWrapper>
       <StyledBarContainer>
         <StyledBar>
@@ -219,4 +300,7 @@ const mapDispatchToProps = {
   getBitcoinCharts,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BitcoinCharts);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MobileBitcoinCharts);
