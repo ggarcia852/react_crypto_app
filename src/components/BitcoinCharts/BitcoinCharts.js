@@ -19,7 +19,7 @@ import {
   StyledAmount,
   StyledDate,
   Loader,
-  ChartContainerDos,
+  StyledChartContent,
 } from "./styles";
 
 const BitcoinCharts = (props) => {
@@ -62,14 +62,12 @@ const BitcoinCharts = (props) => {
       {props.hasError && <div>error on page</div>}
       <ChartsWrapper>
         <ChartContainer>
-            <StyledChartHeading>
-              <StyledTitle>Price</StyledTitle>
-              <StyledAmount>
-                ${price?.toLocaleString() || "loading"}
-              </StyledAmount>
-              <StyledDate>{today || "loading"}</StyledDate>
-            </StyledChartHeading>
-          <ChartContainerDos>
+          <StyledChartHeading>
+            <StyledTitle>Price</StyledTitle>
+            <StyledAmount>${price?.toLocaleString() || "loading"}</StyledAmount>
+            <StyledDate>{today}</StyledDate>
+          </StyledChartHeading>
+          <StyledChartContent>
             <StyledChart>
               {props.isLoading && (
                 <Loader>
@@ -101,8 +99,8 @@ const BitcoinCharts = (props) => {
                       },
                     ],
                   }}
-                  width={"100%"}
-                  height={"100%"}
+                  // width={"100%"}
+                  // height={"100%"}
                   options={{
                     maintainAspectRatio: false,
                     scales: {
@@ -127,17 +125,15 @@ const BitcoinCharts = (props) => {
                 />
               )}
             </StyledChart>
-          </ChartContainerDos>
+          </StyledChartContent>
         </ChartContainer>
         <ChartContainer>
-            <StyledChartHeading>
-              <StyledTitle>Volume</StyledTitle>
-              <StyledAmount>
-                ${CurrencyFormat(volume) || "loading"}
-              </StyledAmount>
-              <StyledDate>{today || "loading"}</StyledDate>
-            </StyledChartHeading>
-          <ChartContainerDos>
+          <StyledChartHeading>
+            <StyledTitle>Volume</StyledTitle>
+            <StyledAmount>${CurrencyFormat(volume) || "loading"}</StyledAmount>
+            <StyledDate>{today}</StyledDate>
+          </StyledChartHeading>
+          <StyledChartContent>
             <StyledChart>
               {props.isLoading && (
                 <Loader>
@@ -161,8 +157,8 @@ const BitcoinCharts = (props) => {
                       },
                     ],
                   }}
-                  width={"100%"}
-                  height={"100%"}
+                  // width={"100%"}
+                  // height={"100%"}
                   options={{
                     maintainAspectRatio: false,
                     scales: {
@@ -187,7 +183,7 @@ const BitcoinCharts = (props) => {
                 />
               )}
             </StyledChart>
-          </ChartContainerDos>
+          </StyledChartContent>
         </ChartContainer>
       </ChartsWrapper>
       <StyledBarContainer>

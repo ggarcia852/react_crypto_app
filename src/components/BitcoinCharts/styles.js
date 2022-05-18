@@ -32,20 +32,17 @@ export const ChartsWrapper = styled.div`
 
 export const ChartContainer = styled.div`
   width: 100%;
-  scroll-snap-align: start;
-  scroll-behavior: smooth;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
 `;
 
-export const ChartContainerDos = styled.div`
+export const StyledChartContent = styled.div`
   width: 100%;
   padding-top: 56.25%;
   position: relative;
 `;
 
 export const StyledChart = styled.div`
-  display: flex;
   position: absolute;
   top: 0;
   width: 100%;
