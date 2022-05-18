@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.span`
   font-size: 1.75vw;
@@ -90,5 +89,5 @@ export const Loader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 84vw;
+  width: 100%;
 `;

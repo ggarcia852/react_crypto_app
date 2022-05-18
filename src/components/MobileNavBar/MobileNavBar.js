@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { CurrencySelector, MobileSearch, ThemeSelector } from "components";
 import {
   Container,
@@ -10,11 +11,15 @@ import {
   StyledRightNav,
 } from "./styles";
 import overview from "assets/overview.svg";
+import overviewLight from "assets/overviewLight.svg";
 import portfolio from "assets/portfolio.svg";
+import portfolioLight from "assets/portfolioLight.svg";
 import summary from "assets/summary.svg";
+import summaryLight from "assets/summaryLight.svg";
 import searchNav from "assets/searchNav.svg";
+import searchNavLight from "assets/searchNavLight.svg";
 
-export default function MobileNavBar() {
+const  MobileNavBar = (props) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const handleClick = (e) => {
@@ -35,15 +40,15 @@ export default function MobileNavBar() {
       <NavBarBottom>
         <NavBarBottomBox>
           <StyledLink exact to="/">
-            <StyledInputImg type="image" src={overview} alt="overview" />
+            <StyledInputImg type="image" src={props.theme ? overview : overviewLight} alt="overview" />
           </StyledLink>
           <StyledLink exact to="/portfolio">
-            <StyledInputImg type="image" src={portfolio} alt="portfolio" />
+            <StyledInputImg type="image" src={props.theme ? portfolio: portfolioLight} alt="portfolio" />
           </StyledLink>
-          <StyledInputImg type="image" src={summary} alt="summary" />
+          <StyledInputImg type="image" src={props.theme ? summary : summaryLight} alt="summary" />
           <StyledInputImg
             type="image"
-            src={searchNav}
+            src={props.theme ? searchNav : searchNavLight}
             alt="search"
             onClick={handleClick}
           />
@@ -52,3 +57,9 @@ export default function MobileNavBar() {
     </>
   );
 }
+
+const mapStateToProps = (state) => ({
+  theme: state.theme.darkTheme,
+});
+
+export default connect(mapStateToProps)(MobileNavBar);
