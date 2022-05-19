@@ -4,6 +4,7 @@ import { devices } from "GlobalStyles/devices";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  height: 5vh;
 `;
 
 export const StyledGlobalData = styled.div`
@@ -13,7 +14,6 @@ export const StyledGlobalData = styled.div`
   scroll-snap-type: x mandatory; 
   align-items: center;
   width: 100vw;
-  height: 5vh;
   padding: 1% 1.5%;
   font-size: 2.5vw;
   background: ${(props) => props.theme.secondary};
@@ -41,7 +41,7 @@ export const Loading = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 7vh;
+  height: 5vh;
   width: 100%;
   background: ${(props) => props.theme.secondary};
   @media ${devices.tablet} {

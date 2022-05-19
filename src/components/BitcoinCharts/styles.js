@@ -87,4 +87,5 @@ export const Loader = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 10%;
 `;
