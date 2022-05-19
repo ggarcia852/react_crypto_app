@@ -23,7 +23,7 @@ const CurrencySelector = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  currency: state.currency,
+  currency: state.currency.currency,
 });
 
 const mapDispatchToProps = {
