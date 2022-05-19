@@ -8,19 +8,18 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertDay, CurrencyFormat } from "utils";
 import {
   StyledHeader,
-  ChartsContainer,
-  StyledCharts,
+  ChartsWrapper,
+  ChartContainer,
   StyledChart,
   StyledBarContainer,
   StyledButton,
   StyledBar,
-  StyledHeading,
+  StyledChartHeading,
   StyledTitle,
   StyledAmount,
   StyledDate,
   Loader,
-  StyledHeaderBox,
-  StyledArrows,
+  StyledChartContent,
 } from "./styles";
 
 const BitcoinCharts = (props) => {
@@ -57,149 +56,136 @@ const BitcoinCharts = (props) => {
   const chartData = props.chartData;
   const hasData = !props.isLoading && props.chartData;
 
-  const mql = window.matchMedia("(max-width: 767px)");
-  let mobileView = mql.matches;
-
   return (
     <>
       <StyledHeader>Bitcoin Overview</StyledHeader>
       {props.hasError && <div>error on page</div>}
-      <ChartsContainer>
-        <StyledCharts>
-          {props.isLoading && (
-            <Loader>
-              <Oval
-                height="100"
-                width="100"
-                color="#06D554"
-                ariaLabel="loading"
-              />
-            </Loader>
-          )}
-          {hasData && (
+      <ChartsWrapper>
+        <ChartContainer>
+          <StyledChartHeading>
+            <StyledTitle>Price</StyledTitle>
+            <StyledAmount>
+              ${price?.toLocaleString() || "loading..."}
+            </StyledAmount>
+            <StyledDate>{today}</StyledDate>
+          </StyledChartHeading>
+          <StyledChartContent>
             <StyledChart>
-              <StyledHeaderBox>
-                <StyledHeading>
-                  <StyledTitle>Price</StyledTitle>
-                  <StyledAmount>${price.toLocaleString()}</StyledAmount>
-                  <StyledDate>{today}</StyledDate>
-                </StyledHeading>
-                {mobileView && (
-                  <StyledArrows>
-                    {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
-                  </StyledArrows>
-                )}
-              </StyledHeaderBox>
-              <Line
-                data={{
-                  labels: chartData.prices.map((price) => ConvertDay(price[0])),
-                  datasets: [
-                    {
-                      label: "Bitcoin Price",
-                      data: chartData.prices.map((price) => price[1].toFixed()),
-                      pointRadius: 0,
-                      borderColor:
-                        chartData.prices[0][1] <=
-                        chartData.prices[chartData.prices.length - 1][1]
-                          ? "#00FC2A"
-                          : "#FE1040",
-                      backgroundColor: props.theme ? "#1F2128" : "#FCFCFC",
-                      fill: true,
-                      tension: 0.3,
-                      borderWidth: 2,
+              {props.isLoading && (
+                <Loader>
+                  <Oval color="#06D554" ariaLabel="loading" />
+                </Loader>
+              )}
+              {hasData && (
+                <Line
+                  data={{
+                    labels: chartData.prices.map((price) =>
+                      ConvertDay(price[0])
+                    ),
+                    datasets: [
+                      {
+                        label: "Bitcoin Price",
+                        data: chartData.prices.map((price) =>
+                          price[1].toFixed()
+                        ),
+                        pointRadius: 0,
+                        borderColor:
+                          chartData.prices[0][1] <=
+                          chartData.prices[chartData.prices.length - 1][1]
+                            ? "#00FC2A"
+                            : "#FE1040",
+                        backgroundColor: props.theme ? "#1F2128" : "#FCFCFC",
+                        fill: true,
+                        tension: 0.3,
+                        borderWidth: 2,
+                      },
+                    ],
+                  }}
+                  options={{
+                    maintainAspectRatio: false,
+                    scales: {
+                      y: {
+                        beginAtZero: false,
+                        display: false,
+                      },
                     },
-                  ],
-                }}
-                height={"200px"}
-                options={{
-                  scales: {
-                    y: {
-                      beginAtZero: false,
-                      display: false,
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
                     },
-                  },
-                  plugins: {
-                    legend: {
-                      display: false,
+                    layout: {
+                      padding: {
+                        bottom: 15,
+                        left: 15,
+                        right: 15,
+                      },
                     },
-                  },
-                  layout: {
-                    padding: {
-                      left: 25,
-                      right: 25,
-                      bottom: 25,
-                    },
-                  },
-                }}
-              />
+                  }}
+                />
+              )}
             </StyledChart>
-          )}
-        </StyledCharts>
-        <StyledCharts>
-          {props.isLoading && (
-            <Loader>
-              <Oval
-                height="100"
-                width="100"
-                color="#06D554"
-                ariaLabel="loading"
-              />
-            </Loader>
-          )}
-          {hasData && (
+          </StyledChartContent>
+        </ChartContainer>
+        <ChartContainer>
+          <StyledChartHeading>
+            <StyledTitle>Volume</StyledTitle>
+            <StyledAmount>
+              ${CurrencyFormat(volume) || "loading..."}
+            </StyledAmount>
+            <StyledDate>{today}</StyledDate>
+          </StyledChartHeading>
+          <StyledChartContent>
             <StyledChart>
-              <StyledHeaderBox>
-                <StyledHeading>
-                  <StyledTitle>Volume</StyledTitle>
-                  <StyledAmount>${CurrencyFormat(volume)}</StyledAmount>
-                  <StyledDate>{today}</StyledDate>
-                </StyledHeading>
-                {mobileView && (
-                  <StyledArrows>
-                    {"<"}&nbsp;&nbsp;&nbsp;&nbsp; {">"}{" "}
-                  </StyledArrows>
-                )}
-              </StyledHeaderBox>
-              <Bar
-                data={{
-                  labels: chartData.total_volumes.map((volume) =>
-                    ConvertDay(volume[0])
-                  ),
-                  datasets: [
-                    {
-                      label: "Bitcoin Volume",
-                      data: chartData.total_volumes.map((volume) => volume[1]),
-                      backgroundColor: "#2550EA",
-                      borderRadius: 5,
+              {props.isLoading && (
+                <Loader>
+                  <Oval color="#06D554" ariaLabel="loading" />
+                </Loader>
+              )}
+              {hasData && (
+                <Bar
+                  data={{
+                    labels: chartData.total_volumes.map((volume) =>
+                      ConvertDay(volume[0])
+                    ),
+                    datasets: [
+                      {
+                        label: "Bitcoin Volume",
+                        data: chartData.total_volumes.map(
+                          (volume) => volume[1]
+                        ),
+                        backgroundColor: "#2550EA",
+                        borderRadius: 5,
+                      },
+                    ],
+                  }}
+                  options={{
+                    maintainAspectRatio: false,
+                    scales: {
+                      y: {
+                        beginAtZero: false,
+                        display: false,
+                      },
                     },
-                  ],
-                }}
-                height={"200px"}
-                options={{
-                  scales: {
-                    y: {
-                      beginAtZero: false,
-                      display: false,
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
                     },
-                  },
-                  plugins: {
-                    legend: {
-                      display: false,
+                    layout: {
+                      padding: {
+                        bottom: 15,
+                        left: 15,
+                        right: 15,
+                      },
                     },
-                  },
-                  layout: {
-                    padding: {
-                      left: 25,
-                      right: 25,
-                      bottom: 25,
-                    },
-                  },
-                }}
-              />
+                  }}
+                />
+              )}
             </StyledChart>
-          )}
-        </StyledCharts>
-      </ChartsContainer>
+          </StyledChartContent>
+        </ChartContainer>
+      </ChartsWrapper>
       <StyledBarContainer>
         <StyledBar>
           {chartButtons.map((button) => (

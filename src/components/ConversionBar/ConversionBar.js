@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { CurrencyFormat } from "utils";
 import exchange from "assets/exchange.svg";
 import {
   StyledBarContainer,
@@ -16,32 +17,23 @@ function ConversionBar(props) {
   );
 
   useEffect(() => {
+    const price = props.coinPrice;
     setConversionAmount(1);
-    setCoinAmount(
-      (1 / props.coinPrice) * 1 > 1
-        ? ((1 / props.coinPrice) * 1).toFixed(2)
-        : (1 / props.coinPrice).toFixed(5)
-    );
+    setCoinAmount(CurrencyFormat((1 / price) * 1));
   }, [props.currency, props.coinPrice]);
 
   const handleCurrencyChange = (e) => {
-    setConversionAmount(e.target.value);
-    setCoinAmount(
-      (1 / props.coinPrice) * e.target.value > 0.1 ||
-        (1 / props.coinPrice) * e.target.value === 0
-        ? ((1 / props.coinPrice) * e.target.value).toFixed(2)
-        : ((1 / props.coinPrice) * e.target.value).toFixed(5)
-    );
+    const amount = e.target.value;
+    const price = props.coinPrice;
+    setConversionAmount(amount);
+    setCoinAmount(CurrencyFormat((1 / price) * amount));
   };
 
   const handleCoinChange = (e) => {
-    setCoinAmount(e.target.value);
-    setConversionAmount(
-      e.target.value * props.coinPrice > 0.1 ||
-        e.target.value * props.coinPrice === 0
-        ? (e.target.value * props.coinPrice).toFixed(2)
-        : (e.target.value * props.coinPrice).toFixed(5)
-    );
+    const amount = e.target.value;
+    const price = props.coinPrice;
+    setCoinAmount(amount);
+    setConversionAmount(CurrencyFormat(amount * price));
   };
 
   const hasMarketData = !props.marketDataLoading && props.marketData;

@@ -42,7 +42,8 @@ export const LeftContainer = styled.div`
 export const DirectionsContainer = styled.div`
   display: flex;
   flex-flow: column;
-  height: 25vw;
+  height: 30vw;
+  width: 80vw;
   justify-content: space-around;
   text-align: center;
   margin: 3%;

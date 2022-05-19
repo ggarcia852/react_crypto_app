@@ -7,9 +7,9 @@ export const StyledHeader = styled.div`
   font-weight: 500;
   color: ${(props) => props.theme.color};
   margin-left: 8%;
-  padding: 5% 0 3%;
+  padding: 3% 0;
   @media ${devices.tablet} {
-    font-size: 2vw;
+    font-size: 1.75vw;
   }
 `;
 

@@ -57,6 +57,7 @@ function CoinPageInfo(props) {
     //eslint-disable-next-line
   }, [props.match.params.coinId, props.currency]);
 
+
   useEffect(() => {
     window.scrollTo(0, 0);
     props.setActiveNav("summary");
@@ -279,7 +280,7 @@ function CoinPageInfo(props) {
                   {marketData.max_supply
                     ? CurrencyFormat(marketData.max_supply) +
                       " " +
-                      coinData.symbol?.toUpperCase()
+                      marketData.symbol.toUpperCase()
                     : "∞"}{" "}
                 </StyledMarketStat>
                 <StyledMarketStat>

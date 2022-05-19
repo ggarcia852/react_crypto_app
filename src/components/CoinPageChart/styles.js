@@ -16,7 +16,7 @@ export const StyledButtonInput = styled.input`
 
 export const StyledChart = styled.div`
   margin-top: 3%;
-  margin-bottom: 8vh;
+  margin-bottom: 7vh;
   min-height: 34vh;
   @media ${devices.tablet} {
     margin-bottom: 0;
@@ -26,7 +26,7 @@ export const StyledChart = styled.div`
 export const Loader = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 25%;
+  padding-top: 30%;
   @media ${devices.tablet} {
     padding-top: 10%;
   }

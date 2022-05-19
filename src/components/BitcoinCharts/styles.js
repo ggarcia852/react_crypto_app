@@ -1,71 +1,58 @@
 import styled from "styled-components";
-import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.span`
-  display: flex;
-  align-items: center;
-  font-size: 3.5vw;
+  font-size: 1.75vw;
   font-weight: 500;
   color: ${(props) => props.theme.color};
-  margin: 3% 8%;
-  @media ${devices.tablet} {
-    font-size: 2vw;
-  }
+  margin: 2% 8%;
 `;
 
-export const StyledHeading = styled.div`
-  display: flex;
-  flex-flow: column;
+export const StyledChartHeading = styled.div`
   padding: 5%;
-  width: 70%;
 `;
 
-export const StyledHeaderBox = styled.div`
-  display: flex;
-  align-items: center;
+export const StyledTitle = styled.div`
+  font-size: 1.75vw;
 `;
 
-export const StyledArrows = styled.div`
-  font-size: 5vw;
-  font-weight: 500;
+export const StyledAmount = styled.div`
+  font-size: 2.5vw;
+  font-weight: 600;
 `;
 
-export const ChartsContainer = styled.div`
+export const StyledDate = styled.div`
+  font-size: 1.5vw;
+`;
+
+export const ChartsWrapper = styled.div`
   display: flex;
   margin: 0 8%;
-  width: 84vw;
-  overflow-x: auto;
-  &::-webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory; 
-  @media ${devices.tablet} {
-    gap: 5%;
-  }
+  gap: 5%;
 `;
 
-export const StyledCharts = styled.div`
-  display: flex;
-  margin-bottom: 5%;
-  min-height: 33vh;
-  scroll-snap-align: start;
-  scroll-behavior: smooth;
+export const ChartContainer = styled.div`
+  width: 100%;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
-  @media ${devices.tablet} {
-    width: 50%;
-  }
+`;
+
+export const StyledChartContent = styled.div`
+  width: 100%;
+  padding-top: 56.25%;
+  position: relative;
 `;
 
 export const StyledChart = styled.div`
-  display: flex;
-  flex-flow: column;
-  width: 84vw;
-  @media ${devices.tablet} {
-    width: 39vw;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledBarContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 3%;
 `;
 
 export const StyledBar = styled.div`
@@ -76,16 +63,13 @@ export const StyledBar = styled.div`
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   margin: 0 8%;
-  @media ${devices.laptop} {
-    width: 50%;
-  }
+  width: 50%;
 `;
 
 export const StyledButton = styled.button`
-  display: flex;
   margin: 1%;
-  padding: 1.5%;
-  font-size: 2vw;
+  padding: 2%;
+  font-size: 1.5vw;
   background: ${(props) => props.theme.secondary};
   border: none;
   color: ${(props) => props.theme.color};
@@ -96,37 +80,12 @@ export const StyledButton = styled.button`
     cursor: pointer;
     opacity: 0.8;
   }
-  @media ${devices.tablet} {
-    padding: 1.5%;
-    font-size: 1.5vw;
-  }
-`;
-
-export const StyledTitle = styled.div`
-  font-size: 3vw;
-  @media ${devices.tablet} {
-    font-size: 2vw;
-  }
-`;
-
-export const StyledAmount = styled.div`
-  font-size: 4vw;
-  font-weight: 600;
-  @media ${devices.tablet} {
-    font-size: 3vw;
-  }
-`;
-
-export const StyledDate = styled.div`
-  font-size: 3vw;
-  @media ${devices.tablet} {
-    font-size: 2vw;
-  }
 `;
 
 export const Loader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 84vw;
+  width: 100%;
+  margin-top: 10%;
 `;

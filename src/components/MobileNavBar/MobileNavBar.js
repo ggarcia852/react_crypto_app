@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { setActiveNav } from "store/mobileNav/actions";
 import { CurrencySelector, MobileSearch, ThemeSelector } from "components";
 import {
-  Container,
-  NavBarBottom,
-  NavBarBottomBox,
+  Wrapper,
+  NavBarBottomWrapper,
+  NavBarBottomContainer,
   NavContainer,
   StyledInputImg,
   StyledLink,
@@ -20,7 +20,7 @@ import summaryGreen from "assets/summaryGreen.svg";
 import searchNav from "assets/searchNav.svg";
 import searchNavGreen from "assets/searchNavGreen.svg";
 
-const MobileNavBar = (props) => {
+const  MobileNavBar = (props) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const handleSearchClick = () => {
@@ -35,7 +35,7 @@ const MobileNavBar = (props) => {
 
   return (
     <>
-      <Container>
+      <Wrapper>
         <NavContainer>
           <div>Overview</div>
           <StyledRightNav>
@@ -44,9 +44,9 @@ const MobileNavBar = (props) => {
           </StyledRightNav>
         </NavContainer>
         {showSearch && <MobileSearch showSearch={setShowSearch} />}
-      </Container>
-      <NavBarBottom>
-        <NavBarBottomBox>
+      </Wrapper>
+      <NavBarBottomWrapper>
+        <NavBarBottomContainer>
           <StyledLink exact to="/">
             <StyledInputImg
               type="image"
@@ -74,18 +74,19 @@ const MobileNavBar = (props) => {
             alt="search"
             onClick={handleSearchClick}
           />
-        </NavBarBottomBox>
-      </NavBarBottom>
+        </NavBarBottomContainer>
+      </NavBarBottomWrapper>
     </>
   );
 };
 
 const mapStateToProps = (state) => ({
   active: state.mobileNav.active,
+  theme: state.theme.darkTheme,
 });
 
 const mapDispatchToProps = {
   setActiveNav,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MobileNavBar);
+export default connect(mapStateToProps)(MobileNavBar);

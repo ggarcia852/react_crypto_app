@@ -7,7 +7,6 @@ import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
 import redExit from "assets/redExit.svg";
 import { RemoveNegative, CurrencyFormat } from "../../utils";
-import { StyledPricePercentArrow } from "components/CoinPageInfo/styles";
 import {
   AssetContainer,
   CoinContainer,
@@ -22,6 +21,7 @@ import {
   ColoredSpan,
   StyledCoinLink,
   CoinHeading,
+  StyledPercentImg
 } from "./styles";
 
 const CoinAsset = (props) => {
@@ -92,6 +92,7 @@ const CoinAsset = (props) => {
                 <CoinHeading>Coin Stats:</CoinHeading>
                 {props.theme ? (
                   <input
+                  disabled
                     type="image"
                     src={pencil}
                     alt="edit"
@@ -144,9 +145,9 @@ const CoinAsset = (props) => {
                   Net Gain/Loss:{" "}
                   {(asset.price - asset.purchasePrice) / asset.purchasePrice >
                   0 ? (
-                    <StyledPricePercentArrow src={greenUp} alt="up arrow" />
+                    <StyledPercentImg src={greenUp} alt="up arrow" />
                   ) : (
-                    <StyledPricePercentArrow src={redDown} alt="down arrow" />
+                    <StyledPercentImg src={redDown} alt="down arrow" />
                   )}
                   <ColoredSpan
                     color={
@@ -169,9 +170,9 @@ const CoinAsset = (props) => {
                 <div>
                   Price Change 24h:{" "}
                   {asset.priceChange24 >= 0 ? (
-                    <StyledPricePercentArrow src={greenUp} alt="up arrow" />
+                    <StyledPercentImg src={greenUp} alt="up arrow" />
                   ) : (
-                    <StyledPricePercentArrow src={redDown} alt="down arrow" />
+                    <StyledPercentImg src={redDown} alt="down arrow" />
                   )}
                   <ColoredSpan
                     color={asset.priceChange24 >= 0 ? "#00FC2A" : "#FE1040"}

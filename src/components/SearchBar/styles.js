@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
+  flex-flow: column;
+  justify-content: center;
   height: 60%;
-  margin-right: 3%;
+  width: 17vw;
   background: ${(props) => props.theme.navBox};
   border-radius: 8px;
   border: none;
@@ -24,7 +26,7 @@ export const StyledInput = styled.input`
   font-size: 1.25vw;
   border-radius: 8px;
   height: 100%;
-  width: 15vw;
+  width: 14vw;
   color: ${(props) => props.theme.color};
   &::-webkit-input-placeholder {
     color: ${(props) => props.theme.color};

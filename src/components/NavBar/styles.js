@@ -13,7 +13,7 @@ export const StyledNav = styled.div`
 export const StyledNavLinks = styled.div`
   display: flex;
   align-items: center;
-  margin: 1% 5%;
+  margin: 1% 8%;
 `;
 
 export const StyledLink = styled(NavLink)`
