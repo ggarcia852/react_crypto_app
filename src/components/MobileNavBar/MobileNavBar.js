@@ -13,14 +13,18 @@ import {
 } from "./styles";
 import overview from "assets/overview.svg";
 import overviewGreen from "assets/overviewGreen.svg";
+import overviewLight from "assets/overviewLight.svg";
 import portfolio from "assets/portfolio.svg";
 import portfolioGreen from "assets/portfolioGreen.svg";
+import portfolioLight from "assets/portfolioLight.svg";
 import summary from "assets/summary.svg";
 import summaryGreen from "assets/summaryGreen.svg";
+import summaryLight from "assets/summaryLight.svg";
 import searchNav from "assets/searchNav.svg";
 import searchNavGreen from "assets/searchNavGreen.svg";
+import searchNavLight from "assets/searchNavLight.svg";
 
-const  MobileNavBar = (props) => {
+const MobileNavBar = (props) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const handleSearchClick = () => {
@@ -50,7 +54,13 @@ const  MobileNavBar = (props) => {
           <StyledLink exact to="/">
             <StyledInputImg
               type="image"
-              src={props.active === "overview" ? overviewGreen : overview}
+              src={
+                props.active === "overview"
+                  ? overviewGreen
+                  : props.theme
+                  ? overview
+                  : overviewLight
+              }
               alt="overview"
               onClick={(e) => handleNavClick("overview")}
             />
@@ -58,19 +68,37 @@ const  MobileNavBar = (props) => {
           <StyledLink exact to="/portfolio">
             <StyledInputImg
               type="image"
-              src={props.active === "portfolio" ? portfolioGreen : portfolio}
+              src={
+                props.active === "portfolio"
+                  ? portfolioGreen
+                  : props.theme
+                  ? portfolio
+                  : portfolioLight
+              }
               alt="portfolio"
               onClick={(e) => handleNavClick("portfolio")}
             />
           </StyledLink>
           <StyledInputImg
             type="image"
-            src={props.active === "summary" ? summaryGreen : summary}
+            src={
+              props.active === "summary"
+                ? summaryGreen
+                : props.theme
+                ? summary
+                : summaryLight
+            }
             alt="summary"
           />
           <StyledInputImg
             type="image"
-            src={props.active === "search" ? searchNavGreen : searchNav}
+            src={
+              props.active === "search"
+                ? searchNavGreen
+                : props.theme
+                ? searchNav
+                : searchNavLight
+            }
             alt="search"
             onClick={handleSearchClick}
           />
