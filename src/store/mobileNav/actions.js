@@ -1,8 +1,8 @@
 import { SET_ACTIVE } from "./index";
 
-export const setActiveNav = (active) => {
+export const setActiveNav = (active, previous = "") => {
   return {
     type: SET_ACTIVE,
-    payload: active,
+    payload: { active, previous },
   };
 };

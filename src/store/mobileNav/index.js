@@ -1,5 +1,6 @@
 const initialState = {
   active: "overview",
+  previous: "",
 };
 
 export const SET_ACTIVE = "SET_ACTIVE";
@@ -9,7 +10,8 @@ function MobileNavReducer(state = initialState, action) {
     case SET_ACTIVE:
       return {
         ...state,
-        active: action.payload,
+        active: action.payload.active,
+        previous: action.payload.previous,
       };
     default:
       return state;

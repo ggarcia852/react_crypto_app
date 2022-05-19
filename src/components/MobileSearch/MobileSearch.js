@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { searchCoins } from "store/searchBar/actions";
+import { setActiveNav } from "store/mobileNav/actions";
 import {
   Container,
   StyledExitContainer,
@@ -36,6 +37,7 @@ function MobileSearch(props) {
 
   const handleClick = () => {
     props.showSearch();
+    props.setActiveNav(props.previousNav);
   };
   return (
     <Container>
@@ -81,11 +83,12 @@ const mapStateToProps = (state) => ({
   hasError: state.searchBar.hasError,
   coins: state.searchBar.coins,
   theme: state.theme.darkTheme,
-  active: state.mobileNav.active,
+  previousNav: state.mobileNav.previous,
 });
 
 const mapDispatchToProps = {
   searchCoins,
+  setActiveNav,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MobileSearch);

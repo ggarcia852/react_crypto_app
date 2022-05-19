@@ -21,12 +21,12 @@ import searchNav from "assets/searchNav.svg";
 import searchNavGreen from "assets/searchNavGreen.svg";
 
 const MobileNavBar = (props) => {
-  // const [active, setActive] = useState("overview");
   const [showSearch, setShowSearch] = useState(false);
 
   const handleSearchClick = () => {
+    const currentNav = props.active;
     setShowSearch(true);
-    props.setActiveNav("search");
+    props.setActiveNav("search", currentNav);
   };
 
   const handleNavClick = (activeButton) => {
