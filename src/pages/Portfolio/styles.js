@@ -8,12 +8,12 @@ export const ButtonContainer = styled.div`
 
 export const StyledButton = styled.button`
   width: 85vw;
-  height: 8vw;
+  height: 15vw;
   background: #06d554;
   color: ${(props) => props.theme.color};
   border: none;
   border-radius: 7px;
-  font-size: 3vw;
+  font-size: 4vw;
   font-weight: 600;
   &:hover {
     opacity: 0.9;
@@ -32,7 +32,7 @@ export const AssetContainer = styled.div`
 
 export const NoAssetsContainer = styled.div`
   text-align: center;
-  font-size: 1vw;
+  font-size: 3vw;
 `;
 
 export const customModalStyles = {

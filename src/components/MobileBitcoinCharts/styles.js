@@ -23,13 +23,13 @@ export const ChartContainer = styled.div`
   scroll-behavior: smooth;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
-  height: 45vh;
+  height: 40vh;
   width: 100%;
   @media ${devices.mobileM} {
-    height: 50vh;
+    height: 45vh;
   }
   @media ${devices.mobileL} {
-    height: 65vh;
+    height: 55vh;
   }
 `;
 
