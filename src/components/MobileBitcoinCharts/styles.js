@@ -1,10 +1,36 @@
 import styled from "styled-components";
+import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.span`
   font-size: 3.5vw;
   font-weight: 500;
   color: ${(props) => props.theme.color};
   margin: 3% 8%;
+`;
+
+export const ChartsWrapper = styled.div`
+  display: flex;
+  margin: 0 8%;
+  width: 84vw;
+  overflow-x: auto;
+  &::-webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory; 
+`;
+
+export const ChartContainer = styled.div`
+  display: flex;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+  background: ${(props) => props.theme.secondary};
+  border-radius: 3%;
+  height: 45vh;
+  width: 100%;
+  @media ${devices.mobileM} {
+    height: 50vh;
+  }
+  @media ${devices.mobileL} {
+    height: 65vh;
+  }
 `;
 
 export const StyledHeading = styled.div`
@@ -36,23 +62,10 @@ export const StyledArrows = styled.div`
   margin-right: 10%;
 `;
 
-export const ChartsContainer = styled.div`
-  display: flex;
-  margin: 0 8%;
-  width: 84vw;
-  overflow-x: auto;
-  &::-webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory; 
-`;
-
-export const StyledCharts = styled.div`
-  scroll-snap-align: start;
-  scroll-behavior: smooth;
-  background: ${(props) => props.theme.secondary};
-  border-radius: 3%;
-`;
-
 export const StyledChart = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 84vw;
 `;
 
@@ -72,7 +85,7 @@ export const StyledBar = styled.div`
 `;
 
 export const StyledButton = styled.button`
-  padding: 2.5%;
+  padding: 2.25%;
   font-size: 2.5vw;
   background: ${(props) => props.theme.secondary};
   border: none;
@@ -88,7 +101,7 @@ export const StyledButton = styled.button`
 
 export const Loader = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 84vw;
+  margin-bottom: 20%;
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   background: ${(props) => props.theme.secondary};
@@ -20,27 +20,28 @@ export const StyledRightNav = styled.nav`
   justify-content: space-between;
 `;
 
-export const NavBarBottom = styled.div`
+export const NavBarBottomWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  align-items: center;
   position: fixed;
   bottom: 0%;
   width: 100vw;
-  height: 8vh;
+  height: 9vh;
   background: ${(props) => props.theme.secondary};
 `;
-export const NavBarBottomBox = styled.div`
+export const NavBarBottomContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
   width: 100%;
   margin: 0 8%;
+  margin-top: 2%;
 `;
 
 export const StyledInputImg = styled.img`
   width: 33px;
+  height: 33px;
 `;
 
 export const StyledLink = styled(NavLink)`
-  width: 30px;
+  // width: 30px;
 `;

@@ -8,8 +8,8 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { ConvertDay, CurrencyFormat } from "utils";
 import {
   StyledHeader,
-  ChartsContainer,
-  StyledCharts,
+  ChartsWrapper,
+  ChartContainer,
   StyledChart,
   StyledBarContainer,
   StyledButton,
@@ -61,8 +61,8 @@ const MobileBitcoinCharts = (props) => {
     <>
       <StyledHeader>Bitcoin Overview</StyledHeader>
       {props.hasError && <div>error on page</div>}
-      <ChartsContainer>
-        <StyledCharts>
+      <ChartsWrapper>
+        <ChartContainer>
           <StyledChart>
             <StyledHeaderBox>
               <StyledHeading>
@@ -100,7 +100,6 @@ const MobileBitcoinCharts = (props) => {
                     },
                   ],
                 }}
-                height={"200px"}
                 options={{
                   scales: {
                     y: {
@@ -117,21 +116,21 @@ const MobileBitcoinCharts = (props) => {
                     padding: {
                       left: 25,
                       right: 25,
-                      bottom: 25,
+                      bottom: 15,
                     },
                   },
                 }}
               />
             )}
           </StyledChart>
-        </StyledCharts>
-        <StyledCharts>
+        </ChartContainer>
+        <ChartContainer>
           <StyledChart>
             <StyledHeaderBox>
               <StyledHeading>
                 <StyledTitle>Volume</StyledTitle>
                 <StyledAmount>
-                  ${CurrencyFormat(volume) || "loading"}
+                  ${CurrencyFormat(volume) || "loading..."}
                 </StyledAmount>
                 <StyledDate>{today}</StyledDate>
               </StyledHeading>
@@ -139,7 +138,7 @@ const MobileBitcoinCharts = (props) => {
             </StyledHeaderBox>
             {props.isLoading && (
               <Loader>
-                <Oval color="#06D554" ariaLabel="loading" />
+                <Oval color="#06D554" ariaLabel="loading..." />
               </Loader>
             )}
             {hasData && (
@@ -157,7 +156,6 @@ const MobileBitcoinCharts = (props) => {
                     },
                   ],
                 }}
-                height={"200px"}
                 options={{
                   scales: {
                     y: {
@@ -174,15 +172,15 @@ const MobileBitcoinCharts = (props) => {
                     padding: {
                       left: 25,
                       right: 25,
-                      bottom: 25,
+                      bottom: 15,
                     },
                   },
                 }}
               />
             )}
           </StyledChart>
-        </StyledCharts>
-      </ChartsContainer>
+        </ChartContainer>
+      </ChartsWrapper>
       <StyledBarContainer>
         <StyledBar>
           {chartButtons.map((button) => (

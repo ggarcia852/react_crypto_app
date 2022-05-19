@@ -64,7 +64,9 @@ const BitcoinCharts = (props) => {
         <ChartContainer>
           <StyledChartHeading>
             <StyledTitle>Price</StyledTitle>
-            <StyledAmount>${price?.toLocaleString() || "loading"}</StyledAmount>
+            <StyledAmount>
+              ${price?.toLocaleString() || "loading..."}
+            </StyledAmount>
             <StyledDate>{today}</StyledDate>
           </StyledChartHeading>
           <StyledChartContent>
@@ -99,8 +101,6 @@ const BitcoinCharts = (props) => {
                       },
                     ],
                   }}
-                  // width={"100%"}
-                  // height={"100%"}
                   options={{
                     maintainAspectRatio: false,
                     scales: {
@@ -130,7 +130,9 @@ const BitcoinCharts = (props) => {
         <ChartContainer>
           <StyledChartHeading>
             <StyledTitle>Volume</StyledTitle>
-            <StyledAmount>${CurrencyFormat(volume) || "loading"}</StyledAmount>
+            <StyledAmount>
+              ${CurrencyFormat(volume) || "loading..."}
+            </StyledAmount>
             <StyledDate>{today}</StyledDate>
           </StyledChartHeading>
           <StyledChartContent>
@@ -157,8 +159,6 @@ const BitcoinCharts = (props) => {
                       },
                     ],
                   }}
-                  // width={"100%"}
-                  // height={"100%"}
                   options={{
                     maintainAspectRatio: false,
                     scales: {

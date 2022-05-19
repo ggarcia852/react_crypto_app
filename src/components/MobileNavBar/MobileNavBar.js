@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { CurrencySelector, MobileSearch, ThemeSelector } from "components";
 import {
-  Container,
-  NavBarBottom,
-  NavBarBottomBox,
+  Wrapper,
+  NavBarBottomWrapper,
+  NavBarBottomContainer,
   NavContainer,
   StyledInputImg,
   StyledLink,
@@ -27,7 +27,7 @@ const  MobileNavBar = (props) => {
   };
   return (
     <>
-      <Container>
+      <Wrapper>
         <NavContainer>
           <div>Overview</div>
           <StyledRightNav>
@@ -36,9 +36,9 @@ const  MobileNavBar = (props) => {
           </StyledRightNav>
         </NavContainer>
         {showSearch && <MobileSearch showSearch={setShowSearch} />}
-      </Container>
-      <NavBarBottom>
-        <NavBarBottomBox>
+      </Wrapper>
+      <NavBarBottomWrapper>
+        <NavBarBottomContainer>
           <StyledLink exact to="/">
             <StyledInputImg type="image" src={props.theme ? overview : overviewLight} alt="overview" />
           </StyledLink>
@@ -52,8 +52,8 @@ const  MobileNavBar = (props) => {
             alt="search"
             onClick={handleClick}
           />
-        </NavBarBottomBox>
-      </NavBarBottom>
+        </NavBarBottomContainer>
+      </NavBarBottomWrapper>
     </>
   );
 }

@@ -68,7 +68,7 @@ export const StyledBar = styled.div`
 
 export const StyledButton = styled.button`
   margin: 1%;
-  padding: 2.5%;
+  padding: 2%;
   font-size: 1.5vw;
   background: ${(props) => props.theme.secondary};
   border: none;
