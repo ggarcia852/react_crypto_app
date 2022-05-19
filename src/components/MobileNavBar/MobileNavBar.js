@@ -20,7 +20,7 @@ import summaryGreen from "assets/summaryGreen.svg";
 import searchNav from "assets/searchNav.svg";
 import searchNavGreen from "assets/searchNavGreen.svg";
 
-const MobileNavBar = (props) => {
+const  MobileNavBar = (props) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const handleSearchClick = () => {
@@ -78,7 +78,7 @@ const MobileNavBar = (props) => {
       </NavBarBottomWrapper>
     </>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   active: state.mobileNav.active,
