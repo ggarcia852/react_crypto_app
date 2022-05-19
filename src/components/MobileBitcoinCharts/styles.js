@@ -23,14 +23,15 @@ export const ChartContainer = styled.div`
   scroll-behavior: smooth;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
-  height: 35vh;
+  height: 32vh;
+  // height: 100%;
   width: 100%;
-  @media ${devices.mobileM} {
-    height: 43vh;
-  }
-  @media ${devices.mobileL} {
-    height: 50vh;
-  }
+  // @media ${devices.mobileM} {
+  //   height: 35vh;
+  // }
+  // @media ${devices.mobileL} {
+  //   height: 40vh;
+  // }
 `;
 
 export const StyledHeading = styled.div`
@@ -72,6 +73,7 @@ export const StyledChart = styled.div`
 export const StyledBarContainer = styled.div`
   display: flex;
   margin-top: 3%;
+  margin-bottom: 3%;
 `;
 
 export const StyledBar = styled.div`

@@ -100,6 +100,7 @@ const MobileBitcoinCharts = (props) => {
                     },
                   ],
                 }}
+                height={"100%"}
                 options={{
                   scales: {
                     y: {
@@ -156,6 +157,7 @@ const MobileBitcoinCharts = (props) => {
                     },
                   ],
                 }}
+                height={"100%"}
                 options={{
                   scales: {
                     y: {
