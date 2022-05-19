@@ -81,6 +81,7 @@ const mapStateToProps = (state) => ({
   hasError: state.searchBar.hasError,
   coins: state.searchBar.coins,
   theme: state.theme.darkTheme,
+  active: state.mobileNav.active,
 });
 
 const mapDispatchToProps = {

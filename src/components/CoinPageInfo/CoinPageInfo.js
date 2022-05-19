@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getCoinData, getMarketData } from "store/coinPageData/actions";
+import { setActiveNav } from "store/mobileNav/actions";
 import { Oval } from "react-loader-spinner";
 import { CurrencyFormat, RemoveNegative } from "utils";
 import { ProgressBar } from "components";
@@ -58,6 +59,7 @@ function CoinPageInfo(props) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    props.setActiveNav("summary")
   }, []);
 
   const handleCopy = (site) => {
@@ -423,11 +425,13 @@ const mapStateToProps = (state) => ({
   currency: state.currency.currency,
   theme: state.theme.darkTheme,
   assets: state.portfolio.assets,
+  active: state.mobileNav.active,
 });
 
 const mapDispatchToProps = {
   getCoinData,
   getMarketData,
+  setActiveNav,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoinPageInfo);
