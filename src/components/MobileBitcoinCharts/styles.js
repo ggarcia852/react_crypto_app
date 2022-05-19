@@ -23,13 +23,13 @@ export const ChartContainer = styled.div`
   scroll-behavior: smooth;
   background: ${(props) => props.theme.secondary};
   border-radius: 3%;
-  height: 40vh;
+  height: 35vh;
   width: 100%;
   @media ${devices.mobileM} {
-    height: 45vh;
+    height: 43vh;
   }
   @media ${devices.mobileL} {
-    height: 55vh;
+    height: 50vh;
   }
 `;
 
@@ -57,7 +57,7 @@ export const StyledDate = styled.div`
 `;
 
 export const StyledArrows = styled.div`
-  font-size: 5vw;
+  font-size: 10vw;
   font-weight: 500;
   margin-right: 10%;
 `;
@@ -85,7 +85,7 @@ export const StyledBar = styled.div`
 `;
 
 export const StyledButton = styled.button`
-  padding: 2.25%;
+  padding: 3%;
   font-size: 2.5vw;
   background: ${(props) => props.theme.secondary};
   border: none;
