@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { setActiveNav } from "store/mobileNav/actions";
 import { CurrencySelector, MobileSearch, ThemeSelector } from "components";
 import {
   Wrapper,
@@ -11,20 +12,27 @@ import {
   StyledRightNav,
 } from "./styles";
 import overview from "assets/overview.svg";
-import overviewLight from "assets/overviewLight.svg";
+import overviewGreen from "assets/overviewGreen.svg";
 import portfolio from "assets/portfolio.svg";
-import portfolioLight from "assets/portfolioLight.svg";
+import portfolioGreen from "assets/portfolioGreen.svg";
 import summary from "assets/summary.svg";
-import summaryLight from "assets/summaryLight.svg";
+import summaryGreen from "assets/summaryGreen.svg";
 import searchNav from "assets/searchNav.svg";
-import searchNavLight from "assets/searchNavLight.svg";
+import searchNavGreen from "assets/searchNavGreen.svg";
 
 const  MobileNavBar = (props) => {
   const [showSearch, setShowSearch] = useState(false);
 
-  const handleClick = (e) => {
+  const handleSearchClick = () => {
+    const currentNav = props.active;
     setShowSearch(true);
+    props.setActiveNav("search", currentNav);
   };
+
+  const handleNavClick = (activeButton) => {
+    props.setActiveNav(activeButton);
+  };
+
   return (
     <>
       <Wrapper>
@@ -40,26 +48,45 @@ const  MobileNavBar = (props) => {
       <NavBarBottomWrapper>
         <NavBarBottomContainer>
           <StyledLink exact to="/">
-            <StyledInputImg type="image" src={props.theme ? overview : overviewLight} alt="overview" />
+            <StyledInputImg
+              type="image"
+              src={props.active === "overview" ? overviewGreen : overview}
+              alt="overview"
+              onClick={(e) => handleNavClick("overview")}
+            />
           </StyledLink>
           <StyledLink exact to="/portfolio">
-            <StyledInputImg type="image" src={props.theme ? portfolio: portfolioLight} alt="portfolio" />
+            <StyledInputImg
+              type="image"
+              src={props.active === "portfolio" ? portfolioGreen : portfolio}
+              alt="portfolio"
+              onClick={(e) => handleNavClick("portfolio")}
+            />
           </StyledLink>
-          <StyledInputImg type="image" src={props.theme ? summary : summaryLight} alt="summary" />
           <StyledInputImg
             type="image"
-            src={props.theme ? searchNav : searchNavLight}
+            src={props.active === "summary" ? summaryGreen : summary}
+            alt="summary"
+          />
+          <StyledInputImg
+            type="image"
+            src={props.active === "search" ? searchNavGreen : searchNav}
             alt="search"
-            onClick={handleClick}
+            onClick={handleSearchClick}
           />
         </NavBarBottomContainer>
       </NavBarBottomWrapper>
     </>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
+  active: state.mobileNav.active,
   theme: state.theme.darkTheme,
 });
+
+const mapDispatchToProps = {
+  setActiveNav,
+};
 
 export default connect(mapStateToProps)(MobileNavBar);

@@ -9,6 +9,7 @@ import theme from "./theme";
 import searchBar from "./searchBar";
 import coinsTable from "./coinsTable";
 import portfolio from "./portfolio";
+import mobileNav from "./mobileNav"
 
 const reducers = combineReducers({
   currency,
@@ -19,6 +20,7 @@ const reducers = combineReducers({
   searchBar,
   coinsTable,
   portfolio,
+  mobileNav,
 });
 
 export const loadState = () => {
