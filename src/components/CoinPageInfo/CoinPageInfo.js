@@ -59,7 +59,7 @@ function CoinPageInfo(props) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    props.setActiveNav("summary");
+    props.setActiveNav("Summary");
     //eslint-disable-next-line
   }, []);
 

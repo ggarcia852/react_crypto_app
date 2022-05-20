@@ -1,5 +1,5 @@
 const initialState = {
-  active: "overview",
+  active: "Overview",
   previous: "",
 };
 

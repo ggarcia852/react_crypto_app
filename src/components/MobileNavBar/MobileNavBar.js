@@ -26,11 +26,12 @@ import searchNavLight from "assets/searchNavLight.svg";
 
 const MobileNavBar = (props) => {
   const [showSearch, setShowSearch] = useState(false);
+  // const [pageTitle, setPageTitle] = useState("Overviewzzzz")
 
   const handleSearchClick = () => {
     const currentNav = props.active;
     setShowSearch(true);
-    props.setActiveNav("search", currentNav);
+    props.setActiveNav("Search", currentNav);
   };
 
   const handleNavClick = (activeButton) => {
@@ -41,7 +42,7 @@ const MobileNavBar = (props) => {
     <>
       <Wrapper>
         <NavContainer>
-          <div>Overview</div>
+          <div>{props.active}</div>
           <StyledRightNav>
             <CurrencySelector />
             <ThemeSelector />
@@ -55,34 +56,34 @@ const MobileNavBar = (props) => {
             <StyledInputImg
               type="image"
               src={
-                props.active === "overview"
+                props.active === "Overview"
                   ? overviewGreen
                   : props.theme
                   ? overview
                   : overviewLight
               }
               alt="overview"
-              onClick={(e) => handleNavClick("overview")}
+              onClick={(e) => handleNavClick("Overview")}
             />
           </StyledLink>
           <StyledLink exact to="/portfolio">
             <StyledInputImg
               type="image"
               src={
-                props.active === "portfolio"
+                props.active === "Portfolio"
                   ? portfolioGreen
                   : props.theme
                   ? portfolio
                   : portfolioLight
               }
               alt="portfolio"
-              onClick={(e) => handleNavClick("portfolio")}
+              onClick={(e) => handleNavClick("Portfolio")}
             />
           </StyledLink>
           <StyledInputImg
             type="image"
             src={
-              props.active === "summary"
+              props.active === "Summary"
                 ? summaryGreen
                 : props.theme
                 ? summary
@@ -93,7 +94,7 @@ const MobileNavBar = (props) => {
           <StyledInputImg
             type="image"
             src={
-              props.active === "search"
+              props.active === "Search"
                 ? searchNavGreen
                 : props.theme
                 ? searchNav
