@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { CurrencyFormat } from "utils";
 import exchange from "assets/exchange.svg";
+import exchangeLight from "assets/exchangeLight.svg";
 import {
   StyledBarContainer,
   StyledCurrencyImg,
@@ -51,7 +52,7 @@ function ConversionBar(props) {
               onChange={handleCurrencyChange}
             />
           </StyledConversionBox>
-          <StyledCurrencyImg src={exchange} alt="exchange" />
+          <StyledCurrencyImg src={props.theme ? exchange : exchangeLight} alt="exchange" />
           <StyledConversionBox>
             <StyledCurrencyName>{props.coinSymbol}</StyledCurrencyName>
             <StyledCurrencyInput
@@ -71,6 +72,7 @@ const mapStateToProps = (state) => ({
   marketDataLoading: state.coinPage.marketDataLoading,
   coinPrice: state.coinPage.coinPrice,
   coinSymbol: state.coinPage.coinSymbol,
+  theme: state.theme.darkTheme,
 });
 
 export default connect(mapStateToProps)(ConversionBar);
