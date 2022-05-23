@@ -10,7 +10,7 @@ const CurrencySelector = (props) => {
       <StyledImg src={currencySymbol} alt="currency" />
       <StyledDropdown
         onChange={(e) => props.selectCurrency(e.target.value)}
-        value={props.currency.currency}
+        value={props.currency}
       >
         <option value="usd">USD</option>
         <option value="eur">EUR</option>
