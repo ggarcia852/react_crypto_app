@@ -5,7 +5,7 @@ import pencil from "assets/pencil.svg";
 import pencilLight from "assets/pencilLight.svg";
 import greenUp from "assets/greenUp.svg";
 import redDown from "assets/redDown.svg";
-import redExit from "assets/redExit.svg";
+import exitRed from "assets/exitRed.svg";
 import { RemoveNegative, CurrencyFormat } from "../../utils";
 import {
   AssetContainer,
@@ -82,7 +82,7 @@ const CoinAsset = (props) => {
               <input
                 type="image"
                 alt="delete"
-                src={redExit}
+                src={exitRed}
                 width="15vw"
                 onClick={() => handleDelete(asset)}
               />

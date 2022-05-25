@@ -13,7 +13,8 @@ import {
   StyledList,
   StyledListItem,
 } from "./styles";
-import exitWhite from "assets/exitWhite.svg";
+import exit from "assets/exit.svg";
+import exitLight from "assets/exitLight.svg";
 import search from "assets/search.svg";
 import { StyledExitImg } from "./styles";
 
@@ -45,7 +46,7 @@ function MobileSearch(props) {
         <StyledExitContainer>
           <StyledExitImg
             type="image"
-            src={exitWhite}
+            src={props.theme ? exit : exitLight}
             alt="exit"
             onClick={handleClick}
           />

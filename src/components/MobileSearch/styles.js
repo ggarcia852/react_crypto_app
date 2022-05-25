@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const StyledExitImg = styled.input`
   width: 5vw;
-  margin-right: 5%;
+  margin-right: 3%;
 `;
 
 export const StyledExitContainer = styled.div`
