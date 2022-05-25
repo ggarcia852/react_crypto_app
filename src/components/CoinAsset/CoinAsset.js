@@ -22,7 +22,7 @@ import {
   StyledCoinLink,
   CoinHeading,
   StyledPercentImg,
-  StyledStat
+  StyledStat,
 } from "./styles";
 
 const CoinAsset = (props) => {
@@ -92,7 +92,7 @@ const CoinAsset = (props) => {
                 <CoinHeading>Coin Stats:</CoinHeading>
                 {props.theme ? (
                   <input
-                  disabled
+                    disabled
                     type="image"
                     src={pencil}
                     alt="edit"
@@ -137,7 +137,9 @@ const CoinAsset = (props) => {
               </StatsContainer>
               <CoinHeading>Market Stats: </CoinHeading>
               <StatsContainer>
-                <StyledStat>Current Price: ${CurrencyFormat(asset.price)}</StyledStat>
+                <StyledStat>
+                  Current Price: ${CurrencyFormat(asset.price)}
+                </StyledStat>
                 <StyledStat>
                   Purchase Price: ${CurrencyFormat(asset.purchasePrice)}
                 </StyledStat>

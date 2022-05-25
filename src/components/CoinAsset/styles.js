@@ -9,9 +9,12 @@ export const Container = styled.div`
 `;
 
 export const StatisticHeading = styled.div`
-  font-size: 2vw;
+  font-size: 3vw;
   margin-bottom: 3%;
   font-weight: 500;
+  @media ${devices.tablet} {
+    font-size: 2vw;
+  }
 `;
 
 export const AssetContainer = styled.div`
@@ -102,7 +105,6 @@ export const StatsContainer = styled.div`
   background: ${(props) => props.theme.secondary};
   padding: 4%;
   border-radius: 10px;
-  // font-size: 5vw;
   @media ${devices.tablet} {
     display: flex;
     font-size: 1vw;
@@ -112,15 +114,18 @@ export const StatsContainer = styled.div`
 `;
 
 export const StyledStat = styled.div`
-  font-size: 1.25vw;
-`
+  font-size: 3.5vw;
+  @media ${devices.tablet} {
+    font-size: 1.25vw;
+  }
+`;
 
 export const StyledPercentImg = styled.img`
   width: 2vw;
   margin-bottom: 1vw;
   @media ${devices.tablet} {
-    width: .75vw;
-    margin-bottom: .35vw;
+    width: 0.75vw;
+    margin-bottom: 0.35vw;
   }
 `;
 
