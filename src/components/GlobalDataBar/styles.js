@@ -19,8 +19,8 @@ export const StyledGlobalData = styled.div`
   background: ${(props) => props.theme.secondary};
   @media ${devices.tablet} {
     border-radius: 0 0 15px 15px;
-    width: 60vw;
-    font-size: 1.25vw;
+    width: 70vw;
+    font-size: 15px;
     justify-content: space-around;
   }
 `;

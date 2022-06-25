@@ -25,7 +25,7 @@ export const StyledDropdown = styled.select`
     cursor: pointer;
   }
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 15px;
   }
 `;
 

@@ -7,20 +7,19 @@ export const Container = styled.div`
   height: 100%;
   background: ${(props) => props.theme.navBox};
   border-radius: 10px;
-  padding: 5%;
+  padding: 0 5%;
   border: 1px solid #707070;
   @media ${devices.tablet} {
-    height: 50%;
-    align-items: center;
+    padding: 2%;
   }
 `;
 
 export const Heading = styled.div`
   text-align: center;
-  margin: 3%;
-  font-size: 3vw;
+  margin: 4%;
+  font-size: 18px;
   @media ${devices.tablet} {
-    font-size: 2vw;
+    font-size: 18px;
   }
 `;
 
@@ -30,7 +29,6 @@ export const FormContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75vw;
   }
 `;
 
@@ -42,21 +40,22 @@ export const LeftContainer = styled.div`
 export const DirectionsContainer = styled.div`
   display: flex;
   flex-flow: column;
-  height: 30vw;
-  width: 80vw;
+  height: 150px;
+  width: 175px;
   justify-content: space-around;
   text-align: center;
-  margin: 3%;
+  margin-bottom: 3%;
   padding: 1vw;
   border-radius: 10px;
-  font-size: 3vw;
+  font-size: 11px;
   background: ${(props) => props.theme.secondary};
   border: 1px solid #707070;
   @media ${devices.tablet} {
     margin: 0;
-    font-size: 1.55vw;
-    width: 25vw;
-    height: 20vw;
+    padding: 0 5%;
+    font-size: 12px;
+    width: 150px;
+    height: 200px;
   }
 `;
 
@@ -65,21 +64,24 @@ export const SelectedCoinContainer = styled.div`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  padding: 10%;
-  width: 80vw;
+  margin-bottom: 3%;
+  height: 150px;
+  width: 175px;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   @media ${devices.tablet} {
-    width: 25vw;
-    height: 17vw;
+    width: 150px;
+    height: 200px;
     margin: 0;
+    padding: 0;
   }
 `;
 
 export const ImgContainer = styled.div`
   display: flex;
-  padding: 20%;
+  padding: 15%;
   border-radius: 10px;
+  margin-bottom: 3%;
   background: ${(props) => props.theme.main};
 `;
 
@@ -94,15 +96,17 @@ export const InputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-flow: column;
+  height: 150px;
   @media ${devices.tablet} {
-    height: 22vw;
+    height: 200px;
   }
 `;
 
 export const Input = styled.input`
-  width: 100%;
-  height: 9vw;
-  margin: 3% 0;
+  font-size: 13px;
+  padding-left: 10px;
+  width: 95%;
+  height: 40px;
   color-scheme: ${(props) => props.theme.modal};
   background: ${(props) => props.theme.secondary};
   &::-webkit-input-placeholder {
@@ -112,28 +116,37 @@ export const Input = styled.input`
   border-radius: 10px;
   &::-webkit-inner-spin-button {
     opacity: 1;
+    height: 30px;
+    margin-right: 8px;
+  }
+  &::-webkit-calendar-picker-indicator {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
   }
   @media ${devices.tablet} {
-    width: 30vw;
-    height: 6vw;
-    margin: 0 0 0 3%;
+    width: 300px;
+    height: 50px;
+    margin-left: 3%;
   }
 `;
 
 export const StyledList = styled.div`
   position: absolute;
   max-height: 45vh;
-  width: 70vw;
+  width: 75%;
   overflow: scroll;
   background: ${(props) => props.theme.secondary};
   border-radius: 5px;
-  margin-top: 14%;
+  margin-top: 10%;
+  margin-left: 1%;
   text-align: justify;
   @media ${devices.tablet} {
     margin-top: 8.5%;
-    margin-left: 1%;
-    max-height: 25vh;
-    width: 31vw;
+    margin-left: 2%;
+    max-height: 250px;
+    width: 300px;
+    font-size: 13px;
   }
 `;
 
@@ -147,7 +160,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   flex-flow: column-reverse;
-  margin-top: 10%;
+  margin-top: 5%;
   @media ${devices.tablet} {
     flex-flow: row;
     justify-content: center;
@@ -156,6 +169,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const CloseButton = styled.button`
+    font-size: 15px;
     width: 100%;
     height: 10vw;
     background:  #FFFFFF;
@@ -169,12 +183,14 @@ export const CloseButton = styled.button`
         cursor: pointer;
     }
     @media ${devices.tablet} {
-      width: 25vw;
-      height: 5vw;
+      width: 175px;
+      height: 40px;
+      font-size: 15px;
     }
 `;
 
 export const SaveButton = styled.button`
+  font-size: 15px;
   width: 100%;
   height: 10vw;
   color: ${(props) => props.theme.color};
@@ -187,8 +203,9 @@ export const SaveButton = styled.button`
     cursor: pointer;
   }
   @media ${devices.tablet} {
-    width: 25vw;
-    height: 5vw;
+    width: 175px;
+    height: 40px;
+    font-size: 15px;
   }
 `;
 

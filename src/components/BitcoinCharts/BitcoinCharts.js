@@ -101,6 +101,7 @@ const BitcoinCharts = (props) => {
                       },
                     ],
                   }}
+                  // height={50}
                   options={{
                     maintainAspectRatio: false,
                     scales: {

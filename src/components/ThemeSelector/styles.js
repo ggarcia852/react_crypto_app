@@ -5,7 +5,6 @@ export const StyledThemeButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 2%;
   height: 5vh;
   width: 5vh;
   padding: 0 3%;

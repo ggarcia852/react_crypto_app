@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.span`
-  font-size: 1.75vw;
+  font-size: 22px;
   font-weight: 500;
   color: ${(props) => props.theme.color};
   margin: 2% 8%;
@@ -12,22 +12,23 @@ export const StyledChartHeading = styled.div`
 `;
 
 export const StyledTitle = styled.div`
-  font-size: 1.75vw;
+  font-size: 22px;
 `;
 
 export const StyledAmount = styled.div`
-  font-size: 2.5vw;
+  font-size: 30px;
   font-weight: 600;
 `;
 
 export const StyledDate = styled.div`
-  font-size: 1.5vw;
+  font-size: 18px;
 `;
 
 export const ChartsWrapper = styled.div`
   display: flex;
   margin: 0 8%;
   gap: 5%;
+  height: 300px;
 `;
 
 export const ChartContainer = styled.div`
@@ -38,7 +39,7 @@ export const ChartContainer = styled.div`
 
 export const StyledChartContent = styled.div`
   width: 100%;
-  padding-top: 56.25%;
+  // padding-top: 56.25%;
   position: relative;
 `;
 
@@ -46,7 +47,7 @@ export const StyledChart = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-  height: 100%;
+  // height: 100%;
 `;
 
 export const StyledBarContainer = styled.div`
@@ -63,13 +64,13 @@ export const StyledBar = styled.div`
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
   margin: 0 8%;
-  width: 50%;
+  width: 40%;
 `;
 
 export const StyledButton = styled.button`
   margin: 1%;
   padding: 2%;
-  font-size: 1.5vw;
+  font-size: 15px;
   background: ${(props) => props.theme.secondary};
   border: none;
   color: ${(props) => props.theme.color};

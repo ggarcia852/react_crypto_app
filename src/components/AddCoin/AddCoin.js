@@ -140,7 +140,7 @@ function AddCoin(props) {
           <Input
             type="number"
             min=".0001"
-            step=".0001"
+            step="1"
             onChange={handleAmountChange}
             placeholder="Coin Amount"
           />

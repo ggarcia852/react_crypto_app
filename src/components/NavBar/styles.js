@@ -19,7 +19,7 @@ export const StyledNavLinks = styled.div`
 export const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: ${(props) => props.theme.color};
-  font-size: 1.75vw;
+  font-size: 23px;
   padding: 1vw 1.5vw;
   border-radius: 12px;
   &:hover {
@@ -36,4 +36,5 @@ export const StyledNavOptions = styled.div`
   justify-content: end;
   width: 40%;
   gap: 2vw;
+  margin-right: 8%;
 `;

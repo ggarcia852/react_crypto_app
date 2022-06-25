@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
+import Media from "react-media";
 import { addAsset } from "store/portfolio/actions";
 import { AddCoin, CoinAsset } from "components";
 import {
   AssetContainer,
   ButtonContainer,
   StyledButton,
+  customModalStylesMobile,
   customModalStyles,
   NoAssetsContainer,
 } from "./styles";
@@ -20,9 +22,22 @@ const Portfolio = (props) => {
         <StyledButton onClick={() => props.addAsset(true)}>
           Add Asset
         </StyledButton>
-        <Modal isOpen={props.showAddAsset} style={customModalStyles}>
-          <AddCoin />
-        </Modal>
+        <Media queries={{ small: { maxWidth: 599 } }}>
+          {(matches) =>
+            matches.small ? (
+              <Modal
+                isOpen={props.showAddAsset}
+                style={customModalStylesMobile}
+              >
+                <AddCoin />
+              </Modal>
+            ) : (
+              <Modal isOpen={props.showAddAsset} style={customModalStyles}>
+                <AddCoin />
+              </Modal>
+            )
+          }
+        </Media>
       </ButtonContainer>
       {props.assets.length === 0 && (
         <NoAssetsContainer>

@@ -23,7 +23,7 @@ export const StyledInput = styled.input`
   border: none;
   margin-left: 5%;
   outline: 0px;
-  font-size: 1.25vw;
+  font-size: 15px;
   border-radius: 8px;
   height: 100%;
   width: 14vw;
@@ -56,6 +56,6 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledImg = styled.img`
-  width: 1vw;
-  height: 1vw;
+  width: 1.5vw;
+  height: 1.5vw;
 `;

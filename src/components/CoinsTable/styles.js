@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.div`
-  font-size: 3.5vw;
+  font-size: 22px;
   font-weight: 500;
   color: ${(props) => props.theme.color};
   margin-left: 8%;
-  padding: 3% 0;
+  padding: 2% 0;
   @media ${devices.tablet} {
     font-size: 1.75vw;
   }

@@ -7,8 +7,8 @@ export const ButtonContainer = styled.div`
 `;
 
 export const StyledButton = styled.button`
-  width: 85vw;
-  height: 15vw;
+  width: 80%;
+  height: 50px;
   background: #06d554;
   color: ${(props) => props.theme.color};
   border: none;
@@ -20,9 +20,9 @@ export const StyledButton = styled.button`
     cursor: pointer;
   }
   @media ${devices.tablet} {
-    width: 25vw;
-    height: 6vw;
-    font-size: 1.5vw;
+    width: 250px;
+    height: 60px;
+    font-size: 18px;
   }
 `;
 
@@ -32,17 +32,35 @@ export const AssetContainer = styled.div`
 
 export const NoAssetsContainer = styled.div`
   text-align: center;
-  font-size: 3vw;
+  font-size: 17px;
 `;
 
-export const customModalStyles = {
+export const customModalStylesMobile = {
   content: {
-    background: "white",
+    background: "",
     top: "50%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    width: "90%",
+    height: "80%",
+    overflow: "hidden",
+  },
+};
+
+export const customModalStyles = {
+  content: {
+    background: "",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "550px",
+    height: "350px",
+    overflow: "hidden",
   },
 };

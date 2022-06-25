@@ -18,6 +18,7 @@ export const StyledRightNav = styled.nav`
   display: flex;
   width: 30%;
   justify-content: space-between;
+  margin-right: 8%;
 `;
 
 export const NavBarBottomWrapper = styled.div`

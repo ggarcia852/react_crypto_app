@@ -13,7 +13,7 @@ export const StatisticHeading = styled.div`
   margin-bottom: 3%;
   font-weight: 500;
   @media ${devices.tablet} {
-    font-size: 2vw;
+    font-size: 20px;
   }
 `;
 
