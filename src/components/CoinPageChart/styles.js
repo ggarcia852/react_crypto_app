@@ -19,7 +19,8 @@ export const StyledChart = styled.div`
   margin-bottom: 7vh;
   min-height: 34vh;
   @media ${devices.tablet} {
-    margin-bottom: 0;
+    border-bottom: 50px solid ${(props) => props.theme.secondary};
+    margin: 0;
   }
 `;
 
@@ -28,6 +29,6 @@ export const Loader = styled.div`
   justify-content: center;
   padding-top: 30%;
   @media ${devices.tablet} {
-    padding-top: 10%;
+    padding-top: 0;
   }
 `;
