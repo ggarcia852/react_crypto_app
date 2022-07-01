@@ -106,9 +106,9 @@ export const StatsContainer = styled.div`
   padding: 4%;
   border-radius: 10px;
   @media ${devices.tablet} {
+    padding: 4% 2%;
     display: flex;
-    font-size: 1vw;
-    justify-content: space-around;
+    justify-content: space-between;
     flew-flow: row;
   }
 `;
