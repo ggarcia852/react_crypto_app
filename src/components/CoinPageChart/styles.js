@@ -14,21 +14,23 @@ export const StyledButtonInput = styled.input`
   }
 `;
 
+export const StyledLabel = styled.label`
+  font-size: 18px;
+`
+
 export const StyledChart = styled.div`
   margin-top: 3%;
-  margin-bottom: 7vh;
-  min-height: 34vh;
+  margin-bottom: 25%;
   @media ${devices.tablet} {
-    border-bottom: 50px solid ${(props) => props.theme.secondary};
-    margin: 0;
+    margin-bottom: 15%;
   }
 `;
 
 export const Loader = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 30%;
+  padding-top: 15%;
   @media ${devices.tablet} {
-    padding-top: 0;
+    padding-top: 10%;
   }
 `;

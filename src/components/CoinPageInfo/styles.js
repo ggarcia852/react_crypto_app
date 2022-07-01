@@ -6,7 +6,7 @@ export const StyledTitle = styled.div`
   font-weight: 500;
   margin: 5% 8%;
   @media ${devices.tablet} {
-    font-size: 1.75vw;
+    font-size: 22px;
     margin: 3% 8%;
   }
 `;
@@ -44,7 +44,7 @@ export const StyledCoinContainer = styled.div`
   font-size: 4.5vw;
   margin-bottom: 5%;
   @media ${devices.tablet} {
-    font-size: 1.75vw;
+    font-size: 25px;
     margin-bottom: 0;
   }
 `;
@@ -73,7 +73,7 @@ export const StyledLinkContainer = styled.div`
   border-radius: 10px;
   font-size: 3vw;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 15px;
   }
 `;
 
@@ -82,8 +82,8 @@ export const StyledLinkBox = styled.div`
   justify-content: center;
   padding: 8%;
   @media ${devices.tablet} {
-    justify-content: space-between;
     padding: 10%;
+    justify-content: space-evenly;
   }
 `;
 
@@ -124,14 +124,14 @@ export const StyledPrice = styled.div`
   font-weight: 600;
   margin-top: 1.5vw;
   @media ${devices.tablet} {
-    font-size: 3vw;
+    font-size: 44px;
   }
 `;
 
 export const StyledProfit = styled.span`
   font-size: 3vw;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 18px;
   }
 `;
 
@@ -141,7 +141,7 @@ export const StyledPriceStat = styled.div`
   font-size: 3vw;
   margin-bottom: 2vw;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 18px;
   }
 `;
 
@@ -152,7 +152,7 @@ export const StyledPriceStatPercent = styled.span.attrs((props) => ({
 }))`
   font-size: 3vw;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 18px;
   }
 `;
 
@@ -185,6 +185,7 @@ export const StyledMarketContainer = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
+  justify-content: center;
   padding: 3%;
   background: ${(props) => props.theme.secondary};
   border-radius: 10px;
@@ -202,7 +203,7 @@ export const StyledMarketStat = styled.div`
   font-size: 3vw;
   padding-top: 0.75vw;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 18px;
   }
 `;
 
@@ -236,7 +237,7 @@ export const StyledDescriptionTitle = styled.div`
   font-size: 3vw;
   font-weight: 500;
   @media ${devices.tablet} {
-    font-size: 1.75vw;
+    font-size: 22px;
   }
 `;
 
@@ -262,7 +263,7 @@ export const StyledDescription = styled.div`
   border-radius: 10px;
   font-size: 2.5vw;
   @media ${devices.tablet} {
-    font-size: 1.35vw;
+    font-size: 18px;
     margin: 0 8% 3%;
   }
 `;
@@ -290,7 +291,7 @@ export const StyledBlockchainContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.25vw;
+    font-size: 15px;
   }
 `;
 
@@ -310,6 +311,6 @@ export const BoldText = styled.span`
   font-weight: 600;
   font-size: 3vw;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 17px;
   }
 `;

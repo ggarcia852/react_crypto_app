@@ -108,8 +108,7 @@ function CoinPageInfo(props) {
               {props.coinDataLoading && (
                 <span>
                   <Oval
-                    height="100"
-                    width="100"
+                    height="75"
                     color="#06D554"
                     ariaLabel="loading"
                   />
@@ -148,8 +147,7 @@ function CoinPageInfo(props) {
             {props.marketDataLoading && (
               <span>
                 <Oval
-                  height="100"
-                  width="100"
+                  height="75"
                   color="#06D554"
                   ariaLabel="loading"
                 />
@@ -229,8 +227,7 @@ function CoinPageInfo(props) {
             {props.marketDataLoading && (
               <span>
                 <Oval
-                  height="100"
-                  width="100"
+                  height="75"
                   color="#06D554"
                   ariaLabel="loading"
                 />

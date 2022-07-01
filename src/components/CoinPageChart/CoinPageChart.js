@@ -9,6 +9,7 @@ import { ConvertDate } from "utils";
 import {
   StyledChart,
   StyledDayContainer,
+  StyledLabel,
   StyledButtonInput,
   Loader,
 } from "./styles";
@@ -39,7 +40,7 @@ function MarketChart(props) {
             checked={chartDays === "1"}
             onChange={handleChange}
           />
-          <label htmlFor="1">1d</label>
+          <StyledLabel htmlFor="1">1d</StyledLabel>
           <StyledButtonInput
             type="radio"
             name="days"
@@ -47,7 +48,7 @@ function MarketChart(props) {
             checked={chartDays === "7"}
             onChange={handleChange}
           />
-          <label htmlFor="7">7d</label>
+          <StyledLabel htmlFor="7">7d</StyledLabel>
           <StyledButtonInput
             type="radio"
             name="days"
@@ -55,7 +56,7 @@ function MarketChart(props) {
             checked={chartDays === "30"}
             onChange={handleChange}
           />
-          <label htmlFor="30">30d</label>
+          <StyledLabel htmlFor="30">30d</StyledLabel>
           <StyledButtonInput
             type="radio"
             name="days"
@@ -63,7 +64,7 @@ function MarketChart(props) {
             checked={chartDays === "90"}
             onChange={handleChange}
           />
-          <label htmlFor="90">90d</label>
+          <StyledLabel htmlFor="90">90d</StyledLabel>
           <StyledButtonInput
             type="radio"
             name="days"
@@ -71,7 +72,7 @@ function MarketChart(props) {
             checked={chartDays === "365"}
             onChange={handleChange}
           />
-          <label htmlFor="1y">1y</label>
+          <StyledLabel htmlFor="1y">1y</StyledLabel>
           <StyledButtonInput
             type="radio"
             name="days"
@@ -79,14 +80,14 @@ function MarketChart(props) {
             checked={chartDays === "max"}
             onChange={handleChange}
           />
-          <label htmlFor="max">Max</label>
+          <StyledLabel htmlFor="max">Max</StyledLabel>
         </div>
       </StyledDayContainer>
       <StyledChart>
         {props.marketChartsLoading && (
           <Loader>
             <Oval
-              height="100"
+              height="75"
               width="100"
               color="#06D554"
               ariaLabel="loading"
@@ -109,14 +110,14 @@ function MarketChart(props) {
                       chartData.prices[chartData.prices.length - 1][1]
                         ? "#00FC2A"
                         : "#FE1040",
-                    backgroundColor: props.theme ? "#191B1F" : "#ffffff",
+                    backgroundColor: props.theme ? "#1F2128" : "#FCFCFC",
                     fill: true,
                     tension: 0.1,
                     borderWidth: 2,
                   },
                 ],
               }}
-              height={"300px"}
+              // height={"300px"}
               options={{
                 maintainAspectRatio: false,
                 scales: {

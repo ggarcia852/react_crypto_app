@@ -13,7 +13,7 @@ export const StatisticHeading = styled.div`
   margin-bottom: 3%;
   font-weight: 500;
   @media ${devices.tablet} {
-    font-size: 20px;
+    font-size: 22px;
   }
 `;
 
@@ -68,7 +68,7 @@ export const StyledCoin = styled.div`
   margin: 5%;
   @media ${devices.tablet} {
     margin: 25%;
-    font-size: 1.75vw;
+    font-size: 22px;
   }
 `;
 
@@ -97,7 +97,7 @@ export const CoinHeading = styled.span`
   font-size: 3vw;
   margin: 2%;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 18px;
   }
 `;
 
@@ -116,7 +116,7 @@ export const StatsContainer = styled.div`
 export const StyledStat = styled.div`
   font-size: 3.5vw;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
+    font-size: 18px;
   }
 `;
 

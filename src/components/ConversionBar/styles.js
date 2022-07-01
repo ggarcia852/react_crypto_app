@@ -29,9 +29,9 @@ export const StyledCurrencyName = styled.div`
   font-size: 3vw;
   font-weight: 500;
   @media ${devices.tablet} {
-    font-size: 1.25vw;
-    width: 8vw;
-    height: 3vw;
+    font-size: 16px;
+    width: 10vw;
+    height: 4vw;
   }
 `;
 
@@ -47,9 +47,9 @@ export const StyledCurrencyInput = styled.input`
   padding-left: 2vw;
   color: ${(props) => props.theme.color};
   @media ${devices.tablet} {
-    height: 3vw;
+    height: 4vw;
     width: 15vw;
-    font-size: 1vw;
+    font-size: 15px;
   }
 `;
 

@@ -4,7 +4,7 @@ import { devices } from "GlobalStyles/devices";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  height: 5vh;
+  height: 45px;
 `;
 
 export const StyledGlobalData = styled.div`
