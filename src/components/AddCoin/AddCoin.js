@@ -13,6 +13,7 @@ import {
   InputContainer,
   LeftContainer,
   StyledListItem,
+  StyledListImg,
   SaveButton,
   SelectedCoinContainer,
   StyledImg,
@@ -132,8 +133,8 @@ function AddCoin(props) {
             {hasCoins &&
               props.coins.map((coin) => (
                 <StyledListItem onClick={() => handleClick(coin)} key={coin.id}>
-                  <img src={coin.thumb} alt="coin" /> {coin.name} ({coin.symbol}
-                  )
+                  <StyledListImg src={coin.thumb} alt="coin" /> {coin.name} (
+                  {coin.symbol})
                 </StyledListItem>
               ))}
           </StyledList>

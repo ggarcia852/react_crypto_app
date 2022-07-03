@@ -151,10 +151,18 @@ export const StyledList = styled.div`
 `;
 
 export const StyledListItem = styled.div`
+display: flex;
+align-items: center;
+font-size: 15px;
 padding: 2% 4%;
 &:hover {
   background: #2550EA;
 `;
+
+export const StyledListImg = styled.img`
+  width: 15px;
+  margin-right: 5px;
+`
 
 export const ButtonContainer = styled.div`
   display: flex;
