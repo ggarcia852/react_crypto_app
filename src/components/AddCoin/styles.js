@@ -157,6 +157,7 @@ font-size: 15px;
 padding: 2% 4%;
 &:hover {
   background: #2550EA;
+  cursor: pointer;
 `;
 
 export const StyledListImg = styled.img`
