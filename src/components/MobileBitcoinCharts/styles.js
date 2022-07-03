@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.span`
-  font-size: 3.5vw;
+  font-size: 18px;
   font-weight: 500;
   color: ${(props) => props.theme.color};
   margin: 3% 8%;

@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { devices } from "GlobalStyles/devices";
 
 export const StyledHeader = styled.div`
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
   color: ${(props) => props.theme.color};
   margin-left: 8%;
   padding: 2% 0;
   @media ${devices.tablet} {
-    font-size: 1.75vw;
+    font-size: 22px;
   }
 `;
 
@@ -32,7 +32,7 @@ export const StyledTable = styled.div`
 
 export const StyledTableHeader = styled.div`
   display: table-header-group;
-  font-size: 3.5vw;
+  font-size: 12px;
   font-weight: 500;
   @media ${devices.tablet} {
     font-size: 1.25vw;
@@ -58,7 +58,7 @@ export const StyledTableCell = styled.div.attrs((props) => ({
   },
 }))`
   display: table-cell;
-  font-size: 3.25vw;
+  font-size: 12px;
   border-bottom: 1px solid #707070;
   vertical-align: middle;
   padding: 1%;
@@ -101,7 +101,7 @@ export const StyledBullets = styled.div`
 
 export const StyledChart = styled.div`
   width: 15vw;
-  height: 5vh;
+  height: 8vh;
   @media ${devices.tablet} {
     width: 10vw;
   }

@@ -224,7 +224,7 @@ const CoinData = (props) => {
                               },
                               layout: {
                                 padding: {
-                                  left: 15,
+                                  left: 10,
                                 },
                               },
                               elements: {
