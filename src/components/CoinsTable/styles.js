@@ -27,6 +27,7 @@ export const StyledTable = styled.div`
   padding-bottom: 1%;
   border-radius: 10px;
   width: 100%;
+  box-sizing: border-box;
 `;
 
 export const StyledTableHeader = styled.div`
